@@ -20,7 +20,7 @@ namespace GFt {
         /// @brief 构造函数
         /// @param x x 坐标
         /// @param y y 坐标
-        constexpr Point(T x = 0, T y = 0) : x_(x), y_(y) {}
+        constexpr explicit Point(T x = 0, T y = 0) : x_(x), y_(y) {}
         constexpr Point(const Point& p) = default;
         constexpr Point(Point&& p) = default;
         constexpr Point& operator=(const Point& p) = default;
@@ -113,6 +113,14 @@ namespace GFt {
         /// @param p 另一个点对象
         /// @return 两个点是否不相等
         constexpr bool operator!=(const Point& p) const { return !(*this == p); }
+        /// @brief 将点转换到 bool 值
+        /// @details 若 x 和 y 坐标不全为 0，则返回 true，否则返回 false
+        /// @return 转化后的 bool 值
+        constexpr explicit operator bool() const { return x_ != static_cast<T>(0) || y_ != static_cast<T>(0); }
+        /// @brief 逻辑非操作符重载
+        /// @details 若 x 和 y 坐标不全为 0，则返回 false，否则返回 true
+        /// @return 逻辑非后的 bool 值
+        constexpr bool operator!() const { return !static_cast<bool>(*this); }
 
         /// @brief 乘法操作符重载(点积)
         /// @details 这相当于两个二维向量的点积
@@ -121,19 +129,21 @@ namespace GFt {
         constexpr T operator*(const Point& p) const { return x_ * p.x_ + y_ * p.y_; }
 
         /// @brief 计算模长
-        /// @details 这相当于二维向量的模长(欧氏距离,|p|)
+        /// @details 这相当于二维向量的模长(即|p|)
         /// @return 点的模长
         constexpr auto norm() const { return std::sqrt(x_ * x_ + y_ * y_); }
-        /// @brief 计算点之间的距离
-        /// @param p 另一个点对象
-        /// @return 两个点之间的距离
-        constexpr auto distance(const Point& p) const { return (p - *this).norm(); }
         /// @brief 计算相角(弧度制)
         /// @details 这相当于复数 z=x+iy 的辐角主值 arg(z) (弧度制)
         /// @param p 另一个点对象
         /// @return 两个点的相角(弧度制)
         constexpr auto angle() const { return std::atan2(y_, x_); }
 
+        /// @brief 计算点之间的距离
+        /// @details 此函数求得两个点之间的欧氏距离
+        /// @param p1 第一个点对象
+        /// @param p2 第二个点对象
+        /// @return 两个点之间的距离
+        constexpr friend auto distance(const Point& p1, const Point& p2) { return (p1 - p2).norm(); }
         /// @brief Point<U> 类型转换函数
         /// @details 用于将 Point<T> 类型转换为 Point<U> 类型
         /// @tparam U 坐标转换的目标类型，要求为算术类型
@@ -146,6 +156,12 @@ namespace GFt {
         }
     };
 
-    using iPoint = Point<int>;     ///< 整数型点类别名
-    using fPoint = Point<float>;   ///< 浮点型点类别名
+    /// @brief 整数型点类别别名
+    /// @details 用于表示一个二维坐标点，其坐标数据类型为 int
+    /// @see Point
+    using iPoint = Point<int>;
+    /// @brief 浮点型点类别别名
+    /// @details 用于表示一个二维坐标点，其坐标数据类型为 float
+    /// @see Point
+    using fPoint = Point<float>;
 }

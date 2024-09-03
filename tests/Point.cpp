@@ -9,5 +9,12 @@ int main() {
     std::cout << "p1: " << p1 << std::endl;
     std::cout << "p1: " << p2 << std::endl;
     std::cout << "p1 * p2: " << cast<float>(p1) * p2 << std::endl;
+    std::cout << "p1 + p2: " << cast<float>(p1) + p2 << std::endl;
+    std::cout << "p1 - p2: " << cast<float>(p1) - p2 << std::endl;
+
+    std::cout << "distance(p1, p2): " << distance(cast<float>(p1), p2) << std::endl;
+    std::cout << "norm(p1): " << p1.norm() << std::endl;
+    std::cout << "norm(p2): " << p2.norm() << std::endl;
+    
     return 0;
 }
