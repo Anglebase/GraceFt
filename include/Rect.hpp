@@ -6,11 +6,19 @@
 #include <Point.hpp>
 #include <Size.hpp>
 
+
 namespace GFt {
-    /// @class Rect
-    /// @brief 矩形模板类
-    /// @details 矩形模板类，用于表示矩形的位置和大小
-    /// @tparam T 数值类型，要求为算术类型
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 图形数据类型
+    /// @{
+        /// @class Rect
+        /// @brief 矩形模板类
+        /// @details 矩形模板类，用于表示矩形的几何信息，包括位置和大小
+        /// @details 此类是 基础设施库 => 图形数据类型 的一部分
+        /// @tparam T 数值类型，要求为算术类型
+    /// @}
+    /// @}
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Rect {
@@ -73,6 +81,30 @@ namespace GFt {
         /// @return 大小值
         constexpr const Size<T>& size() const { return size_; }
 
+        /// @brief 等于比较运算符重载
+        /// @details 此函数对于浮点数比较是安全的
+        /// @param other 另一个矩形对象
+        /// @return 相等返回 true，否则返回 false
+        constexpr bool operator==(const Rect<T>& other) const {
+            return pos_ == other.pos_ && size_ == other.size_;
+        }
+        /// @brief 不等于比较运算符重载
+        /// @details 此函数对于浮点数比较是安全的
+        /// @param other 另一个矩形对象
+        /// @return 不相等返回 true，否则返回 false
+        constexpr bool operator!=(const Rect<T>& other) const {
+            return pos_ != other.pos_ || size_ != other.size_;
+        }
+
+        /// @brief 将矩形转换到 bool 值
+        /// @details 矩形位置和大小转换到 bool 值时，均为 false 则返回 false，否则返回 true
+        /// @return 转换结果
+        constexpr explicit operator bool() const { return static_cast<bool>(size_) || static_cast<bool>(pos_); }
+        /// @brief 逻辑非运算符重载
+        /// @details 相当于转化为 bool 值再取反
+        /// @return 逻辑非运算结果
+        constexpr bool operator!() const { return !static_cast<bool>(*this); }
+
         /// @brief 矩形的中心点坐标
         /// @return 坐标值
         constexpr Point<T> center() const {
@@ -105,10 +137,30 @@ namespace GFt {
             os << "Rect{" << rect.pos_ << ", " << rect.size_ << "}";
             return os;
         }
+
+        /// @brief 矩形类型转换函数
+        /// @tparam U 目标类型
+        /// @param rect 原始矩形对象
+        /// @return 转换后的矩形对象
+        template<typename U>
+            requires std::is_arithmetic_v<U>
+        friend constexpr Rect<U> cast(const Rect<T>& rect) {
+            return Rect<U>(cast<U>(rect.pos_), cast<U>(rect.size_));
+        }
     };
 
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 预定义模板特化类型
+    /// @{
+
     /// @brief 整数型矩形类型
+    /// @see Rect
     using iRect = Rect<int>;
     /// @brief 浮点型矩形类型
+    /// @see Rect
     using fRect = Rect<float>;
+
+    /// @}
+    /// @}
 }

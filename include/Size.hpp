@@ -5,10 +5,17 @@
 #include <cmath>
 
 namespace GFt {
-    /// @class Size
-    /// @brief 泛型尺寸类
-    /// @details 此类用于表示一个二维尺寸，其坐标数据类型由模板参数 T 指定
-    /// @tparam T 点的坐标类型，要求为算术类型
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 复合数据类型
+    /// @{
+        /// @class Size
+        /// @brief 泛型尺寸类
+        /// @details 此类用于表示一个矩形大小的几何信息，并提供常见几何操作
+        /// @details 此类是 基础设施库 => 复合数据类型 的一部分
+        /// @tparam T 点的坐标类型，要求为算术类型
+    /// @}
+    /// @}
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Size {
@@ -129,10 +136,12 @@ namespace GFt {
         /// @return 尺寸对象本身
         constexpr Size operator+() const { return *this; }
 
-
+        /// @brief 求此尺寸的周长
+        /// @return 尺寸的周长
+        constexpr T perimeter() const { return 2 * (width_ + height_); }
         /// @brief 求尺寸的面积
         /// @return 尺寸的面积
-        T area() const { return width_ * height_; }
+        constexpr T area() const { return width_ * height_; }
 
         /// @brief 流操作符重载
         /// @param os 输出流
@@ -154,6 +163,11 @@ namespace GFt {
         }
     };
 
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 预定义模板特化类型
+    /// @{
+
     /// @brief 整数型尺寸
     /// @details 用于表示一个二维坐标尺寸，其坐标数据类型为 int
     /// @see Size
@@ -162,4 +176,7 @@ namespace GFt {
     /// @details 用于表示一个二维坐标尺寸，其坐标数据类型为 float
     /// @see Size
     using fSize = Size<float>;
+
+    /// @}
+    /// @}
 }

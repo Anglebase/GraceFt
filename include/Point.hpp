@@ -8,10 +8,17 @@
 /// @namespace GFt
 /// @brief GraceFt库的命名空间。
 namespace GFt {
-    /// @class Point
-    /// @brief 泛型点类
-    /// @details 此类用于表示一个二维坐标点，其坐标数据类型由模板参数 T 指定
-    /// @tparam T 点的坐标类型，要求为算术类型
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 复合数据类型
+    /// @{
+        /// @class Point
+        /// @brief 泛型点类
+        /// @details 此类用于表示一个二维坐标点的几何信息，并提供了常用的几何操作
+        /// @details 此类是 基础设施库 => 复合数据类型 的一部分
+        /// @tparam T 点的坐标类型，要求为算术类型
+    /// @}
+    /// @}
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Point {
@@ -129,7 +136,7 @@ namespace GFt {
         /// @param p 另一个点对象
         /// @return 两个点是否不相等
         constexpr bool operator!=(const Point& p) const { return !(*this == p); }
-        
+
         /// @brief 将点转换到 bool 值
         /// @details 若 x 和 y 坐标不全为 0，则返回 true，否则返回 false
         /// @return 转化后的 bool 值
@@ -173,6 +180,11 @@ namespace GFt {
         }
     };
 
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 预定义模板特化类型
+    /// @{
+
     /// @brief 整数型点类别别名
     /// @details 用于表示一个二维坐标点，其坐标数据类型为 int
     /// @see Point
@@ -181,4 +193,7 @@ namespace GFt {
     /// @details 用于表示一个二维坐标点，其坐标数据类型为 float
     /// @see Point
     using fPoint = Point<float>;
+
+    /// @}
+    /// @}
 }
