@@ -31,6 +31,9 @@
                 <mxCell id="19" style="edgeStyle=none;html=1;" parent="1" source="3" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="66" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="65">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="3" value="基础设施库" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="400" y="490" width="120" height="60" as="geometry"/>
                 </mxCell>
@@ -56,25 +59,25 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="对象通信机制" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="380" y="570" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="350" y="580" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="点模板类&lt;br&gt;Point&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontColor=#ffffff;" parent="1" vertex="1">
-                    <mxGeometry x="690" y="670" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="680" y="670" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="尺寸模板类&lt;br&gt;Size&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="707" y="580" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="矩形模板类&lt;br&gt;Rect&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="11" value="矩形模板类&lt;br&gt;Rect&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="707" y="490" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" style="edgeStyle=none;html=1;" parent="1" source="22" target="24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="信号槽机制" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="390" y="660" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="300" y="730" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="信号模板类&lt;br&gt;Signal&amp;lt;Args...&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="400" y="740" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="280" y="810" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" style="edgeStyle=none;html=1;" parent="1" source="26" target="46" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -140,7 +143,7 @@
                     <mxGeometry x="90" y="600" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" value="矩阵模板类&lt;br&gt;Matrix&amp;lt;M,N&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="550" y="670" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="620" y="770" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="62" value="未实现" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="310" y="10" width="120" height="60" as="geometry"/>
@@ -150,6 +153,15 @@
                 </mxCell>
                 <mxCell id="64" value="已实现" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="570" y="10" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=none;html=1;" edge="1" parent="1" source="65" target="67">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="图形数据类型" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="650" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="圆&lt;br&gt;Circle&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="760" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
