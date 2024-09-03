@@ -20,7 +20,7 @@ namespace GFt {
         /// @brief 构造函数
         /// @param x x 坐标
         /// @param y y 坐标
-        constexpr explicit Point(T x = 0, T y = 0) : x_(x), y_(y) {}
+        constexpr explicit Point(T x = static_cast<T>(0), T y = static_cast<T>(0)) : x_(x), y_(y) {}
         constexpr Point(const Point& p) = default;
         constexpr Point(Point&& p) = default;
         constexpr Point& operator=(const Point& p) = default;
@@ -106,13 +106,30 @@ namespace GFt {
         }
 
         /// @brief 等于判断操作符重载
+        /// @details 此函数对于浮点数比较是安全的
         /// @param p 另一个点对象
         /// @return 两个点是否相等
-        constexpr bool operator==(const Point& p) const { return x_ == p.x_ && y_ == p.y_; }
+        constexpr bool operator==(const Point& p) const {
+            if constexpr (std::numeric_limits<T>::is_integer) {
+                return x_ == p.x_ && y_ == p.y_;
+            }
+            int txexp, tyexp, pxexp, pyexp;
+            auto tx = frexp(x_, &txexp);
+            auto ty = frexp(y_, &tyexp);
+            auto px = frexp(p.x_, &pxexp);
+            auto py = frexp(p.y_, &pyexp);
+            if (txexp != pxexp || tyexp != pyexp)
+                return false;
+            return
+                std::fabs(tx - px) <= std::numeric_limits<T>::epsilon() &&
+                std::fabs(ty - py) <= std::numeric_limits<T>::epsilon();
+        }
         /// @brief 不等于判断操作符重载
+        /// @details 此函数对于浮点数比较是安全的
         /// @param p 另一个点对象
         /// @return 两个点是否不相等
         constexpr bool operator!=(const Point& p) const { return !(*this == p); }
+        
         /// @brief 将点转换到 bool 值
         /// @details 若 x 和 y 坐标不全为 0，则返回 true，否则返回 false
         /// @return 转化后的 bool 值
