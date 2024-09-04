@@ -298,7 +298,7 @@ namespace GFt {
             }
             return *this;
         }
-
+        
         /// @brief 矩阵类型转换函数
         /// @details 矩阵类型转换函数，将矩阵的元素类型转换为 U 类型
         /// @tparam U 目标类型
