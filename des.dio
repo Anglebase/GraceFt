@@ -205,7 +205,7 @@
                 <mxCell id="86" value="网络库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="100" y="-630" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="矩阵计算函数" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+                <mxCell id="88" value="线性代数工具&lt;br&gt;&amp;lt;LMath.hpp&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
                     <mxGeometry x="1167" y="-70" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
