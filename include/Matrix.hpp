@@ -333,9 +333,9 @@ namespace GFt {
     using fMat2x2 = Mat2x2<float>;  ///< 2x2 浮点矩阵类型
     using fMat3x3 = Mat3x3<float>;  ///< 3x3 浮点矩阵类型
     using fMat4x4 = Mat4x4<float>;  ///< 4x4 浮点矩阵类型
-    template<size M, typename T>
-        requires (M > 0) && std::is_arithmetic_v<T>
-    using Vec = Matrix<M, 1, T>;    ///< 向量类型
+    template<size N, typename T>
+        requires (N > 0) && std::is_arithmetic_v<T>
+    using Vec = Matrix<1, N, T>;    ///< 向量类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     using Vec2 = Vec<2, T>;         ///< 二维向量类型
