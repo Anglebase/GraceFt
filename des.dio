@@ -1,13 +1,13 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="1410" dy="1131" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1979" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="20" style="edgeStyle=none;html=1;" parent="1" source="2" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" style="edgeStyle=none;html=1;" parent="1" source="2" target="4" edge="1">
+                <mxCell id="21" style="edgeStyle=none;html=1;" parent="1" source="84" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" style="edgeStyle=none;html=1;" parent="1" source="2" target="26" edge="1">
@@ -16,10 +16,13 @@
                 <mxCell id="30" style="edgeStyle=none;html=1;" parent="1" source="2" target="29" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" style="edgeStyle=none;html=1;" parent="1" source="2" target="31" edge="1">
+                <mxCell id="32" style="edgeStyle=none;html=1;" parent="1" source="84" target="31" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" style="edgeStyle=none;html=1;" parent="1" source="2" target="44" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" style="edgeStyle=none;html=1;" edge="1" parent="1" source="2" target="84">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="GraceFt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
@@ -37,8 +40,8 @@
                 <mxCell id="3" value="基础设施库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
                     <mxGeometry x="220" y="-65" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="线程安全容器库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
-                    <mxGeometry x="290" y="-400" width="120" height="60" as="geometry"/>
+                <mxCell id="4" value="线程安全容器库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+                    <mxGeometry x="390" y="-270" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" style="edgeStyle=none;html=1;" parent="1" source="6" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -82,20 +85,20 @@
                 <mxCell id="26" value="API接口库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
                     <mxGeometry x="-250" y="-130" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="78" style="edgeStyle=none;html=1;" edge="1" parent="1" source="29" target="77">
+                <mxCell id="78" style="edgeStyle=none;html=1;" parent="1" source="29" target="77" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="可交互UI封装库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
-                    <mxGeometry x="-70" y="-680" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-150" y="-580" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="线程安全IO库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
-                    <mxGeometry x="180" y="-590" width="120" height="60" as="geometry"/>
+                <mxCell id="31" value="线程安全IO库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="-430" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="&lt;h1&gt;线程安全容器库&lt;/h1&gt;&lt;div&gt;此库是对标准库容器的线程安全封装，实现时应尽可能减少性能损失，避免在没有数据竞争的情况下执行加减锁&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="410" y="-400" width="180" height="110" as="geometry"/>
+                    <mxGeometry x="510" y="-270" width="180" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="&lt;h1&gt;线程安全IO库&lt;/h1&gt;&lt;div&gt;此库是对标准库IO的线程安全封装&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="300" y="-590" width="190" height="70" as="geometry"/>
+                    <mxGeometry x="530" y="-430" width="190" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="42" value="凡满足指派符列表初始化的类均应以 struct 声明" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="1047" y="-760" width="270" height="30" as="geometry"/>
@@ -127,7 +130,7 @@
                 <mxCell id="57" style="edgeStyle=none;html=1;" parent="1" source="26" target="56" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" style="edgeStyle=none;html=1;" edge="1" parent="1" source="56" target="79">
+                <mxCell id="80" style="edgeStyle=none;html=1;" parent="1" source="56" target="79" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="56" value="消息封装" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
@@ -136,7 +139,7 @@
                 <mxCell id="58" value="公共工具函数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="-380" y="25" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="矩阵模板类&lt;br&gt;Matrix&amp;lt;M,N,T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;fontStyle=0" parent="1" vertex="1">
+                <mxCell id="60" value="矩阵模板类&lt;br&gt;Matrix&amp;lt;M,N,T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;fontStyle=0" parent="1" vertex="1">
                     <mxGeometry x="860" y="-35" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="62" value="未实现" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -151,13 +154,13 @@
                 <mxCell id="68" style="edgeStyle=none;html=1;" parent="1" source="65" target="67" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" style="edgeStyle=none;html=1;" edge="1" parent="1" source="65" target="69">
+                <mxCell id="70" style="edgeStyle=none;html=1;" parent="1" source="65" target="69" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="72" style="edgeStyle=none;html=1;" edge="1" parent="1" source="65" target="71">
+                <mxCell id="72" style="edgeStyle=none;html=1;" parent="1" source="65" target="71" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" style="edgeStyle=none;html=1;" edge="1" parent="1" source="65" target="73">
+                <mxCell id="74" style="edgeStyle=none;html=1;" parent="1" source="65" target="73" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" value="图形数据类型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
@@ -166,29 +169,38 @@
                 <mxCell id="67" value="圆&lt;br&gt;Circle&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="360" y="120" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="圆角矩形&lt;br&gt;RoundRect&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="69" value="圆角矩形&lt;br&gt;RoundRect&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="830" y="80" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" value="椭圆&lt;br&gt;Elliptic&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="71" value="椭圆&lt;br&gt;Elliptic&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="617" y="-10" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="直线&lt;br&gt;Line&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="73" value="直线&lt;br&gt;Line&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="450" y="220" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="77" value="按钮&lt;br&gt;Button" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="77" value="按钮&lt;br&gt;Button" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-250" y="-770" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="79" value="事件基类&lt;br&gt;Event" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="79" value="事件基类&lt;br&gt;Event" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-650" y="-240" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="子库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" vertex="1" parent="1">
+                <mxCell id="81" value="子库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
                     <mxGeometry x="1177" y="-640" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" vertex="1" parent="1">
+                <mxCell id="82" value="库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;fontColor=#ffffff;strokeColor=#6D1F00;" parent="1" vertex="1">
                     <mxGeometry x="1047" y="-640" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" value="库组成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                <mxCell id="83" value="库组成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="1307" y="-640" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" style="edgeStyle=none;html=1;" edge="1" parent="1" source="84" target="86">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="扩展支持库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="-450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="网络库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="-610" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
