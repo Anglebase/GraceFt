@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="1979" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2041" dy="1620" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -73,7 +73,7 @@
                 <mxCell id="11" value="矩形模板类&lt;br&gt;Rect&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="620" y="290" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="(信号槽机制)&lt;br&gt;信号模板类&lt;br&gt;Signal&amp;lt;Args...&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="22" value="(信号槽机制)&lt;br&gt;信号模板类&lt;br&gt;Signal&amp;lt;Args...&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
                     <mxGeometry x="-140" y="310" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" style="edgeStyle=none;html=1;" parent="1" source="26" target="46" edge="1">
