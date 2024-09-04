@@ -1,4 +1,5 @@
 #include <Matrix.hpp>
+#include <LMath.hpp>
 
 using namespace GFt;
 using namespace std;
