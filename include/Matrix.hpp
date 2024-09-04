@@ -335,37 +335,37 @@ namespace GFt {
 
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Mat2x2 = Matrix<2, 2, T>;
+    using Mat2x2 = Matrix<2, 2, T>; ///< 2x2 矩阵类型
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Mat3x3 = Matrix<3, 3, T>;
+    using Mat3x3 = Matrix<3, 3, T>; ///< 3x3 矩阵类型
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Mat4x4 = Matrix<4, 4, T>;
-    using iMat2x2 = Mat2x2<int>;
-    using iMat3x3 = Mat3x3<int>;
-    using iMat4x4 = Mat4x4<int>;
-    using fMat2x2 = Mat2x2<float>;
-    using fMat3x3 = Mat3x3<float>;
-    using fMat4x4 = Mat4x4<float>;
+    using Mat4x4 = Matrix<4, 4, T>; ///< 4x4 矩阵类型
+    using iMat2x2 = Mat2x2<int>;    ///< 2x2 整数矩阵类型
+    using iMat3x3 = Mat3x3<int>;    ///< 3x3 整数矩阵类型
+    using iMat4x4 = Mat4x4<int>;    ///< 4x4 整数矩阵类型
+    using fMat2x2 = Mat2x2<float>;  ///< 2x2 浮点矩阵类型
+    using fMat3x3 = Mat3x3<float>;  ///< 3x3 浮点矩阵类型
+    using fMat4x4 = Mat4x4<float>;  ///< 4x4 浮点矩阵类型
     template<size M, typename T>
         requires (M > 0) && std::is_arithmetic_v<T>
-    using Vec = Matrix<M, 1, T>;
+    using Vec = Matrix<M, 1, T>;    ///< 向量类型
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Vec2 = Vec<2, T>;
+    using Vec2 = Vec<2, T>;         ///< 二维向量类型
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Vec3 = Vec<3, T>;
+    using Vec3 = Vec<3, T>;         ///< 三维向量类型
     template<typename T>
         requires std::is_arithmetic_v<T>
-    using Vec4 = Vec<4, T>;
-    using iVec2 = Vec2<int>;
-    using iVec3 = Vec3<int>;
-    using iVec4 = Vec4<int>;
-    using fVec2 = Vec2<float>;
-    using fVec3 = Vec3<float>;
-    using fVec4 = Vec4<float>;
+    using Vec4 = Vec<4, T>;         ///< 四维向量类型
+    using iVec2 = Vec2<int>;        ///< 二维整数向量类型
+    using iVec3 = Vec3<int>;        ///< 三维整数向量类型
+    using iVec4 = Vec4<int>;        ///< 四维整数向量类型
+    using fVec2 = Vec2<float>;      ///< 二维浮点向量类型
+    using fVec3 = Vec3<float>;      ///< 三维浮点向量类型
+    using fVec4 = Vec4<float>;      ///< 四维浮点向量类型
 
     /// @}
     /// @}
