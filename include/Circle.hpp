@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <numbers>
 
-#include <private.inl>
+#include <_private.inl>
 #include <Point.hpp>
 
 namespace GFt {
