@@ -219,7 +219,7 @@ namespace GFt {
         /// @return 转置矩阵
         constexpr Matrix<N, M, T> transpose() const {
             Matrix<N, M, T> res;
-            _LOOP_EACH(res.data[j][i] = data[i][j]);
+            _LOOP_EACH(res[j][i] = data[i][j]);
             return res;
         }
         /// @brief 求矩阵的行列式值
