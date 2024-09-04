@@ -7,7 +7,6 @@
 #include <private.inl>
 #include <Point.hpp>
 
-
 namespace GFt {
     /// @addtogroup 基础设施库
     /// @{

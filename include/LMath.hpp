@@ -5,7 +5,7 @@
 namespace GFt {
     /// @addtogroup 基础设施库
     /// @{
-    /// @addtogroup 线性代数工具
+    /// @addtogroup 复合数据类型
     /// @{
 
     /// @brief 计算向量点乘
@@ -60,7 +60,7 @@ namespace GFt {
     constexpr Vec4<T> normalize(const Vec4<T>& v) {
         return v / v[3];
     }
-    /// @breif 构造向量
+    /// @brief 构造向量
     /// @tparam N 维度数
     /// @tparam T 类型
     /// @tparam TArgs 参数类型
