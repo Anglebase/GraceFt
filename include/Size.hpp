@@ -4,6 +4,8 @@
 #include <type_traits>
 #include <cmath>
 
+#include <private.inl>
+
 namespace GFt {
     /// @addtogroup 基础设施库
     /// @{
@@ -53,16 +55,8 @@ namespace GFt {
             if constexpr (std::numeric_limits<T>::is_integer) {
                 return width_ == other.width_ && height_ == other.height_;
             }
-            int twexp, thexp, owexp, ohexp;
-            auto w1 = std::frexp(width_, &twexp);
-            auto w2 = std::frexp(other.width_, &owexp);
-            auto h1 = std::frexp(height_, &thexp);
-            auto h2 = std::frexp(other.height_, &ohexp);
-            if (twexp != owexp || thexp != ohexp)
-                return false;
-            return
-                std::fabs(w1 - w2) < std::numeric_limits<T>::epsilon() &&
-                std::fabs(h1 - h2) < std::numeric_limits<T>::epsilon();
+            using namespace _GFt_private_;
+            return fsafe_equal(width_, other.width_) && fsafe_equal(height_, other.height_);
         }
         /// @brief 不等于比较运算符重载
         /// @details 此函数对于浮点数比较是安全的

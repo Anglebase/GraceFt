@@ -5,6 +5,8 @@
 #include <cmath>
 #include <type_traits>
 
+#include <private.inl>
+
 /// @namespace GFt
 /// @brief GraceFt库的命名空间。
 namespace GFt {
@@ -120,16 +122,8 @@ namespace GFt {
             if constexpr (std::numeric_limits<T>::is_integer) {
                 return x_ == p.x_ && y_ == p.y_;
             }
-            int txexp, tyexp, pxexp, pyexp;
-            auto tx = frexp(x_, &txexp);
-            auto ty = frexp(y_, &tyexp);
-            auto px = frexp(p.x_, &pxexp);
-            auto py = frexp(p.y_, &pyexp);
-            if (txexp != pxexp || tyexp != pyexp)
-                return false;
-            return
-                std::fabs(tx - px) <= std::numeric_limits<T>::epsilon() &&
-                std::fabs(ty - py) <= std::numeric_limits<T>::epsilon();
+            using namespace _GFt_private_;
+            return fsafe_equal(x_, p.x_) && fsafe_equal(y_, p.y_);
         }
         /// @brief 不等于判断操作符重载
         /// @details 此函数对于浮点数比较是安全的

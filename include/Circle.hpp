@@ -4,7 +4,9 @@
 #include <type_traits>
 #include <numbers>
 
+#include <private.inl>
 #include <Point.hpp>
+
 
 namespace GFt {
     /// @addtogroup 基础设施库
@@ -81,12 +83,8 @@ namespace GFt {
             if constexpr (std::numeric_limits<T>::is_integer) {
                 return origin_ == other.origin_ && radius_ == other.radius_;
             }
-            int texp, oexp;
-            auto trd = frexp(radius_, &texp);
-            auto ord = frexp(other.radius_, &oexp);
-            if (texp != oexp)
-                return false;
-            return std::fabs(trd - ord) < std::numeric_limits<T>::epsilon() && origin_ == other.origin_;
+            return origin_ == other.origin_ &&
+                _GFt_private_::fsafe_equal(radius_, other.radius_);
         }
         /// @brief 不等于比较运算符重载
         /// @details 此函数对于浮点数比较是安全的
