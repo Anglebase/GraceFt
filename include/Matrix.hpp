@@ -299,21 +299,6 @@ namespace GFt {
             return *this;
         }
 
-        /// @brief 流操作符重载
-        /// @details 输出矩阵到流中
-        /// @param os 流对象
-        /// @param mat 矩阵对象
-        /// @return 流对象 os
-        friend std::ostream& operator<<(std::ostream& os, const Matrix& mat) {
-            std::cout << std::endl;
-            for (size i = 0; i < M; i++) {
-                std::cout << "[";
-                for (size j = 0; j < N; j++)
-                    std::cout << " " << mat.data[i][j] << ", "[j == N - 1];
-                std::cout << "]" << std::endl;
-            }
-            return os;
-        }
         /// @brief 矩阵类型转换函数
         /// @details 矩阵类型转换函数，将矩阵的元素类型转换为 U 类型
         /// @tparam U 目标类型
