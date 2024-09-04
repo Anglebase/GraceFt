@@ -5,7 +5,7 @@
 #include <cmath>
 #include <type_traits>
 
-#include <private.inl>
+#include <_private.inl>
 
 /// @namespace GFt
 /// @brief GraceFt库的命名空间。

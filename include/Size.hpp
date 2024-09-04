@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <cmath>
 
-#include <private.inl>
+#include <_private.inl>
 
 namespace GFt {
     /// @addtogroup 基础设施库
