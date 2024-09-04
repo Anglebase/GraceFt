@@ -17,3 +17,6 @@ namespace _GFt_private_ {
     }
 }
 /// @endcond
+
+// 此空声明用于运行 Doxygen
+namespace GFt {}
