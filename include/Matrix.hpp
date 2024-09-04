@@ -208,13 +208,13 @@ namespace GFt {
         }
         /// @brief 获取矩阵的行数
         /// @return 矩阵的行数
-        constexpr size rows() const { return M; }
+        consteval size rows() const { return M; }
         /// @brief 获取矩阵的列数
         /// @return 矩阵的列数
-        constexpr size cols() const { return N; }
+        consteval size cols() const { return N; }
         /// @brief 获取矩阵的元素个数
         /// @return 矩阵的元素个数
-        constexpr size count() const { return M * N; }
+        consteval size count() const { return M * N; }
         /// @brief 求矩阵的转置矩阵
         /// @return 转置矩阵
         constexpr Matrix<N, M, T> transpose() const {
