@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="1743" dy="1423" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1979" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -55,7 +55,7 @@
                 <mxCell id="61" style="edgeStyle=none;html=1;" parent="1" source="6" target="60" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" style="edgeStyle=none;html=1;" edge="1" parent="1" source="6" target="88">
+                <mxCell id="90" style="edgeStyle=none;html=1;" parent="1" source="6" target="88" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="复合数据类型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
@@ -205,8 +205,8 @@
                 <mxCell id="86" value="网络库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="100" y="-630" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="线性代数工具&lt;br&gt;&amp;lt;LMath.hpp&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
-                    <mxGeometry x="1167" y="-70" width="120" height="60" as="geometry"/>
+                <mxCell id="88" value="线性代数工具&lt;br&gt;&amp;lt;LMath.hpp&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
+                    <mxGeometry x="1160" y="-50" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
