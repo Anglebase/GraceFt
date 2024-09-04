@@ -174,12 +174,12 @@ namespace GFt {
         /// @return 矩阵乘法结果
         template<size P>
             requires (P > 0)
-        constexpr Matrix operator*(const Matrix<N, P, T>& other) const {
+        constexpr Matrix<M, P, T> operator*(const Matrix<N, P, T>& other) const {
             Matrix<M, P, T> res;
             for (size i = 0; i < M; i++)
                 for (size j = 0; j < P; j++)
                     for (size k = 0; k < N; k++)
-                        res.data[i][j] += data[i][k] * other.data[k][j];
+                        res[i][j] += data[i][k] * other[k][j];
             return res;
         }
 
