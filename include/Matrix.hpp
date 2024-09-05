@@ -354,6 +354,36 @@ namespace GFt {
 
     /// @}
     /// @}
+
+    /// @brief 流操作符重载
+    /// @details 输出矩阵到流中
+    /// @param os 流对象
+    /// @param mat 矩阵对象
+    /// @return 流对象 os
+    template<size M, size N, typename T>
+    std::ostream& operator<<(std::ostream& os, const Matrix<M, N, T>& mat) {
+        std::cout << std::endl;
+        for (size i = 0; i < M; i++) {
+            std::cout << "[";
+            for (size j = 0; j < N; j++)
+                std::cout << " " << mat[i][j] << ", "[j == N - 1];
+            std::cout << "]" << std::endl;
+        }
+        return os;
+    }
+    /// @brief 流操作符重载
+    /// @details 输出向量到流中
+    /// @param os 流对象
+    /// @param v 向量对象
+    /// @return 流对象 os
+    template<size N, typename T>
+    std::ostream& operator<<(std::ostream& os, const Vec<N, T>& v) {
+        os << "[";
+        for (size_t i = 0; i < N; ++i)
+            os << " " << v[0][i] << ", "[i == N - 1];
+        os << "]";
+        return os;
+    }
 }
 
 #undef _LOOP_EACH
