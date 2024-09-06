@@ -16,9 +16,9 @@ namespace GFt {
     MouseMoveEvent::MouseMoveEvent(const iPoint& position) : MouseEvent(position) {}
     KeyPressEvent::KeyPressEvent(Key key) : KeyboardEvent(key) {}
     KeyReleaseEvent::KeyReleaseEvent(Key key) : KeyboardEvent(key) {}
-    MousePressEvent::MousePressEvent(const iPoint& position, MouseButton button)
+    MouseButtonPressEvent::MouseButtonPressEvent(const iPoint& position, MouseButton button)
         : MouseButtonEvent(position, button) {}
-    MouseReleaseEvent::MouseReleaseEvent(const iPoint& position, MouseButton button)
+    MouseButtonReleaseEvent::MouseButtonReleaseEvent(const iPoint& position, MouseButton button)
         : MouseButtonEvent(position, button) {}
     TextInputEvent::TextInputEvent(int character) : character_(character) {}
     int TextInputEvent::character() const { return character_; }
