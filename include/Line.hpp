@@ -108,6 +108,14 @@ namespace GFt {
             os << "Line{" << line.p1 << ", " << line.p2 << "}";
             return os;
         }
+        /// @brief 类型转换函数模板
+        /// @tparam U 目标类型
+        /// @param line 要转换的直线对象
+        /// @return 转换后的直线对象
+        template<typename U>
+        friend constexpr Line<U> cast(const Line<T>& line) {
+            return Line<U>(cast<U>(line.p1), cast<U>(line.p2));
+        }
     };
 
     /// @addtogroup 基础设施库
