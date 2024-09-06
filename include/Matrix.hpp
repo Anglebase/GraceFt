@@ -194,7 +194,7 @@ namespace GFt {
                 return true;
             }
             _LOOP_EACH({
-                if (!_GFt_private_::fsafe_equal(data[i][j], other.data[i][j]))
+                if (!_GFt_private_::_fsafe_equal(data[i][j], other.data[i][j]))
                     return false;
                 });
             return true;
@@ -288,11 +288,11 @@ namespace GFt {
             if constexpr (std::is_floating_point_v<T>) {
                 using namespace _GFt_private_;
                 _LOOP_EACH({
-                    if (fsafe_equal(data[i][j], static_cast<T>(0), eis))
+                    if (_fsafe_equal(data[i][j], static_cast<T>(0), eis))
                         data[i][j] = 0;
-                    else if (fsafe_equal(data[i][j], std::floor(data[i][j]), eis))
+                    else if (_fsafe_equal(data[i][j], std::floor(data[i][j]), eis))
                         data[i][j] = std::floor(data[i][j]);
-                    else if (fsafe_equal(data[i][j], std::ceil(data[i][j]), eis))
+                    else if (_fsafe_equal(data[i][j], std::ceil(data[i][j]), eis))
                         data[i][j] = std::ceil(data[i][j]);
                     });
             }

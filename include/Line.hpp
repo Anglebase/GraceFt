@@ -63,7 +63,7 @@ namespace GFt {
         /// @brief 判断此直线是否与另一个直线共线
         /// @param other 另一个直线对象
         /// @return 两个直线是否共线
-        constexpr bool isCollinear(const Line<T>& other) const {
+        constexpr bool isCollinearWith(const Line<T>& other) const {
             using namespace _GFt_private_;
             if (!(*this))
                 return false;
@@ -73,14 +73,14 @@ namespace GFt {
             auto ody = other.p2.y() - other.p1.y();
             bool ret = false;
             if constexpr (std::is_floating_point_v<T>) {
-                if (fsafe_equal(tdx, 0) && fsafe_equal(ody, 0))
+                if (_fsafe_equal(tdx, 0) && _fsafe_equal(ody, 0))
                     return p2.x() == other.p2.x();
-                if (fsafe_equal(tdx, 0) || fsafe_equal(ody, 0))
+                if (_fsafe_equal(tdx, 0) || _fsafe_equal(ody, 0))
                     return false;
                 auto tk = tdy / tdx;
                 auto ok = ody / odx;
-                ret = fsafe_equal(tk, ok)
-                    && fsafe_equal(
+                ret = _fsafe_equal(tk, ok)
+                    && _fsafe_equal(
                         p1.y() - p1.x() * tk,
                         other.p1.y() - other.p1.x() * ok
                     );
@@ -92,8 +92,8 @@ namespace GFt {
                     return false;
                 double tk = tdy / static_cast<double>(tdx);
                 double ok = ody / static_cast<double>(odx);
-                ret = fsafe_equal(tk, ok)
-                    && fsafe_equal(
+                ret = _fsafe_equal(tk, ok)
+                    && _fsafe_equal(
                         p1.y() - p1.x() * tk,
                         other.p1.y() - other.p1.x() * ok
                     );

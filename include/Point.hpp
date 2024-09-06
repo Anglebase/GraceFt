@@ -123,7 +123,7 @@ namespace GFt {
                 return x_ == p.x_ && y_ == p.y_;
             }
             using namespace _GFt_private_;
-            return fsafe_equal(x_, p.x_) && fsafe_equal(y_, p.y_);
+            return _fsafe_equal(x_, p.x_) && _fsafe_equal(y_, p.y_);
         }
         /// @brief 不等于判断操作符重载
         /// @details 此函数对于浮点数比较是安全的

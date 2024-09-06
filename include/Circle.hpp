@@ -83,7 +83,7 @@ namespace GFt {
                 return origin_ == other.origin_ && radius_ == other.radius_;
             }
             return origin_ == other.origin_ &&
-                _GFt_private_::fsafe_equal(radius_, other.radius_);
+                _GFt_private_::_fsafe_equal(radius_, other.radius_);
         }
         /// @brief 不等于比较运算符重载
         /// @details 此函数对于浮点数比较是安全的
