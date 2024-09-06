@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="2419" dy="1645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2556" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -288,8 +288,8 @@
                 <mxCell id="177" value="TextInputEvent" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="93">
                     <mxGeometry x="130" y="100" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="115" value="事件监视器 EventMoniter Inherit UML" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-1330" y="440" width="890" height="360" as="geometry"/>
+                <mxCell id="115" value="事件监视器 EventMonitor Inherit UML" style="swimlane;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="-1320" y="440" width="890" height="360" as="geometry"/>
                 </mxCell>
                 <mxCell id="135" style="edgeStyle=none;html=1;" parent="115" source="116" target="118" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -297,7 +297,10 @@
                 <mxCell id="136" style="edgeStyle=none;html=1;" parent="115" source="116" target="120" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="116" value="EventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="180" style="edgeStyle=none;html=1;" edge="1" parent="115" source="116" target="179">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" value="EventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="375" y="310" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="142" style="edgeStyle=none;html=1;" parent="115" source="118" target="122" edge="1">
@@ -309,7 +312,7 @@
                 <mxCell id="144" style="edgeStyle=none;html=1;" parent="115" source="118" target="126" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="118" value="MouseEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="118" value="MouseEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="160" y="220" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="138" style="edgeStyle=none;html=1;" parent="115" source="120" target="128" edge="1">
@@ -318,7 +321,7 @@
                 <mxCell id="139" style="edgeStyle=none;html=1;" parent="115" source="120" target="130" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="120" value="KeyboardEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="120" value="KeyboardEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="660" y="220" width="150" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="140" style="edgeStyle=none;html=1;" parent="115" source="122" target="132" edge="1">
@@ -327,26 +330,29 @@
                 <mxCell id="141" style="edgeStyle=none;html=1;" parent="115" source="122" target="134" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="122" value="MouseButtonEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="122" value="MouseButtonEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="50" y="130" width="170" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="124" value="MouseMoveEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="124" value="MouseMoveEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="260" y="130" width="170" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="126" value="MouseWheelEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="126" value="MouseWheelEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="460" y="130" width="170" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="128" value="KeyPressEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="128" value="KeyPressEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="510" y="40" width="160" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="130" value="KeyReleaseEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="130" value="KeyReleaseEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="700" y="40" width="170" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="132" value="MouseButtonPressEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="132" value="MouseButtonPressEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="20" y="40" width="210" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="134" value="MouseButtonReleaseEventMoniter" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="115" vertex="1">
+                <mxCell id="134" value="MouseButtonReleaseEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="115" vertex="1">
                     <mxGeometry x="240" y="40" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="179" value="TextInputEventMonitor" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="115">
+                    <mxGeometry x="400" y="220" width="160" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="150" value="扩展工具函数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="430" y="-830" width="120" height="60" as="geometry"/>
