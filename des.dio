@@ -181,7 +181,7 @@
                 <mxCell id="71" value="椭圆&lt;br&gt;Elliptic&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="617" y="-10" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="直线&lt;br&gt;Line&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                <mxCell id="73" value="直线&lt;br&gt;Line&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" parent="1" vertex="1">
                     <mxGeometry x="450" y="220" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="77" value="按钮&lt;br&gt;Button" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
