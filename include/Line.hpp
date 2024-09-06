@@ -110,6 +110,20 @@ namespace GFt {
         }
     };
 
+    /// @addtogroup 基础设施库
+    /// @{
+    /// @addtogroup 预定义模板特化类型
+    /// @{
+
+    /// @typedef iLine
+    /// @brief 整数型直线类型
+    /// @details 用于表示整数型直线的类型别名
     using iLine = Line<int>;
+    /// @typedef fLine
+    /// @brief 浮点型直线类型
+    /// @details 用于表示浮点型直线的类型别名
     using fLine = Line<float>;
+
+    /// @}
+    /// @}
 }
