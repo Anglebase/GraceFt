@@ -74,8 +74,10 @@ namespace GFt {
         bool stopPropagation_ = false;
 
     public:
+        /// @cond IGNORE
         Event() = default;
         virtual ~Event() = default;
+        /// @endcond
         /// @brief 事件是否已被终止传播
         /// @return 是否已被终止传播
         bool isPropagationStopped() const;
@@ -88,8 +90,10 @@ namespace GFt {
         iPoint position_;
 
     public:
+        /// @cond IGNORE
         MouseEvent(const iPoint& position);
         virtual ~MouseEvent() = default;
+        /// @endcond
         /// @brief 获取鼠标位置
         /// @details 鼠标位置以屏幕坐标为坐标系，窗口左上角为坐标原点
         /// @return 鼠标位置
@@ -100,8 +104,10 @@ namespace GFt {
         Key key_;
 
     public:
+        /// @cond IGNORE
         KeyboardEvent(Key key);
         virtual ~KeyboardEvent() = default;
+        /// @endcond
         /// @brief 获取键盘按键
         /// @return 键盘按键
         Key key() const;
@@ -111,8 +117,10 @@ namespace GFt {
         int character_;
 
     public:
+        /// @cond IGNORE
         TextInputEvent(int character);
         virtual ~TextInputEvent() = default;
+        /// @endcond
         /// @brief 获取输入的字符的原始编码
         /// @return 输入的字符的原始编码
         int character() const;
@@ -122,8 +130,10 @@ namespace GFt {
         MouseButton button_;
 
     public:
+        /// @cond IGNORE
         MouseButtonEvent(const iPoint& position, MouseButton button);
         virtual ~MouseButtonEvent() = default;
+        /// @endcond
         /// @brief 获取鼠标按钮
         /// @return 鼠标按钮
         MouseButton button() const;
@@ -133,8 +143,10 @@ namespace GFt {
         MouseWheel wheel_;
 
     public:
+        /// @cond IGNORE
         MouseWheelEvent(const iPoint& position, MouseWheel wheel);
         virtual ~MouseWheelEvent() = default;
+        /// @endcond
         /// @brief 获取鼠标滚轮状态
         /// @return 鼠标滚轮状态
         MouseWheel wheel() const;
@@ -142,32 +154,42 @@ namespace GFt {
     /// @brief 鼠标移动事件
     class MouseMoveEvent : public MouseEvent {
     public:
+        /// @cond IGNORE
         MouseMoveEvent(const iPoint& position);
         virtual ~MouseMoveEvent() = default;
+        /// @endcond
     };
     /// @brief 键盘按键按下事件
     class KeyPressEvent : public KeyboardEvent {
     public:
+        /// @cond IGNORE
         KeyPressEvent(Key key);
         virtual ~KeyPressEvent() = default;
+        /// @endcond
     };
     /// @brief 键盘按键弹起事件
     class KeyReleaseEvent : public KeyboardEvent {
     public:
+        /// @cond IGNORE
         KeyReleaseEvent(Key key);
         virtual ~KeyReleaseEvent() = default;
+        /// @endcond
     };
     /// @brief 鼠标按钮按下事件
     class MouseButtonPressEvent : public MouseButtonEvent {
     public:
+        /// @cond IGNORE
         MouseButtonPressEvent(const iPoint& position, MouseButton button);
         virtual ~MouseButtonPressEvent() = default;
+        /// @endcond
     };
     /// @brief 鼠标按钮弹起事件
     class MouseButtonReleaseEvent : public MouseButtonEvent {
     public:
+        /// @cond IGNORE
         MouseButtonReleaseEvent(const iPoint& position, MouseButton button);
         virtual ~MouseButtonReleaseEvent() = default;
+        /// @endcond
     };
 
     /// @}
