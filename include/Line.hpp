@@ -58,7 +58,7 @@ namespace GFt {
         /// @return 两个锚定点之间的距离
         constexpr auto manhatten_distance() const {
             Point<T> diff = p2 - p1;
-            return std::abs(diff.x) + std::abs(diff.y);
+            return std::abs(diff.x()) + std::abs(diff.y());
         }
         /// @brief 判断此直线是否与另一个直线共线
         /// @param other 另一个直线对象
@@ -73,9 +73,9 @@ namespace GFt {
             auto ody = other.p2.y() - other.p1.y();
             bool ret = false;
             if constexpr (std::is_floating_point_v<T>) {
-                if (_fsafe_equal(tdx, 0) && _fsafe_equal(ody, 0))
+                if (_fsafe_equal(tdx, static_cast<T>(0)) && _fsafe_equal(ody, static_cast<T>(0)))
                     return p2.x() == other.p2.x();
-                if (_fsafe_equal(tdx, 0) || _fsafe_equal(ody, 0))
+                if (_fsafe_equal(tdx, static_cast<T>(0)) || _fsafe_equal(ody, static_cast<T>(0)))
                     return false;
                 auto tk = tdy / tdx;
                 auto ok = ody / odx;
@@ -109,4 +109,7 @@ namespace GFt {
             return os;
         }
     };
+
+    using iLine = Line<int>;
+    using fLine = Line<float>;
 }
