@@ -62,6 +62,9 @@ namespace GFt {
     };
     /// @}
 
+    /// @addtogroup 事件系统
+    /// @{
+
     /// @addtogroup 事件对象类型
     /// @brief 这里包含了所有的事件对象类型
     /// @{
@@ -155,18 +158,19 @@ namespace GFt {
         virtual ~KeyReleaseEvent() = default;
     };
     /// @brief 鼠标按钮按下事件
-    class MousePressEvent : public MouseButtonEvent {
+    class MouseButtonPressEvent : public MouseButtonEvent {
     public:
-        MousePressEvent(const iPoint& position, MouseButton button);
-        virtual ~MousePressEvent() = default;
+        MouseButtonPressEvent(const iPoint& position, MouseButton button);
+        virtual ~MouseButtonPressEvent() = default;
     };
     /// @brief 鼠标按钮弹起事件
-    class MouseReleaseEvent : public MouseButtonEvent {
+    class MouseButtonReleaseEvent : public MouseButtonEvent {
     public:
-        MouseReleaseEvent(const iPoint& position, MouseButton button);
-        virtual ~MouseReleaseEvent() = default;
+        MouseButtonReleaseEvent(const iPoint& position, MouseButton button);
+        virtual ~MouseButtonReleaseEvent() = default;
     };
 
+    /// @}
     /// @}
     /// @}
 }
