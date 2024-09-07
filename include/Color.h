@@ -27,25 +27,26 @@ namespace GFt {
         /// @param green 绿色通道
         /// @param blue 蓝色通道
         /// @param alpha 透明度通道，默认值为255
-        constexpr Color(byte red = 0, byte green = 0, byte blue = 0, byte alpha = 255);
+        constexpr Color(byte red = 0, byte green = 0, byte blue = 0, byte alpha = 255)
+            : red_(red), green_(green), blue_(blue), alpha_(alpha) {}
 
         /// @return 红色通道
-        constexpr byte& red();
+        constexpr byte& red() { return red_; }
         /// @return 绿色通道
-        constexpr byte& green();
+        constexpr byte& green() { return green_; }
         /// @return 蓝色通道
-        constexpr byte& blue();
+        constexpr byte& blue() { return blue_; }
         /// @return 透明度通道
-        constexpr byte& alpha();
+        constexpr byte& alpha() { return alpha_; }
 
         /// @return 红色通道 (const)
-        constexpr const byte& red() const;
+        constexpr const byte& red() const { return red_; }
         /// @return 绿色通道 (const)
-        constexpr const byte& green() const;
+        constexpr const byte& green() const { return green_; }
         /// @return 蓝色通道 (const)
-        constexpr const byte& blue() const;
+        constexpr const byte& blue() const { return blue_; }
         /// @return 透明度通道 (const)
-        constexpr const byte& alpha() const;
+        constexpr const byte& alpha() const { return alpha_; }
 
         /// @brief 转换为HSL颜色空间
         /// @return 以tuple形式返回HSL颜色空间的三个值，分别为Hue(0~360), Saturation(0~1), Lightness(0~1)
@@ -84,10 +85,23 @@ namespace GFt {
     /// @details 允许使用类似"0xRRGGBB"的形式创建颜色，例如Color c = "0xFF0000"_rgb;
     /// @param hex 16进制颜色值
     /// @return 颜色对象
-    constexpr Color operator""_rgb(unsigned long long int hex);
+    constexpr Color operator""_rgb(unsigned long long int hex) {
+        return Color(
+            static_cast<byte>(hex >> 16),
+            static_cast<byte>(hex >> 8 & 0xFF),
+            static_cast<byte>(hex & 0xFF)
+        );
+    }
     /// @brief _rgba 字面量运算符重载
     /// @details 允许使用类似"0xRRGGBBAA"的形式创建颜色，例如Color c = "0xFF000000"_rgba;
     /// @param hex 16进制颜色值
     /// @return 颜色对象
-    constexpr Color operator""_rgba(unsigned long long int hex);
+    constexpr Color operator""_rgba(unsigned long long int hex) {
+        return Color(
+            static_cast<byte>(hex >> 24),
+            static_cast<byte>(hex >> 16 & 0xFF),
+            static_cast<byte>(hex >> 8 & 0xFF),
+            static_cast<byte>(hex & 0xFF)
+        );
+    }
 }

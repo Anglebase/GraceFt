@@ -1,21 +1,7 @@
 #include "Color.h"
-
 #include <ege.h>
 
 namespace GFt {
-    constexpr Color::Color(byte red, byte green, byte blue, byte alpha)
-        : red_(red), green_(green), blue_(blue), alpha_(alpha) {}
-
-    constexpr byte& Color::red() { return red_; }
-    constexpr byte& Color::green() { return green_; }
-    constexpr byte& Color::blue() { return blue_; }
-    constexpr byte& Color::alpha() { return alpha_; }
-
-    constexpr const byte& Color::red() const { return red_; }
-    constexpr const byte& Color::green() const { return green_; }
-    constexpr const byte& Color::blue() const { return blue_; }
-    constexpr const byte& Color::alpha() const { return alpha_; }
-
     std::tuple<float, float, float> Color::toHSL() const {
         using namespace ege;
         float h, s, l;
@@ -59,21 +45,6 @@ namespace GFt {
             << static_cast<int>(color.blue()) << ", A: "
             << static_cast<int>(color.alpha()) << ")";
         return os;
-    }
-    constexpr Color operator""_rgb(unsigned long long int hex) {
-        return Color(
-            static_cast<byte>(hex >> 16),
-            static_cast<byte>(hex >> 8 & 0xFF),
-            static_cast<byte>(hex & 0xFF)
-        );
-    }
-    constexpr Color operator""_rgba(unsigned long long int hex) {
-        return Color(
-            static_cast<byte>(hex >> 24),
-            static_cast<byte>(hex >> 16 & 0xFF),
-            static_cast<byte>(hex >> 8 & 0xFF),
-            static_cast<byte>(hex & 0xFF)
-        );
     }
 }
 
