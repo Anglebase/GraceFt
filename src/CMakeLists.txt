@@ -5,7 +5,8 @@ include_directories(${EGE_INCLUDE_DIRS})
 
 set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Event.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Font.cpp
 )
 
 set(LIBRARY_OUTPUT_PATH ${GFt_LIBRARY_DIRS})              # 设置库输出目录
