@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <Color.h>
 
 namespace GFt {
     /// @addtogroup API接口库
@@ -50,7 +50,7 @@ namespace GFt {
     public:
         /// @brief 构造函数
         /// @param width 画笔宽度，默认为1
-        PenSet(int width = 1);
+        PenSet(const Color& color, int width = 1);
         /// @brief 复制构造
         PenSet(const PenSet& other);
         /// @brief 移动构造
@@ -61,6 +61,9 @@ namespace GFt {
         PenSet& operator=(PenSet&& other);
         ~PenSet();
 
+        /// @brief 设置颜色
+        /// @param color 颜色
+        void setColor(const Color& color);
         /// @brief 设置线宽
         /// @param width 线宽
         void setLineWidth(int width);
@@ -82,7 +85,10 @@ namespace GFt {
         /// @brief 设置接点样式
         /// @param style 接点样式
         void setJoinStyle(JoinStyle style);
-        
+
+        /// @brief 获取颜色
+        /// @return 颜色
+        Color getColor() const;
         /// @brief 获取线宽
         /// @return 线宽
         int getPenWidth() const;

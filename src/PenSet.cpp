@@ -7,8 +7,9 @@
 
 namespace GFt {
     using namespace ege;
-    PenSet::PenSet(int width) {
+    PenSet::PenSet(const Color& color, int width) {
         pen_ = new _GFt_private_::PenSetPrivate;
+        PEN(pen_)->color = EGERGBA(color.red(), color.green(), color.blue(), color.alpha());
         PEN(pen_)->width = width;
         PEN(pen_)->line_type = SOLID_LINE;
         PEN(pen_)->startcap_type = LINECAP_ROUND;
@@ -43,6 +44,10 @@ namespace GFt {
         return *this;
     }
     PenSet::~PenSet() { delete PEN(pen_); }
+
+    void PenSet::setColor(const Color& color) {
+        PEN(pen_)->color = EGERGBA(color.red(), color.green(), color.blue(), color.alpha());
+    }
 
     void PenSet::setLineWidth(int width) { PEN(pen_)->width = width; }
     /// @details 此函数指定 LineStyle::UserDefined 是无效的
@@ -120,6 +125,14 @@ namespace GFt {
         default:
             break;
         }
+    }
+    Color PenSet::getColor() const {
+        return Color(
+            EGEGET_R(PEN(pen_)->color),
+            EGEGET_G(PEN(pen_)->color),
+            EGEGET_B(PEN(pen_)->color),
+            EGEGET_A(PEN(pen_)->color)
+        );
     }
     int PenSet::getPenWidth() const {
         return PEN(pen_)->width;
