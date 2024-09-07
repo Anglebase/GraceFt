@@ -35,9 +35,15 @@ namespace GFt {
 
     /// @}
     /// @}
+    /// @addtogroup 图形系统
+    /// @{
+    /// @addtogroup 接口类型
+    /// @{
         /// @class PenSet
         /// @brief 画笔设置类
         /// @details 用于设置画笔的各种属性，如线宽、线型、线帽、接点等。
+    /// @}
+    /// @}
     /// @}
     class PenSet {
         void* pen_;
