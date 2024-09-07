@@ -10,6 +10,6 @@ int main() {
     auto b = v1 ^ v2;
     cout << "v1 * v2 = " << a << endl;
     cout << "v1 ^ v2 = " << b << endl;
-    
+    cout << "inner product = " << ((v1 | v2) == v1 * v2) << endl;
     return 0;
 }
