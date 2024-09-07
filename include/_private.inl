@@ -17,12 +17,44 @@ namespace _GFt_private_ {
     }
     /// @brief 画笔属性结构体
     struct PenSetPrivate {
+        unsigned int color;
         int width;
         int line_type;
         int startcap_type;
         int endcap_type;
         int join_type;
         short userdef;
+    };
+    /// @brief 画刷属性结构体
+    struct BrushSetPrivate {
+        int mode;    // 填充模式
+        union {
+            struct {    // 默认填充
+                int style;
+                unsigned int color;
+            } def;
+            struct {    // 线性渐变
+                float x1, y1, x2, y2;
+                unsigned int color1, color2;
+            } linear;
+            struct {    // 径向渐变
+                float cx, cy;
+                float x, y, w, h;
+                unsigned int ccolor, ocolor;
+            } radial;
+            struct {    // 纹理填充
+                float x, y, w, h;
+                void* data;
+            } texture;
+            struct {    // 多边形渐变
+                float cx, cy;
+                unsigned int ccolor;
+                int num_points;
+                int num_colors;
+                float* points;
+                unsigned int* colors;
+            } polygon;
+        };
     };
 }
 /// @endcond
