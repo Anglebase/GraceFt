@@ -85,7 +85,35 @@ namespace GFt {
     constexpr iVec4 makeiVec4(int x, int y, int z, int w) { return makeVec<4, int>(x, y, z, w); }
     /// @brief 构造浮点四维向量
     constexpr fVec4 makefVec4(float x, float y, float z, float w) { return makeVec<4, float>(x, y, z, w); }
-    
+
+    /// @brief 计算矩阵内积
+    /// @tparam M 行数
+    /// @tparam N 列数
+    /// @tparam T 类型
+    /// @param m1 矩阵1
+    /// @param m2 矩阵2
+    /// @return 内积结果
+    template<size M, size N, typename T>
+    constexpr T innerProduct(const Matrix<M, N, T>& m1, const Matrix<M, N, T>& m2) {
+        T result = 0;
+        for (size_t i = 0; i < M; i++) {
+            for (size_t j = 0; j < N; j++) {
+                result += m1(i, j) * m2(i, j);
+            }
+        }
+        return result;
+    }
+    /// @brief 计算矩阵内积的运算符重载
+    /// @tparam M 行数
+    /// @tparam N 列数
+    /// @tparam T 类型
+    /// @param m1 矩阵1
+    /// @param m2 矩阵2
+    /// @return 内积结果
+    template<size M, size N, typename T>
+    constexpr T operator|(const Matrix<M, N, T>& m1, const Matrix<M, N, T>& m2) {
+        return innerProduct(m1, m2);
+    }
     /// @}
     /// @}
 }
