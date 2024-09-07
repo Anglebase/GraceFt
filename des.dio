@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="2819" dy="1645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2956" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -412,19 +412,19 @@
                     <mxGeometry x="-680" y="-270" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="204" value="Graph UML" style="swimlane;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
-                    <mxGeometry x="-1450" y="-240" width="590" height="440" as="geometry"/>
+                    <mxGeometry x="-1450" y="-240" width="590" height="350" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="通用绘图对象&lt;br&gt;Graphics" style="rounded=1;whiteSpace=wrap;html=1;" parent="204" vertex="1">
-                    <mxGeometry x="250" y="360" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="240" y="260" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="183" value="画笔配置对象&lt;br&gt;PenSet" style="rounded=1;whiteSpace=wrap;html=1;" parent="204" vertex="1">
-                    <mxGeometry x="320" y="200" width="120" height="60" as="geometry"/>
+                <mxCell id="183" value="画笔配置对象&lt;br&gt;PenSet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="204" vertex="1">
+                    <mxGeometry x="330" y="130" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="202" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="46" target="183" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="185" value="画刷配置对象&lt;br&gt;BrushSet" style="rounded=1;whiteSpace=wrap;html=1;" parent="204" vertex="1">
-                    <mxGeometry x="180" y="200" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="170" y="130" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="201" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="46" target="185" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -442,22 +442,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="191" value="颜色对象&lt;br&gt;Color" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="204" vertex="1">
-                    <mxGeometry x="310" y="40" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="194" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="183" target="191" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="195" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="185" target="191" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="196" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="187" target="191" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry x="460" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="193" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="189" target="191" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="192" value="字体对象&lt;br&gt;Font" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="204" vertex="1">
-                    <mxGeometry x="130" y="40" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="30" y="40" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="198" style="edgeStyle=none;html=1;dashed=1;" parent="204" source="187" target="192" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
