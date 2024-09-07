@@ -21,3 +21,6 @@ add_executable(test_Line ${CMAKE_CURRENT_SOURCE_DIR}/Line.cpp)
 # Color.h TEST
 add_executable(test_Color ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp)
 target_link_libraries(test_Color ${GFt_LIBRARY_NAME})
+# Font.h TEST
+add_executable(test_Font ${CMAKE_CURRENT_SOURCE_DIR}/Font.cpp)
+target_link_libraries(test_Font ${GFt_LIBRARY_NAME})

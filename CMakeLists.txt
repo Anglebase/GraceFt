@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22)
 
 project(GraceFt)
 
+add_definitions(-DUNICODE -D_UNICODE)
+
 # 查找EGE库
 set(PACKAGE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/packages)
 set(CMAKE_MODULE_PATH ${PACKAGE_DIR})
