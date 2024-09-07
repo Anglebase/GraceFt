@@ -8,7 +8,7 @@
 namespace GFt {
     using namespace _GFt_private_;
     void BrushSet::release() {
-        if (BRUSH(brush_)->mode != static_cast<int>(BrushStyle::PolygonGradient)) {
+        if (BRUSH(brush_)->mode == static_cast<int>(BrushStyle::PolygonGradient)) {
             delete BRUSH(brush_)->polygon.points;
             delete BRUSH(brush_)->polygon.colors;
         }
