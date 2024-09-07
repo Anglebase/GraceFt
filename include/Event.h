@@ -6,6 +6,8 @@ namespace GFt {
     /// @addtogroup API接口库
     /// @brief 该模块是API接口库，包含了与底层交互的相关内容
     /// @{
+    /// @addtogroup 枚举
+    /// @{
     /// @addtogroup 按键枚举
     /// @brief 这里列举出了绝大部分按键的枚举(美式键盘)
     /// @{
@@ -60,6 +62,7 @@ namespace GFt {
         Slash /**< 符号键 / (斜杠/问号)*/, Backslash /**< 符号键 \ (反斜杠/竖线)*/,
         Tilde /**< 符号键 ` (反引号/波浪号)*/, Unknown /**< 未知按键 */,
     };
+    /// @}
     /// @}
 
     /// @addtogroup 事件系统
