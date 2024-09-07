@@ -1,3 +1,5 @@
+# tests/CMakeLists.txt
+
 include_directories(${GFt_INCLUDE_DIRS})
 
 # Point.hpp TEST
@@ -16,3 +18,6 @@ add_executable(test_Signal ${CMAKE_CURRENT_SOURCE_DIR}/Signal.cpp)
 add_executable(test_LMath ${CMAKE_CURRENT_SOURCE_DIR}/LMath.cpp)
 # Line.hpp TEST
 add_executable(test_Line ${CMAKE_CURRENT_SOURCE_DIR}/Line.cpp)
+# Color.h TEST
+add_executable(test_Color ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp)
+target_link_libraries(test_Color ${GFt_LIBRARY_NAME})
