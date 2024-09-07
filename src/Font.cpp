@@ -2,18 +2,29 @@
 
 #include <ege.h>
 
-#define FONT(x) (reinterpret_cast<LOGFONT*>(x))
+#define FONT(x) (reinterpret_cast<LOGFONTW*>(x))
 
 namespace GFt {
     Font::Font(const std::wstring& fontFamily, long size) {
-        auto* font = new LOGFONT();
-        font_ = reinterpret_cast<void*>(font);
-        wcscpy_s(FONT(font)->lfFaceName, fontFamily.c_str());
+        auto* font = new LOGFONTW();
         FONT(font)->lfHeight = size;
-
+        FONT(font)->lfWidth = 0;
+        FONT(font)->lfEscapement = 0;
+        FONT(font)->lfOrientation = 0;
+        FONT(font)->lfWeight = static_cast<long>(FontWeight::Default);
+        FONT(font)->lfItalic = false;
+        FONT(font)->lfUnderline = false;
+        FONT(font)->lfStrikeOut = false;
+        FONT(font)->lfCharSet = DEFAULT_CHARSET;
+        FONT(font)->lfOutPrecision = OUT_TT_PRECIS;
+        FONT(font)->lfClipPrecision = CLIP_DEFAULT_PRECIS;
+        FONT(font)->lfQuality = ANTIALIASED_QUALITY;
+        FONT(font)->lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
+        wcscpy_s(FONT(font)->lfFaceName, fontFamily.c_str());
+        font_ = reinterpret_cast<void*>(font);
     }
     Font::Font(const Font& other) {
-        auto* font = new LOGFONT();
+        auto* font = new LOGFONTW();
         font_ = reinterpret_cast<void*>(font);
         *FONT(font) = *FONT(other.font_);
     }
@@ -25,7 +36,7 @@ namespace GFt {
     Font& Font::operator=(const Font& other) {
         if (this != &other) {
             delete FONT(font_);
-            auto* font = new LOGFONT();
+            auto* font = new LOGFONTW();
             font_ = reinterpret_cast<void*>(font);
             *FONT(font) = *FONT(other.font_);
         }
