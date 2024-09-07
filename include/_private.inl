@@ -15,6 +15,15 @@ namespace _GFt_private_ {
     constexpr bool _fsafe_equal(T a, T b, T eps = static_cast<T>(1e-6)) {
         return std::abs(a - b) < eps;
     }
+    /// @brief 画笔属性结构体
+    struct PenSetPrivate {
+        int width;
+        int line_type;
+        int startcap_type;
+        int endcap_type;
+        int join_type;
+        short userdef;
+    };
 }
 /// @endcond
 
