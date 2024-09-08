@@ -27,3 +27,6 @@ target_link_libraries(test_Font ${GFt_LIBRARY_NAME})
 # BrushSet.h TEST
 add_executable(test_BrushSet ${CMAKE_CURRENT_SOURCE_DIR}/BrushSet.cpp)
 target_link_libraries(test_BrushSet ${GFt_LIBRARY_NAME})
+# TextSet.h TEST
+add_executable(test_TextSet ${CMAKE_CURRENT_SOURCE_DIR}/TextSet.cpp)
+target_link_libraries(test_TextSet ${GFt_LIBRARY_NAME})
