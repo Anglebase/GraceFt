@@ -43,7 +43,10 @@ namespace GFt {
         }
         return *this;
     }
-    PenSet::~PenSet() { delete PEN(pen_); }
+    PenSet::~PenSet() {
+        delete PEN(pen_);
+        pen_ = nullptr;
+    }
 
     void PenSet::setColor(const Color& color) {
         PEN(pen_)->color = EGERGBA(color.red(), color.green(), color.blue(), color.alpha());

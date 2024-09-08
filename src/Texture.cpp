@@ -40,6 +40,7 @@ namespace GFt {
     Texture::~Texture() {
         if (texture_)
             delimage(IMG(texture_));
+        texture_ = nullptr;
     }
 
 }

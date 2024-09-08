@@ -41,6 +41,7 @@ namespace GFt {
     PixelMap::~PixelMap() {
         if (pixmap_)
             delimage(IMG(pixmap_));
+        pixmap_ = nullptr;
     }
     PixelMap PixelMap::clip(const iRect& rect) const {
         PixelMap result(rect.size());

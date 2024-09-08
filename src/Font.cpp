@@ -53,6 +53,7 @@ namespace GFt {
     }
     Font::~Font() {
         delete FONT(font_);
+        font_ = nullptr;
     }
     void Font::setSize(long size) { FONT(font_)->lfHeight = size; }
     long Font::size() const { return FONT(font_)->lfHeight; }
