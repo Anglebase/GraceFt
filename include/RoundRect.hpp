@@ -94,4 +94,7 @@ namespace GFt {
             return result;
         }
     };
+
+    using iRoundRect = RoundRect<int>;
+    using fRoundRect = RoundRect<float>;
 }
