@@ -7,6 +7,7 @@ namespace GFt {
     /// @class Ellipse
     /// @brief 椭圆类
     /// @tparam T 数值类型, 要求为算术类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Ellipse {

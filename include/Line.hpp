@@ -12,6 +12,7 @@ namespace GFt {
     /// @brief 几何线模板类
     /// @details 用于表示直线的类模板
     /// @tparam T 点的坐标类型，要求为算术类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Line {

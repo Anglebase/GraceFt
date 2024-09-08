@@ -9,6 +9,7 @@ namespace GFt {
     /// @class FitCurve
     /// @brief 拟合曲线类
     /// @tparam T 点的坐标类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class FitCurve {

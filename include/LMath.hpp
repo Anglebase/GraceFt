@@ -5,7 +5,7 @@
 namespace GFt {
     /// @addtogroup 基础设施库
     /// @{
-    /// @addtogroup 复合数据类型
+    /// @addtogroup 线性代数工具
     /// @{
 
     /// @brief 计算向量点乘

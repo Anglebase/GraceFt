@@ -9,6 +9,7 @@ namespace GFt {
     /// @class Polygon
     /// @brief 多边形类
     /// @tparam T 点坐标类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Polygon {

@@ -8,21 +8,15 @@
 #include <Rect.hpp>
 
 namespace GFt {
-    /// @addtogroup API接口库
-    /// @brief 该模块是API接口库，包含了与底层交互的相关内容
-    /// @{
-    /// @addtogroup 枚举
-    /// @{
-    /// @addtogroup 画刷样式枚举
-    /// @{
-
     /// @brief 填充样式
+    /// @ingroup 画刷样式枚举
     enum class FillStyle {
         Empty,      ///< 无填充
         Solid,      ///< 纯色填充
         Line,       ///< 横线填充
     };
     /// @brief 画刷模式
+    /// @ingroup 画刷样式枚举
     enum class BrushStyle {
         Default,         ///< 默认画刷模式
         Texture,         ///< 纹理画刷模式
@@ -30,19 +24,10 @@ namespace GFt {
         RadialGradient,  ///< 椭圆径向渐变画刷模式
         PolygonGradient, ///< 多边形径向渐变画刷模式
     };
-
-    /// @}
-    /// @}
-    /// @addtogroup 图形系统
-    /// @{
-    /// @addtogroup 接口类型
-    /// @{
         /// @class BrushSet
         /// @brief 画刷设置类
         /// @details 该类用于设置画刷的各种属性，包括填充颜色、填充样式、纹理、线性渐变、椭圆径向渐变、多边形径向渐变等
-    /// @}
-    /// @}
-    /// @}
+        /// @ingroup 接口类型
     class BrushSet {
         void* brush_;
         /// @cond IGNORE

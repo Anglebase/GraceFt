@@ -6,18 +6,10 @@
 namespace GFt {
     /// @typedef byte
     using byte = unsigned char;
-    /// @addtogroup API接口库
-    /// @{
-    /// @addtogroup 图形系统
-    /// @{
-    /// @addtogroup 基础类型
-    /// @{
-        /// @class Color
-        /// @brief 颜色类
-        /// @details 颜色类，包含红绿蓝和透明度四个通道，支持HSL和HSV两种颜色空间，支持颜色的混合、转换等操作
-    /// @}
-    /// @}
-    /// @}
+    /// @class Color
+    /// @brief 颜色类
+    /// @details 颜色类，包含红绿蓝和透明度四个通道，支持HSL和HSV两种颜色空间，支持颜色的混合、转换等操作
+    /// @ingroup 基础类型
     class Color {
         byte red_, green_, blue_, alpha_;
     public:

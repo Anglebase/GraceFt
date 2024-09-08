@@ -8,17 +8,12 @@
 #include <Point.hpp>
 
 namespace GFt {
-    /// @addtogroup 基础设施库
-    /// @{
-    /// @addtogroup 图形数据类型
-    /// @{
-        /// @class Circle
-        /// @brief 圆形模板类
-        /// @details 圆形模板类，用于表示圆形的几何信息，包括圆心和半径
-        /// @details 此类是 基础设施库 => 图形数据类型 的一部分
-        /// @tparam T 数值类型，要求为算术类型
-    /// @}
-    /// @}
+    /// @class Circle
+    /// @brief 圆形模板类
+    /// @details 圆形模板类，用于表示圆形的几何信息，包括圆心和半径
+    /// @details 此类是 基础设施库 => 图形数据类型 的一部分
+    /// @tparam T 数值类型，要求为算术类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Circle {
