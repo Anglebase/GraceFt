@@ -74,6 +74,10 @@ namespace GFt {
         }
     };
 
+    /// @brief 整数椭圆类型
+    /// @ingroup 预定义模板特化类型
     using iEllipse = Ellipse<int>;
+    /// @brief 浮点椭圆类型
+    /// @ingroup 预定义模板特化类型
     using fEllipse = Ellipse<float>;
 }

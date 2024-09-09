@@ -67,6 +67,10 @@ namespace GFt {
         }
     };
 
+    /// @brief 整数型拟合曲线
+    /// @ingroup 预定义模板特化类型
     using iFitCurve = FitCurve<int>;
+    /// @brief 浮点型拟合曲线
+    /// @ingroup 预定义模板特化类型
     using fFitCurve = FitCurve<float>;
 }

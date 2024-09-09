@@ -55,7 +55,10 @@ namespace GFt {
             return result;
         }
     };
-
+    /// @brief 整数型贝塞尔曲线
+    /// @ingroup 预定义模板特化类型
     using iBezier = Bezier<int>;
+    /// @brief 浮点型贝塞尔曲线
+    /// @ingroup 预定义模板特化类型
     using fBezier = Bezier<float>;
 }

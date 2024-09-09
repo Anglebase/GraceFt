@@ -96,6 +96,10 @@ namespace GFt {
         }
     };
 
+    /// @brief 整型圆角矩形类型
+    /// @ingroup 预定义模板特化类型
     using iRoundRect = RoundRect<int>;
+    /// @brief 浮点型圆角矩形类型
+    /// @ingroup 预定义模板特化类型
     using fRoundRect = RoundRect<float>;
 }

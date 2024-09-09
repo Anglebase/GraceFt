@@ -40,11 +40,12 @@ namespace GFt {
         static TextSet defaultTextSet_;
         void* target_;
         PixelMap* targetPixelMap_;
+    private:
+        Graphics(const Graphics& other) = delete;
+        Graphics& operator=(const Graphics& other) = delete;
     public:
         /// @brief 默认构造函数
         Graphics();
-        Graphics(const Graphics& other) = delete;
-        Graphics& operator=(const Graphics& other) = delete;
         Graphics(Graphics&& other);
         Graphics& operator=(Graphics&& other);
 

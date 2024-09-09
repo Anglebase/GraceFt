@@ -60,6 +60,10 @@ namespace GFt {
         }
     };
 
+    /// @brief 整数多边形类型
+    /// @ingroup 预定义模板特化类型
     using iPolygon = Polygon<int>;
+    /// @brief 浮点数多边形类型
+    /// @ingroup 预定义模板特化类型
     using fPolygon = Polygon<float>;
 }
