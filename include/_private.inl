@@ -24,6 +24,7 @@ namespace _GFt_private_ {
         int endcap_type;
         int join_type;
         short userdef;
+        float miterlimit;
     };
     /// @brief 画刷属性结构体
     struct BrushSetPrivate {
