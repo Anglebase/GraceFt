@@ -12,6 +12,8 @@ namespace GFt {
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Bezier {
+        friend class Path;
+        friend class Graphics;
         std::vector<Point<T>> points;
     public:
         /// @brief 默认构造函数

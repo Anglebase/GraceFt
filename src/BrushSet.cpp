@@ -3,7 +3,7 @@
 #include <_private.inl>
 #include <ege.h>
 
-#define BRUSH(x) (reinterpret_cast<BrushSetPrivate*>(brush_))
+#define BRUSH(x) (static_cast<BrushSetPrivate*>(brush_))
 
 namespace GFt {
     using namespace _GFt_private_;
@@ -14,7 +14,7 @@ namespace GFt {
         }
         if (BRUSH(brush_)->mode == static_cast<int>(BrushStyle::Texture)) {
             using namespace ege;
-            delimage(reinterpret_cast<PIMAGE>(BRUSH(brush_)->texture.data));
+            delimage(static_cast<PIMAGE>(BRUSH(brush_)->texture.data));
         }
     }
     BrushSet::BrushSet(const Color& color) {
@@ -69,9 +69,9 @@ namespace GFt {
         using namespace ege;
         auto img = newimage();
         resize(img,
-            getwidth(reinterpret_cast<PIMAGE>(texture.texture_)),
-            getheight(reinterpret_cast<PIMAGE>(texture.texture_)));
-        putimage(img, 0, 0, reinterpret_cast<PIMAGE>(texture.texture_));
+            getwidth(static_cast<PIMAGE>(texture.texture_)),
+            getheight(static_cast<PIMAGE>(texture.texture_)));
+        putimage(img, 0, 0, static_cast<PIMAGE>(texture.texture_));
         BRUSH(brush_)->texture.data = img;
     }
 

@@ -8,6 +8,9 @@
 #include <Rect.hpp>
 
 namespace GFt {
+    /// @defgroup 画刷样式枚举
+    /// @ingroup 枚举
+
     /// @brief 填充样式
     /// @ingroup 画刷样式枚举
     enum class FillStyle {
@@ -24,11 +27,12 @@ namespace GFt {
         RadialGradient,  ///< 椭圆径向渐变画刷模式
         PolygonGradient, ///< 多边形径向渐变画刷模式
     };
-        /// @class BrushSet
-        /// @brief 画刷设置类
-        /// @details 该类用于设置画刷的各种属性，包括填充颜色、填充样式、纹理、线性渐变、椭圆径向渐变、多边形径向渐变等
-        /// @ingroup 接口类型
+    /// @class BrushSet
+    /// @brief 画刷设置类
+    /// @details 该类用于设置画刷的各种属性，包括填充颜色、填充样式、纹理、线性渐变、椭圆径向渐变、多边形径向渐变等
+    /// @ingroup 接口类型
     class BrushSet {
+        friend class Graphics;
         void* brush_;
         /// @cond IGNORE
         void release();
@@ -46,7 +50,7 @@ namespace GFt {
         /// @brief 移动赋值
         BrushSet& operator=(BrushSet&& other);
         ~BrushSet();
-        
+
         /// @brief 设置默认画刷填充
         /// @param color 填充颜色
         /// @param style 填充样式

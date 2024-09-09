@@ -17,6 +17,7 @@ namespace GFt {
     /// @details 用于绘制图形，可以包含多种图元，如直线、圆弧、贝塞尔曲线、多边形等
     /// @ingroup 接口类型
     class Path {
+        friend class Graphics;
         void* data_;
     public:
         /// @brief 默认构造函数

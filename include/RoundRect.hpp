@@ -12,20 +12,20 @@ namespace GFt {
     template<typename T>
         requires std::is_arithmetic_v<T>
     class RoundRect {
-        Rect<T> rect;
+        Rect<T> rect_;
         T lt, rt, rb, lb;
     public:
         /// @brief 构造函数
         /// @param rect 矩形
         /// @param rad 圆角半径
         constexpr RoundRect(const Rect<T>& rect, T rad)
-            : rect(rect), lt(rad), rt(rad), rb(rad), lb(rad) {
+            : rect_(rect), lt(rad), rt(rad), rb(rad), lb(rad) {
             rect.normalize();
         }
 
         /// @brief 圆角矩形所在矩形
         /// @return 矩形
-        constexpr const Rect<T>& rect() const { return rect; }
+        constexpr const Rect<T>& rect() const { return rect_; }
         /// @brief 圆角矩形左上角圆角半径
         /// @return 半径
         constexpr T& radiusTopLeft() { return lt; }
@@ -59,11 +59,11 @@ namespace GFt {
             if constexpr (std::is_floating_point_v<T>) 
                 if (_fsafe_equal(lt, other.lt) && _fsafe_equal(rt, other.rt) &&
                     _fsafe_equal(rb, other.rb) && _fsafe_equal(lb, other.lb)) 
-                    return rect == other.rect;
+                    return rect_ == other.rect_;
             else 
                 if (lt == other.lt && rt == other.rt &&
                     rb == other.rb && lb == other.lb) 
-                    return rect == other.rect;
+                    return rect_ == other.rect_;
             return false;
         }
         /// @brief 判断两个圆角矩形是否不同
@@ -77,7 +77,7 @@ namespace GFt {
         /// @param r 圆角矩形
         /// @return 输出流 os
         friend std::ostream& operator<<(std::ostream& os, const RoundRect<T>& r) {
-            os << "RoundRect(" << r.rect << ", " << r.lt << ", " << r.rt << ", " << r.rb << ", " << r.lb << ")";
+            os << "RoundRect(" << r.rect_ << ", " << r.lt << ", " << r.rt << ", " << r.rb << ", " << r.lb << ")";
             return os;
         }
         /// @brief 类型转换函数
@@ -87,7 +87,7 @@ namespace GFt {
         template<typename U>
             requires std::is_arithmetic_v<U>
         friend constexpr RoundRect<U> cast(const RoundRect<T>& r) {
-            RoundRect<U> result(cast<Rect<U>>(r.rect));
+            RoundRect<U> result(cast<Rect<U>>(r.rect_));
             result.lt = static_cast<U>(r.lt);
             result.rt = static_cast<U>(r.rt);
             result.rb = static_cast<U>(r.rb);

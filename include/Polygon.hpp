@@ -13,6 +13,8 @@ namespace GFt {
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Polygon {
+        friend class Path;
+        friend class Graphics;
         std::vector<Point<T>> points;
         bool closed = true;
     public:

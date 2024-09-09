@@ -2,7 +2,7 @@
 
 #include <ege.h>
 
-#define IMG(x) (reinterpret_cast<PIMAGE>(x))
+#define IMG(x) (static_cast<PIMAGE>(x))
 
 namespace GFt {
     using namespace ege;

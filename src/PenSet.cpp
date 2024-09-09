@@ -3,7 +3,7 @@
 #include <ege.h>
 #include <_private.inl>
 
-#define PEN(x) (reinterpret_cast<_GFt_private_::PenSetPrivate*>(x))
+#define PEN(x) (static_cast<_GFt_private_::PenSetPrivate*>(x))
 
 namespace GFt {
     using namespace ege;
@@ -114,7 +114,7 @@ namespace GFt {
             break;
         }
     }
-    void PenSet::setJoinStyle(JoinStyle style) {
+    void PenSet::setJoinStyle(JoinStyle style, float miterLimit) {
         switch (style) {
         case JoinStyle::Miter:
             PEN(pen_)->join_type = LINEJOIN_MITER;
@@ -128,6 +128,7 @@ namespace GFt {
         default:
             break;
         }
+        PEN(pen_)->miterlimit = miterLimit;
     }
     Color PenSet::getColor() const {
         return Color(

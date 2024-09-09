@@ -8,6 +8,7 @@ namespace GFt {
     /// @brief 文本环境设置类,
     /// @details 用于设置字体、颜色、透明度等属性
     class TextSet {
+        friend class Graphics;
         Font font_;
         unsigned int color_;
         bool transparent_ = false;

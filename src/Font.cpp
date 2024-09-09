@@ -2,7 +2,7 @@
 
 #include <ege.h>
 
-#define FONT(x) (reinterpret_cast<LOGFONTW*>(x))
+#define FONT(x) (static_cast<LOGFONTW*>(x))
 
 namespace GFt {
     Font::Font(const std::wstring& fontFamily, long size) {
@@ -21,11 +21,11 @@ namespace GFt {
         FONT(font)->lfQuality = ANTIALIASED_QUALITY;
         FONT(font)->lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
         wcscpy_s(FONT(font)->lfFaceName, fontFamily.c_str());
-        font_ = reinterpret_cast<void*>(font);
+        font_ = static_cast<void*>(font);
     }
     Font::Font(const Font& other) {
         auto* font = new LOGFONTW();
-        font_ = reinterpret_cast<void*>(font);
+        font_ = static_cast<void*>(font);
         *FONT(font) = *FONT(other.font_);
     }
     /// @note 对象被移动后原对象将失效, 它应该被弃置, 如果通过已被移动的对象访问其成员函数, 将引发空指针解引用(段错误)
@@ -37,7 +37,7 @@ namespace GFt {
         if (this != &other) {
             delete FONT(font_);
             auto* font = new LOGFONTW();
-            font_ = reinterpret_cast<void*>(font);
+            font_ = static_cast<void*>(font);
             *FONT(font) = *FONT(other.font_);
         }
         return *this;

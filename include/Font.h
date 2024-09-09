@@ -46,6 +46,7 @@ namespace GFt {
     /// @}
     /// @}
     class Font {
+        friend class Graphics;
         void* font_;
     public:
         /// @brief 构造函数

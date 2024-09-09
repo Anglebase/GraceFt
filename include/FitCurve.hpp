@@ -13,8 +13,11 @@ namespace GFt {
     template<typename T>
         requires std::is_arithmetic_v<T>
     class FitCurve {
+        friend class Path;
+        friend class Graphics;
         std::vector<Point<T>> points;
         bool closed = false;
+        float tension = 0.25f;
     public:
         /// @brief 默认构造函数
         FitCurve() = default;
@@ -28,9 +31,18 @@ namespace GFt {
         /// @brief 设置拟合曲线是否闭合
         /// @param closed 是否闭合
         void setClosed(bool closed) { this->closed = closed; }
+        /// @brief 设置拟合曲线的张力
+        /// @param tension 张力
+        void setTension(float tension) { this->tension = tension; }
         /// @brief 拟合曲线是否闭合
         /// @return 是否闭合
         bool isClosed() const { return closed; }
+        /// @brief 拟合曲线的张力
+        /// @return 张力
+        float getTension() const { return tension; }
+        /// @brief 控制点的数量
+        /// @return 控制点的数量
+        int count() const { return static_cast<int>(points.size()); }
 
         /// @brief 流操作符重载
         /// @param os 输出流

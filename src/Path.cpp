@@ -2,7 +2,7 @@
 
 #include <ege.h>
 
-#define PATH(x) (reinterpret_cast<ege::ege_path*>(x))
+#define PATH(x) (static_cast<ege::ege_path*>(x))
 
 namespace GFt {
     using namespace ege;

@@ -46,6 +46,7 @@ namespace GFt {
     /// @}
     /// @}
     class PenSet {
+        friend class Graphics;
         void* pen_;
     public:
         /// @brief 构造函数
@@ -84,7 +85,8 @@ namespace GFt {
         void setEndCap(CapStyle style);
         /// @brief 设置接点样式
         /// @param style 接点样式
-        void setJoinStyle(JoinStyle style);
+        /// @param limit 接点尖角长度限制值，默认为10.0f
+        void setJoinStyle(JoinStyle style, float limit = 10.0f);
 
         /// @brief 获取颜色
         /// @return 颜色
