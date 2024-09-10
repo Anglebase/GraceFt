@@ -8,6 +8,11 @@
 namespace GFt {
     using namespace ege;
     using namespace _GFt_private_;
+
+    PenSet Graphics::defaultPenSet_{ 0x0_rgb };
+    BrushSet Graphics::defaultBrushSet_{ 0xffffff_rgb };
+    TextSet Graphics::defaultTextSet_{ 0x0_rgb };
+
     Graphics::Graphics() {
         target_ = nullptr;
         targetPixelMap_ = nullptr;
@@ -66,6 +71,8 @@ namespace GFt {
         setbkcolor(EGERGBA(color.red(), color.green(), color.blue(), color.alpha()), IMG(target_));
     }
     void Graphics::bindPenSet(PenSet* penSet) {
+        if (penSet == nullptr)
+            bindPenSet(&defaultPenSet_);
         PenSetPrivate* pPS = static_cast<PenSetPrivate*>(penSet->pen_);
         setlinecolor(pPS->color, IMG(target_));
         setlinestyle(pPS->line_type, pPS->userdef, pPS->width, IMG(target_));
@@ -73,6 +80,8 @@ namespace GFt {
         setlinejoin((line_join_type)pPS->join_type, pPS->miterlimit, IMG(target_));
     }
     void Graphics::bindBrushSet(BrushSet* brushSet) {
+        if (brushSet == nullptr)
+            bindBrushSet(&defaultBrushSet_);
         BrushSetPrivate* pBS = static_cast<BrushSetPrivate*>(brushSet->brush_);
         switch (static_cast<BrushStyle>(pBS->mode)) {
         case BrushStyle::Default:
@@ -102,6 +111,8 @@ namespace GFt {
         }
     }
     void Graphics::bindTextSet(TextSet* textSet) {
+        if (textSet == nullptr)
+            bindTextSet(&defaultTextSet_);
         LOGFONTW* font = static_cast<LOGFONTW*>(textSet->font_.font_);
         settextcolor(textSet->color_, IMG(target_));
         setfont(font, IMG(target_));
