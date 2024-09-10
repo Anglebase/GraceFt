@@ -4,18 +4,25 @@
 
 #define IMG(x) (static_cast<PIMAGE>(x))
 #define PATH(x) (static_cast<ege_path*>(x))
+#define INIT_GRAPH                  \
+        this->bindBrushSet(nullptr);\
+        this->bindPenSet(nullptr);  \
+        this->bindTextSet(nullptr); \
+        this->setBackgroundColor(0xffffff_rgb)
 
 namespace GFt {
     using namespace ege;
     using namespace _GFt_private_;
 
     PenSet Graphics::defaultPenSet_{ 0x0_rgb };
-    BrushSet Graphics::defaultBrushSet_{ 0xffffff_rgb };
+    BrushSet Graphics::defaultBrushSet_{ 0xC6C3DCE6_rgba };
     TextSet Graphics::defaultTextSet_{ 0x0_rgb };
 
     Graphics::Graphics() {
         target_ = nullptr;
         targetPixelMap_ = nullptr;
+
+        INIT_GRAPH;
     }
     Graphics::Graphics(Graphics&& other) {
         target_ = other.target_;
@@ -37,6 +44,7 @@ namespace GFt {
     void Graphics::setTarget(PixelMap* target) {
         targetPixelMap_ = target;
         target_ = target->pixmap_;
+        INIT_GRAPH;
     }
     void Graphics::setAntiAliasing(bool enable) {
         ege_enable_aa(enable, IMG(target_));
