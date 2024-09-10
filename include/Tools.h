@@ -19,13 +19,13 @@ namespace GFt {
     /// @ingroup 工具函数
     unsigned long operator""_px(long double n);
     /// @brief 设备无关的字体大小单位 (unsigned long long)
-    /// @details 它会将该字体大小以96DPI下的16px(1_em)为基准进行逻辑比例映射，用于屏幕适配
+    /// @details 它会将该字体大小以96DPI下的16px(1_em = 16_px)为基准进行逻辑比例映射，用于屏幕适配
     /// @param n 逻辑字号大小
     /// @return 实际字号大小
     /// @ingroup 工具函数
     unsigned long operator""_em(unsigned long long n);
     /// @brief 设备无关的字体大小单位 (long double)
-    /// @details 它会将该字体大小以96DPI下的16px(1_em)为基准进行逻辑比例映射，用于屏幕适配
+    /// @details 它会将该字体大小以96DPI下的16px(1_em = 16_px)为基准进行逻辑比例映射，用于屏幕适配
     /// @param n 逻辑字号大小
     /// @return 实际字号大小
     /// @ingroup 工具函数
