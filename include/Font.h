@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include <Tools.h>
+
 namespace GFt {
 
     /// @addtogroup API接口库
@@ -52,7 +54,7 @@ namespace GFt {
         /// @brief 构造函数
         /// @param fontFamily 字体名称
         /// @param size 字体大小，默认16
-        Font(const std::wstring& fontFamily, long size = 16);
+        Font(const std::wstring& fontFamily, long size = 1_em);
         /// @brief 复制构造
         Font(const Font& other);
         /// @brief 移动构造
