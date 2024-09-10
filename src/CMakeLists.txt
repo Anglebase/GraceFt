@@ -18,6 +18,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/TextSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Tools.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Window.cpp
 )
 
 set(LIBRARY_OUTPUT_PATH ${GFt_LIBRARY_DIRS})              # 设置库输出目录
