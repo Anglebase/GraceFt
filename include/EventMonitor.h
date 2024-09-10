@@ -19,6 +19,7 @@ namespace GFt {
         MouseButtonPressEventMonitor() = default;
         virtual ~MouseButtonPressEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 鼠标按钮按下事件处理函数
         /// @param event 鼠标按钮按下事件
         virtual void onMouseButtonPress(const MouseButtonPressEvent& event) = 0;
@@ -30,6 +31,7 @@ namespace GFt {
         MouseButtonReleaseEventMonitor() = default;
         virtual ~MouseButtonReleaseEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 鼠标按钮释放事件处理函数
         /// @param event 鼠标按钮释放事件
         virtual void onMouseButtonRelease(const MouseButtonReleaseEvent& event) = 0;
@@ -41,6 +43,7 @@ namespace GFt {
         KeyPressEventMonitor() = default;
         virtual ~KeyPressEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 键盘按下事件处理函数
         /// @param event 键盘按下事件
         virtual void onKeyPress(const KeyPressEvent& event) = 0;
@@ -52,6 +55,7 @@ namespace GFt {
         KeyReleaseEventMonitor() = default;
         virtual ~KeyReleaseEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 键盘释放事件处理函数
         /// @param event 键盘释放事件
         virtual void onKeyRelease(const KeyReleaseEvent& event) = 0;
@@ -73,6 +77,7 @@ namespace GFt {
         MouseMoveEventMonitor() = default;
         virtual ~MouseMoveEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 鼠标移动事件处理函数
         /// @param event 鼠标移动事件
         virtual void onMouseMove(const MouseMoveEvent& event) = 0;
@@ -84,6 +89,7 @@ namespace GFt {
         MouseWheelEventMonitor() = default;
         virtual ~MouseWheelEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 鼠标滚轮事件处理函数
         /// @param event 鼠标滚轮事件
         virtual void onMouseWheel(const MouseWheelEvent& event) = 0;
@@ -116,6 +122,7 @@ namespace GFt {
         TextInputEventMonitor() = default;
         virtual ~TextInputEventMonitor() = default;
         /// @endcond
+    protected:
         /// @brief 文本输入事件处理函数
         /// @param event 文本输入事件
         virtual void onTextInput(const TextInputEvent& event) = 0;
