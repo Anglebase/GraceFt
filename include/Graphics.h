@@ -48,6 +48,7 @@ namespace GFt {
         Graphics();
         Graphics(Graphics&& other);
         Graphics& operator=(Graphics&& other);
+        ~Graphics();
 
         /// @brief 设置绘图目标
         /// @param target 绘图目标，如果为nullptr，则绘图目标为屏幕
@@ -64,6 +65,8 @@ namespace GFt {
         /// @brief 获取当前应用的变换矩阵
         /// @return 变换矩阵
         fMat3x3 getTransform() const;
+        /// @brief 使用背景色重绘绘图目标
+        void clear();
 
         /// @brief 设置默认背景色
         /// @param color 背景色

@@ -15,7 +15,7 @@ namespace GFt {
     using namespace _GFt_private_;
 
     PenSet Graphics::defaultPenSet_{ 0x0_rgb };
-    BrushSet Graphics::defaultBrushSet_{ 0xC6C3DCE6_rgba };
+    BrushSet Graphics::defaultBrushSet_{ 0xCFD1EFEC_rgba };
     TextSet Graphics::defaultTextSet_{ 0x0_rgb };
 
     Graphics::Graphics() {
@@ -38,6 +38,9 @@ namespace GFt {
             other.targetPixelMap_ = nullptr;
         }
         return *this;
+    }
+    Graphics::~Graphics() {
+        INIT_GRAPH;
     }
     /// @note 若设置目标不为 nullptr, 则应保证后续调用此类的其它成员函数时, 目标对象未被析构
     /// @note 否则会引发段错误(指针越界访问)
@@ -75,12 +78,17 @@ namespace GFt {
         result[2][1] = mat.m32;
         return result;
     }
+    void Graphics::clear() {
+        clearviewport(IMG(target_));
+    }
     void Graphics::setBackgroundColor(const Color& color) {
         setbkcolor(EGERGBA(color.red(), color.green(), color.blue(), color.alpha()), IMG(target_));
     }
     void Graphics::bindPenSet(PenSet* penSet) {
-        if (penSet == nullptr)
+        if (penSet == nullptr) {
             bindPenSet(&defaultPenSet_);
+            return;
+        }
         PenSetPrivate* pPS = static_cast<PenSetPrivate*>(penSet->pen_);
         setlinecolor(pPS->color, IMG(target_));
         setlinestyle(pPS->line_type, pPS->userdef, pPS->width, IMG(target_));
@@ -88,8 +96,10 @@ namespace GFt {
         setlinejoin((line_join_type)pPS->join_type, pPS->miterlimit, IMG(target_));
     }
     void Graphics::bindBrushSet(BrushSet* brushSet) {
-        if (brushSet == nullptr)
+        if (brushSet == nullptr) {
             bindBrushSet(&defaultBrushSet_);
+            return;
+        }
         BrushSetPrivate* pBS = static_cast<BrushSetPrivate*>(brushSet->brush_);
         switch (static_cast<BrushStyle>(pBS->mode)) {
         case BrushStyle::Default:
@@ -119,8 +129,10 @@ namespace GFt {
         }
     }
     void Graphics::bindTextSet(TextSet* textSet) {
-        if (textSet == nullptr)
+        if (textSet == nullptr) {
             bindTextSet(&defaultTextSet_);
+            return;
+        }
         LOGFONTW* font = static_cast<LOGFONTW*>(textSet->font_.font_);
         settextcolor(textSet->color_, IMG(target_));
         setfont(font, IMG(target_));
