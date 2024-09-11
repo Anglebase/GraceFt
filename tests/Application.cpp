@@ -34,9 +34,8 @@ public:
 };
 
 int main() {
-    Window* window = Window::createWindow(iRect{ 50,50,800,600 });
-    MyWindow* myWindow = new MyWindow(iRect{ 100,100,200,200 });
-    window->addChild(myWindow);
+    MyWindow* myWindow = new MyWindow(iRect{ 0,0,800,600 });
+    Window* window = Window::createWindow(myWindow);
     Application app(window);
     Application::setFps(60);
     return app.exec();

@@ -31,48 +31,68 @@ namespace GFt {
     }
     void Window::moveTo(const iPoint& pos) { movewindow(pos.x(), pos.y()); }
     void Window::setTitle(const std::wstring& title) { setcaption(title.c_str()); }
-    Window* Window::createWindow(const iRect& rect, bool hide) {
+    Window* Window::createWindow(Block* block, bool hide) {
+        if (!block) return nullptr;
+        auto rect = block->rect();
         if (Window::pInstance_)
             return Window::pInstance_;
         static Window window(rect.width(), rect.height(), H(hide));
+        window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
+        block->rect().position() = iPoint();
         Window::pInstance_ = &window;
         return Window::pInstance_;
     }
-    Window* Window::createFullScreenWindow(bool hide) {
+    Window* Window::createFullScreenWindow(Block* block, bool hide) {
+        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        block->rect() = iRect{ 0,0,100_sw,100_sh };
         static Window window(100_sw, 100_sh, H(hide) | INIT_NOBORDER | INIT_TOPMOST);
+        window.addChild(block);
         movewindow(0, 0);
         flushwindow();
+        block->rect().position() = iPoint();
         Window::pInstance_ = &window;
         return Window::pInstance_;
     }
-    Window* Window::createTopMostWindow(const iRect& rect, bool hide) {
+    Window* Window::createTopMostWindow(Block* block, bool hide) {
+        if (!block) return nullptr;
+        auto rect = block->rect();
         if (Window::pInstance_)
             return Window::pInstance_;
         static Window window(rect.width(), rect.height(), H(hide) | INIT_TOPMOST);
+        window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
+        block->rect().position() = iPoint();
         Window::pInstance_ = &window;
         return Window::pInstance_;
     }
-    Window* Window::createNoBorderWindow(const iRect& rect, bool hide) {
+    Window* Window::createNoBorderWindow(Block* block, bool hide) {
+        if (!block) return nullptr;
+        auto rect = block->rect();
         if (Window::pInstance_)
             return Window::pInstance_;
         static Window window(rect.width(), rect.height(), H(hide) | INIT_NOBORDER);
+        window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
+        block->rect().position() = iPoint();
         Window::pInstance_ = &window;
         return Window::pInstance_;
     }
-    Window* Window::createNoBorderTopMostWindow(const iRect& rect, bool hide) {
+    Window* Window::createNoBorderTopMostWindow(Block* block, bool hide) {
+        if (!block) return nullptr;
+        auto rect = block->rect();
         if (Window::pInstance_)
             return Window::pInstance_;
         static Window window(rect.width(), rect.height(), H(hide) | INIT_NOBORDER | INIT_TOPMOST);
+        window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
+        block->rect().position() = iPoint();
         Window::pInstance_ = &window;
         return Window::pInstance_;
     }

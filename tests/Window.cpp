@@ -5,7 +5,8 @@ using namespace std;
 using namespace GFt;
 
 int main() {
-    Window* window = Window::createWindow(iRect{ 30,30,800,600 });
-    
+    Block block{ iRect{ 30,30,800,600 } };
+    Window* window = Window::createWindow(&block);
+
     return 0;
 }
