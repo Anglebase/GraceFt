@@ -1,5 +1,4 @@
 build/*
 .vscode/*
 docs/*
-packages/*
 lib/*
