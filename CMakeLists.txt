@@ -20,5 +20,5 @@ set(GFt_LIBRARY_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/lib)     # 设置库目录
 
 # 添加子目录
 add_subdirectory(src)
-
 add_subdirectory(tests)
+add_subdirectory(examples)
