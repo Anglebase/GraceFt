@@ -5,6 +5,7 @@
 #include <Geometry.hpp>
 
 #include <Graphics.h>
+#include <BlockFocus.h>
 
 #define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
     void Block::handleOn##eventName(const eventName##Event& event, const iPoint& lefttop) {           \
@@ -28,14 +29,15 @@ namespace GFt {
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
         return a->zIndex_ > b->zIndex_;
     }
-    void Block::onDraw(const iRect& rect) {
-        Graphics g;
-        // PenSet p(0x0_rgb);
-        // p.setLineWidth(10);
-        // g.bindPenSet(&p);
-        g.drawRect(fRect(fPoint(), cast<float>(rect.size())));
+    void Block::onDraw(const iRect& rect) {}
+    void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {
+        // 默认行为: 受到点击捕获焦点
+        if (!event.isPropagationStopped()) {
+            auto& foucs = BlockFocus::getInstance();
+            foucs.setFocusOn(this);
+            event.stopPropagation();
+        }
     }
-    void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {}
     void Block::onMouseButtonRelease(const MouseButtonReleaseEvent& event) {}
     void Block::onMouseMove(const MouseMoveEvent& event) {}
     void Block::onMouseWheel(const MouseWheelEvent& event) {}
@@ -91,8 +93,8 @@ namespace GFt {
         int left, top, right, bottom;
         getviewport(&left, &top, &right, &bottom);
         int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
-        setviewport(x + left, y + top, x + left + width + 1, y + top + height + 1);
-        this->onDraw(this->rect());
+        setviewport(x + left, y + top, x + left + width, y + top + height);
+        this->onDraw(iRect{ x + left, y + top, width, height });
         for (auto riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
             if (child->rect() & this->rect())
