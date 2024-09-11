@@ -7,15 +7,16 @@ namespace GFt {
     /// @brief 全局窗口对象
     /// @details 此类用于表示一个全局唯一的窗口对象, 并提供了窗口创建的一系列工厂函数
     /// @details 同时也提供了一些操作窗口的成员函数
-    class Window final : public Block {
+    class Window : public Block {
         static Window* pInstance_;
 
     private:
-        Window(int width, int height, int flags);
         Window(const Window& other) = delete;
         Window& operator=(const Window& other) = delete;
         Window(Window&& other) = delete;
         Window& operator=(Window&& other) = delete;
+    protected:
+        Window(int width, int height, int flags);
 
     public:
         ~Window();
