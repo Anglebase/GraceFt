@@ -1,5 +1,5 @@
 #pragma once
-
+// 这个文件用于声明一些内部使用的函数和结构体
 #include <cmath>
 
 /// @cond IGNORE
