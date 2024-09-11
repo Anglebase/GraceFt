@@ -33,3 +33,6 @@ target_link_libraries(test_TextSet ${GFt_LIBRARY_NAME})
 # Window.h TEST
 add_executable(test_Window ${CMAKE_CURRENT_SOURCE_DIR}/Window.cpp)
 target_link_libraries(test_Window ${GFt_LIBRARY_NAME})
+# Application.h TEST
+add_executable(test_Application ${CMAKE_CURRENT_SOURCE_DIR}/Application.cpp)
+target_link_libraries(test_Application ${GFt_LIBRARY_NAME})
