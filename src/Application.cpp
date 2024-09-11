@@ -10,7 +10,7 @@ namespace GFt {
     Window* Application::root_ = nullptr;
     double Application::FPS_ = -1.0;
     Application::Application(Window* root) {
-        if (Application::root_)
+        if (Application::root_ || !root)
             return;
         Application::root_ = root;
     }
@@ -111,7 +111,7 @@ namespace GFt {
         }
         return 0;
     }
-    double& Application::fps() { return Application::FPS_; }
-    const double& Application::fps() const { return Application::FPS_; }
+    void Application::setFps(double fps) { Application::FPS_ = fps; }
+    double Application::getFps() const { return Application::FPS_; }
     float Application::getRealFps() const { return getfps(); }
 }
