@@ -33,8 +33,7 @@ namespace GFt {
     void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {
         // 默认行为: 受到点击捕获焦点
         if (!event.isPropagationStopped()) {
-            auto& foucs = BlockFocus::getInstance();
-            foucs.setFocusOn(this);
+            BlockFocusManager::setFocusOn(this);
             event.stopPropagation();
         }
     }
