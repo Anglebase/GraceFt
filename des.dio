@@ -390,6 +390,12 @@
                 <mxCell id="167" value="Button等" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="154" vertex="1">
                     <mxGeometry x="10" y="280" width="140" height="40" as="geometry"/>
                 </mxCell>
+                <mxCell id="230" style="edgeStyle=none;html=1;" edge="1" parent="154" source="229" target="156">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="229" value="Window" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="154">
+                    <mxGeometry x="190" y="280" width="140" height="40" as="geometry"/>
+                </mxCell>
                 <mxCell id="171" value="几何求解工具&lt;br&gt;&amp;lt;Geometry.hpp&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="1002" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
