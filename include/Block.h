@@ -19,11 +19,12 @@ namespace GFt {
         Block* parent_;
         std::set<Block*, CompareByZIndex> children_;
 
-        void handleOnDraw(Block* block);
-        void handleOnMouseButtonPress(const MouseButtonPressEvent& event);
-        void handleOnMouseButtonRelease(const MouseButtonReleaseEvent& event);
-        void handleOnMouseMove(const MouseMoveEvent& event);
-        void handleOnMouseWheel(const MouseWheelEvent& event);
+        friend class Application;
+        void handleOnDraw();
+        void handleOnMouseButtonPress(const MouseButtonPressEvent& event, const iPoint& pos = iPoint());
+        void handleOnMouseButtonRelease(const MouseButtonReleaseEvent& event, const iPoint& pos = iPoint());
+        void handleOnMouseMove(const MouseMoveEvent& event, const iPoint& pos = iPoint());
+        void handleOnMouseWheel(const MouseWheelEvent& event, const iPoint& pos = iPoint());
         void handleOnKeyPress(const KeyPressEvent& event);
         void handleOnKeyRelease(const KeyReleaseEvent& event);
         void handleOnTextInput(const TextInputEvent& event);

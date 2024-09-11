@@ -4,14 +4,17 @@
 #include <ege.h>
 #include <Geometry.hpp>
 
-#define DEF_MOUSE_HANDEL_FUNC(eventName)                                                  \
-    void Block::handleOn##eventName(const eventName##Event& event) {                      \
-        auto iter = std::find_if(children_.rbegin(), children_.rend(),                    \
-            [&](const Block* child) {return contains(child->rect(), event.position());}); \
-        if (iter == children_.rend())                                                     \
-            return;                                                                       \
-        (*iter)->handleOn##eventName(event);                                              \
-        this->on##eventName(event);                                                       \
+#include <Graphics.h>
+
+#define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
+    void Block::handleOn##eventName(const eventName##Event& event, const iPoint& lefttop) {           \
+        auto iter = std::find_if(children_.begin(), children_.end(),                                  \
+            [&](const Block* child) { return contains(child->rect(), event.position() - lefttop); }); \
+        do {                                                                                          \
+            if (iter == children_.end()) break;                                                       \
+            (*iter)->handleOn##eventName(event, lefttop + this->rect().position());                   \
+        } while (false);                                                                              \
+        this->on##eventName(event);                                                                   \
     }
 #define DEF_KEY_HANDEL_FUNC(eventName)                                                    \
     void Block::handleOn##eventName(const eventName##Event& event) {                      \
@@ -23,9 +26,15 @@
 namespace GFt {
     using namespace ege;
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
-        return a->zIndex_ < b->zIndex_;
+        return a->zIndex_ > b->zIndex_;
     }
-    void Block::onDraw(const iRect& rect) {}
+    void Block::onDraw(const iRect& rect) {
+        Graphics g;
+        // PenSet p(0x0_rgb);
+        // p.setLineWidth(10);
+        // g.bindPenSet(&p);
+        g.drawRect(fRect(fPoint(), cast<float>(rect.size())));
+    }
     void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {}
     void Block::onMouseButtonRelease(const MouseButtonReleaseEvent& event) {}
     void Block::onMouseMove(const MouseMoveEvent& event) {}
@@ -78,18 +87,19 @@ namespace GFt {
     int Block::getZIndex() const { return zIndex_; }
     Block* Block::getParent() const { return parent_; }
 
-    void Block::handleOnDraw(Block* block) {
+    void Block::handleOnDraw() {
         int left, top, right, bottom;
         getviewport(&left, &top, &right, &bottom);
-        int x = rect().x(), y = rect().y();
-        setviewport(x + left, y + top, x + right, y + bottom);
+        int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
+        setviewport(x + left, y + top, x + left + width + 1, y + top + height + 1);
         this->onDraw(this->rect());
-        for (auto child : block->children_)
+        for (auto riter = children_.rbegin(); riter != children_.rend(); ++riter) {
+            auto child = *riter;
             if (child->rect() & this->rect())
-                child->handleOnDraw(this);
+                child->handleOnDraw();
+        }
         setviewport(left, top, right, bottom);
     }
-
     DEF_MOUSE_HANDEL_FUNC(MouseButtonPress);
     DEF_MOUSE_HANDEL_FUNC(MouseButtonRelease);
     DEF_MOUSE_HANDEL_FUNC(MouseMove);
