@@ -179,7 +179,7 @@ namespace GFt {
         bool isPropagationStopped() const;
         /// @brief 终止事件传播
         /// @details 调用该函数后，该事件将不会再向父对象传播
-        void stopPropagation();
+        void stopPropagation() const;
     };
     /// @brief 鼠标事件基类
     class MouseEvent : public Event {
