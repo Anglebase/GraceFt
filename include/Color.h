@@ -79,7 +79,7 @@ namespace GFt {
     /// @return 颜色对象
     constexpr Color operator""_rgb(unsigned long long int hex) {
         return Color(
-            static_cast<byte>(hex >> 16),
+            static_cast<byte>(hex >> 16 & 0xFF),
             static_cast<byte>(hex >> 8 & 0xFF),
             static_cast<byte>(hex & 0xFF)
         );
@@ -90,7 +90,7 @@ namespace GFt {
     /// @return 颜色对象
     constexpr Color operator""_rgba(unsigned long long int hex) {
         return Color(
-            static_cast<byte>(hex >> 24),
+            static_cast<byte>(hex >> 24 & 0xFF),
             static_cast<byte>(hex >> 16 & 0xFF),
             static_cast<byte>(hex >> 8 & 0xFF),
             static_cast<byte>(hex & 0xFF)
