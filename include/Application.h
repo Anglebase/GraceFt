@@ -12,6 +12,7 @@ namespace GFt {
         void handleEvents(Window* window);
         static Window* root_;
         static double FPS_;
+        static float realFps_;
     private:
         Application(const Application&) = delete;
         Application& operator=(const Application&) = delete;
@@ -31,14 +32,14 @@ namespace GFt {
         int exec();
         /// @brief 设置目标帧率
         /// @param fps 目标帧率
-        /// @details 若所设定的帧率小于等于0, 则视为无限制帧率
+        /// @details 若所设定的帧率小于等于0, 则视为无帧率限制
         /// @details 对于大多数设备而言, 推荐帧率值为 60
-        void setFps(double fps);
+        static void setFps(double fps);
         /// @brief 获取目标帧率
         /// @return 目标帧率
-        double getFps() const;
+        static double getFps();
         /// @brief 获取真实帧率
         /// @return 真实帧率
-        float getRealFps() const;
+        static float getRealFps();
     };
 }

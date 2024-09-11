@@ -1,6 +1,7 @@
 #include <Application.h>
 #include <Graphics.h>
 #include <chrono>
+#include <string>
 
 using namespace GFt;
 using namespace std;
@@ -21,6 +22,8 @@ protected:
             fPoint{ 50,50 },
             fPoint{ 50 + 100 * static_cast<float>(std::sin(time)),
                     50 + 100 * static_cast<float>(std::cos(time)) } });
+        g.drawText(std::to_wstring(Application::getRealFps()), fPoint());
+        cout << "FPS: " << Application::getRealFps() << endl;
     }
     void onMouseMove(const MouseMoveEvent& event) override {
         cout << "Mouse moved to " << event.position() << endl;
@@ -34,5 +37,6 @@ int main() {
     MyWindow* myWindow = new MyWindow(iRect{ 100,100,200,200 });
     window->addChild(myWindow);
     Application app(window);
+    Application::setFps(60);
     return app.exec();
 }
