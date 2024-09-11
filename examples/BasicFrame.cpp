@@ -3,7 +3,7 @@
 #include <GraceFt/Tools.h>
 /**
  * @example BasicFrame.cpp
- * 
+ *
  * 这是一个最基本的创建窗口的例子，展示了如何使用GraceFt库创建窗口并显示一个空白的窗口
  * 通过`using namespace GFt::literals;`你可以引入设备无关的单位字面量，通过它们你
  * 可以方便地设置设备无关的窗口大小、位置等。
@@ -16,10 +16,11 @@
 int main() {
     using namespace GFt::literals;                   // 引入设备无关字面量转换命名空间
 
+    GFt::Block block{                                // 定义一个空白的窗口块作为窗口的根节点
+        GFt::iRect{ 5_sw,5_sh,60_sw,60_sh, }         // 设置设备无关的窗口大小和位置
+    };
     auto window =
-        GFt::Window::createWindow(                   // 创建窗口
-            GFt::iRect{ 5_sw,5_sh,60_sw,60_sh, }     // 设置设备无关的窗口大小
-        );
+        GFt::Window::createWindow(&block);           // 创建窗口
 
     GFt::Application app(window);                    // 创建应用对象
     return app.exec();                               // 启动事件循环
