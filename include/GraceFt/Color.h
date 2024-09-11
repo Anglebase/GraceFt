@@ -73,27 +73,30 @@ namespace GFt {
         /// @return 输出流 os
         friend std::ostream& operator<<(std::ostream& os, const Color& color);
     };
-    /// @brief _rgb 字面量运算符重载
-    /// @details 允许使用类似"0xRRGGBB"的形式创建颜色，例如Color c = "0xFF0000"_rgb;
-    /// @param hex 16进制颜色值
-    /// @return 颜色对象
-    constexpr Color operator""_rgb(unsigned long long int hex) {
-        return Color(
-            static_cast<byte>(hex >> 16 & 0xFF),
-            static_cast<byte>(hex >> 8 & 0xFF),
-            static_cast<byte>(hex & 0xFF)
-        );
-    }
-    /// @brief _rgba 字面量运算符重载
-    /// @details 允许使用类似"0xRRGGBBAA"的形式创建颜色，例如Color c = "0xFF000000"_rgba;
-    /// @param hex 16进制颜色值
-    /// @return 颜色对象
-    constexpr Color operator""_rgba(unsigned long long int hex) {
-        return Color(
-            static_cast<byte>(hex >> 24 & 0xFF),
-            static_cast<byte>(hex >> 16 & 0xFF),
-            static_cast<byte>(hex >> 8 & 0xFF),
-            static_cast<byte>(hex & 0xFF)
-        );
+
+    namespace literals {
+        /// @brief _rgb 字面量运算符重载
+        /// @details 允许使用类似"0xRRGGBB"的形式创建颜色，例如Color c = "0xFF0000"_rgb;
+        /// @param hex 16进制颜色值
+        /// @return 颜色对象
+        constexpr Color operator""_rgb(unsigned long long int hex) {
+            return Color(
+                static_cast<byte>(hex >> 16 & 0xFF),
+                static_cast<byte>(hex >> 8 & 0xFF),
+                static_cast<byte>(hex & 0xFF)
+            );
+        }
+        /// @brief _rgba 字面量运算符重载
+        /// @details 允许使用类似"0xRRGGBBAA"的形式创建颜色，例如Color c = "0xFF000000"_rgba;
+        /// @param hex 16进制颜色值
+        /// @return 颜色对象
+        constexpr Color operator""_rgba(unsigned long long int hex) {
+            return Color(
+                static_cast<byte>(hex >> 24 & 0xFF),
+                static_cast<byte>(hex >> 16 & 0xFF),
+                static_cast<byte>(hex >> 8 & 0xFF),
+                static_cast<byte>(hex & 0xFF)
+            );
+        }
     }
 }
