@@ -31,28 +31,38 @@ namespace GFt {
 
     protected:
         /// @brief 此函数用于绘制内容
-        /// @param rect 绘制区域(与父对象的相对坐标)
+        /// @param rect 绘制区域(相对于窗口的绝对坐标)
+        /// @details 此函数会在每一帧绘制时被调用, 用于绘制内容
+        /// @note 若此对象所在位置不与任何可见区域存在交集, 则此函数不会被调用
         void onDraw(const iRect& rect) override;
-        /// @brief 此函数用于处理鼠标按下事件
-        /// @param event 鼠标事件
+        /// @brief 此函数用于处理鼠标按钮按下事件
+        /// @param event 鼠标按钮按下事件
+        /// @note 鼠标处理函数会依据鼠标位置进行事件的捕获决断, 并将事件传递给相应的对象进行处理
         void onMouseButtonPress(const MouseButtonPressEvent& event) override;
-        /// @brief 此函数用于处理鼠标释放事件
-        /// @param event 鼠标事件
+        /// @brief 此函数用于处理鼠标按钮释放事件
+        /// @param event 鼠标按钮释放事件
+        /// @see onMouseButtonPress
         void onMouseButtonRelease(const MouseButtonReleaseEvent& event) override;
         /// @brief 此函数用于处理鼠标移动事件
-        /// @param event 鼠标事件
+        /// @param event 鼠标移动事件
+        /// @see onMouseButtonPress
         void onMouseMove(const MouseMoveEvent& event) override;
         /// @brief 此函数用于处理鼠标滚轮事件
-        /// @param event 鼠标事件
+        /// @param event 鼠标滚轮事件
+        /// @see onMouseButtonPress
         void onMouseWheel(const MouseWheelEvent& event) override;
-        /// @brief 此函数用于处理键盘按下事件
-        /// @param event 键盘事件
+        /// @brief 此函数用于处理键盘按键按下事件
+        /// @param event 键盘按键按下事件
+        /// @note 键盘处理函数会依据当前焦点块进行事件的捕获决断, 并将事件传递给相应的对象进行处理
+        /// @see BlockFocusManager
         void onKeyPress(const KeyPressEvent& event) override;
-        /// @brief 此函数用于处理键盘释放事件
-        /// @param event 键盘事件
+        /// @brief 此函数用于处理键盘按键释放事件
+        /// @param event 键盘按键释放事件
+        /// @see onKeyPress
         void onKeyRelease(const KeyReleaseEvent& event) override;
         /// @brief 此函数用于处理文本输入事件
         /// @param event 文本输入事件
+        /// @see onKeyPress
         void onTextInput(const TextInputEvent& event) override;
 
     public:
@@ -60,6 +70,7 @@ namespace GFt {
         /// @param rect 所在区域
         /// @param parent 父对象
         /// @param zIndex 层级
+        /// @details 层级用于决定绘制事件的先后顺序和事件传递的优先级
         Block(const iRect& rect, Block* parent = nullptr, int zIndex = 0);
         virtual ~Block();
         /// @brief 添加子对象
