@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace GFt;
+using namespace GFt::literals;
 
 int main() {
     TextSet ts(0xff00ff_rgb);

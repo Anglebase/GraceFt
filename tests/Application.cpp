@@ -9,6 +9,7 @@ using namespace std;
 class MyWindow : public Block {
 protected:
     void onDraw(const iRect& rect) override {
+        using namespace GFt::literals;
         Block::onDraw(rect);
         Graphics g;
         g.setBackgroundColor(0xe9e9e9_rgb);

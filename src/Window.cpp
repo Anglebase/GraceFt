@@ -7,6 +7,7 @@
 
 namespace GFt {
     using namespace ege;
+    using namespace literals;
     Window* Window::pInstance_ = nullptr;
     Window::Window(int width, int height, int flags)
         : Block(iRect(0, 0, width, height)) {
@@ -30,7 +31,6 @@ namespace GFt {
     }
     void Window::moveTo(const iPoint& pos) { movewindow(pos.x(), pos.y()); }
     void Window::setTitle(const std::wstring& title) { setcaption(title.c_str()); }
-    void Window::stop() { getch(); }
     Window* Window::createWindow(const iRect& rect, bool hide) {
         if (Window::pInstance_)
             return Window::pInstance_;

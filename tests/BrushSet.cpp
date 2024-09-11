@@ -2,6 +2,7 @@
 
 using namespace std;
 using namespace GFt;
+using namespace GFt::literals;
 
 int main() {
     BrushSet brushSet(0xffffff_rgb);

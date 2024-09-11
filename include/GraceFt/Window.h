@@ -37,8 +37,6 @@ namespace GFt {
         /// @param title 新的标题
         void setTitle(const std::wstring& title);
 
-        void stop();
-
     public:
         /// @brief 创建普通窗口
         /// @param rect 窗口大小

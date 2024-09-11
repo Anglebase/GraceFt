@@ -13,6 +13,7 @@
 namespace GFt {
     using namespace ege;
     using namespace _GFt_private_;
+    using namespace literals;
 
     PenSet Graphics::defaultPenSet_{ 0x0_rgb };
     BrushSet Graphics::defaultBrushSet_{ 0xCFD1EFEC_rgba };
