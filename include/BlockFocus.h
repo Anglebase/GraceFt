@@ -2,17 +2,19 @@
 
 namespace GFt {
     class Block;
-    class BlockFocus {
-        Block* focuson_ = nullptr;
+    /// @class BlockFocusManager
+    /// @brief 焦点块管理器，用于管理当前焦点块
+    /// @ingroup 基础UI封装库
+    class BlockFocusManager {
+        static Block* focuson_;
     private:
-        BlockFocus() = default;
-        BlockFocus(const BlockFocus&) = delete;
-        BlockFocus& operator=(const BlockFocus&) = delete;
-        BlockFocus(BlockFocus&&) = delete;
-        BlockFocus& operator=(BlockFocus&&) = delete;
+        BlockFocusManager() = delete;
     public:
-        static BlockFocus& getInstance();
-        Block* getFocusOn();
-        void setFocusOn(Block* block);
+        /// @brief 获取当前焦点块
+        /// @return 当前焦点块
+        static Block* getFocusOn();
+        /// @brief 设置当前焦点块
+        /// @param block 要设置的焦点块
+        static void setFocusOn(Block* block);
     };
 }
