@@ -52,10 +52,11 @@ namespace GFt {
         /// @return 转换后的多边形对象
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend Polygon<U> cast(const Polygon<T>& polygon) {
+        operator Polygon<U>() const {
             Polygon<U> result;
-            for (const auto& point : polygon.points) 
-                result.addPoint(cast<U>(point));
+            for (const auto& point : this->points)
+                result.addPoint(point);
+            result.setClosed(this->isClosed());
             return result;
         }
     };

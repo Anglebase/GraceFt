@@ -152,8 +152,8 @@ namespace GFt {
         /// @return 转换后的尺寸对象
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr Size<U> cast(const Size<T>& size) {
-            return Size<U>(static_cast<U>(size.width_), static_cast<U>(size.height_));
+        constexpr operator Size<U>() const {
+            return Size<U>(static_cast<U>(this->width_), static_cast<U>(this->height_));
         }
     };
 

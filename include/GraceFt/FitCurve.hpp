@@ -58,11 +58,11 @@ namespace GFt {
         /// @return 拟合曲线
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend FitCurve<U> cast(const FitCurve<T>& curve) {
+        operator FitCurve<U>() const {
             FitCurve<U> result;
-            for (const auto& point : curve.points)
+            for (const auto& point : this->points)
                 result.addPoint(Point<U>(point.x, point.y));
-            result.closed = curve.closed;
+            result.closed = this->closed;
             return result;
         }
     };

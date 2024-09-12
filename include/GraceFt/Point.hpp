@@ -169,8 +169,8 @@ namespace GFt {
         /// @return 转换后的点对象
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr Point<U> cast(const Point<T>& p) {
-            return Point<U>(static_cast<U>(p.x_), static_cast<U>(p.y_));
+        constexpr operator Point<U>() const {
+            return Point<U>(static_cast<U>(this->x_), static_cast<U>(this->y_));
         }
     };
 

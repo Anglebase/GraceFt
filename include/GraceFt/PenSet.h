@@ -21,6 +21,8 @@ namespace GFt {
         Null            ///< 不可见
     };
     /// @brief 线帽样式
+    /// @brief 线帽和接点样式如图
+    /// @image html penstyle.png "线帽和接点样式"
     enum class CapStyle {
         Flat,           ///< 平头
         Square,         ///< 方头

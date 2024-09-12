@@ -114,8 +114,8 @@ namespace GFt {
         /// @param line 要转换的直线对象
         /// @return 转换后的直线对象
         template<typename U>
-        friend constexpr Line<U> cast(const Line<T>& line) {
-            return Line<U>(cast<U>(line.p1), cast<U>(line.p2));
+        constexpr operator Line<U>() const {
+            return Line<U>(this->p1, this->p2);
         }
     };
 

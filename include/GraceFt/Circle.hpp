@@ -110,8 +110,8 @@ namespace GFt {
         /// @return 转换后的圆
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr Circle<U> cast(const Circle<T>& circle) {
-            return Circle<U>(cast<U>(circle.origin_), cast<U>(circle.radius_));
+        constexpr operator Circle<U>() const {
+            return Circle<U>(this->origin_, this->radius_);
         }
     };
 

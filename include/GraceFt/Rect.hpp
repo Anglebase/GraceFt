@@ -144,8 +144,8 @@ namespace GFt {
         /// @return 转换后的矩形对象
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr Rect<U> cast(const Rect<T>& rect) {
-            return Rect<U>(cast<U>(rect.pos_), cast<U>(rect.size_));
+        constexpr operator Rect<U>() const {
+            return Rect<U>(this->pos_, this->size_);
         }
     };
 

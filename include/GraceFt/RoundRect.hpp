@@ -86,12 +86,12 @@ namespace GFt {
         /// @return 转换后的圆角矩形
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr RoundRect<U> cast(const RoundRect<T>& r) {
-            RoundRect<U> result(cast<Rect<U>>(r.rect_));
-            result.lt = static_cast<U>(r.lt);
-            result.rt = static_cast<U>(r.rt);
-            result.rb = static_cast<U>(r.rb);
-            result.lb = static_cast<U>(r.lb);
+        constexpr operator RoundRect<U> () const {
+            RoundRect<U> result(this->rect_);
+            result.lt = static_cast<U>(this->lt);
+            result.rt = static_cast<U>(this->rt);
+            result.rb = static_cast<U>(this->rb);
+            result.lb = static_cast<U>(this->lb);
             return result;
         }
     };

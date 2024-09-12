@@ -69,8 +69,8 @@ namespace GFt {
         /// @return 目标类型椭圆
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend Ellipse<U> cast(const Ellipse<T>& elliptic) {
-            return Ellipse<U>(cast<U>(elliptic.rect_));
+        constexpr operator Ellipse<U>() const {
+            return Ellipse<U>(this->rect_);
         }
     };
 

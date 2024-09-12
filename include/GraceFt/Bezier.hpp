@@ -48,9 +48,9 @@ namespace GFt {
         /// @return 转换后的贝塞尔曲线
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend Bezier<U> cast(const Bezier<T>& b) {
+        operator Bezier<U>() const {
             Bezier<U> result;
-            for (const auto& p : b.points)
+            for (const auto& p : this->points)
                 result.addPoint(cast<U>(p));
             return result;
         }

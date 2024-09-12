@@ -176,6 +176,8 @@ namespace GFt {
     void Graphics::drawPolygon(const fPolygon& polygon) {
         bool closed = polygon.isClosed();
         auto count = polygon.count();
+        if (count < 2)
+            return;
         ege_point* points = new ege_point[count + (closed ? 1 : 0)];
         for (int i = 0; i < count; ++i) {
             points[i].x = polygon.points[i].x();
@@ -232,7 +234,7 @@ namespace GFt {
     }
     /// @details 如果传入的多边形不是闭合的, 则此函数无效果
     void Graphics::drawFillPolygon(const fPolygon& polygon) {
-        if (!polygon.isClosed())
+        if (!polygon.isClosed() || polygon.count() < 2)
             return;
         auto count = polygon.count();
         ege_point* points = new ege_point[count];
@@ -312,7 +314,7 @@ namespace GFt {
             break;
         }
         settextjustify(ehalign, evalign, IMG(target_));
-        auto irect = cast<int>(rect);
+        auto irect = static_cast<Rect<int>>(rect);
         outtextrect(irect.x(), irect.y(), irect.width(), irect.height(), text.c_str(), IMG(target_));
     }
 

@@ -306,9 +306,9 @@ namespace GFt {
         /// @return 转换后的矩阵对象
         template<typename U>
             requires std::is_arithmetic_v<U>
-        friend constexpr Matrix<M, N, U> cast(const Matrix<M, N, T>& mat) {
+        constexpr explicit operator Matrix<M, N, U>() const {
             Matrix<M, N, U> res;
-            _LOOP_EACH(res.data[i][j] = static_cast<U>(mat.data[i][j]));
+            _LOOP_EACH(res.data[i][j] = static_cast<U>(this->data[i][j]));
             return res;
         }
     };

@@ -11,7 +11,7 @@ namespace GFt {
     Window* Window::pInstance_ = nullptr;
     Window::Window(int width, int height, int flags)
         : Block(iRect(0, 0, width, height)) {
-        initgraph(width, height, flags | INIT_UNICODE | INIT_ANIMATION | INIT_NOFORCEEXIT);
+        initgraph(width, height, flags | INIT_UNICODE | INIT_ANIMATION | INIT_NOFORCEEXIT | INIT_HIDE);
         setcaption(L"GraceFt v2.0.0");
         setbkcolor(WHITE);
         setcolor(BLACK);
