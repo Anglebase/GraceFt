@@ -23,5 +23,6 @@ int main() {
         GFt::Window::createWindow(&block);           // 创建窗口
 
     GFt::Application app(window);                    // 创建应用对象
+    window->show();                                  // 显示窗口
     return app.exec();                               // 启动事件循环
 }

@@ -42,5 +42,6 @@ int main() {
     MyWindow root(iRect{ 25_sw,20_sh,50_sw,50_sh });          // 创建根节点
     auto window = Window::createWindow(&root); // 创建窗口
     Application app{ window };                                // 构造应用对象
+    window->show();                                           // 显示窗口
     return app.exec();                                        // 启动事件循环
 }
