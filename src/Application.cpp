@@ -70,18 +70,25 @@ namespace GFt {
             return;
         if (kbmsg()) do {
             auto msg = getkey();
-            if (msg.msg == key_msg_down)
+            switch (msg.msg) {
+            case key_msg_down:
                 block->handleOnKeyPress(KeyPressEvent{
                     static_cast<Key>(msg.key),
                     static_cast<bool>(msg.flags & key_flag_shift),
                     static_cast<bool>(msg.flags & key_flag_ctrl),
                     });
-            else if (msg.msg == key_msg_up)
+                break;
+            case key_msg_up:
                 block->handleOnKeyRelease(KeyReleaseEvent{
                     static_cast<Key>(msg.key),
                     static_cast<bool>(msg.flags & key_flag_shift),
                     static_cast<bool>(msg.flags & key_flag_ctrl),
                     });
+                break;
+            case key_msg_char:
+                block->handleOnTextInput(TextInputEvent{ msg.key });
+                break;
+            }
             count_kbmsg++;
             if (count_kbmsg > max_msg_count)
                 break;
@@ -89,6 +96,8 @@ namespace GFt {
         // 文本输入事件
         if (kbhit()) do {
             auto ch = getch();
+            // std::cout << "ch: " << ch << std::endl;
+            // if (std::iswprint(ch) || std::iswspace(ch))
             block->handleOnTextInput(TextInputEvent{ ch });
             count_textmsg++;
             if (count_textmsg > max_msg_count)
