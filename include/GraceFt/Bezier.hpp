@@ -51,7 +51,7 @@ namespace GFt {
         operator Bezier<U>() const {
             Bezier<U> result;
             for (const auto& p : this->points)
-                result.addPoint(cast<U>(p));
+                result.addPoint(p);
             return result;
         }
     };
