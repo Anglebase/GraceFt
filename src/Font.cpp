@@ -7,7 +7,7 @@
 namespace GFt {
     Font::Font(const std::wstring& fontFamily, long size) {
         auto* font = new LOGFONTW();
-        FONT(font)->lfHeight = size;
+        FONT(font)->lfHeight = -size;
         FONT(font)->lfWidth = 0;
         FONT(font)->lfEscapement = 0;
         FONT(font)->lfOrientation = 0;
