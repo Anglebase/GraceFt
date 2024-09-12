@@ -2,6 +2,7 @@
 #include <_private.inl>
 #include <ege.h>
 
+#define FONT(x) (static_cast<LOGFONTW*>(x))
 #define IMG(x) (static_cast<PIMAGE>(x))
 #define PATH(x) (static_cast<ege_path*>(x))
 #define INIT_GRAPH                  \
@@ -134,9 +135,8 @@ namespace GFt {
             bindTextSet(&defaultTextSet_);
             return;
         }
-        LOGFONTW* font = static_cast<LOGFONTW*>(textSet->font_.font_);
         settextcolor(textSet->color_, IMG(target_));
-        setfont(font, IMG(target_));
+        setfont(FONT(textSet->font_.font_), IMG(target_));
         setbkmode(textSet->transparent_ ? TRANSPARENT : OPAQUE, IMG(target_));
     }
 
@@ -279,8 +279,51 @@ namespace GFt {
             IMG(target_)
         );
     }
-    void Graphics::drawText(const std::wstring& text, const fPoint& pos) {
-        ege_outtextxy(pos.x(), pos.y(), text.c_str(), IMG(target_));
+    int Graphics::drawText(
+        const std::wstring& text, const fPoint& pos,
+        const std::vector<std::wstring>& fonts, bool show) {
+        // 若没有指定字体, 则使用当前配置字体
+        if (fonts.empty()) {
+            ege_outtextxy(pos.x(), pos.y(), text.c_str(), IMG(target_));
+            return textwidth(text.c_str(), IMG(target_));
+        }
+        // 否则, 尝试使用指定的字体
+        std::size_t count[text.length()]{ 0 };
+        int width = 0;
+        LOGFONTW fs, fset;
+        // 保存当前字体环境
+        getfont(&fs, IMG(target_));
+        getfont(&fset, IMG(target_));
+        // 查找字体的支持情况
+        for (std::size_t i = 0; i < fonts.size(); ++i) {
+            WORD indices[text.length()]{ 0 };
+            wcscpy_s(fset.lfFaceName, LF_FACESIZE, fonts[i].c_str());
+            setfont(&fset, IMG(target_));
+            GetGlyphIndicesW(
+                getHDC(IMG(target_)), text.c_str(), text.length(),
+                indices, GGI_MARK_NONEXISTING_GLYPHS);
+            for (std::size_t j = 0; j < text.length(); ++j)
+                if (indices[j] != 0xFFFF && count[j] == 0)
+                    count[j] = i + 1;
+        }
+        for (std::size_t i = 0; i < text.length(); ++i) {
+            if (count[i] == 0)
+                // 没有查找到支持的字体, 则使用环境配置的字体
+                setfont(&fs, IMG(target_));
+            else {
+                // 找到了支持的字体, 则使用该字体
+                wcscpy_s(fset.lfFaceName, LF_FACESIZE, fonts[count[i] - 1].c_str());
+                setfont(&fset, IMG(target_));
+            }
+            // 输出文字
+            if (show)
+                ege_outtextxy(pos.x() + width, pos.y(), text[i], IMG(target_));
+            // 统计宽度
+            width += textwidth(text[i], IMG(target_));
+        }
+        // 还原字体环境
+        setfont(&fs, IMG(target_));
+        return width;
     }
     /// @details 若传入了无效的 flags, 则此函数将会忽略它们, 并使用默认的对齐方式(左上对齐)
     void Graphics::drawText(const std::wstring& text, const fRect& rect, int flags) {

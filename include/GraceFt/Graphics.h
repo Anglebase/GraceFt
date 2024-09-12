@@ -29,7 +29,7 @@ namespace GFt {
         Middle = 0x20,  ///< 垂直居中
         Bottom = 0x40   ///< 底部对齐
     };
-    
+
     /// @class Graphics
     /// @brief 绘图接口类
     /// @details 该类提供了绘图相关的接口，包括绘制线段、矩形、圆形、椭圆、圆弧、多边形、贝塞尔曲线、拟合曲线、路径、图像、文本等
@@ -151,11 +151,18 @@ namespace GFt {
         /// @param pixelMap 要绘制的位图
         void drawImage(const fRect& dest, const fRect& src, const PixelMap& pixelMap);
 
-        /// @brief 绘制文本
+        /// @brief 在指定位置绘制文本
         /// @param text 要绘制的文本
         /// @param pos 要绘制的位置
-        void drawText(const std::wstring& text, const fPoint& pos);
-        /// @brief 绘制文本
+        /// @param font 指定的字体集合
+        /// @param show 是否显示文本, 若为false则只计算文本的宽度
+        /// @return 实际绘制出的字符的像素宽度
+        /// @note 若未指定字体集合则使用环境当前绑定的字体
+        ///       若指定了字体集合，则会按照字体列表的顺序依次查找，
+        ///       直到找到一个能显示的字体(即字体回滚机制)，此操作将忽略环境当前绑定的字体
+        int drawText(const std::wstring& text, const fPoint& pos,
+            const std::vector<std::wstring>& fonts = {}, bool show = true);
+        /// @brief 在指定矩形区域内绘制文本
         /// @param text 要绘制的文本
         /// @param rect 要绘制的矩形区域
         /// @param flags 文本对齐方式
