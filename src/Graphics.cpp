@@ -306,16 +306,12 @@ namespace GFt {
                 if (indices[j] != 0xFFFF && count[j] == 0)
                     count[j] = i + 1;
         }
+        // 输出文字
         for (std::size_t i = 0; i < text.length(); ++i) {
-            if (count[i] == 0)
-                // 没有查找到支持的字体, 则使用环境配置的字体
-                setfont(&fs, IMG(target_));
-            else {
-                // 找到了支持的字体, 则使用该字体
+            if (count[i])
                 wcscpy_s(fset.lfFaceName, LF_FACESIZE, fonts[count[i] - 1].c_str());
-                setfont(&fset, IMG(target_));
-            }
-            // 输出文字
+            LOGFONTW* pfs = count == 0 ? &fs : &fset;
+            setfont(pfs, IMG(target_));
             if (show)
                 ege_outtextxy(pos.x() + width, pos.y(), text[i], IMG(target_));
             // 统计宽度
