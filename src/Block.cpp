@@ -34,10 +34,8 @@ namespace GFt {
     void Block::onDraw(const iRect& rect) {}
     void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {
         // 默认行为: 受到点击捕获焦点
-        if (!event.isPropagationStopped()) {
-            BlockFocusManager::setFocusOn(this);
-            event.stopPropagation();
-        }
+        BlockFocusManager::setFocusOn(this);
+        event.stopPropagation();
     }
     void Block::onMouseButtonRelease(const MouseButtonReleaseEvent& event) {}
     void Block::onMouseMove(const MouseMoveEvent& event) {}

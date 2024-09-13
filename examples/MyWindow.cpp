@@ -29,7 +29,9 @@ protected:
     void onMouseButtonPress(const MouseButtonPressEvent& event) override {
         std::cout << "MouseButtonPress: " << event.position() << std::endl;
         Block::onMouseButtonPress(event);
-        event.stopPropagation();
+    }
+    void onTextInput(const TextInputEvent& event) override {
+        event.accept();
     }
 public:
     MyWidget(const iRect& rect, Block* parent = nullptr, int zIndex = 0) : Block(rect, parent, zIndex) {}

@@ -3,6 +3,8 @@
 namespace GFt {
     bool Event::isPropagationStopped() const { return stopPropagation_; }
     void Event::stopPropagation() const { const_cast<Event*>(this)->stopPropagation_ = true; }
+    void Event::accept() const { return stopPropagation(); }
+    bool Event::isAccepted() const { return isPropagationStopped(); }
     MouseEvent::MouseEvent(const iPoint& position) : position_(position) {}
     const iPoint& MouseEvent::position() const { return position_; }
     KeyboardEvent::KeyboardEvent(Key key, bool shift, bool ctrl) : key_(key), shift_(shift), ctrl_(ctrl) {}
