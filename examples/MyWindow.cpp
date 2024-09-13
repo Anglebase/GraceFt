@@ -27,7 +27,7 @@ protected:
         g.drawFillRect(r);
     }
     void onMouseButtonPress(const MouseButtonPressEvent& event) override {
-        std::cout << "MouseButtonPress: " << event.position() << std::endl;
+        std::cout << "MyWidget MouseButtonPress: " << event.position() << std::endl;
         Block::onMouseButtonPress(event);
     }
     void onTextInput(const TextInputEvent& event) override {
@@ -58,7 +58,7 @@ protected:
         Block::onDraw(rect);  // 此函数无默认行为，仅作示例
     }
     void onMouseButtonPress(const MouseButtonPressEvent& event) override {
-        std::cout << "MouseButtonPress: " << event.position() << std::endl;
+        std::cout << "MyWindow MouseButtonPress: " << event.position() << std::endl;
         return Block::onMouseButtonPress(event);
     }
     void onTextInput(const TextInputEvent& event) override {

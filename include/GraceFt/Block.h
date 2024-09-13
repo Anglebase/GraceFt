@@ -41,7 +41,8 @@ namespace GFt {
         /// @note 鼠标处理函数会依据鼠标位置进行事件的捕获决断, 并将事件传递给相应的对象进行处理
         /// @note 具体的决断逻辑为：从根节点开始，查找首个满足鼠标位置在其区域内的对象，以该对象
         ///       为根节点再次重复此操作，直到某个对象不存在满足条件的子对象，则将事件传递给该对
-        ///       象进行处理。该对象处理后再向上冒泡(即向父对象传递事件)，直到根节点。
+        ///       象进行处理。该对象处理后若冒泡行为未被阻止，则再向上冒泡(即向父对象传递事件)，
+        ///       直到根节点。
         /// @image html handlemouse.svg "鼠标事件处理示意图"
         void onMouseButtonPress(const MouseButtonPressEvent& event) override;
         /// @brief 此函数用于处理鼠标按钮释放事件
@@ -59,8 +60,8 @@ namespace GFt {
         /// @brief 此函数用于处理键盘按键按下事件
         /// @param event 键盘按键按下事件
         /// @note 键盘处理函数会依据当前焦点块进行事件的捕获决断, 并将事件传递给相应的对象进行处理
-        /// @note 具体的决断逻辑为：从当前焦点块开始，调用其事件处理函数，之后再向上冒泡(即向父对象
-        ///       传递事件)，直到根节点。
+        /// @note 具体的决断逻辑为：从当前焦点块开始，调用其事件处理函数，之后若冒泡行为未被阻止，
+        ///       则再向上冒泡(即向父对象传递事件)，直到根节点。
         /// @image html handlekey.svg "键盘事件处理示意图"
         /// @see BlockFocusManager
         void onKeyPress(const KeyPressEvent& event) override;
