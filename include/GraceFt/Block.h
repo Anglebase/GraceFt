@@ -9,7 +9,9 @@
 namespace GFt {
     /// @class Block
     /// @brief 块对象
-    /// @details 块对象是UI的基本构件, 它掌管了整个UI的对象树, 管理事件的分发、传递和处理, 同时也负责视图重绘
+    /// @details 块对象是UI的基本构件, 它提供了对象嵌入UI的基础设施
+    ///          它掌管了整个UI的对象树, 管理事件的分发、传递和处理,
+    ///          同时也负责视图重绘
     /// @ingroup 基础UI封装库
     class Block : public GraphInterface, public EventMonitor {
         struct CompareByZIndex {
