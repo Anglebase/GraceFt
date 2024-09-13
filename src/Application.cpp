@@ -118,6 +118,7 @@ namespace GFt {
         }
         return 0;
     }
+    int Application::run() { return exec(); }
     void Application::setFps(double fps) { Application::FPS_ = fps; }
     double Application::getFps() { return Application::FPS_; }
     float Application::getRealFps() { return Application::realFps_; }

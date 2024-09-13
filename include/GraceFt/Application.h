@@ -30,6 +30,11 @@ namespace GFt {
         /// @return 程序退出状态
         /// @details 该函数会阻塞线程, 直到程序退出
         int exec();
+        /// @brief 运行程序
+        /// @return 程序退出状态
+        /// @details 该函数效果等同于 exec()
+        /// @see exec()
+        int run();
         /// @brief 设置目标帧率
         /// @param fps 目标帧率
         /// @details 若所设定的帧率小于等于0, 则视为无帧率限制
