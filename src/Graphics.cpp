@@ -325,36 +325,34 @@ namespace GFt {
     void Graphics::drawText(const std::wstring& text, const fRect& rect, int flags) {
         TextAlign halign = static_cast<TextAlign>(flags & 0x0F);
         TextAlign valign = static_cast<TextAlign>((flags >> 4) & 0x0F);
-        int ehalign, evalign;
+        int x = rect.x();
+        int y = rect.y();
         switch (halign) {
         case TextAlign::Center:
-            ehalign = CENTER_TEXT;
+            x += rect.width() / 2 - textwidth(text.c_str(), IMG(target_)) / 2;
             break;
         case TextAlign::Right:
-            ehalign = RIGHT_TEXT;
+            x += rect.width() - textwidth(text.c_str(), IMG(target_));
             break;
         case TextAlign::Left:
             [[fallthrough]];
         default:
-            ehalign = LEFT_TEXT;
             break;
         }
         switch (valign) {
         case TextAlign::Center:
-            evalign = CENTER_TEXT;
+            y += rect.height() / 2 - textheight(text.c_str(), IMG(target_)) / 2;
             break;
         case TextAlign::Bottom:
-            evalign = BOTTOM_TEXT;
+            y += rect.height() - textheight(text.c_str(), IMG(target_));
             break;
         case TextAlign::Top:
             [[fallthrough]];
         default:
-            evalign = TOP_TEXT;
             break;
         }
-        settextjustify(ehalign, evalign, IMG(target_));
         auto irect = static_cast<Rect<int>>(rect);
-        outtextrect(irect.x(), irect.y(), irect.width(), irect.height(), text.c_str(), IMG(target_));
+        ege_outtextxy(x, y, text.c_str(), IMG(target_));
     }
 
 }
