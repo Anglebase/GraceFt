@@ -16,7 +16,6 @@ using namespace GFt::literals;
 // 定义一个按钮类
 class Button : public Block {   // 继承 Block 类
     std::wstring content_;
-    PenSet penSet_;
     TextSet textSet_;
     BrushSet brushSet_;
 protected:
@@ -24,10 +23,8 @@ protected:
     void onDraw(const iRect& rect) override {
         iRect r = iRect{ iPoint(), rect.size() };
         Graphics g;
-        g.bindPenSet(&penSet_);
         g.bindBrushSet(&brushSet_);
         g.bindTextSet(&textSet_);
-        g.drawRect(r);
         g.drawFillRect(r);
         g.drawText(content_, r, TextAlign::Center | TextAlign::Middle);
     }
@@ -43,9 +40,8 @@ public:
     // 构造函数
     Button(const std::wstring& content, const iRect& rect, Block* parent = nullptr, int zIndex = 0)
         : Block(rect, parent, zIndex), content_(content),
-        penSet_(0_rgb), brushSet_(0x9898efee_rgba), textSet_(0_rgb, Font(L"仿宋", 1_em)) {}
+        brushSet_(0x9898efee_rgba), textSet_(0_rgb, Font(L"仿宋", 1_em)) {}
     // 定义一系列调控函数
-    PenSet& penSet() { return penSet_; }
     BrushSet& brushSet() { return brushSet_; }
     TextSet& textSet() { return textSet_; }
     void setContent(const std::wstring& content) { content_ = content; }
@@ -60,26 +56,43 @@ public:
 class MainWindow : public Block {
     Button* buttonOK_;
     Button* buttonCancel_;
+    Button* buttonClose_;
+    Button* buttonExit_;
 public:
     // 构造函数
     MainWindow(const iRect& rect) : Block(rect) {
-        // 创建两个按钮控件
-        buttonOK_ = new Button(L"确认", iRect{ 10_px, 10_px, 100_px, 30_px }, this);
-        buttonCancel_ = new Button(L"取消", iRect{ 10_px, 50_px, 100_px, 30_px }, this);
+        // 创建四个按钮控件
+        buttonOK_ = new Button(L"确认", iRect{ 10_px, 10_px, 200_px, 60_px }, this);
+        buttonCancel_ = new Button(L"取消", iRect{ 10_px, 90_px, 200_px, 60_px }, this);
+        buttonClose_ = new Button(L"关闭", iRect{ 10_px, 170_px, 200_px, 60_px }, this);
+        buttonExit_ = new Button(L"退出", iRect{ 10_px, 250_px, 200_px, 60_px }, this);
+        // 设置按钮的样式
+        buttonCancel_->textSet().font().setFontFamily(L"楷体");
+        buttonOK_->textSet().font().setFontFamily(L"宋体");
+        buttonClose_->textSet().font().setFontFamily(L"黑体");
+        buttonExit_->brushSet().setFillStyle(0xff7777ff_rgba);
+        buttonCancel_->textSet().font().setSize(2_em);
+        buttonOK_->textSet().font().setSize(2_em);
+        buttonClose_->textSet().font().setSize(2_em);
+        buttonExit_->textSet().font().setSize(2_em);
         // 绑定槽函数
         buttonOK_->onClicked.connect([] { std::wcout << L"OK clicked" << std::endl; });
         buttonCancel_->onClicked.connect([] { std::wcout << L"Cancel clicked" << std::endl; });
+        buttonClose_->onClicked.connect([] { std::wcout << L"Close clicked" << std::endl; });
+        buttonExit_->onClicked.connect([] { std::wcout << L"Exit clicked" << std::endl; });
     }
     // 析构函数
     ~MainWindow() {
         delete buttonOK_;
         delete buttonCancel_;
+        delete buttonClose_;
+        delete buttonExit_;
     }
 };
 
 int main() {
     // 创建根节点
-    MainWindow window(iRect{ 100_px, 100_px, 640_px, 480_px });
+    MainWindow window(iRect{ 100_px, 100_px, 220_px, 320_px });
     // 创建窗口
     Window* w = Window::createWindow(&window);
     // 构造应用
