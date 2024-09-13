@@ -17,7 +17,7 @@ namespace GFt {
         };
         int zIndex_;
         Block* parent_;
-        std::set<Block*, CompareByZIndex> children_;
+        std::multiset<Block*, CompareByZIndex> children_;
 
         friend class Application;
         void handleOnDraw();

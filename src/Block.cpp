@@ -98,7 +98,7 @@ namespace GFt {
         int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
         setviewport(x + left, y + top, x + left + width, y + top + height);
         this->onDraw(iRect{ x + left, y + top, width, height });
-        using Iter = std::reverse_iterator<std::set<GFt::Block *, GFt::Block::CompareByZIndex>::iterator>;
+        using Iter = std::reverse_iterator<std::multiset<GFt::Block *, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
             if (child->rect() & this->rect())
