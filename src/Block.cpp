@@ -9,10 +9,13 @@
 
 #define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
     void Block::handleOn##eventName(const eventName##Event& event, const iPoint& lefttop) {           \
+        if (event.isPropagationStopped())                                                             \
+            return;                                                                                   \
         auto iter = std::find_if(children_.begin(), children_.end(),                                  \
             [&](const Block* child) { return contains(child->rect(), event.position() - lefttop); }); \
         do {                                                                                          \
             if (iter == children_.end()) break;                                                       \
+            if (!event.isPropagationStopped())                                                        \
                 (*iter)->handleOn##eventName(event, lefttop + this->rect().position());               \
         } while (false);                                                                              \
         if (!event.isPropagationStopped())                                                            \
@@ -20,8 +23,9 @@
     }
 #define DEF_KEY_HANDEL_FUNC(eventName)                                                    \
     void Block::handleOn##eventName(const eventName##Event& event) {                      \
-        if (!event.isPropagationStopped())                                                \
-            this->on##eventName(event);                                                   \
+        if (event.isPropagationStopped())                                                 \
+            return;                                                                       \
+        this->on##eventName(event);                                                       \
         if (parent_ != nullptr)                                                           \
             parent_->handleOn##eventName(event);                                          \
     }
