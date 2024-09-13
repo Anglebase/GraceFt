@@ -13,13 +13,15 @@
             [&](const Block* child) { return contains(child->rect(), event.position() - lefttop); }); \
         do {                                                                                          \
             if (iter == children_.end()) break;                                                       \
-            (*iter)->handleOn##eventName(event, lefttop + this->rect().position());                   \
+                (*iter)->handleOn##eventName(event, lefttop + this->rect().position());               \
         } while (false);                                                                              \
-        this->on##eventName(event);                                                                   \
+        if (!event.isPropagationStopped())                                                            \
+            this->on##eventName(event);                                                               \
     }
 #define DEF_KEY_HANDEL_FUNC(eventName)                                                    \
     void Block::handleOn##eventName(const eventName##Event& event) {                      \
-        this->on##eventName(event);                                                       \
+        if (!event.isPropagationStopped())                                                \
+            this->on##eventName(event);                                                   \
         if (parent_ != nullptr)                                                           \
             parent_->handleOn##eventName(event);                                          \
     }

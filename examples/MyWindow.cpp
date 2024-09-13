@@ -17,8 +17,27 @@
 using namespace GFt;
 using namespace GFt::literals;
 
+class MyWidget : public Block {
+protected:
+    void onDraw(const iRect& rect) override {
+        static Graphics g;
+        static BrushSet brush(0xce00dfaf_rgba);
+        iRect r{ iPoint{0,0}, rect.size() };
+        g.bindBrushSet(&brush);
+        g.drawFillRect(r);
+    }
+    void onMouseButtonPress(const MouseButtonPressEvent& event) override {
+        std::cout << "MouseButtonPress: " << event.position() << std::endl;
+        Block::onMouseButtonPress(event);
+        event.stopPropagation();
+    }
+public:
+    MyWidget(const iRect& rect, Block* parent = nullptr, int zIndex = 0) : Block(rect, parent, zIndex) {}
+};
+
 class MyWindow : public Block {
     std::wstring text_;
+    MyWidget* widget_;
 protected:
     // 重写onDraw()方法，绘制窗口内容
     void onDraw(const iRect& rect) override {
@@ -37,7 +56,7 @@ protected:
         Block::onDraw(rect);  // 此函数无默认行为，仅作示例
     }
     void onMouseButtonPress(const MouseButtonPressEvent& event) override {
-        std::wcout << L"MouseButtonPress" << std::endl;
+        std::cout << "MouseButtonPress: " << event.position() << std::endl;
         return Block::onMouseButtonPress(event);
     }
     void onTextInput(const TextInputEvent& event) override {
@@ -57,10 +76,15 @@ protected:
             text_ += event.character();
             break;
         }
-        std::wcout << L"TextInput" << std::endl;
+        std::cout << "TextInput" << std::endl;
     }
 public:
-    MyWindow(const iRect& rect, Block* parent = nullptr, int zIndex = 0) : Block(rect, parent, zIndex) {}
+    MyWindow(const iRect& rect, Block* parent = nullptr, int zIndex = 0) : Block(rect, parent, zIndex) {
+        widget_ = new MyWidget(iRect{ 90,90,200,100 }, this, 1); // 创建自定义窗口内容
+    }
+    ~MyWindow() {
+        delete widget_;
+    }
 };
 
 int main() {
