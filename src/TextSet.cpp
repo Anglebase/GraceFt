@@ -7,12 +7,12 @@ namespace GFt {
     TextSet::TextSet(const Color& color, const Font& font) : font_(font) {
         color_ = EGERGBA(color.red(), color.green(), color.blue(), color.alpha());
     }
-    void TextSet::setColor(const Color& color) {
+    Font& TextSet::font() { return font_; }
+    const Font& TextSet::font() const { return font_; }
+void TextSet::setColor(const Color& color) {
         color_ = EGERGBA(color.red(), color.green(), color.blue(), color.alpha());
     }
-    void TextSet::setFont(const Font& font) { font_ = font; }
     void TextSet::setTransparent(bool transparent) { transparent_ = transparent; }
-    const Font& TextSet::getFont() const { return font_; }
     Color TextSet::getColor() const {
         return Color(
             EGEGET_R(color_),

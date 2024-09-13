@@ -8,7 +8,7 @@ int main() {
     TextSet ts(0xff00ff_rgb);
 
     Font font(L"Arial", 24);
-    ts.setFont(font);
+    ts.font() = font;
 
     return 0;
 }

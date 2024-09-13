@@ -22,19 +22,18 @@ namespace GFt {
         TextSet& operator=(const TextSet& other) = default;
         TextSet& operator=(TextSet&& other) = default;
 
+        /// @brief 字体设置
+        /// @return 保有的字体对象
+        Font& font();
+        const Font& font() const;
+
         /// @brief 设置颜色
         /// @param color 颜色
         void setColor(const Color& color);
-        /// @brief 设置字体
-        /// @param font 字体
-        void setFont(const Font& font);
         /// @brief 设置文本背景模式
         /// @param transparent 是否透明
         void setTransparent(bool transparent);
 
-        /// @brief 获取字体
-        /// @return 字体
-        const Font& getFont() const;
         /// @brief 获取颜色
         /// @return 颜色
         Color getColor() const;

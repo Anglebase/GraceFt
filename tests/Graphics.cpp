@@ -55,7 +55,7 @@ protected:
         penSet.setJoinStyle(JoinStyle::Miter);
         g.bindPenSet(&penSet);
         g.drawLine(iLine{ iPoint{0_vw,30_vh},iPoint{100_vw,30_vh} });
-        textSet.setFont(Font{ L"黑体", -1.6_em });
+        textSet.font() = Font{ L"黑体", -1.6_em };
         g.bindTextSet(&textSet);
         g.drawText(L"参考线", fPoint(87_vw, 30_vh));
     }
