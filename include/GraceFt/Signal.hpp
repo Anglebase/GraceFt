@@ -59,7 +59,7 @@ namespace GFt {
         /// @param args 信号参数
         /// @note 调用槽函数时不保证调用顺序与连接顺序一致
         /// @note 此函数是线程安全的，但不保证槽函数的线程安全性
-        void emit(Args&&... args) {
+        void emit(Args... args) {
             Slots slots;
             {
                 std::lock_guard<std::mutex> lock(mutex_);
@@ -72,7 +72,7 @@ namespace GFt {
         /// @param args 信号参数
         /// @details 效果同 emit(Args&&... args)
         /// @see emit(Args&&... args)
-        void operator()(Args&&... args) {
+        void operator()(Args... args) {
             emit(std::forward<Args>(args)...);
         }
     };
