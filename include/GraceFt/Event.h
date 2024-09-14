@@ -194,6 +194,7 @@ namespace GFt {
     /// @brief 鼠标事件基类
     class MouseEvent : public Event {
         iPoint position_;
+        iPoint absolutePosition_;
 
     public:
         /// @cond IGNORE
@@ -204,6 +205,10 @@ namespace GFt {
         /// @details 鼠标位置以屏幕坐标为坐标系，窗口左上角为坐标原点
         /// @return 鼠标位置
         const iPoint& position() const;
+        /// @brief 获取鼠标在屏幕上的绝对位置
+        /// @details 鼠标位置以屏幕坐标为坐标系，窗口左上角为坐标原点
+        /// @return 鼠标在屏幕上的绝对位置
+        const iPoint& absolutePosition() const;
     };
     /// @brief 键盘事件基类
     class KeyboardEvent : public Event {

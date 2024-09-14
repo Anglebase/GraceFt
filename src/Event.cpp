@@ -1,12 +1,18 @@
 #include "Event.h"
 
+#include <ege.h>
 namespace GFt {
     bool Event::isPropagationStopped() const { return stopPropagation_; }
     void Event::stopPropagation() const { const_cast<Event*>(this)->stopPropagation_ = true; }
     void Event::accept() const { return stopPropagation(); }
     bool Event::isAccepted() const { return isPropagationStopped(); }
-    MouseEvent::MouseEvent(const iPoint& position) : position_(position) {}
+    MouseEvent::MouseEvent(const iPoint& position) : position_(position) {
+        POINT pos;
+        GetCursorPos(&pos);
+        absolutePosition_ = iPoint(pos.x, pos.y);
+    }
     const iPoint& MouseEvent::position() const { return position_; }
+    const iPoint& MouseEvent::absolutePosition() const { return absolutePosition_; }
     KeyboardEvent::KeyboardEvent(Key key, bool shift, bool ctrl) : key_(key), shift_(shift), ctrl_(ctrl) {}
     Key KeyboardEvent::key() const { return key_; }
     MouseButtonEvent::MouseButtonEvent(const iPoint& position, MouseButton button)

@@ -59,6 +59,9 @@ protected:
     }
     void onMouseButtonPress(const MouseButtonPressEvent& event) override {
         std::cout << "MyWindow MouseButtonPress: " << event.position() << std::endl;
+        std::cout << "Pos: " << this->absolutePos() << std::endl;
+        std::cout << event.position() << std::endl;
+        std::cout << event.absolutePosition() << std::endl;
         return Block::onMouseButtonPress(event);
     }
     void onTextInput(const TextInputEvent& event) override {

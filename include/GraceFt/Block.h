@@ -107,5 +107,15 @@ namespace GFt {
         /// @brief 获取父对象
         /// @return 父对象
         Block* getParent() const;
+
+        /// @brief 计算相对于指定对象的相对坐标
+        /// @param block 指定对象
+        /// @return 相对坐标
+        /// @details 计算相对于指定对象的相对坐标，以此对象的左上角为原点，计算出相对于指定对象的坐标
+        /// @note 若指定对象为nullptr，则返回相对于屏幕的绝对坐标
+        iPoint relativePosFrom(Block* block) const;
+        /// @brief 计算相对于屏幕的绝对坐标
+        /// @return 绝对坐标
+        iPoint absolutePos() const;
     };
 }

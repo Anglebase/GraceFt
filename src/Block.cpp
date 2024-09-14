@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <ege.h>
+#include <dwmapi.h>
 #include <Geometry.hpp>
 
 #include <Graphics.h>
@@ -92,13 +93,28 @@ namespace GFt {
     int Block::getZIndex() const { return zIndex_; }
     Block* Block::getParent() const { return parent_; }
 
+    iPoint Block::relativePosFrom(Block* block) const {
+        return this->absolutePos() - block->absolutePos();
+    }
+
+    iPoint Block::absolutePos() const {
+        if (parent_ == nullptr) {
+            RECT crect;
+            GetClientRect(getHWnd(), &crect);
+            POINT p = { crect.left, crect.top };
+            ClientToScreen(getHWnd(), &p);
+            return iPoint{ p.x, p.y };
+        }
+        return rect().position() + parent_->absolutePos();
+    }
+
     void Block::handleOnDraw() {
         int left, top, right, bottom;
         getviewport(&left, &top, &right, &bottom);
         int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
         setviewport(x + left, y + top, x + left + width, y + top + height);
         this->onDraw(iRect{ x + left, y + top, width, height });
-        using Iter = std::reverse_iterator<std::multiset<GFt::Block *, GFt::Block::CompareByZIndex>::iterator>;
+        using Iter = std::reverse_iterator<std::multiset<GFt::Block*, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
             if (child->rect() & this->rect())
