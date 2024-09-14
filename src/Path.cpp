@@ -54,11 +54,11 @@ namespace GFt {
     fRect Path::getBounds(const fMat2x2& transform) const {
         ege_transform_matrix matrix;
         matrix.m11 = transform[0][0];
-        matrix.m12 = transform[0][1];
-        matrix.m21 = transform[1][0];
+        matrix.m12 = transform[1][0];
+        matrix.m21 = transform[0][1];
         matrix.m22 = transform[1][1];
-        matrix.m31 = transform[2][0];
-        matrix.m32 = transform[2][1];
+        matrix.m31 = transform[0][2];
+        matrix.m32 = transform[1][2];
         ege_rect rect = ege_path_getbounds(PATH(data_), &matrix);
         return fRect(rect.x, rect.y, rect.w, rect.h);
     }
