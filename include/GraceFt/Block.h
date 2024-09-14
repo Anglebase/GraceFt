@@ -119,9 +119,9 @@ namespace GFt {
         /// @return 绝对坐标
         iPoint absolutePos() const;
     public:
-        Signal<Block*> HoverOn;     ///< 鼠标悬停信号
-        Signal<Block*> HoverOff;    ///< 鼠标移开信号
-        Signal<Block*> FocusOn;     ///< 捕获焦点信号
-        Signal<Block*> FocusOff;    ///< 丢失焦点信号
+        Signal<Block*> HoverOn;     ///< 当鼠标悬停该对象时之上时触发该信号
+        Signal<Block*> HoverOff;    ///< 当鼠标移开该对象时之上时触发该信号
+        Signal<Block*> FocusOn;     ///< 当该对象获得焦点时触发该信号
+        Signal<Block*> FocusOff;    ///< 当该对象失去焦点时触发该信号
     };
 }
