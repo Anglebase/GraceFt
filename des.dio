@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="2956" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2753" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -115,7 +115,7 @@
                 <mxCell id="53" style="edgeStyle=none;html=1;" parent="1" source="44" target="52" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="227" style="edgeStyle=none;html=1;" edge="1" parent="1" source="44" target="226">
+                <mxCell id="227" style="edgeStyle=none;html=1;" parent="1" source="44" target="226" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="44" value="基础UI封装库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
@@ -390,10 +390,10 @@
                 <mxCell id="167" value="Button等" style="shape=process2;fixedSize=1;size=5;fontStyle=1;" parent="154" vertex="1">
                     <mxGeometry x="10" y="280" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="230" style="edgeStyle=none;html=1;" edge="1" parent="154" source="229" target="156">
+                <mxCell id="230" style="edgeStyle=none;html=1;" parent="154" source="229" target="156" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="229" value="Window" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="154">
+                <mxCell id="229" value="Window" style="shape=process2;fixedSize=1;size=5;fontStyle=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="154" vertex="1">
                     <mxGeometry x="190" y="280" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="171" value="几何求解工具&lt;br&gt;&amp;lt;Geometry.hpp&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
@@ -489,7 +489,7 @@
                 <mxCell id="224" value="多边形&lt;br&gt;Polygon&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="882" y="620" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="226" value="应用对象&lt;br&gt;Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+                <mxCell id="226" value="应用对象&lt;br&gt;Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="-510" y="-490" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
