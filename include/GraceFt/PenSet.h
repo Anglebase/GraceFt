@@ -3,15 +3,17 @@
 #include <Color.h>
 
 namespace GFt {
-    /// @addtogroup API接口库
+    /// @defgroup  API接口库
     /// @brief 该模块是API接口库，包含了与底层交互的相关内容
-    /// @{
-    /// @addtogroup 枚举
-    /// @{
-    /// @addtogroup 画笔样式枚举
-    /// @{
+
+    /// @defgroup 枚举
+    /// @ingroup  API接口库
+
+    /// @defgroup 画笔样式枚举
+    /// @ingroup 枚举
 
     /// @brief 画线样式
+    /// @ingroup 画笔样式枚举
     enum class LineStyle {
         Solid,          ///< 实线
         Dash,           ///< 虚线
@@ -23,30 +25,30 @@ namespace GFt {
     /// @brief 线帽样式
     /// @brief 线帽和接点样式如图
     /// @image html penstyle.png "线帽和接点样式"
+    /// @ingroup 画笔样式枚举
     enum class CapStyle {
         Flat,           ///< 平头
         Square,         ///< 方头
         Round           ///< 圆头
     };
     /// @brief 接点样式
+    /// @ingroup 画笔样式枚举
     enum class JoinStyle {
         Miter,          ///< 尖角
         Bevel,          ///< 斜角
         Round           ///< 圆角
     };
 
-    /// @}
-    /// @}
-    /// @addtogroup 图形系统
-    /// @{
-    /// @addtogroup 接口类型
-    /// @{
-        /// @class PenSet
-        /// @brief 画笔设置类
-        /// @details 用于设置画笔的各种属性，如线宽、线型、线帽、接点等。
-    /// @}
-    /// @}
-    /// @}
+    /// @defgroup 图形系统
+    /// @ingroup  API接口库
+
+    /// @defgroup 接口类型
+    /// @ingroup 图形系统
+
+    /// @class PenSet
+    /// @brief 画笔设置类
+    /// @details 用于设置画笔的各种属性，如线宽、线型、线帽、接点等。
+    /// @ingroup 接口类型
     class PenSet {
         friend class Graphics;
         void* pen_;

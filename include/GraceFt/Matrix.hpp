@@ -17,17 +17,17 @@ do{                                  \
 
 namespace GFt {
     using size = std::size_t;
-    /// @addtogroup 基础设施库
-    /// @{
+    /// @defgroup 基础设施库
+
     /// @addtogroup 复合数据类型
-    /// @{
-        /// @class Matrix
-        /// @brief 矩阵类模板
-        /// @tparam M 行数
-        /// @tparam N 列数
-        /// @tparam T 数据类型
-    /// @}
-    /// @}
+    /// @ingroup 基础设施库
+
+    /// @class Matrix
+    /// @brief 矩阵类模板
+    /// @tparam M 行数
+    /// @tparam N 列数
+    /// @tparam T 数据类型
+    /// @ingroup 复合数据类型
     template<size M, size N, typename T>
         requires (M > 0 && N > 0) && std::is_arithmetic_v<T>
     class Matrix {

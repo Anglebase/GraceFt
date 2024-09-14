@@ -7,17 +7,12 @@
 #include <_private.inl>
 
 namespace GFt {
-    /// @addtogroup 基础设施库
-    /// @{
-    /// @addtogroup 复合数据类型
-    /// @{
-        /// @class Size
-        /// @brief 泛型尺寸类
-        /// @details 此类用于表示一个矩形大小的几何信息，并提供常见几何操作
-        /// @details 此类是 基础设施库 => 复合数据类型 的一部分
-        /// @tparam T 点的坐标类型，要求为算术类型
-    /// @}
-    /// @}
+    /// @class Size
+    /// @brief 泛型尺寸类
+    /// @details 此类用于表示一个矩形大小的几何信息，并提供常见几何操作
+    /// @details 此类是 基础设施库 => 复合数据类型 的一部分
+    /// @tparam T 点的坐标类型，要求为算术类型
+    /// @ingroup 复合数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Size {

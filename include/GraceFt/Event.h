@@ -3,16 +3,15 @@
 #include <Point.hpp>
 
 namespace GFt {
-    /// @addtogroup API接口库
-    /// @brief 该模块是API接口库，包含了与底层交互的相关内容
-    /// @{
-    /// @addtogroup 枚举
-    /// @{
-    /// @addtogroup 按键枚举
+    /// @defgroup 枚举
+    /// @ingroup API接口库
+
+    /// @defgroup 按键枚举
     /// @brief 这里列举出了绝大部分按键的枚举(美式键盘)
-    /// @{
+    /// @ingroup 枚举
 
     /// @brief 鼠标按钮枚举
+    /// @ingroup 枚举
     enum class MouseButton {
         Left,   ///< 鼠标左键
         Right,  ///< 鼠标右键
@@ -22,12 +21,14 @@ namespace GFt {
         Unknown ///< 未知按钮
     };
     /// @brief 鼠标滚轮状态枚举
+    /// @ingroup 枚举
     enum class MouseWheel {
         Up,     ///< 鼠标滚轮向上
         Down,   ///< 鼠标滚轮向下
         None    ///< 鼠标滚轮未滚动
     };
     /// @brief 键盘按键枚举
+    /// @ingroup 枚举
     enum class Key {
         LeftMouse = 0x01,    ///< 鼠标左键
         RightMouse = 0x02,   ///< 鼠标右键
@@ -155,17 +156,13 @@ namespace GFt {
 
         ImeProcess = 0xe5    ///< IME 处理键
     };
-    /// @}
-    /// @}
 
-    /// @addtogroup 事件系统
-    /// @{
-
-    /// @addtogroup 事件对象类型
+    /// @defgroup 事件对象类型
     /// @brief 这里包含了所有的事件对象类型
-    /// @{
+    /// @ingroup 事件系统
 
     /// @brief 事件基类
+    /// @ingroup 事件对象类型
     class Event {
         bool stopPropagation_ = false;
 
@@ -192,6 +189,7 @@ namespace GFt {
         bool isAccepted() const;
     };
     /// @brief 鼠标事件基类
+    /// @ingroup 事件对象类型
     class MouseEvent : public Event {
         iPoint position_;
         iPoint absolutePosition_;
@@ -211,6 +209,7 @@ namespace GFt {
         const iPoint& absolutePosition() const;
     };
     /// @brief 键盘事件基类
+    /// @ingroup 事件对象类型
     class KeyboardEvent : public Event {
         Key key_;
         bool shift_ = false;
@@ -226,6 +225,7 @@ namespace GFt {
         Key key() const;
     };
     /// @brief 文本输入事件
+    /// @ingroup 事件对象类型
     class TextInputEvent : public Event {
         int character_;
 
@@ -239,6 +239,7 @@ namespace GFt {
         int character() const;
     };
     /// @brief 鼠标按钮事件基类
+    /// @ingroup 事件对象类型
     class MouseButtonEvent : public MouseEvent {
         MouseButton button_;
 
@@ -252,6 +253,7 @@ namespace GFt {
         MouseButton button() const;
     };
     /// @brief 鼠标滚轮事件
+    /// @ingroup 事件对象类型
     class MouseWheelEvent : public MouseEvent {
         MouseWheel wheel_;
 
@@ -265,6 +267,7 @@ namespace GFt {
         MouseWheel wheel() const;
     };
     /// @brief 鼠标移动事件
+    /// @ingroup 事件对象类型
     class MouseMoveEvent : public MouseEvent {
     public:
         /// @cond IGNORE
@@ -273,6 +276,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 键盘按键按下事件
+    /// @ingroup 事件对象类型
     class KeyPressEvent : public KeyboardEvent {
     public:
         /// @cond IGNORE
@@ -281,6 +285,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 键盘按键弹起事件
+    /// @ingroup 事件对象类型
     class KeyReleaseEvent : public KeyboardEvent {
     public:
         /// @cond IGNORE
@@ -289,6 +294,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 鼠标按钮按下事件
+    /// @ingroup 事件对象类型
     class MouseButtonPressEvent : public MouseButtonEvent {
     public:
         /// @cond IGNORE
@@ -297,6 +303,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 鼠标按钮弹起事件
+    /// @ingroup 事件对象类型
     class MouseButtonReleaseEvent : public MouseButtonEvent {
     public:
         /// @cond IGNORE
@@ -304,8 +311,4 @@ namespace GFt {
         virtual ~MouseButtonReleaseEvent() = default;
         /// @endcond
     };
-
-    /// @}
-    /// @}
-    /// @}
 }

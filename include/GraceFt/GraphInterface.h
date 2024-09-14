@@ -4,7 +4,6 @@
 
 namespace GFt {
     /// @defgroup 基础UI封装库
-    
 
     /// @class GraphInterface
     /// @brief 图形绘制接口

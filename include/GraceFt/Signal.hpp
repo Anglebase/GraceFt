@@ -10,17 +10,15 @@ namespace GFt {
     /// @brief 槽函数ID类型
     template<typename... Args>
     using SlotId = std::size_t;
-    /// @addtogroup 基础设施库
-    /// @{
     /// @addtogroup 对象通信机制
-    /// @{
-        /// @class Signal
-        /// @brief 信号-槽机制支持
-        /// @details 支持任意数量的槽函数，支持任意数量的参数，支持任意类型的参数
-        /// @details 此类是线程安全的，且它是 基础设施库 => 对象通信机制 的一部分
-        /// @tparam Args 信号参数类型
-    /// @}
-    /// @}
+    /// @ingroup 基础设施库
+
+    /// @class Signal
+    /// @brief 信号-槽机制支持
+    /// @details 支持任意数量的槽函数，支持任意数量的参数，支持任意类型的参数
+    /// @details 此类是线程安全的，且它是 基础设施库 => 对象通信机制 的一部分
+    /// @tparam Args 信号参数类型
+    /// @ingroup 对象通信机制
     template<typename... Args>
     class Signal {
         using Slot = std::function<void(Args...)>;

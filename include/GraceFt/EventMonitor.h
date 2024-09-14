@@ -3,16 +3,16 @@
 #include <Event.h>
 
 namespace GFt {
-    /// @addtogroup API接口库
-    /// @{
-    /// @addtogroup 事件系统
-    /// @{
-    /// @addtogroup 事件监视器
+    /// @defgroup 事件系统
+    /// @ingroup API接口库
+
+    /// @defgroup 事件监视器
     /// @brief 通过继承这些类, 可以监视并处理事件
     /// @details 由于它们全部都是抽象类, 所以必须在派生类中实现它们的虚函数
-    /// @{
+    /// @ingroup 事件系统
 
     /// @brief 鼠标按钮按下事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseButtonPressEventMonitor {
     public:
         /// @cond IGNORE
@@ -25,6 +25,7 @@ namespace GFt {
         virtual void onMouseButtonPress(MouseButtonPressEvent* event) = 0;
     };
     /// @brief 鼠标按钮释放事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseButtonReleaseEventMonitor {
     public:
         /// @cond IGNORE
@@ -37,6 +38,7 @@ namespace GFt {
         virtual void onMouseButtonRelease(MouseButtonReleaseEvent* event) = 0;
     };
     /// @brief 键盘按下事件监视器接口类
+    /// @ingroup 事件监视器
     class KeyPressEventMonitor {
     public:
         /// @cond IGNORE
@@ -49,6 +51,7 @@ namespace GFt {
         virtual void onKeyPress(KeyPressEvent* event) = 0;
     };
     /// @brief 键盘释放事件监视器接口类
+    /// @ingroup 事件监视器
     class KeyReleaseEventMonitor {
     public:
         /// @cond IGNORE
@@ -61,6 +64,7 @@ namespace GFt {
         virtual void onKeyRelease(KeyReleaseEvent* event) = 0;
     };
     /// @brief 鼠标按钮事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseButtonEventMonitor :
         public MouseButtonPressEventMonitor,
         public MouseButtonReleaseEventMonitor {
@@ -71,6 +75,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 鼠标移动事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseMoveEventMonitor {
     public:
         /// @cond IGNORE
@@ -83,6 +88,7 @@ namespace GFt {
         virtual void onMouseMove(MouseMoveEvent* event) = 0;
     };
     /// @brief 鼠标滚轮事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseWheelEventMonitor {
     public:
         /// @cond IGNORE
@@ -95,6 +101,7 @@ namespace GFt {
         virtual void onMouseWheel(MouseWheelEvent* event) = 0;
     };
     /// @brief 鼠标和键盘事件监视器接口类
+    /// @ingroup 事件监视器
     class MouseEventMonitor :
         public MouseButtonEventMonitor,
         public MouseMoveEventMonitor,
@@ -106,6 +113,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 键盘事件监视器接口类
+    /// @ingroup 事件监视器
     class KeyboardEventMonitor :
         public KeyPressEventMonitor,
         public KeyReleaseEventMonitor {
@@ -116,6 +124,7 @@ namespace GFt {
         /// @endcond
     };
     /// @brief 文本输入事件监视器接口类
+    /// @ingroup 事件监视器
     class TextInputEventMonitor {
     public:
         /// @cond IGNORE
@@ -128,6 +137,7 @@ namespace GFt {
         virtual void onTextInput(TextInputEvent* event) = 0;
     };
     /// @brief 事件监视器接口类
+    /// @ingroup 事件监视器
     class EventMonitor :
         public MouseEventMonitor,
         public KeyboardEventMonitor,

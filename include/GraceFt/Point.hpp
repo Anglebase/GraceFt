@@ -10,17 +10,12 @@
 /// @namespace GFt
 /// @brief GraceFt库的命名空间。
 namespace GFt {
-    /// @addtogroup 基础设施库
-    /// @{
-    /// @addtogroup 复合数据类型
-    /// @{
-        /// @class Point
-        /// @brief 泛型点类
-        /// @details 此类用于表示一个二维坐标点的几何信息，并提供了常用的几何操作
-        /// @details 此类是 基础设施库 => 复合数据类型 的一部分
-        /// @tparam T 点的坐标类型，要求为算术类型
-    /// @}
-    /// @}
+    /// @class Point
+    /// @brief 泛型点类
+    /// @details 此类用于表示一个二维坐标点的几何信息，并提供了常用的几何操作
+    /// @details 此类是 基础设施库 => 复合数据类型 的一部分
+    /// @tparam T 点的坐标类型，要求为算术类型
+    /// @ingroup 复合数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Point {

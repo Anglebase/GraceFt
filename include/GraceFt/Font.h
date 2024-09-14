@@ -6,16 +6,12 @@
 #include <Tools.h>
 
 namespace GFt {
-
-    /// @addtogroup API接口库
-    /// @{
-    /// @addtogroup 枚举
-    /// @{
-    /// @addtogroup 字体枚举
-    /// @{
+    /// @defgroup 字体枚举
+    /// @ingroup 枚举
 
     /// @enum FontWeight
     /// @brief 字体粗细枚举
+    /// @ingroup 字体枚举
     enum class FontWeight {
         Default = 0,        ///< 默认粗细 (0)
         Thin = 100,         ///< 细体 (100)
@@ -34,19 +30,16 @@ namespace GFt {
         Black = 900         ///< 黑体 (900)
     };
 
-    /// @}
-    /// @}
+    /// @defgroup 图形系统
+    /// @ingroup API接口库
 
-    /// @addtogroup 图形系统
-    /// @{
-    /// @addtogroup 基础类型
-    /// @{
-        /// @class Font
-        /// @brief 字体类
-        /// @details 字体类用于管理字体相关的属性，包括字体名称、大小、粗细、斜体、下划线、删除线等。
-    /// @}
-    /// @}
-    /// @}
+    /// @defgroup 基础类型
+    /// @ingroup 图形系统
+
+    /// @class Font
+    /// @brief 字体类
+    /// @details 字体类用于管理字体相关的属性，包括字体名称、大小、粗细、斜体、下划线、删除线等。
+    /// @ingroup 基础类型
     class Font {
         friend class Graphics;
         void* font_;

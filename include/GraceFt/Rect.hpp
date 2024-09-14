@@ -8,17 +8,17 @@
 
 
 namespace GFt {
-    /// @addtogroup 基础设施库
-    /// @{
-    /// @addtogroup 图形数据类型
-    /// @{
-        /// @class Rect
-        /// @brief 矩形模板类
-        /// @details 矩形模板类，用于表示矩形的几何信息，包括位置和大小
-        /// @details 此类是 基础设施库 => 图形数据类型 的一部分
-        /// @tparam T 数值类型，要求为算术类型
-    /// @}
-    /// @}
+    /// @defgroup 基础设施库
+    
+    /// @defgroup 图形数据类型
+    /// @ingroup 基础设施库
+
+    /// @class Rect
+    /// @brief 矩形模板类
+    /// @details 矩形模板类，用于表示矩形的几何信息，包括位置和大小
+    /// @details 此类是 基础设施库 => 图形数据类型 的一部分
+    /// @tparam T 数值类型，要求为算术类型
+    /// @ingroup 图形数据类型
     template<typename T>
         requires std::is_arithmetic_v<T>
     class Rect {
