@@ -76,10 +76,19 @@ public:
         buttonClose_->textSet().font().setSize(2_em);
         buttonExit_->textSet().font().setSize(2_em);
         // 绑定槽函数
-        buttonOK_->onClicked.connect([] { std::wcout << L"OK clicked" << std::endl; });
-        buttonCancel_->onClicked.connect([] { std::wcout << L"Cancel clicked" << std::endl; });
-        buttonClose_->onClicked.connect([] { std::wcout << L"Close clicked" << std::endl; });
-        buttonExit_->onClicked.connect([] { std::wcout << L"Exit clicked" << std::endl; });
+        buttonOK_->onClicked.connect([] { std::cout << "OK clicked" << std::endl; });
+        buttonCancel_->onClicked.connect([] { std::cout << "Cancel clicked" << std::endl; });
+        buttonClose_->onClicked.connect([] { std::cout << "Close clicked" << std::endl; });
+        buttonExit_->onClicked.connect([] { std::cout << "Exit clicked" << std::endl; });
+
+        buttonOK_->HoverOn.connect([](Block*) { std::cout << "OK hover on" << std::endl; });
+        buttonCancel_->HoverOn.connect([](Block*) { std::cout << "Cancel hover on" << std::endl; });
+        buttonClose_->HoverOn.connect([](Block*) { std::cout << "Close hover on" << std::endl; });
+        buttonExit_->HoverOn.connect([](Block*) { std::cout << "Exit hover on" << std::endl; });
+        buttonOK_->HoverOff.connect([](Block*) { std::cout << "OK hover off" << std::endl; });
+        buttonCancel_->HoverOff.connect([](Block*) { std::cout << "Cancel hover off" << std::endl; });
+        buttonClose_->HoverOff.connect([](Block*) { std::cout << "Close hover off" << std::endl; });
+        buttonExit_->HoverOff.connect([](Block*) { std::cout << "Exit hover off" << std::endl; });
     }
     // 析构函数
     ~MainWindow() {

@@ -5,6 +5,7 @@
 #include <GraphInterface.h>
 #include <EventMonitor.h>
 #include <Event.h>
+#include <Signal.hpp>
 
 namespace GFt {
     /// @class Block
@@ -117,5 +118,10 @@ namespace GFt {
         /// @brief 计算相对于屏幕的绝对坐标
         /// @return 绝对坐标
         iPoint absolutePos() const;
+    public:
+        Signal<Block*> HoverOn;     ///< 鼠标悬停信号
+        Signal<Block*> HoverOff;    ///< 鼠标移开信号
+        Signal<Block*> FocusOn;     ///< 捕获焦点信号
+        Signal<Block*> FocusOff;    ///< 丢失焦点信号
     };
 }

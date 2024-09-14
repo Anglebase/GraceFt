@@ -17,4 +17,20 @@ namespace GFt {
         /// @param block 要设置的焦点块
         static void setFocusOn(Block* block);
     };
+
+    /// @class BlockHoverManager
+    /// @brief 鼠标悬停管理器，用于管理当前鼠标悬停块
+    /// @ingroup 基础UI封装库
+    class BlockHoverManager {
+        static Block* hoveron_;
+    private:
+        BlockHoverManager() = delete;
+    public:
+        /// @brief 获取当前鼠标悬停块
+        /// @return 当前鼠标悬停块
+        static Block* getHoverOn();
+        /// @brief 设置当前鼠标悬停块
+        /// @param block 要设置的鼠标悬停块
+        static void setHoverOn(Block* block);
+    };
 }

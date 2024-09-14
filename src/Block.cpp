@@ -15,7 +15,10 @@
         auto iter = std::find_if(children_.begin(), children_.end(),                                  \
             [&](const Block* child) { return contains(child->rect(), event.position() - lefttop); }); \
         do {                                                                                          \
-            if (iter == children_.end()) break;                                                       \
+            if (iter == children_.end()){                                                             \
+                BlockHoverManager::setHoverOn(this);                                                  \
+                break;                                                                                \
+            }                                                                                         \
             if (!event.isPropagationStopped())                                                        \
                 (*iter)->handleOn##eventName(event, lefttop + this->rect().position());               \
         } while (false);                                                                              \
