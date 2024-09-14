@@ -179,12 +179,12 @@ namespace GFt {
         bool isPropagationStopped() const;
         /// @brief 终止事件传播
         /// @details 调用该函数后，该事件将不会再向父对象传播(阻止事件冒泡)
-        void stopPropagation() const;
+        void stopPropagation();
         /// @brief 接受事件
         /// @details 调用该函数后，该事件将不会再向父对象传播(阻止事件冒泡)
         ///          效果上等同于调用 stopPropagation() 函数
         /// @see stopPropagation()
-        void accept() const;
+        void accept();
         /// @brief 事件是否已被接受
         /// @return 是否已被接受
         /// @brief 效果上等同于调用 isPropagationStopped() 函数

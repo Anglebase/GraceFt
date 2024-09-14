@@ -3,8 +3,8 @@
 #include <ege.h>
 namespace GFt {
     bool Event::isPropagationStopped() const { return stopPropagation_; }
-    void Event::stopPropagation() const { const_cast<Event*>(this)->stopPropagation_ = true; }
-    void Event::accept() const { return stopPropagation(); }
+    void Event::stopPropagation() { stopPropagation_ = true; }
+    void Event::accept() { return stopPropagation(); }
     bool Event::isAccepted() const { return isPropagationStopped(); }
     MouseEvent::MouseEvent(const iPoint& position) : position_(position) {
         POINT pos;

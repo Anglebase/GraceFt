@@ -26,12 +26,12 @@ protected:
         g.bindBrushSet(&brush);
         g.drawFillRect(r);
     }
-    void onMouseButtonPress(const MouseButtonPressEvent& event) override {
-        std::cout << "MyWidget MouseButtonPress: " << event.position() << std::endl;
+    void onMouseButtonPress(MouseButtonPressEvent* event) override {
+        std::cout << "MyWidget MouseButtonPress: " << event->position() << std::endl;
         Block::onMouseButtonPress(event);
     }
-    void onTextInput(const TextInputEvent& event) override {
-        event.accept();
+    void onTextInput(TextInputEvent* event) override {
+        event->accept();
     }
 public:
     MyWidget(const iRect& rect, Block* parent = nullptr, int zIndex = 0) : Block(rect, parent, zIndex) {}
@@ -57,15 +57,15 @@ protected:
         // 调用父类的onDraw()方法，以执行默认的窗口内容绘制
         Block::onDraw(rect);  // 此函数无默认行为，仅作示例
     }
-    void onMouseButtonPress(const MouseButtonPressEvent& event) override {
-        std::cout << "MyWindow MouseButtonPress: " << event.position() << std::endl;
+    void onMouseButtonPress(MouseButtonPressEvent* event) override {
+        std::cout << "MyWindow MouseButtonPress: " << event->position() << std::endl;
         std::cout << "Pos: " << this->absolutePos() << std::endl;
-        std::cout << event.position() << std::endl;
-        std::cout << event.absolutePosition() << std::endl;
+        std::cout << event->position() << std::endl;
+        std::cout << event->absolutePosition() << std::endl;
         return Block::onMouseButtonPress(event);
     }
-    void onTextInput(const TextInputEvent& event) override {
-        switch ((wchar_t)event.character()) {
+    void onTextInput(TextInputEvent* event) override {
+        switch ((wchar_t)event->character()) {
         case L'\r':
         case L'\n':
             text_.clear();
@@ -78,7 +78,7 @@ protected:
             text_ += L"    ";
             break;
         default:
-            text_ += event.character();
+            text_ += event->character();
             break;
         }
         std::cout << "TextInput" << std::endl;

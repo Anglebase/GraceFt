@@ -41,25 +41,29 @@ namespace GFt {
             else
                 button = MouseButton::Unknown;
             // 处理鼠标事件
-            if (msg.is_move())
-                window->handleOnMouseMove(MouseMoveEvent(iPoint{ msg.x, msg.y }));
-            else if (msg.is_down())
-                window->handleOnMouseButtonPress(MouseButtonPressEvent{
-                    iPoint{ msg.x, msg.y }, button,
-                    });
-            else if (msg.is_up())
-                window->handleOnMouseButtonRelease(MouseButtonReleaseEvent{
-                    iPoint{ msg.x, msg.y }, button,
-                    });
-            else if (msg.is_wheel())
-                window->handleOnMouseWheel(MouseWheelEvent{
-                    iPoint{ msg.x, msg.y },
-                    msg.wheel > 0
-                        ? MouseWheel::Up
-                        : msg.wheel < 0
-                            ? MouseWheel::Down
-                            : MouseWheel::None,
-                    });
+            if (msg.is_move()) {
+                MouseMoveEvent event{ iPoint{ msg.x, msg.y } };
+                window->handleOnMouseMove(&event);
+            }
+            else if (msg.is_down()) {
+                MouseButtonPressEvent event{ iPoint{ msg.x, msg.y }, button, };
+                window->handleOnMouseButtonPress(&event);
+            }
+            else if (msg.is_up()) {
+                MouseButtonReleaseEvent event{ iPoint{ msg.x, msg.y }, button, };
+                window->handleOnMouseButtonRelease(&event);
+            }
+            else if (msg.is_wheel()) {
+                MouseWheel wheels;
+                if (msg.wheel > 0)
+                    wheels = MouseWheel::Up;
+                else if (msg.wheel < 0)
+                    wheels = MouseWheel::Down;
+                else
+                    wheels = MouseWheel::None;
+                MouseWheelEvent event{ iPoint{ msg.x, msg.y }, wheels };
+                window->handleOnMouseWheel(&event);
+            }
             count_mousemsg++;
             if (count_mousemsg > max_msg_count)
                 break;
@@ -72,22 +76,31 @@ namespace GFt {
             auto msg = getkey();
             switch (msg.msg) {
             case key_msg_down:
-                block->handleOnKeyPress(KeyPressEvent{
-                    static_cast<Key>(msg.key),
-                    static_cast<bool>(msg.flags & key_flag_shift),
-                    static_cast<bool>(msg.flags & key_flag_ctrl),
-                    });
-                break;
+            {
+                KeyPressEvent event{
+                        static_cast<Key>(msg.key),
+                        static_cast<bool>(msg.flags & key_flag_shift),
+                        static_cast<bool>(msg.flags & key_flag_ctrl),
+                };
+                block->handleOnKeyPress(&event);
+            }
+            break;
             case key_msg_up:
-                block->handleOnKeyRelease(KeyReleaseEvent{
-                    static_cast<Key>(msg.key),
-                    static_cast<bool>(msg.flags & key_flag_shift),
-                    static_cast<bool>(msg.flags & key_flag_ctrl),
-                    });
-                break;
+            {
+                KeyReleaseEvent event{
+                  static_cast<Key>(msg.key),
+                  static_cast<bool>(msg.flags & key_flag_shift),
+                  static_cast<bool>(msg.flags & key_flag_ctrl),
+                };
+                block->handleOnKeyRelease(&event);
+            }
+            break;
             case key_msg_char:
-                block->handleOnTextInput(TextInputEvent{ msg.key });
-                break;
+            {
+                TextInputEvent event{ msg.key };
+                block->handleOnTextInput(&event);
+            }
+            break;
             }
             count_kbmsg++;
             if (count_kbmsg > max_msg_count)
@@ -96,9 +109,8 @@ namespace GFt {
         // 文本输入事件
         if (kbhit()) do {
             auto ch = getch();
-            // std::cout << "ch: " << ch << std::endl;
-            // if (std::iswprint(ch) || std::iswspace(ch))
-            block->handleOnTextInput(TextInputEvent{ ch });
+            TextInputEvent event{ ch };
+            block->handleOnTextInput(&event);
             count_textmsg++;
             if (count_textmsg > max_msg_count)
                 break;

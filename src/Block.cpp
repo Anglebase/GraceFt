@@ -9,25 +9,25 @@
 #include <BlockFocus.h>
 
 #define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
-    void Block::handleOn##eventName(const eventName##Event& event, const iPoint& lefttop) {           \
-        if (event.isPropagationStopped())                                                             \
+    void Block::handleOn##eventName(eventName##Event* event, const iPoint& lefttop) {                 \
+        if (event->isPropagationStopped())                                                            \
             return;                                                                                   \
         auto iter = std::find_if(children_.begin(), children_.end(),                                  \
-            [&](const Block* child) { return contains(child->rect(), event.position() - lefttop); }); \
+            [&](const Block* child) { return contains(child->rect(), event->position() - lefttop); });\
         do {                                                                                          \
             if (iter == children_.end()){                                                             \
                 BlockHoverManager::setHoverOn(this);                                                  \
                 break;                                                                                \
             }                                                                                         \
-            if (!event.isPropagationStopped())                                                        \
+            if (!event->isPropagationStopped())                                                       \
                 (*iter)->handleOn##eventName(event, lefttop + this->rect().position());               \
         } while (false);                                                                              \
-        if (!event.isPropagationStopped())                                                            \
+        if (!event->isPropagationStopped())                                                           \
             this->on##eventName(event);                                                               \
     }
 #define DEF_KEY_HANDEL_FUNC(eventName)                                                    \
-    void Block::handleOn##eventName(const eventName##Event& event) {                      \
-        if (event.isPropagationStopped())                                                 \
+    void Block::handleOn##eventName(eventName##Event* event) {                            \
+        if (event->isPropagationStopped())                                                \
             return;                                                                       \
         this->on##eventName(event);                                                       \
         if (parent_ != nullptr)                                                           \
@@ -40,17 +40,17 @@ namespace GFt {
         return a->zIndex_ > b->zIndex_;
     }
     void Block::onDraw(const iRect& rect) {}
-    void Block::onMouseButtonPress(const MouseButtonPressEvent& event) {
+    void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
         BlockFocusManager::setFocusOn(this);
-        event.stopPropagation();
+        event->stopPropagation();
     }
-    void Block::onMouseButtonRelease(const MouseButtonReleaseEvent& event) {}
-    void Block::onMouseMove(const MouseMoveEvent& event) {}
-    void Block::onMouseWheel(const MouseWheelEvent& event) {}
-    void Block::onKeyPress(const KeyPressEvent& event) {}
-    void Block::onKeyRelease(const KeyReleaseEvent& event) {}
-    void Block::onTextInput(const TextInputEvent& event) {}
+    void Block::onMouseButtonRelease(MouseButtonReleaseEvent* event) {}
+    void Block::onMouseMove(MouseMoveEvent* event) {}
+    void Block::onMouseWheel(MouseWheelEvent* event) {}
+    void Block::onKeyPress(KeyPressEvent* event) {}
+    void Block::onKeyRelease(KeyReleaseEvent* event) {}
+    void Block::onTextInput(TextInputEvent* event) {}
     Block::Block(const iRect& rect, Block* parent, int zIndex) :GraphInterface(rect) {
         parent_ = parent;
         zIndex_ = zIndex;

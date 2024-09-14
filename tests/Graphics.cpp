@@ -59,7 +59,7 @@ protected:
         g.bindTextSet(&textSet);
         g.drawText(L"参考线", fPoint(87_vw, 30_vh));
     }
-    void onMouseMove(const MouseMoveEvent& event) override {
+    void onMouseMove(MouseMoveEvent* event) override {
         // std::cout << 100_vw << ", " << 100_vh << std::endl;
         // std::cout << 40_sw << ", " << 50_sh << std::endl;
     }

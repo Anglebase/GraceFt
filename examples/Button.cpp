@@ -29,8 +29,8 @@ protected:
         g.drawText(content_, r, TextAlign::Center | TextAlign::Middle);
     }
     // 重写 onMouseButtonPress() 方法，响应鼠标点击
-    void onMouseButtonPress(const MouseButtonPressEvent& event) {
-        if (event.button() == MouseButton::Left)
+    void onMouseButtonPress(MouseButtonPressEvent* event) override {
+        if (event->button() == MouseButton::Left)
             onClicked();
         // onMouseButtonPress() 存在默认实现(焦点捕获)
         // 若不需要捕获焦点，可以不调用父类的 onMouseButtonPress()

@@ -24,13 +24,13 @@ namespace GFt {
 
         friend class Application;
         void handleOnDraw();
-        void handleOnMouseButtonPress(const MouseButtonPressEvent& event, const iPoint& pos = iPoint());
-        void handleOnMouseButtonRelease(const MouseButtonReleaseEvent& event, const iPoint& pos = iPoint());
-        void handleOnMouseMove(const MouseMoveEvent& event, const iPoint& pos = iPoint());
-        void handleOnMouseWheel(const MouseWheelEvent& event, const iPoint& pos = iPoint());
-        void handleOnKeyPress(const KeyPressEvent& event);
-        void handleOnKeyRelease(const KeyReleaseEvent& event);
-        void handleOnTextInput(const TextInputEvent& event);
+        void handleOnMouseButtonPress(MouseButtonPressEvent* event, const iPoint& pos = iPoint());
+        void handleOnMouseButtonRelease(MouseButtonReleaseEvent* event, const iPoint& pos = iPoint());
+        void handleOnMouseMove(MouseMoveEvent* event, const iPoint& pos = iPoint());
+        void handleOnMouseWheel(MouseWheelEvent* event, const iPoint& pos = iPoint());
+        void handleOnKeyPress(KeyPressEvent* event);
+        void handleOnKeyRelease(KeyReleaseEvent* event);
+        void handleOnTextInput(TextInputEvent* event);
 
     protected:
         /// @brief 此函数用于绘制内容
@@ -47,19 +47,19 @@ namespace GFt {
         ///       象进行处理。该对象处理后若冒泡行为未被阻止，则再向上冒泡(即向父对象传递事件)，
         ///       直到根节点。
         /// @image html handlemouse.svg "鼠标事件处理示意图"
-        void onMouseButtonPress(const MouseButtonPressEvent& event) override;
+        void onMouseButtonPress(MouseButtonPressEvent* event) override;
         /// @brief 此函数用于处理鼠标按钮释放事件
         /// @param event 鼠标按钮释放事件
         /// @see onMouseButtonPress
-        void onMouseButtonRelease(const MouseButtonReleaseEvent& event) override;
+        void onMouseButtonRelease(MouseButtonReleaseEvent* event) override;
         /// @brief 此函数用于处理鼠标移动事件
         /// @param event 鼠标移动事件
         /// @see onMouseButtonPress
-        void onMouseMove(const MouseMoveEvent& event) override;
+        void onMouseMove(MouseMoveEvent* event) override;
         /// @brief 此函数用于处理鼠标滚轮事件
         /// @param event 鼠标滚轮事件
         /// @see onMouseButtonPress
-        void onMouseWheel(const MouseWheelEvent& event) override;
+        void onMouseWheel(MouseWheelEvent* event) override;
         /// @brief 此函数用于处理键盘按键按下事件
         /// @param event 键盘按键按下事件
         /// @note 键盘处理函数会依据当前焦点块进行事件的捕获决断, 并将事件传递给相应的对象进行处理
@@ -67,15 +67,15 @@ namespace GFt {
         ///       则再向上冒泡(即向父对象传递事件)，直到根节点。
         /// @image html handlekey.svg "键盘事件处理示意图"
         /// @see BlockFocusManager
-        void onKeyPress(const KeyPressEvent& event) override;
+        void onKeyPress(KeyPressEvent* event) override;
         /// @brief 此函数用于处理键盘按键释放事件
         /// @param event 键盘按键释放事件
         /// @see onKeyPress
-        void onKeyRelease(const KeyReleaseEvent& event) override;
+        void onKeyRelease(KeyReleaseEvent* event) override;
         /// @brief 此函数用于处理文本输入事件
         /// @param event 文本输入事件
         /// @see onKeyPress
-        void onTextInput(const TextInputEvent& event) override;
+        void onTextInput(TextInputEvent* event) override;
 
     public:
         /// @brief 构造函数

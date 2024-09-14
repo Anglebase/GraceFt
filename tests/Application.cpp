@@ -26,8 +26,8 @@ protected:
         g.drawText(std::to_wstring(Application::getRealFps()), fPoint());
         cout << "FPS: " << Application::getRealFps() << endl;
     }
-    void onMouseMove(const MouseMoveEvent& event) override {
-        cout << "Mouse moved to " << event.position() << endl;
+    void onMouseMove(MouseMoveEvent* event) override {
+        cout << "Mouse moved to " << event->position() << endl;
     }
 public:
     MyWindow(iRect rect) : Block(rect) {}
