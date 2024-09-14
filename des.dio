@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="2753" dy="1719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2967" dy="1823" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -37,7 +37,7 @@
                 <mxCell id="66" style="edgeStyle=none;html=1;" parent="1" source="3" target="65" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="232" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="231">
+                <mxCell id="232" style="edgeStyle=none;html=1;" parent="1" source="3" target="231" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="基础设施库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
@@ -83,7 +83,7 @@
                     <mxGeometry x="410" y="540" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="(信号槽机制)&lt;br&gt;信号模板类&lt;br&gt;Signal&amp;lt;Args...&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
-                    <mxGeometry x="10" y="440" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="-100" y="400" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="59" style="edgeStyle=none;html=1;" parent="1" source="26" target="58" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -215,7 +215,7 @@
                 <mxCell id="151" style="edgeStyle=none;html=1;" parent="1" source="84" target="150" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="236" style="edgeStyle=none;html=1;" edge="1" parent="1" source="84" target="235">
+                <mxCell id="236" style="edgeStyle=none;html=1;" parent="1" source="84" target="235" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="84" value="扩展支持库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
@@ -498,17 +498,23 @@
                 <mxCell id="226" value="应用对象&lt;br&gt;Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="-510" y="-490" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="234" style="edgeStyle=none;html=1;" edge="1" parent="1" source="231" target="233">
+                <mxCell id="234" style="edgeStyle=none;html=1;" parent="1" source="231" target="233" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="231" value="工具库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+                <mxCell id="238" style="edgeStyle=none;html=1;" edge="1" parent="1" source="231" target="237">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="231" value="工具库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
                     <mxGeometry x="440" y="-280" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="233" value="定时器&lt;br&gt;Timer" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="620" y="-420" width="120" height="60" as="geometry"/>
+                <mxCell id="233" value="定时器&lt;br&gt;Timer" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="-420" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="235" value="窗口接口类&lt;br&gt;UniInterface" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="235" value="通用窗口接口类&lt;br&gt;UniInterface" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="50" y="-760" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="237" value="动画量(贝塞尔插值)&lt;br&gt;Animation&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="-420" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
