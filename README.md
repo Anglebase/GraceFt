@@ -1,4 +1,4 @@
-# GraceFt - 快速开发C++图形应用程序
+# GraceFt - C++图形应用程序框架
 
 ## 简介
 
@@ -16,7 +16,7 @@ GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图
 
 1. 克隆 GraceFt 的代码库：
    ```
-   git clone https://github.com/Anglebase/graceft.git
+   git clone https://github.com/Anglebase/GraceFt.git
    ```
 2. 进入项目目录：
    ```
