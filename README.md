@@ -2,7 +2,7 @@
 
 ## 简介
 
-GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图形应用程序开发框架。它提供了一系列高层封装，使得开发者可以快速地开发出具有图形界面的应用程序。GraceFt 的使用风格与 Qt 相似，但更加简洁，面向对象，且灵活。
+GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图形应用程序开发框架。它提供了一系列高层封装，使得开发者可以快速地开发出具有图形界面的应用程序。GraceFt 的使用风格与 Qt 相似，但与它的名字一样，相较于 Qt，GraceFt 更加地优雅和简洁。
 
 ## 特点
 
@@ -10,7 +10,7 @@ GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图
 - **面向对象**：框架设计遵循面向对象的原则，易于理解和使用。
 - **灵活性**：开发者可以根据需要自由地扩展和定制功能。
 
-## 安装
+## GraceFt 配置
 
 请按照以下步骤安装 GraceFt：
 
@@ -22,26 +22,35 @@ GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图
    ```
    cd GraceFt
    ```
-3. 编译和安装：
+3. 编译 GraceFt：
    ```
    cmake -B build -S .
    cmake --build build --config Release
    ```
+4. 在生成出的 lib 文件夹下就可以找到编译出的静态库文件
+5. 将include/GraceFt目录下的所有头文件引入到你的项目中，便可以开发你的应用程序了
+6. 在编译时链接 GraceFt 静态库文件，并添加其它必要的链接库(如相应的 EGE 库)
 
-## 使用
+## 快速入门
 
 以下是使用 GraceFt 开发一个简单应用程序的示例：
 
 ```cpp
 #include <GraceFt/Application.h>
 #include <GraceFt/Window.h>
+#include <GraceFt/Tools.h>
 
-int main(int argc, char *argv[]) {
-    GraceFt::Application app(argc, argv);
+int main() {
+    using namespace GFt::literals;
 
-    GraceFt::Window window(800, 600, "Hello, GraceFt!");
-    window.show();
+    GFt::Block block{
+        GFt::iRect{ 5_sw,5_sh,60_sw,60_sh, }
+    };
+    auto window =
+        GFt::Window::createWindow(&block);
 
+    GFt::Application app(window);
+    window->show();
     return app.exec();
 }
 ```
