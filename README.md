@@ -56,6 +56,7 @@ int main() {
     return app.exec();
 }
 ```
+**[使用模板快速创建项目](https://github.com/Anglebase/GraceFt/releases/tag/v2.0.0)**
 
 ## 文档
 
