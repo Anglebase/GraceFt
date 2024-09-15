@@ -31,6 +31,8 @@ GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图
 5. 将include/GraceFt目录下的所有头文件引入到你的项目中，便可以开发你的应用程序了
 6. 在编译时链接 GraceFt 静态库文件，并添加其它必要的链接库(如相应的 EGE 库)
 
+**GraceFt 需要至少 C++20 编译器支持**
+
 ## 快速入门
 
 以下是使用 GraceFt 开发一个简单应用程序的示例：
