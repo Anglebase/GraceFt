@@ -4,7 +4,9 @@ project(GraceFt)
 
 add_definitions(-DUNICODE -D_UNICODE)
 
-message(${CMAKE_BUILD_TYPE})
+if(NOT ${CMAKE_BUILD_TYPE})
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
 
 # 查找EGE库
 set(PACKAGE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/packages)
@@ -20,5 +22,7 @@ set(GFt_LIBRARY_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/lib)     # 设置库目录
 
 # 添加子目录
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(examples)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_subdirectory(tests)
+    add_subdirectory(examples)
+endif()
