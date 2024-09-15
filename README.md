@@ -67,17 +67,13 @@ int main() {
 - 功能请求
 - 问题报告
 
-请在提交前阅读 [贡献指南](#)。
+请在提交前阅读 [贡献指南](./doc/guide.md)。
 
 ## 许可证
 
 GraceFt 遵循 [GPL-3.0 许可证](LICENSE)。有关详细信息，请查看 `LICENSE` 文件。
 
-## 联系方式
+## 开发者
+ - [Anglebase](https://github.com/Anglebase)
 
-- 邮箱：[youremail@example.com](mailto:youremail@example.com)
-- 网站：[http://www.yourwebsite.com](http://www.yourwebsite.com)
-
----
-
-感谢使用 GraceFt，希望它能帮助您快速开发出优秀的 C++ 图形应用程序！
+## 致谢
