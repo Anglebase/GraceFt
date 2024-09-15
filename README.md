@@ -57,7 +57,7 @@ int main() {
 
 ## 文档
 
-完整的 API 文档和使用指南可以在 [这里](#) 找到。
+完整的 API 文档和使用指南可以在 [这里](https://anglebase.github.io/GraceFt-Doc/) 找到。
 
 ## 贡献
 
@@ -71,7 +71,7 @@ int main() {
 
 ## 许可证
 
-GraceFt 遵循 [MIT 许可证](LICENSE)。有关详细信息，请查看 `LICENSE` 文件。
+GraceFt 遵循 [GPL-3.0 许可证](LICENSE)。有关详细信息，请查看 `LICENSE` 文件。
 
 ## 联系方式
 
