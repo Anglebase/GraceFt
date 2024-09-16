@@ -351,7 +351,6 @@ namespace GFt {
         default:
             break;
         }
-        auto irect = static_cast<Rect<int>>(rect);
         ege_outtextxy(x, y, text.c_str(), IMG(target_));
     }
 
