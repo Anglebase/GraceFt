@@ -46,6 +46,15 @@ namespace GFt {
             slots_[id] = slot;
             return id++;
         }
+        /// @brief 将成员函数作为槽函数连接
+        /// @tparam Object 成员函数所在类的类型
+        /// @param object 成员函数所在类的实例
+        /// @param method 成员函数指针
+        /// @return 槽函数ID
+        template<typename Object>
+        SlotId<Args...> connect(Object* object, void (Object::* method)(Args...)) {
+            return connect([object, method](Args... args) { (object->*method)(std::forward<Args>(args)...); });
+        }
         /// @brief 断开槽函数
         /// @param id 槽函数ID
         void disconnect(SlotId<Args...> id) {
@@ -105,6 +114,15 @@ namespace GFt {
             std::lock_guard<std::mutex> lock(mutex_);
             slots_[id] = slot;
             return id++;
+        }
+        /// @brief 将成员函数作为槽函数连接
+        /// @tparam Object 成员函数所在类的类型
+        /// @param object 成员函数所在类的实例
+        /// @param method 成员函数指针
+        /// @return 槽函数ID
+        template<typename Object>
+        SlotId<void> connect(Object* object, void (Object::* method)()) {
+            return connect([object, method]() { (object->*method)(); });
         }
         /// @brief 断开槽函数
         /// @param id 槽函数ID
