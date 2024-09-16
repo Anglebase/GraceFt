@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Block.h>
+#include <GraceFt/Block.h>
 
 namespace GFt {
     /// @class Window

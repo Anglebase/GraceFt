@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Point.hpp>
+#include <GraceFt/Point.hpp>
 
 namespace GFt {
     /// @defgroup 枚举

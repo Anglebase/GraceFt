@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <Rect.hpp>
+#include <GraceFt/Rect.hpp>
 
 namespace GFt {
     /// @class Ellipse

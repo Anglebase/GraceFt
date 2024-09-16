@@ -133,4 +133,16 @@ namespace GFt {
     DEF_KEY_HANDEL_FUNC(KeyPress);
     DEF_KEY_HANDEL_FUNC(KeyRelease);
     DEF_KEY_HANDEL_FUNC(TextInput);
+    void freeTree(Block* block) {
+        if (block == nullptr)
+            return;
+        for (auto child : block->children_) {
+            if (!child)
+                continue;
+            if (child->children_.empty())
+                delete child;
+            else
+                freeTree(child);
+        }
+    }
 }

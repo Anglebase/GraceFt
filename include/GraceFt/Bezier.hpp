@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include <Point.hpp>
+#include <GraceFt/Point.hpp>
 
 namespace GFt {
     /// @class Bezier

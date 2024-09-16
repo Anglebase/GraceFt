@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Color.h>
+#include <GraceFt/Color.h>
 
 namespace GFt {
     /// @defgroup  API接口库

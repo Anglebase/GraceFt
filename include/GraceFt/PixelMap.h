@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include <Size.hpp>
-#include <Rect.hpp>
+#include <GraceFt/Size.hpp>
+#include <GraceFt/Rect.hpp>
 
 namespace GFt{
     /// @class PixelMap

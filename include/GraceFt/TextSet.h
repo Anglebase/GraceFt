@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Font.h>
-#include <Color.h>
+#include <GraceFt/Font.h>
+#include <GraceFt/Color.h>
 
 namespace GFt {
     /// @class TextSet

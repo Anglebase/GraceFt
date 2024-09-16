@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Rect.hpp>
+#include <GraceFt/Rect.hpp>
 
 namespace GFt {
     /// @defgroup 基础UI封装库

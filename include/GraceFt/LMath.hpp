@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Matrix.hpp>
+#include <GraceFt/Matrix.hpp>
 
 namespace GFt {
     /// @defgroup 线性代数工具

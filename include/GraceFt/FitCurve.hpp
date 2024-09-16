@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-#include <Point.hpp>
+#include <GraceFt/Point.hpp>
 
 namespace GFt {
     /// @class FitCurve

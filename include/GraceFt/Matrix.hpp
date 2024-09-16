@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <cmath>
 
-#include <_private.inl>
+#include <GraceFt/_private.inl>
 
 /// @cond IGNORE
 #define _LOOP_EACH(code)             \

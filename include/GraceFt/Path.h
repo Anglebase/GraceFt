@@ -2,14 +2,14 @@
 
 #include <vector>
 
-#include <Circle.hpp>
-#include <Ellipse.hpp>
-#include <Bezier.hpp>
-#include <FitCurve.hpp>
-#include <Polygon.hpp>
-#include <Font.h>
-#include <Line.hpp>
-#include <Matrix.hpp>
+#include <GraceFt/Circle.hpp>
+#include <GraceFt/Ellipse.hpp>
+#include <GraceFt/Bezier.hpp>
+#include <GraceFt/FitCurve.hpp>
+#include <GraceFt/Polygon.hpp>
+#include <GraceFt/Font.h>
+#include <GraceFt/Line.hpp>
+#include <GraceFt/Matrix.hpp>
 
 namespace GFt {
     /// @class Path

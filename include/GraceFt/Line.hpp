@@ -3,9 +3,9 @@
 #include <iostream>
 #include <type_traits>
 #include <cmath>
-#include <_private.inl>
+#include <GraceFt/_private.inl>
 
-#include <Point.hpp>
+#include <GraceFt/Point.hpp>
 
 namespace GFt {
     /// @class Line

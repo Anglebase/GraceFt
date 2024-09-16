@@ -2,10 +2,10 @@
 
 #include <set>
 
-#include <GraphInterface.h>
-#include <EventMonitor.h>
-#include <Event.h>
-#include <Signal.hpp>
+#include <GraceFt/GraphInterface.h>
+#include <GraceFt/EventMonitor.h>
+#include <GraceFt/Event.h>
+#include <GraceFt/Signal.hpp>
 
 namespace GFt {
     /// @class Block
@@ -123,5 +123,7 @@ namespace GFt {
         Signal<Block*> HoverOff;    ///< 当鼠标移开该对象时之上时触发该信号
         Signal<Block*> FocusOn;     ///< 当该对象获得焦点时触发该信号
         Signal<Block*> FocusOff;    ///< 当该对象失去焦点时触发该信号
+    public:
+        friend void freeTree(Block* block);
     };
 }

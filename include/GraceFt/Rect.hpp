@@ -3,8 +3,8 @@
 #include <iostream>
 #include <type_traits>
 
-#include <Point.hpp>
-#include <Size.hpp>
+#include <GraceFt/Point.hpp>
+#include <GraceFt/Size.hpp>
 
 
 namespace GFt {

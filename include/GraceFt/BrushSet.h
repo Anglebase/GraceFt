@@ -2,10 +2,10 @@
 
 #include <vector>
 
-#include <Color.h>
-#include <Texture.h>
-#include <Point.hpp>
-#include <Rect.hpp>
+#include <GraceFt/Color.h>
+#include <GraceFt/Texture.h>
+#include <GraceFt/Point.hpp>
+#include <GraceFt/Rect.hpp>
 
 namespace GFt {
     /// @defgroup 画刷样式枚举
