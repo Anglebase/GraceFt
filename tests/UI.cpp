@@ -10,20 +10,15 @@ int main() {
         .name = "Root",
         .rect = iRect{50,50,800,600},
         .content = [](Block& it) {
-            XButton{
-                .name = "Button1",
+            XLabel{
+                .name = "Label1",
+                .text = L"Hello,world!",
                 .rect = iRect{100,100,100,50},
                 .parent = it,
-                .content = [](Button& it) {
-                    it.textSet().font().setFontFamily(L"Consolas");
-                    it.textSet().font().setSize(20);
-                    it.text() = L"Button1";
-                    it.onClicked.connect([] {std::cout << "Button1 clicked" << std::endl;});
-                }
             };
             XButton{
                 .name = "Button2",
-                .rect = iRect{100,200,100,50},
+                .rect = iRect{100,150,100,50},
                 .parent = it,
                 .content = [](Button& it) {
                     it.text() = L"Button2";

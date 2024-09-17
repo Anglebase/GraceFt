@@ -3,6 +3,7 @@
 #include <map>
 #include <Window.h>
 #include <Button.h>
+#include <Label.h>
 
 namespace GFt {
     /// @brief 定义式UI管理器
@@ -75,6 +76,23 @@ namespace GFt {
             /// @brief 内容定义
             std::function<void(GFt::Widget::Button&)> content;
             ~XButton();
+        };
+        /// @brief 标签声明式UI块
+        /// @details 标签声明式UI块用于声明式地创建标签，并提供标签内容的设置
+        struct XLabel final {
+            /// @brief 块识别名称
+            const std::string name;
+            /// @brief 标签文本
+            std::wstring text;
+            /// @brief 所在矩形
+            iRect rect;
+            /// @brief 父块
+            GFt::Block& parent;
+            /// @brief 层级
+            int zIndex = 0;
+            /// @brief 内容定义
+            std::function<void(GFt::Widget::Label&)> content;
+            ~XLabel();
         };
     }
 }

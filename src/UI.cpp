@@ -27,19 +27,29 @@ namespace GFt {
             GFt::Block* it = new GFt::Block(this->rect);
             auto& uiManager = GFt::DeclarativeUIManager::getInstance();
             uiManager.addBlock(name, it);
-            content(*it);
+            if (content)
+                content(*it);
         }
         XBlock::~XBlock() {
             GFt::Block* it = new GFt::Block(this->rect, &this->parent, this->zIndex);
             auto& uiManager = GFt::DeclarativeUIManager::getInstance();
             uiManager.addBlock(name, it);
-            content(*it);
+            if (content)
+                content(*it);
         }
         XButton::~XButton() {
             GFt::Widget::Button* it = new GFt::Widget::Button(this->text, this->rect, &this->parent, this->zIndex);
             auto& uiManager = GFt::DeclarativeUIManager::getInstance();
             uiManager.addBlock(name, it);
-            content(*it);
+            if (content)
+                content(*it);
+        }
+        XLabel::~XLabel() {
+            GFt::Widget::Label* it = new GFt::Widget::Label(this->text, this->rect, &this->parent, this->zIndex);
+            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
+            uiManager.addBlock(name, it);
+            if (content)
+                content(*it);
         }
     }
 }
