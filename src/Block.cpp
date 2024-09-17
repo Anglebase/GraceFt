@@ -65,33 +65,36 @@ namespace GFt {
             child->parent_->children_.erase(child);
         child->parent_ = this;
         children_.insert(child);
+        this->sortChildren_ = false;
     }
     void Block::removeChild(Block* child) {
         if (child == nullptr)
             return;
         children_.erase(child);
+        this->sortChildren_ = false;
         child->parent_ = nullptr;
     }
     void Block::setZIndex(int zIndex) {
-        if (parent_ == nullptr) {
-            zIndex_ = zIndex;
-            return;
-        }
-        parent_->children_.erase(this);
         zIndex_ = zIndex;
-        parent_->children_.insert(this);
+        if (parent_ != nullptr)
+            parent_->sortChildren_ = false;
     }
     void Block::setParent(Block* parent) {
         if (parent == nullptr) {
-            if (parent_ != nullptr)
+            if (parent_ != nullptr) {
                 parent_->children_.erase(this);
+                parent_->sortChildren_ = false;
+            }
             parent_ = nullptr;
             return;
         }
-        if (parent_ != nullptr)
+        if (parent_ != nullptr) {
             parent_->children_.erase(this);
+            parent_->sortChildren_ = false;
+        }
         parent_ = parent;
         parent_->children_.insert(this);
+        parent_->sortChildren_ = false;
     }
     int Block::getZIndex() const { return zIndex_; }
     Block* Block::getParent() const { return parent_; }
@@ -117,6 +120,13 @@ namespace GFt {
         int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
         setviewport(x + left, y + top, x + left + width, y + top + height);
         this->onDraw(iRect{ x + left, y + top, width, height });
+        if (!sortChildren_) {
+            std::multiset<Block*, CompareByZIndex> new_set;
+            for (auto child : children_)
+                new_set.insert(child);
+            children_.swap(new_set);
+            sortChildren_ = true;
+        }
         using Iter = std::reverse_iterator<std::multiset<GFt::Block*, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
