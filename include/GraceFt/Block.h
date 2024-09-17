@@ -88,11 +88,9 @@ namespace GFt {
         virtual ~Block();
         /// @brief 添加子对象
         /// @param child 子对象
-        /// @note 添加子对象会引发元素重排，可能导致效率问题，因此在批量操作层级时应避免频繁调用
         void addChild(Block* child);
         /// @brief 移除子对象
         /// @param child 子对象
-        /// @note 移除子对象会引发元素重排，可能导致效率问题，因此在批量操作层级时应避免频繁调用
         void removeChild(Block* child);
         /// @brief 设置层级
         /// @param zIndex 层级
@@ -100,11 +98,9 @@ namespace GFt {
         /// @details 若层级相同，则根据添加顺序决定先后顺序
         /// @details 层级只决定同一对象的子对象之间的顺序
         /// @image html zindex.svg "层级关系示意图"
-        /// @note 更改层级会引发元素重排，可能导致效率问题，因此在批量操作层级时应避免频繁调用
         void setZIndex(int zIndex);
         /// @brief 设置父对象
         /// @param parent 父对象
-        /// @note 更改父对象会引发元素重排，可能导致效率问题，因此在批量操作层级时应避免频繁调用
         void setParent(Block* parent);
 
         /// @brief 获取层级
@@ -129,7 +125,5 @@ namespace GFt {
         Signal<Block*> HoverOff;    ///< 当鼠标移开该对象时之上时触发该信号
         Signal<Block*> FocusOn;     ///< 当该对象获得焦点时触发该信号
         Signal<Block*> FocusOff;    ///< 当该对象失去焦点时触发该信号
-    public:
-        friend void freeTree(Block* block);
     };
 }
