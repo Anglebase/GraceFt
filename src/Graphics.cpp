@@ -83,6 +83,69 @@ namespace GFt {
     void Graphics::clear() {
         clearviewport(IMG(target_));
     }
+
+    int Graphics::textWidth(wchar_t c, const std::vector<std::wstring>& fonts) {
+        if (fonts.empty())
+            return ege::textwidth(c, IMG(target_));
+        LOGFONTW font_buf, font_env;
+        int ret = 0;
+        getfont(&font_env, IMG(target_));
+        getfont(&font_buf, IMG(target_));
+        for (auto& font : fonts) {
+            wcscpy_s(font_buf.lfFaceName, LF_FACESIZE, font.c_str());
+            setfont(&font_buf, IMG(target_));
+            WORD index = 0;
+            GetGlyphIndicesW(
+                getHDC(IMG(target_)), &c, 1,
+                &index, GGI_MARK_NONEXISTING_GLYPHS);
+            if (index != 0xFFFF) {
+                ret = ege::textwidth(c, IMG(target_));
+                break;
+            }
+        }
+        setfont(&font_env, IMG(target_));
+        return ret;
+    }
+    int Graphics::textHeight(wchar_t c, const std::vector<std::wstring>& fonts) {
+        if (fonts.empty())
+            return ege::textheight(c, IMG(target_));
+        LOGFONTW font_buf, font_env;
+        int ret = 0;
+        getfont(&font_env, IMG(target_));
+        getfont(&font_buf, IMG(target_));
+        for (auto& font : fonts) {
+            wcscpy_s(font_buf.lfFaceName, LF_FACESIZE, font.c_str());
+            setfont(&font_buf, IMG(target_));
+            WORD index = 0;
+            GetGlyphIndicesW(
+                getHDC(IMG(target_)), &c, 1,
+                &index, GGI_MARK_NONEXISTING_GLYPHS);
+            if (index != 0xFFFF) {
+                ret = ege::textheight(c, IMG(target_));
+                break;
+            }
+        }
+        setfont(&font_env, IMG(target_));
+        return ret;
+    }
+
+    int Graphics::textWidth(const std::wstring& text, const std::vector<std::wstring>& fonts) {
+        if (fonts.empty())
+            return ege::textwidth(text.c_str(), IMG(target_));
+        int ret = 0;
+        for (auto& c : text)
+            ret += textWidth(c, fonts);
+        return ret;
+    }
+    int Graphics::textHeight(const std::wstring& text, const std::vector<std::wstring>& fonts) {
+        if (fonts.empty())
+            return ege::textheight(text.c_str(), IMG(target_));
+        int ret = 0;
+        for (auto& c : text)
+            ret = std::max(ret, textHeight(c, fonts));
+        return ret;
+    }
+
     void Graphics::setBackgroundColor(const Color& color) {
         setbkcolor(EGERGBA(color.red(), color.green(), color.blue(), color.alpha()), IMG(target_));
     }
@@ -322,14 +385,14 @@ namespace GFt {
         return width;
     }
     /// @details 若传入了无效的 flags, 则此函数将会忽略它们, 并使用默认的对齐方式(左上对齐)
-    void Graphics::drawText(const std::wstring& text, const fRect& rect, int flags) {
+    int Graphics::drawText(const std::wstring& text, const fRect& rect, int flags, const std::vector<std::wstring>& fonts) {
         TextAlign halign = static_cast<TextAlign>(flags & 0x0F);
         TextAlign valign = static_cast<TextAlign>((flags >> 4) & 0x0F);
-        int x = rect.x();
-        int y = rect.y();
+        float x = rect.x();
+        float y = rect.y();
         switch (halign) {
         case TextAlign::Center:
-            x += rect.width() / 2 - textwidth(text.c_str(), IMG(target_)) / 2;
+            x += rect.width() / 2.f - textwidth(text.c_str(), IMG(target_)) / 2.f;
             break;
         case TextAlign::Right:
             x += rect.width() - textwidth(text.c_str(), IMG(target_));
@@ -341,7 +404,7 @@ namespace GFt {
         }
         switch (valign) {
         case TextAlign::Center:
-            y += rect.height() / 2 - textheight(text.c_str(), IMG(target_)) / 2;
+            y += rect.height() / 2.f - textheight(text.c_str(), IMG(target_)) / 2.f;
             break;
         case TextAlign::Bottom:
             y += rect.height() - textheight(text.c_str(), IMG(target_));
@@ -351,7 +414,6 @@ namespace GFt {
         default:
             break;
         }
-        ege_outtextxy(x, y, text.c_str(), IMG(target_));
+        return drawText(text, fPoint{ x, y }, fonts);
     }
-
 }

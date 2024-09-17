@@ -68,6 +68,27 @@ namespace GFt {
         /// @brief 使用背景色重绘绘图目标
         void clear();
 
+        /// @brief 获取指定字符在指定回滚字体集合中的宽度
+        /// @param c 要获取宽度的字符
+        /// @param fonts 回滚字体集合, 若未指定则使用当前的环境设置
+        /// @return 字符的像素宽度
+        int textWidth(wchar_t c, const std::vector<std::wstring>& fonts = {});
+        /// @brief 获取指定字符在指定回滚字体集合中的高度
+        /// @param c 要获取高度的字符
+        /// @param fonts 回滚字体集合, 若未指定则使用当前的环境设置
+        /// @return 字符的像素高度
+        int textHeight(wchar_t c, const std::vector<std::wstring>& fonts = {});
+        /// @brief 获取指定文本在指定回滚字体集合中的宽度
+        /// @param text 要获取宽度的文本
+        /// @param fonts 回滚字体集合, 若未指定则使用当前的环境设置
+        /// @return 文本的像素宽度
+        int textWidth(const std::wstring& text, const std::vector<std::wstring>& fonts = {});
+        /// @brief 获取指定文本在指定回滚字体集合中的高度
+        /// @param text 要获取高度的文本
+        /// @param fonts 回滚字体集合, 若未指定则使用当前的环境设置
+        /// @return 文本的像素高度
+        int textHeight(const std::wstring& text, const std::vector<std::wstring>& fonts = {});
+
         /// @brief 设置默认背景色
         /// @param color 背景色
         void setBackgroundColor(const Color& color);
@@ -166,6 +187,10 @@ namespace GFt {
         /// @param text 要绘制的文本
         /// @param rect 要绘制的矩形区域
         /// @param flags 文本对齐方式
-        void drawText(const std::wstring& text, const fRect& rect, int flags = TextAlign::Left | TextAlign::Top);
+        /// @param font 指定的字体集合
+        /// @return 实际绘制出的字符的像素宽度
+        /// @note 若未指定字体集合则使用环境当前绑定的字体
+        int drawText(const std::wstring& text, const fRect& rect,
+            int flags = TextAlign::Left | TextAlign::Top, const std::vector<std::wstring>& fonts = {});
     };
 }
