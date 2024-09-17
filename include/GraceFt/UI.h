@@ -24,7 +24,7 @@ namespace GFt {
         /// @brief 添加UI块
         /// @param name 块名称
         /// @param block 块指针
-        /// @details 块名称不能重复，如果名称已存在，则会覆盖原有块
+        /// @details 块名称不能重复，如果名称已存在，则会抛出异常
         void addBlock(const std::string& name, Block* block);
         /// @brief 获取UI管理器实例
         /// @return UI管理器实例

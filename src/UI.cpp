@@ -14,7 +14,7 @@ namespace GFt {
     }
     void DeclarativeUIManager::addBlock(const std::string& name, Block* pblock) {
         if (blocks.find(name) != blocks.end())
-            delete blocks.at(name);
+            throw std::runtime_error("Block with the same name already exists.");
         blocks[name] = pblock;
     }
     DeclarativeUIManager& DeclarativeUIManager::getInstance() {
