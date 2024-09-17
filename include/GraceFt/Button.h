@@ -7,29 +7,49 @@
 #include <GraceFt/TextSet.h>
 
 namespace GFt {
-    class Button : public Block {
-        std::wstring text_;
-        BrushSet brushSet_;
-        TextSet textSet_;
+    namespace Widget {
+        class Button : public Block {
+            std::wstring text_;
+            bool disabled_{ false };
 
-    protected:
-        void onDraw(const iRect& rect) override;
-        void onMouseButtonPress(MouseButtonPressEvent* event) override;
-        void onMouseButtonRelease(MouseButtonReleaseEvent* event) override;
+            BrushSet brushSet_;
+            TextSet textSet_;
 
-    public:
-        Button(const std::wstring& text, const iRect& rect, Block* parent = nullptr, int zIndex = 0);
-        virtual ~Button();
-        std::wstring& text();
-        const std::wstring& text() const;
-        BrushSet& brushSet();
-        const BrushSet& brushSet() const;
-        TextSet& textSet();
-        const TextSet& textSet() const;
-    
-    public:
-        Signal<bool> onStatusChanged;
-        Signal<void> onClicked;
-        Signal<void> onReleased;
-    };
+            Color textColor_{ 0x00, 0x00, 0x00, 0xFF };
+            Color backgroundColor_{ 0xE5, 0xE5, 0xE5, 0xFF };
+            Color hoverColor_{ 0xC6, 0xC6, 0xC6, 0xFF };
+            Color pressedColor_{ 0xB7, 0xB7, 0xB7, 0xFF };
+            Color disabledColor_{ 0x99, 0x99, 0x99, 0xFF };
+
+        protected:
+            void onDraw(const iRect& rect) override;
+            void onMouseButtonPress(MouseButtonPressEvent* event) override;
+            void onMouseButtonRelease(MouseButtonReleaseEvent* event) override;
+
+        public:
+            Button(const std::wstring& text, const iRect& rect, Block* parent = nullptr, int zIndex = 0);
+            virtual ~Button();
+            std::wstring& text();
+            Color& textColor();
+            Color& backgroundColor();
+            Color& hoverColor();
+            Color& pressedColor();
+            Color& disabledColor();
+
+            const std::wstring& text() const;
+            const Color& textColor() const;
+            const Color& backgroundColor() const;
+            const Color& hoverColor() const;
+            const Color& pressedColor() const;
+            const Color& disabledColor() const;
+
+            void setEnable(bool disabled);
+            bool isDisabled() const;
+
+        public:
+            Signal<bool> onStatusChanged;
+            Signal<void> onClicked;
+            Signal<void> onReleased;
+        };
+    }
 }
