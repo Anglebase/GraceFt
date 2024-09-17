@@ -42,3 +42,6 @@ target_link_libraries(test_Graphics ${GFt_LIBRARY_NAME})
 # Button.h TEST
 add_executable(test_Button ${CMAKE_CURRENT_SOURCE_DIR}/Button.cpp)
 target_link_libraries(test_Button ${GFt_LIBRARY_NAME})
+# UI.h TEST
+add_executable(test_UI ${CMAKE_CURRENT_SOURCE_DIR}/UI.cpp)
+target_link_libraries(test_UI ${GFt_LIBRARY_NAME})
