@@ -7,12 +7,12 @@ namespace GFt {
         for (auto& [name, pblock] : this->blocks)
             delete pblock;
     }
-    Block* DeclarativeUIManager::findBlock(const std::string& name) {
+    Block* DeclarativeUIManager::findBlock(const std::string_view& name) {
         if (blocks.find(name) == blocks.end())
             return nullptr;
         return blocks.at(name);
     }
-    void DeclarativeUIManager::addBlock(const std::string& name, Block* pblock) {
+    void DeclarativeUIManager::addBlock(const std::string_view& name, Block* pblock) {
         if (blocks.find(name) != blocks.end())
             throw std::runtime_error("Block with the same name already exists.");
         blocks[name] = pblock;
