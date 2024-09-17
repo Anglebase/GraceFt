@@ -18,7 +18,6 @@ namespace GFt {
             return;
         Application::root_ = root;
     }
-    std::mutex handleMutex;
     void Application::render(Window* window) {
         cleardevice();
         window->handleOnDraw();

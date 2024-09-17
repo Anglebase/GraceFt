@@ -135,6 +135,7 @@ namespace GFt {
         }
         setviewport(left, top, right, bottom);
     }
+    /// @cond IGNORE
     DEF_MOUSE_HANDEL_FUNC(MouseButtonPress);
     DEF_MOUSE_HANDEL_FUNC(MouseButtonRelease);
     DEF_MOUSE_HANDEL_FUNC(MouseMove);
@@ -143,4 +144,5 @@ namespace GFt {
     DEF_KEY_HANDEL_FUNC(KeyPress);
     DEF_KEY_HANDEL_FUNC(KeyRelease);
     DEF_KEY_HANDEL_FUNC(TextInput);
+    /// @endcond
 }
