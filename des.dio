@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NkuJCX3ARFkseNm6hfjC" name="第 1 页">
-        <mxGraphModel dx="2967" dy="1823" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="3231" dy="2379" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -95,6 +95,9 @@
                     <mxGeometry x="-400" y="-270" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="78" style="edgeStyle=none;html=1;" parent="1" source="29" target="77" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="240" style="edgeStyle=none;html=1;" edge="1" parent="1" source="29" target="239">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" value="可交互UI封装库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
@@ -197,7 +200,7 @@
                 <mxCell id="71" value="椭圆&lt;br&gt;Elliptic&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="810" y="170" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="77" value="按钮&lt;br&gt;Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                <mxCell id="77" value="按钮&lt;br&gt;Button" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
                     <mxGeometry x="-700" y="-810" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="子库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
@@ -501,7 +504,7 @@
                 <mxCell id="234" style="edgeStyle=none;html=1;" parent="1" source="231" target="233" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="238" style="edgeStyle=none;html=1;" edge="1" parent="1" source="231" target="237">
+                <mxCell id="238" style="edgeStyle=none;html=1;" parent="1" source="231" target="237" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="231" value="工具库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
@@ -513,8 +516,26 @@
                 <mxCell id="235" value="通用窗口接口类&lt;br&gt;UniInterface" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="50" y="-760" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="237" value="动画量(贝塞尔插值)&lt;br&gt;Animation&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="237" value="动画量(贝塞尔插值)&lt;br&gt;Animation&amp;lt;T&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="400" y="-420" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="239" value="行文本编辑框&lt;br&gt;LineEdit" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-500" y="-990" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="241" value="Vertical Container" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-830" y="-1490" width="460" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="242" value="TextChar" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="241">
+                    <mxGeometry x="70" y="50" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="243" value="TextCursor" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="241">
+                    <mxGeometry x="260" y="50" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="244" value="TextLine" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="241">
+                    <mxGeometry x="70" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="245" value="TextBlock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="241">
+                    <mxGeometry x="260" y="180" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
