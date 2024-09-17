@@ -22,6 +22,8 @@ namespace GFt {
         Color& Button::hoverColor() { return hoverColor_; }
         Color& Button::pressedColor() { return pressedColor_; }
         Color& Button::disabledColor() { return disabledColor_; }
+        BrushSet& Button::brushSet() { return brushSet_; }
+        TextSet& Button::textSet() { return textSet_; }
 
         const std::wstring& Button::text() const { return text_; }
         const Color& Button::textColor() const { return textColor_; }
@@ -29,6 +31,8 @@ namespace GFt {
         const Color& Button::hoverColor() const { return hoverColor_; }
         const Color& Button::pressedColor() const { return pressedColor_; }
         const Color& Button::disabledColor() const { return disabledColor_; }
+        const BrushSet& Button::brushSet() const { return brushSet_; }
+        const TextSet& Button::textSet() const { return textSet_; }
 
         void Button::setEnable(bool disabled) { disabled_ = !disabled; }
         bool Button::isDisabled() const { return disabled_; }

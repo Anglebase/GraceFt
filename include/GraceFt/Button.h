@@ -35,6 +35,8 @@ namespace GFt {
             Color& hoverColor();
             Color& pressedColor();
             Color& disabledColor();
+            BrushSet& brushSet();
+            TextSet& textSet();
 
             const std::wstring& text() const;
             const Color& textColor() const;
@@ -42,6 +44,8 @@ namespace GFt {
             const Color& hoverColor() const;
             const Color& pressedColor() const;
             const Color& disabledColor() const;
+            const BrushSet& brushSet() const;
+            const TextSet& textSet() const;
 
             void setEnable(bool disabled);
             bool isDisabled() const;
