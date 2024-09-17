@@ -14,6 +14,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Font.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/GraphInterface.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Label.cpp
     "${CMAKE_CURRENT_SOURCE_DIR}/Path.cpp"
     ${CMAKE_CURRENT_SOURCE_DIR}/PenSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/PixelMap.cpp
