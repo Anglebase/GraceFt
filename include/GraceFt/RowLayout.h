@@ -3,7 +3,6 @@
 #include <map>
 #include <GraceFt/Layout.h>
 #include <GraceFt/Block.h>
-#include <GraceFt/Signal.hpp>
 
 namespace GFt {
     class RowLayout : public Layout, public Block {
