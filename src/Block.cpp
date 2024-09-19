@@ -63,28 +63,39 @@ namespace GFt {
     }
     Block::~Block() {}
     void Block::addChild(Block* child) {
+        // 若为空指针则忽略
         if (child == nullptr)
             return;
-        for (auto c : children_)
-            if (c == child)
-                return;
+        // 若已存在则忽略
+        using Iter = std::multiset<Block*, CompareByZIndex>::iterator;
+        Iter insert_iter = std::find_if(children_.begin(), children_.end(),
+            [&](const Block* c) { return c == child; });
+        if (insert_iter != children_.end())
+            return;
+        // 若该节点存在父节点则先从父节点移除
         if (child->parent_ != nullptr)
-            child->parent_->children_.erase(child);
+            child->parent_->removeChild(child);
+        // 更新节点数据
         child->parent_ = this;
         children_.insert(child);
+        // 引发元素重排
         this->sortChildren_ = false;
     }
     void Block::removeChild(Block* child) {
+        // 若为空指针则忽略
         if (child == nullptr)
             return;
+        // 若不存在则忽略
         using Iter = std::multiset<Block*, CompareByZIndex>::iterator;
         Iter remove_iter = std::find_if(children_.begin(), children_.end(),
             [&](const Block* c) { return c == child; });
         if (remove_iter == children_.end())
             return;
+        // 移除节点
         children_.erase(remove_iter);
-        this->sortChildren_ = false;
         child->parent_ = nullptr;
+        // 引发元素重排
+        this->sortChildren_ = false;
     }
     void Block::setZIndex(int zIndex) {
         zIndex_ = zIndex;
@@ -127,19 +138,23 @@ namespace GFt {
     }
 
     void Block::handleOnDraw(const iPoint& lefttop) {
+        // 设置裁剪区域
         setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
+        // 调用自身的绘制函数
         this->onDraw(iRect{ lefttop, rect().size() });
         if (!sortChildren_) {
+            // 元素重排
             std::multiset<Block*, CompareByZIndex> new_set;
             for (auto child : children_)
                 new_set.insert(child);
             children_.swap(new_set);
             sortChildren_ = true;
         }
+        // 调用子节点的绘制事件处理函数
         using Iter = std::reverse_iterator<std::multiset<GFt::Block*, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
-            if (child->rect() & this->rect())
+            if (child->rect() & this->rect()) // 子节点在自身范围内才触发绘制
                 child->handleOnDraw(lefttop + child->rect().position());
         }
     }
