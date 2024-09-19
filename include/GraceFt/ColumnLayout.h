@@ -5,6 +5,7 @@
 #include <GraceFt/Block.h>
 
 namespace GFt {
+    /// @brief 列布局类
     class ColumnLayout : public Layout, public Block {
         int space_{ 0 };
         std::map<Block*, float> blockLayout_;
@@ -25,7 +26,7 @@ namespace GFt {
 
         /// @brief 添加参与布局的块对象
         /// @param block 块对象
-        /// @param widthProportion 块的宽度占比，默认1.f
+        /// @param widthProportion 块的高度占比，默认1.f
         void addLayout(Block* block, float widthProportion = 1.f);
         /// @brief 移除参与布局的块对象
         /// @param block 块对象

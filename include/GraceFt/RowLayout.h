@@ -5,6 +5,7 @@
 #include <GraceFt/Block.h>
 
 namespace GFt {
+    /// @brief 行布局类
     class RowLayout : public Layout, public Block {
         int space_{ 0 };
         std::map<Block*, float> blockLayout_;
