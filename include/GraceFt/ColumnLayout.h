@@ -27,10 +27,10 @@ namespace GFt {
         /// @brief 添加参与布局的块对象
         /// @param block 块对象
         /// @param widthProportion 块的高度占比，默认1.f
-        void addLayout(Block* block, float widthProportion = 1.f);
+        void addItem(Block* block, float widthProportion = 1.f);
         /// @brief 移除参与布局的块对象
         /// @param block 块对象
-        void removeLayout(Block* block);
+        void removeItem(Block* block);
 
         /// @brief 设置布局之间的间隔宽度
         /// @param space 间隔宽度

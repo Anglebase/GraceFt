@@ -33,12 +33,12 @@ namespace GFt {
         : Block(rect, parent, zIndex) {}
     ColumnLayout::~ColumnLayout() = default;
 
-    void ColumnLayout::addLayout(Block* block, float widthProportion) {
+    void ColumnLayout::addItem(Block* block, float widthProportion) {
         blockLayout_[block] = widthProportion;
         this->addChild(block);
         setShouldUpdateLayout();
     }
-    void ColumnLayout::removeLayout(Block* block) {
+    void ColumnLayout::removeItem(Block* block) {
         if (blockLayout_.find(block) == blockLayout_.end())
             return;
         blockLayout_.erase(block);

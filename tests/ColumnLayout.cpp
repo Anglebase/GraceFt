@@ -18,10 +18,10 @@ int main() {
     Button btn3{ L"Btn3",iRect{},&layout };
     Button btn4{ L"Btn4",iRect{},&layout };
 
-    layout.addLayout(&btn1);
-    layout.addLayout(&btn2, 2.f);
-    layout.addLayout(&btn3);
-    layout.addLayout(&btn4, 1.5f);
+    layout.addItem(&btn1);
+    layout.addItem(&btn2, 2.f);
+    layout.addItem(&btn3);
+    layout.addItem(&btn4, 1.5f);
     layout.setSpace(10);
     layout.setPadding(5, 20);
 

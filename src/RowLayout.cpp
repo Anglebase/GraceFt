@@ -33,12 +33,12 @@ namespace GFt {
     RowLayout::RowLayout(const iRect& rect, Block* parent, int zIndex)
         : Block(rect, parent, zIndex) {}
     RowLayout::~RowLayout() = default;
-    void RowLayout::addLayout(Block* block, float widthProportion) {
+    void RowLayout::addItem(Block* block, float widthProportion) {
         blockLayout_[block] = widthProportion;
         this->addChild(block);
         setShouldUpdateLayout();
     }
-    void RowLayout::removeLayout(Block* block) {
+    void RowLayout::removeItem(Block* block) {
         if (blockLayout_.find(block) == blockLayout_.end())
             return;
         blockLayout_.erase(block);
