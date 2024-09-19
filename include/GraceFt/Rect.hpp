@@ -80,6 +80,18 @@ namespace GFt {
         /// @brief 矩形大小的 const 版本
         /// @return 大小值
         constexpr const Size<T>& size() const { return size_; }
+        /// @brief 矩形的左侧边界坐标
+        /// @return 坐标值
+        constexpr T left() const { return pos_.x(); }
+        /// @brief 矩形的上侧边界坐标
+        /// @return 坐标值
+        constexpr T top() const { return pos_.y(); }
+        /// @brief 矩形的右侧边界坐标
+        /// @return 坐标值
+        constexpr T right() const { return pos_.x() + size_.width(); }
+        /// @brief 矩形的下侧边界坐标
+        /// @return 坐标值
+        constexpr T bottom() const { return pos_.y() + size_.height(); }
 
         /// @brief 等于比较运算符重载
         /// @details 此函数对于浮点数比较是安全的
