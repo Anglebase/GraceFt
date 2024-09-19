@@ -46,6 +46,7 @@ namespace GFt {
             iRect btn = iRect{ iPoint{}, rect.size() };
             g.drawFillRect(btn);
             g.drawText(text_, btn, TextAlign::Center | TextAlign::Middle);
+            return Block::onDraw(rect);
         }
         void Button::onMouseButtonPress(MouseButtonPressEvent* event) {
             if (disabled_) return;
