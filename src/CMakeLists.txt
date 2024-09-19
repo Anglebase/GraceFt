@@ -10,6 +10,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/BrushSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Button.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ColumnLayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Event.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Font.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
