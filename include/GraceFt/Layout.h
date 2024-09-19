@@ -8,6 +8,8 @@ namespace GFt {
         int rightPadding_{ 0 };
         int bottomPadding_{ 0 };
 
+        bool shouleUpdateLayout_{ true };
+
     public:
         Layout() = default;
         virtual ~Layout() = default;
@@ -26,22 +28,27 @@ namespace GFt {
         /// @param bottom 下边距
         void setPadding(int left, int top, int right, int bottom);
 
-        /// @brief 左边距
-        int& leftPadding();
-        /// @brief 上边距
-        int& topPadding();
-        /// @brief 右边距
-        int& rightPadding();
-        /// @brief 下边距
-        int& bottomPadding();
+        /// @brief 设置左边距
+        void setLeftPadding(int left);
+        /// @brief 设置上边距
+        void setTopPadding(int top);
+        /// @brief 设置右边距
+        void setRightPadding(int right);
+        /// @brief 设置下边距
+        void setBottomPadding(int bottom);
 
-        /// @brief 左边距
-        int leftPadding() const;
-        /// @brief 上边距
-        int topPadding() const;
-        /// @brief 右边距
-        int rightPadding() const;
-        /// @brief 下边距
-        int bottomPadding() const;
+        /// @brief 获取左边距
+        int getLeftPadding() const;
+        /// @brief 获取上边距
+        int getTopPadding() const;
+        /// @brief 获取右边距
+        int getRightPadding() const;
+        /// @brief 获取下边距
+        int getBottomPadding() const;
+
+        /// @brief 标记是否需要更新布局
+        void setShouleUpdateLayout(bool shouleUpdateLayout = true);
+        /// @brief 检查是否需要更新布局
+        bool shouleUpdateLayout() const;
     };
 }
