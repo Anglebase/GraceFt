@@ -21,29 +21,29 @@ namespace GFt {
     }
     void Layout::setLeftPadding(int left) {
         leftPadding_ = left;
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     void Layout::setTopPadding(int top) {
         topPadding_ = top;
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     void Layout::setRightPadding(int right) {
         rightPadding_ = right;
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     void Layout::setBottomPadding(int bottom) {
         bottomPadding_ = bottom;
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
 
     int Layout::getLeftPadding() const { return leftPadding_; }
     int Layout::getTopPadding() const { return topPadding_; }
     int Layout::getRightPadding() const { return rightPadding_; }
     int Layout::getBottomPadding() const { return bottomPadding_; }
-    void Layout::setShouleUpdateLayout(bool shouleUpdateLayout) {
-        shouleUpdateLayout_ = shouleUpdateLayout;
+    void Layout::setShouldUpdateLayout(bool shouldUpdateLayout) {
+        shouleUpdateLayout_ = shouldUpdateLayout;
     }
-    bool Layout::shouleUpdateLayout() const {
+    bool Layout::shouldUpdateLayout() const {
         return shouleUpdateLayout_;
     }
 }

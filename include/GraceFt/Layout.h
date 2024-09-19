@@ -47,8 +47,8 @@ namespace GFt {
         int getBottomPadding() const;
 
         /// @brief 标记是否需要更新布局
-        void setShouleUpdateLayout(bool shouleUpdateLayout = true);
+        void setShouldUpdateLayout(bool shouldUpdateLayout = true);
         /// @brief 检查是否需要更新布局
-        bool shouleUpdateLayout() const;
+        bool shouldUpdateLayout() const;
     };
 }

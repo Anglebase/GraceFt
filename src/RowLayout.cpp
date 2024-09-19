@@ -21,10 +21,11 @@ namespace GFt {
             block->rect().x() = x;
             x += block->rect().width() + space_;
         }
+        setShouldUpdateLayout(false);
     }
 
     void RowLayout::onDraw(const iRect& rect) {
-        if (shouleUpdateLayout())
+        if (shouldUpdateLayout())
             updateLayout();
         return Block::onDraw(rect);
     }
@@ -35,18 +36,18 @@ namespace GFt {
     void RowLayout::addLayout(Block* block, float widthProportion) {
         blockLayout_[block] = widthProportion;
         this->addChild(block);
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     void RowLayout::removeLayout(Block* block) {
         if (blockLayout_.find(block) == blockLayout_.end())
             return;
         blockLayout_.erase(block);
         this->removeChild(block);
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     void RowLayout::setSpace(int space) {
         space_ = space;
-        setShouleUpdateLayout();
+        setShouldUpdateLayout();
     }
     int RowLayout::getSpace() const {
         return space_;
