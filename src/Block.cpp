@@ -43,23 +43,14 @@ namespace GFt {
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
         return a->zIndex_ > b->zIndex_;
     }
-    void Block::onDraw(const iRect& rect) {
-        Graphics g;
-        using namespace GFt::literals;
-        PenSet penset(0_rgb, 5);
-        g.bindPenSet(&penset);
-        g.drawRect(iRect{ iPoint{0,0}, rect.size() });
-        std::cout << rect << std::endl;
-    }
+    void Block::onDraw(const iRect& rect) {}
     void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
         BlockFocusManager::setFocusOn(this);
         event->stopPropagation();
     }
     void Block::onMouseButtonRelease(MouseButtonReleaseEvent* event) {}
-    void Block::onMouseMove(MouseMoveEvent* event) {
-        // std::cout << "MouseMove: " << event->position() << std::endl;
-    }
+    void Block::onMouseMove(MouseMoveEvent* event) {}
     void Block::onMouseWheel(MouseWheelEvent* event) {}
     void Block::onKeyPress(KeyPressEvent* event) {}
     void Block::onKeyRelease(KeyReleaseEvent* event) {}
