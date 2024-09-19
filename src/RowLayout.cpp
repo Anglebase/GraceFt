@@ -24,11 +24,6 @@ namespace GFt {
     }
 
     void RowLayout::onDraw(const iRect& rect) {
-        Graphics g;
-        using namespace GFt::literals;
-        PenSet p(0_rgb, 5);
-        g.bindPenSet(&p);
-        g.drawRect(iRect{ iPoint{}, rect.size() });
         if (shouleUpdateLayout())
             updateLayout();
         return Block::onDraw(rect);
