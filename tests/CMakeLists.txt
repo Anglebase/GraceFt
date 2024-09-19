@@ -48,3 +48,6 @@ target_link_libraries(test_UI ${GFt_LIBRARY_NAME})
 # RowLayout.h TEST
 add_executable(test_RowLayout ${CMAKE_CURRENT_SOURCE_DIR}/RowLayout.cpp)
 target_link_libraries(test_RowLayout ${GFt_LIBRARY_NAME})
+# ColumnLayout.h TEST
+add_executable(test_ColumnLayout ${CMAKE_CURRENT_SOURCE_DIR}/ColumnLayout.cpp)
+target_link_libraries(test_ColumnLayout ${GFt_LIBRARY_NAME})
