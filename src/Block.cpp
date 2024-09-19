@@ -7,13 +7,17 @@
 
 #include <Graphics.h>
 #include <BlockFocus.h>
+#include <Window.h>
 
 #define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
     void Block::handleOn##eventName(eventName##Event* event, const iPoint& lefttop) {                 \
         if (event->isPropagationStopped())                                                            \
             return;                                                                                   \
         auto iter = std::find_if(children_.begin(), children_.end(),                                  \
-            [&](const Block* child) { return contains(child->rect(), event->position() - lefttop); });\
+            [&](const Block* child) {                                                                 \
+                return contains(iRect{                                                                \
+                    child->absolutePos(), child->rect().size()                                        \
+                    }, event->absolutePosition()); });                                                \
         do {                                                                                          \
             if (iter == children_.end()){                                                             \
                 BlockHoverManager::setHoverOn(this);                                                  \
@@ -39,14 +43,23 @@ namespace GFt {
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
         return a->zIndex_ > b->zIndex_;
     }
-    void Block::onDraw(const iRect& rect) {}
+    void Block::onDraw(const iRect& rect) {
+        Graphics g;
+        using namespace GFt::literals;
+        PenSet penset(0_rgb, 5);
+        g.bindPenSet(&penset);
+        g.drawRect(iRect{ iPoint{0,0}, rect.size() });
+        std::cout << rect << std::endl;
+    }
     void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
         BlockFocusManager::setFocusOn(this);
         event->stopPropagation();
     }
     void Block::onMouseButtonRelease(MouseButtonReleaseEvent* event) {}
-    void Block::onMouseMove(MouseMoveEvent* event) {}
+    void Block::onMouseMove(MouseMoveEvent* event) {
+        // std::cout << "MouseMove: " << event->position() << std::endl;
+    }
     void Block::onMouseWheel(MouseWheelEvent* event) {}
     void Block::onKeyPress(KeyPressEvent* event) {}
     void Block::onKeyRelease(KeyReleaseEvent* event) {}
@@ -61,6 +74,9 @@ namespace GFt {
     void Block::addChild(Block* child) {
         if (child == nullptr)
             return;
+        for (auto c : children_)
+            if (c == child)
+                return;
         if (child->parent_ != nullptr)
             child->parent_->children_.erase(child);
         child->parent_ = this;
@@ -70,7 +86,12 @@ namespace GFt {
     void Block::removeChild(Block* child) {
         if (child == nullptr)
             return;
-        children_.erase(child);
+        using Iter = std::multiset<Block*, CompareByZIndex>::iterator;
+        Iter remove_iter = std::find_if(children_.begin(), children_.end(),
+            [&](const Block* c) { return c == child; });
+        if (remove_iter == children_.end())
+            return;
+        children_.erase(remove_iter);
         this->sortChildren_ = false;
         child->parent_ = nullptr;
     }
@@ -114,12 +135,9 @@ namespace GFt {
         return rect().position() + parent_->absolutePos();
     }
 
-    void Block::handleOnDraw() {
-        int left, top, right, bottom;
-        getviewport(&left, &top, &right, &bottom);
-        int x = rect().x(), y = rect().y(), width = rect().width(), height = rect().height();
-        setviewport(x + left, y + top, x + left + width, y + top + height);
-        this->onDraw(iRect{ x + left, y + top, width, height });
+    void Block::handleOnDraw(const iPoint& lefttop) {
+        setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
+        this->onDraw(iRect{ lefttop, rect().size() });
         if (!sortChildren_) {
             std::multiset<Block*, CompareByZIndex> new_set;
             for (auto child : children_)
@@ -131,9 +149,8 @@ namespace GFt {
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
             if (child->rect() & this->rect())
-                child->handleOnDraw();
+                child->handleOnDraw(lefttop + child->rect().position());
         }
-        setviewport(left, top, right, bottom);
     }
     /// @cond IGNORE
     DEF_MOUSE_HANDEL_FUNC(MouseButtonPress);
