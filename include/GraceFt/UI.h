@@ -22,11 +22,19 @@ namespace GFt {
         /// @param name 块名称
         /// @return 块指针，如果没有找到则返回nullptr
         Block* findBlock(const std::string_view& name);
+        /// @brief 查找UI块名称
+        /// @param block 块指针
+        /// @return 块名称，如果没有找到则返回空字符串
+        std::string_view findBlockByName(const Block* block) const;
         /// @brief 添加UI块
         /// @param name 块名称
         /// @param block 块指针
         /// @details 块名称不能重复，如果名称已存在，则会抛出异常
         void addBlock(const std::string_view& name, Block* block);
+        /// @brief 移除UI块
+        /// @param name 块名称
+        /// @details 如果名称不存在，则不会有任何操作
+        void removeBlock(const std::string_view& name);
         /// @brief 获取UI管理器实例
         /// @return UI管理器实例
         static DeclarativeUIManager& getInstance();

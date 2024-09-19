@@ -12,10 +12,23 @@ namespace GFt {
             return nullptr;
         return blocks.at(name);
     }
+    std::string_view DeclarativeUIManager::findBlockByName(const Block* block) const {
+        for (auto& [name, pblock] : this->blocks)
+            if (pblock == block)
+                return name;
+        using namespace std::literals;
+        return ""sv;
+    }
     void DeclarativeUIManager::addBlock(const std::string_view& name, Block* pblock) {
         if (blocks.find(name) != blocks.end())
             throw std::runtime_error("Block with the same name already exists.");
         blocks[name] = pblock;
+    }
+    void DeclarativeUIManager::removeBlock(const std::string_view& name) {
+        if (blocks.find(name) == blocks.end())
+            return;
+        delete blocks.at(name);
+        blocks.erase(name);
     }
     DeclarativeUIManager& DeclarativeUIManager::getInstance() {
         static DeclarativeUIManager instance;
