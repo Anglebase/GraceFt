@@ -1,5 +1,5 @@
 #include "RowLayout.h"
-#include <Graphics.h>
+
 namespace GFt {
     void RowLayout::updateLayout() {
         // 计算所有block的宽度占比之和
@@ -30,9 +30,7 @@ namespace GFt {
     }
 
     RowLayout::RowLayout(const iRect& rect, Block* parent, int zIndex)
-        : Block(rect, parent, zIndex) {
-        onLayoutUpdate.connect(this, &RowLayout::updateLayout);
-    }
+        : Block(rect, parent, zIndex) {}
     RowLayout::~RowLayout() = default;
     void RowLayout::addLayout(Block* block, float widthProportion) {
         blockLayout_[block] = widthProportion;
