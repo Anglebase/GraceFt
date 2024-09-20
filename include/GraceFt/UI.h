@@ -1,9 +1,12 @@
 #pragma once
 
 #include <map>
-#include <Window.h>
-#include <Button.h>
-#include <Label.h>
+#include <GraceFt/Window.h>
+#include <GraceFt/Button.h>
+#include <GraceFt/Label.h>
+#include <GraceFt/RowLayout.h>
+#include <GraceFt/ColumnLayout.h>
+#include <GraceFt/GridLayout.h>
 
 namespace GFt {
     /// @brief 定义式UI管理器
@@ -101,6 +104,55 @@ namespace GFt {
             /// @brief 内容定义
             std::function<void(GFt::Widget::Label&)> content;
             ~XLabel();
+        };
+        /// @brief 行布局声明式UI块
+        /// @details 行布局声明式UI块用于声明式地创建行布局，并提供布局内容的设置
+        struct XRowLayout final {
+            /// @brief 块识别名称
+            const std::string_view name;
+            /// @brief 所在矩形
+            iRect rect;
+            /// @brief 父块
+            GFt::Block& parent;
+            /// @brief 层级
+            int zIndex = 0;
+            /// @brief 内容定义
+            std::function<void(GFt::RowLayout&)> content;
+            ~XRowLayout();
+        };
+        /// @brief 列布局声明式UI块
+        /// @details 列布局声明式UI块用于声明式地创建列布局，并提供布局内容的设置
+        struct XColumnLayout final {
+            /// @brief 块识别名称
+            const std::string_view name;
+            /// @brief 所在矩形
+            iRect rect;
+            /// @brief 父块
+            GFt::Block& parent;
+            /// @brief 层级
+            int zIndex = 0;
+            /// @brief 内容定义
+            std::function<void(GFt::ColumnLayout&)> content;
+            ~XColumnLayout();
+        };
+        /// @brief 网格布局声明式UI块
+        /// @details 网格布局声明式UI块用于声明式地创建网格布局，并提供布局内容的设置
+        struct XGridLayout final {
+            /// @brief 块识别名称
+            const std::string_view name;
+            /// @brief 所在矩形
+            iRect rect;
+            /// @brief 父块
+            GFt::Block& parent;
+            /// @brief 网格行数
+            int rows = 2;
+            /// @brief 网格列数
+            int cols = 2;
+            /// @brief 层级
+            int zIndex = 0;
+            /// @brief 内容定义
+            std::function<void(GFt::GridLayout&)> content;
+            ~XGridLayout();
         };
     }
 }
