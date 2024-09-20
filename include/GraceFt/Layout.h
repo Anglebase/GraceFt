@@ -2,6 +2,7 @@
 
 namespace GFt {
     /// @brief 布局基类
+    /// @ingroup 基础UI支持库
     class Layout {
         int leftPadding_{ 0 };
         int topPadding_{ 0 };

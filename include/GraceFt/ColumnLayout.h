@@ -6,6 +6,7 @@
 
 namespace GFt {
     /// @brief 列布局类
+    /// @ingroup 基础UI支持库
     class ColumnLayout : public Layout, public Block {
         int space_{ 0 };
         std::map<Block*, float> blockLayout_;
