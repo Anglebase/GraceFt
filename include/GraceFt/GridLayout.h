@@ -7,7 +7,7 @@
 
 namespace GFt {
     /// @brief 网格布局类
-    /// @ingroup 基础UI支持库
+    /// @ingroup 基础UI封装库
     class GridLayout : public Layout, public Block {
         int rows_{ 1 }, cols_{ 1 };
         int vspace_{ 0 }, hspace_{ 0 };

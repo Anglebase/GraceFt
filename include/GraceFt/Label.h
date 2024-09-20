@@ -6,7 +6,7 @@
 namespace GFt {
     namespace Widget {
         /// @brief 文本标签控件
-        /// @ingroup 部件
+        /// @ingroup 部件库
         class Label : public Block {
             std::wstring text_;
 

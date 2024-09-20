@@ -6,9 +6,9 @@
 #include <GraceFt/BrushSet.h>
 #include <GraceFt/TextSet.h>
 
+/// @defgroup 部件库
 namespace GFt {
     namespace Widget {
-        /// @defgroup 部件库
         
         /// @brief 按钮控件
         /// @ingroup 部件库
