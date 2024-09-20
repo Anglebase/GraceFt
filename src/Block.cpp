@@ -155,8 +155,8 @@ namespace GFt {
         using Iter = std::reverse_iterator<std::multiset<GFt::Block*, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
-            // if (child->rect() & this->rect()) // 子节点在自身范围内才触发绘制
-            child->handleOnDraw(lefttop + child->rect().position());
+            if (child->rect() & this->rect()) // 子节点与自身有交集才触发绘制
+                child->handleOnDraw(lefttop + child->rect().position());
         }
     }
     /// @cond IGNORE
