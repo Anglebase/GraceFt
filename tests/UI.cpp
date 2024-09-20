@@ -5,42 +5,57 @@ using namespace GFt::UI;
 using namespace GFt;
 using namespace GFt::Widget;
 
-void RootWindow(){
+void RowLayoutContent(RowLayout& it) {
+    it.setSpace(5);
+    it.setPadding(5);
+    XButton{
+        .name = DNAME(Button1),
+        .text = L"Hello,world!",
+        .rect = iRect{100,100,100,100},
+        .parent = it,
+        .content = [](Button& it) {
+            it.onClicked.connect([&it] {
+                std::cout << "Button1 clicked" << std::endl;
+                it.setZIndex(it.getZIndex() + 1);
+                auto obj = BLOCK(Button2);
+                std::cout << "Button2 z-index: " << dynamic_cast<Button*>(obj)->getZIndex() << std::endl;
+                std::cout << "Button1 z-index: " << it.getZIndex() << std::endl;
+            });
+        }
+    };
+    it.addItem(BLOCK(Button1));
+    XButton{
+        .name = DNAME(Button2),
+        .text = L"Button2",
+        .rect = iRect{150,150,100,100},
+        .parent = it,
+        .content = [](Button& it) {
+            it.onClicked.connect([&it] {
+                std::cout << "Button2 clicked" << std::endl;
+                it.setZIndex(it.getZIndex() + 1);
+                auto obj = BLOCK(Button1);
+                std::cout << "Button1 z-index: " << dynamic_cast<Button*>(obj)->getZIndex() << std::endl;
+                std::cout << "Button2 z-index: " << it.getZIndex() << std::endl;
+            });
+        }
+    };
+    it.addItem(BLOCK(Button2), 2.f);
+}
+
+void WindowContent(Block& it) {
+    XRowLayout{
+        .name = "RowLayout",
+        .rect = iRect{50,50,200,100},
+        .parent = it,
+        .content = RowLayoutContent,
+    };
+}
+
+void RootWindow() {
     XWindow{
         .name = "Root",
         .rect = iRect{50,50,800,600},
-        .content = [](Block& it) {
-            XButton{
-                .name = DNAME(Button1),
-                .text = L"Hello,world!",
-                .rect = iRect{100,100,100,100},
-                .parent = it,
-                .content = [](Button& it) {
-                    it.onClicked.connect([&it] {
-                        std::cout << "Button1 clicked" << std::endl;
-                        it.setZIndex(it.getZIndex() + 1);
-                        auto obj = BLOCK(Button2);
-                        std::cout << "Button2 z-index: " << dynamic_cast<Button*>(obj)->getZIndex() << std::endl;
-                        std::cout << "Button1 z-index: " << it.getZIndex() << std::endl;
-                    });
-                }
-            };
-            XButton{
-                .name = DNAME(Button2),
-                .text = L"Button2",
-                .rect = iRect{150,150,100,100},
-                .parent = it,
-                .content = [](Button& it) {
-                    it.onClicked.connect([&it] {
-                        std::cout << "Button2 clicked" << std::endl;
-                        it.setZIndex(it.getZIndex() + 1);
-                        auto obj = BLOCK(Button1);
-                        std::cout << "Button1 z-index: " << dynamic_cast<Button*>(obj)->getZIndex() << std::endl;
-                        std::cout << "Button2 z-index: " << it.getZIndex() << std::endl;
-                    });
-                }
-            };
-        }
+        .content = WindowContent,
     };
 }
 
