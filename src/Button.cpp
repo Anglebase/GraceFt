@@ -14,6 +14,8 @@ namespace GFt {
             HoverOn.connect([this](Block*){ this->brushSet_.setFillStyle(this->hoverColor_); });
             HoverOff.connect([this](Block*){ this->brushSet_.setFillStyle(this->backgroundColor_); });
         }
+        Button::Button(const iRect& rect, Block* parent, int zIndex) 
+            : Button(L"", rect, parent, zIndex) {}
         Button::~Button() {}
 
         std::wstring& Button::text() { return text_; }

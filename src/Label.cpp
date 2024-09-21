@@ -20,6 +20,9 @@ namespace GFt {
         Label::Label(const std::wstring& text, const iRect& rect, Block* parent, int zIndex)
             : Block(rect, parent, zIndex), text_(text), brushSet_(0x0_rgba), textSet_(0x0_rgb) {}
 
+        Label::Label(const iRect& rect, Block* parent, int zIndex) 
+            : Label(L"", rect, parent, zIndex) {}
+
         std::wstring& Label::text() { return text_; }
         BrushSet& Label::brushSet() { return brushSet_; }
         TextSet& Label::textSet() { return textSet_; }

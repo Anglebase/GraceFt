@@ -30,6 +30,7 @@ namespace GFt {
             /// @param parent 父控件
             /// @param zIndex 层级
             Label(const std::wstring& text, const iRect& rect, Block* parent = nullptr, int zIndex = 0);
+            Label(const iRect& rect, Block* parent = nullptr, int zIndex = 0);
             ~Label() override = default;
             
             /// @brief 文本内容

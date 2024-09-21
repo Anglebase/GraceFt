@@ -38,6 +38,7 @@ namespace GFt {
             /// @param parent 父控件
             /// @param zIndex 控件层级
             Button(const std::wstring& text, const iRect& rect, Block* parent = nullptr, int zIndex = 0);
+            Button(const iRect& rect, Block* parent = nullptr, int zIndex = 0);
             virtual ~Button();
             /// @brief 按钮文本
             std::wstring& text();
