@@ -38,5 +38,6 @@ int main() {
     Window* window = Window::createWindow(myWindow);
     Application app(window);
     Application::setFps(60);
+    window->show();
     return app.exec();
 }

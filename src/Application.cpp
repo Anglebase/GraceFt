@@ -18,9 +18,9 @@ namespace GFt {
             return;
         Application::root_ = root;
     }
-    void Application::render(Window* window) {
+    void Application::render(Window* window, bool clipO) {
         cleardevice();
-        window->handleOnDraw();
+        window->handleOnDraw(iPoint{}, clipO);
         flushwindow();
     }
     void Application::handleEvents(Window* window) {
@@ -116,11 +116,11 @@ namespace GFt {
         } while (kbhit());
     }
     Application::~Application() {}
-    int Application::exec() {
+    int Application::exec(bool cilpO) {
         auto lastTime = chrono::steady_clock::now();
         for (;is_run(); Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
             handleEvents(Application::root_);
-            render(Application::root_);
+            render(Application::root_, cilpO);
             auto nowTime = chrono::steady_clock::now();
             Application::realFps_ =
                 1.0 / chrono::duration_cast<chrono::microseconds>

@@ -24,7 +24,7 @@ namespace GFt {
         bool sortChildren_ = true;
 
         friend class Application;
-        void handleOnDraw(const iPoint& pos = iPoint());
+        void handleOnDraw(const iPoint& pos, bool cilpO);
         void handleOnMouseButtonPress(MouseButtonPressEvent* event, const iPoint& pos = iPoint());
         void handleOnMouseButtonRelease(MouseButtonReleaseEvent* event, const iPoint& pos = iPoint());
         void handleOnMouseMove(MouseMoveEvent* event, const iPoint& pos = iPoint());

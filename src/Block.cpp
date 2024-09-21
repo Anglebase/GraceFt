@@ -137,7 +137,7 @@ namespace GFt {
         return rect().position() + parent_->absolutePos();
     }
 
-    void Block::handleOnDraw(const iPoint& lefttop) {
+    void Block::handleOnDraw(const iPoint& lefttop, bool cilpO) {
         // 设置裁剪区域
         /// @bug 此函数应裁剪到自身的范围
         setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
@@ -155,8 +155,8 @@ namespace GFt {
         using Iter = std::reverse_iterator<std::multiset<GFt::Block*, GFt::Block::CompareByZIndex>::iterator>;
         for (Iter riter = children_.rbegin(); riter != children_.rend(); ++riter) {
             auto child = *riter;
-            if (child->rect() & this->rect()) // 子节点与自身有交集才触发绘制
-                child->handleOnDraw(lefttop + child->rect().position());
+            if (!cilpO || child->rect() & this->rect()) // 子节点与自身有交集才触发绘制
+                child->handleOnDraw(lefttop + child->rect().position(), cilpO);
         }
     }
     /// @cond IGNORE

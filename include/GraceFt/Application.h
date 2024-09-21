@@ -8,7 +8,7 @@ namespace GFt {
     /// @details 该类封装了程序的主要逻辑, 包括渲染, 事件处理, 帧率控制等
     /// @ingroup 基础UI封装库
     class Application {
-        void render(Window* window);
+        void render(Window* window, bool cilpO);
         void handleEvents(Window* window);
         static Window* root_;
         static double FPS_;
@@ -27,9 +27,10 @@ namespace GFt {
         ~Application();
 
         /// @brief 运行程序
+        /// @param cilpO 是否启用绘图裁剪优化
         /// @return 程序退出状态
         /// @details 该函数会阻塞线程, 直到程序退出
-        int exec();
+        int exec(bool cilpO = true);
         /// @brief 运行程序
         /// @return 程序退出状态
         /// @details 该函数效果等同于 exec()
