@@ -351,6 +351,23 @@ namespace GFt {
             IMG(target_)
         );
     }
+    void Graphics::drawAlphaImage(const PixelMap& pixelMap, const fPoint& dest, const fRect& src) {
+        putimage_withalpha(
+            IMG(target_),
+            IMG(pixelMap.pixmap_),
+            dest.x(), dest.y(),
+            src.x(), src.y(), src.width(), src.height()
+        );
+    }
+    void Graphics::drawAlphaImage(const PixelMap& pixelMap, const fRect& dest, const fRect& src, bool smooth) {
+        putimage_withalpha(
+            IMG(target_),
+            IMG(pixelMap.pixmap_),
+            dest.x(), dest.y(), dest.width(), dest.height(),
+            src.x(), src.y(), src.width(), src.height(),
+            smooth
+        );
+    }
     int Graphics::drawText(
         const std::wstring& text, const fPoint& pos,
         const std::vector<std::wstring>& fonts, bool show) {

@@ -180,6 +180,18 @@ namespace GFt {
         /// @param src 要绘制的区域
         /// @param pixelMap 要绘制的位图
         void drawImage(const fRect& dest, const fRect& src, const PixelMap& pixelMap);
+        /// @brief 以带有透明通道的形式绘制位图
+        /// @param pixelMap 要绘制的位图
+        /// @param dest 要绘制的目标位置
+        /// @param src 要绘制的源区域
+        void drawAlphaImage(const PixelMap& pixelMap, const fPoint& dest, const fRect& src);
+        /// @brief 以带有透明通道的形式绘制位图
+        /// @details 若源区域与目标区域的大小不一致，则会执行拉伸操作
+        /// @param pixelMap 要绘制的位图
+        /// @param dest 要绘制的目标区域
+        /// @param src 要绘制的源区域
+        /// @param smooth 是否启用平滑处理
+        void drawAlphaImage(const PixelMap& pixelMap, const fRect& dest, const fRect& src, bool smooth = false);
 
         /// @brief 在指定位置绘制文本
         /// @param text 要绘制的文本
