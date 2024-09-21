@@ -58,11 +58,11 @@ namespace GFt {
     void Graphics::setTransform(const fMat3x3& matrix) {
         ege_transform_matrix mat;
         mat.m11 = matrix[0][0];
-        mat.m12 = matrix[1][0];
-        mat.m21 = matrix[0][1];
+        mat.m12 = matrix[0][1];
+        mat.m21 = matrix[1][0];
         mat.m22 = matrix[1][1];
-        mat.m31 = matrix[0][2];
-        mat.m32 = matrix[1][2];
+        mat.m31 = matrix[2][0];
+        mat.m32 = matrix[2][1];
         ege_set_transform(&mat, IMG(target_));
     }
     PixelMap* Graphics::getTarget() const {
