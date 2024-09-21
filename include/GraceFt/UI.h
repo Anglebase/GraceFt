@@ -11,6 +11,26 @@
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>
 
+#define DEF_DECLUI(ns, classname)                                         \
+        struct X##classname final {                                       \
+            /** @brief 块识别名称 */                                        \
+            const std::string_view name;                                  \
+            /** @brief 所在矩形 */                                         \
+            GFt::iRect rect;                                              \
+            /** @brief 父块 */                                             \
+            GFt::Block& parent;                                           \
+            /** @brief 层级 */                                             \
+            int zIndex = 0;                                               \
+            /** @brief 内容定义 */                                         \
+            std::function<void(ns::classname&)> content;                  \
+            ~X##classname(){                                              \
+            ns::classname* it = new ns::classname(rect, &parent, zIndex); \
+            auto& uiManager = GFt::DeclarativeUIManager::getInstance();   \
+            uiManager.addBlock(name, it);                                 \
+            if (content)                                                  \
+                content(*it);                                             \
+            }                                                             \
+        }
 namespace GFt {
     /// @brief 定义式UI管理器
     /// @details 管理所有声明式UI块，并提供查找和添加和统一析构的功能
@@ -55,6 +75,7 @@ namespace GFt {
 
     /// @brief 声明式UI框架
     namespace UI {
+
         /// @brief 窗口声明式UI块
         /// @details 窗口声明式UI块用于声明式地创建窗口，并提供窗口内容的设置
         struct XWindow final {
@@ -68,102 +89,22 @@ namespace GFt {
         };
         /// @brief 块声明式UI块
         /// @details 块声明式UI块用于声明式地创建块，并提供块内容的设置
-        struct XBlock final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::Block&)> content;
-            ~XBlock();
-        };
+        DEF_DECLUI(GFt, Block);
         /// @brief 按钮声明式UI块
         /// @details 按钮声明式UI块用于声明式地创建按钮，并提供按钮内容的设置
-        struct XButton final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 按钮文本
-            std::wstring text;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::Widget::Button&)> content;
-            ~XButton();
-        };
+        DEF_DECLUI(GFt::Widget, Button);
         /// @brief 标签声明式UI块
         /// @details 标签声明式UI块用于声明式地创建标签，并提供标签内容的设置
-        struct XLabel final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 标签文本
-            std::wstring text;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::Widget::Label&)> content;
-            ~XLabel();
-        };
+        DEF_DECLUI(GFt::Widget, Label);
         /// @brief 行布局声明式UI块
         /// @details 行布局声明式UI块用于声明式地创建行布局，并提供布局内容的设置
-        struct XRowLayout final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::RowLayout&)> content;
-            ~XRowLayout();
-        };
+        DEF_DECLUI(GFt, RowLayout);
         /// @brief 列布局声明式UI块
         /// @details 列布局声明式UI块用于声明式地创建列布局，并提供布局内容的设置
-        struct XColumnLayout final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::ColumnLayout&)> content;
-            ~XColumnLayout();
-        };
+        DEF_DECLUI(GFt, ColumnLayout);
         /// @brief 网格布局声明式UI块
         /// @details 网格布局声明式UI块用于声明式地创建网格布局，并提供布局内容的设置
-        struct XGridLayout final {
-            /// @brief 块识别名称
-            const std::string_view name;
-            /// @brief 所在矩形
-            iRect rect;
-            /// @brief 父块
-            GFt::Block& parent;
-            /// @brief 网格行数
-            int rows = 2;
-            /// @brief 网格列数
-            int cols = 2;
-            /// @brief 层级
-            int zIndex = 0;
-            /// @brief 内容定义
-            std::function<void(GFt::GridLayout&)> content;
-            ~XGridLayout();
-        };
+        DEF_DECLUI(GFt, GridLayout);
     }
 }
 

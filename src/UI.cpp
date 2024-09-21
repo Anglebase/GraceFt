@@ -44,47 +44,5 @@ namespace GFt {
             if (content)
                 content(*it);
         }
-        XBlock::~XBlock() {
-            GFt::Block* it = new GFt::Block(this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
-        XButton::~XButton() {
-            GFt::Widget::Button* it = new GFt::Widget::Button(this->text, this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
-        XLabel::~XLabel() {
-            GFt::Widget::Label* it = new GFt::Widget::Label(this->text, this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
-        XRowLayout::~XRowLayout() {
-            GFt::RowLayout* it = new GFt::RowLayout(this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
-        XColumnLayout::~XColumnLayout() {
-            GFt::ColumnLayout* it = new GFt::ColumnLayout(this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
-        XGridLayout::~XGridLayout() {
-            GFt::GridLayout* it = new GFt::GridLayout(this->rect, &this->parent, this->zIndex);
-            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
-            uiManager.addBlock(name, it);
-            if (content)
-                content(*it);
-        }
     }
 }
