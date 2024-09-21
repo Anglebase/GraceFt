@@ -24,6 +24,7 @@ namespace GFt {
 
     /// @class Matrix
     /// @brief 矩阵类模板
+    /// @details 此处采用行主序矩阵，即 data[i][j] 表示第 i 行第 j 列元素
     /// @tparam M 行数
     /// @tparam N 列数
     /// @tparam T 数据类型
@@ -157,7 +158,7 @@ namespace GFt {
         /// @brief 矩阵负号运算符重载
         /// @details 相当于 0 - this
         /// @return 矩阵负号运算结果
-        constexpr Matrix operator-() const { return 0 - *this; }
+        constexpr Matrix operator-() const { return Matrix() - *this; }
         /// @brief 矩阵加号运算符重载
         /// @return 自身
         constexpr Matrix operator+() const { return *this; }
