@@ -1,7 +1,7 @@
 # GraceFt 教程
 
 ## 基本介绍
-GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https://club.xege.org/) 的图形应用程序框架，GracFt 基于[GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html)开源协议开源。GraceFt 的一大特色是它完全基于原生的C++实现了**声明式**的界面编程模型，使得界面开发更加简单、直观。目前，GraecFt 的所有内容全部位于命名空间 GFt 下, GFt 中分为3个主要模块: GFt::UI 、 GFt::Widget 和 GFt 根命名空间。GFt 的根命名空间提供了一系列基础设施, GFt::Widget 提供了一些常用部件, GFt::UI 提供了声明式的界面编程模型的实现支持；其次 GFt 中还有 GFt::literals 命名空间提供了一些方便的字面量定义。
+GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https://club.xege.org/) 的图形应用程序框架，GracFt 基于[GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html)开源协议开源。GraceFt 的一大特色是它完全基于原生的C++实现了声明式的界面编程模型，使得界面开发更加简单、直观。目前，GraecFt 的所有内容全部位于命名空间 GFt 下, GFt 中分为3个主要模块: GFt::UI 、 GFt::Widget 和 GFt 根命名空间。GFt 的根命名空间提供了一系列基础设施, GFt::Widget 提供了一些常用部件, GFt::UI 提供了声明式的界面编程模型的实现支持；其次 GFt 中还有 GFt::literals 命名空间提供了一些方便的字面量定义。
 
 ## 环境配置
 1. **确保你的电脑上已经安装了至少支持 C++20 的编译器**: GracFt 是基于 C++20 开发的，所以你的编译器必须支持 C++20 才能编译 GraceFt 项目
