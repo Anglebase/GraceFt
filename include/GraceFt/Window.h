@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GraceFt/Block.h>
+#include <GraceFt/Signal.hpp>
 
 namespace GFt {
     /// @class Window
@@ -60,5 +61,8 @@ namespace GFt {
         /// @brief 获取已创建的窗口对象实例
         /// @return 已创建的窗口对象指针
         static Window* window();
+    public:
+        static Signal<Window*> onWindowCreated;  ///< 窗口创建信号
+        static Signal<Window*> onWindowDestroyed;  ///< 窗口销毁信号
     };
 }

@@ -17,9 +17,11 @@ namespace GFt {
         setcolor(BLACK);
         setfillcolor(EGERGBA(195, 198, 220, 230));
         cleardevice();
+        Window::onWindowCreated(this);
     }
     Window::~Window() {
         closegraph();
+        Window::onWindowDestroyed(this);
     }
     void Window::show() { showwindow(); }
     void Window::hide() { hidewindow(); }
