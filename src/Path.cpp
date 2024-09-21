@@ -62,7 +62,7 @@ namespace GFt {
         ege_rect rect = ege_path_getbounds(PATH(data_), &matrix);
         return fRect(rect.x, rect.y, rect.w, rect.h);
     }
-    /// @bug 由于EGE的ege_path_transform函数的实现问题, 导致无法正确实现transformBy函数(此函数会引发段错误)
+    /// @bug 由于EGE(24.04)的ege_path_transform函数的实现问题, 导致无法正确实现transformBy函数(此函数会引发段错误)
     /// @warning 此函数会引发段错误
     void Path::transformBy(const fMat3x3& transform) {
         ege_transform_matrix matrix;
