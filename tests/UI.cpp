@@ -10,10 +10,10 @@ void RowLayoutContent(RowLayout& it) {
     it.setPadding(5);
     XButton{
         .name = DNAME(Button1),
-        .text = L"Hello,world!",
         .rect = iRect{100,100,100,100},
         .parent = it,
         .content = [](Button& it) {
+            it.text() = L"Button1";
             it.onClicked.connect([&it] {
                 std::cout << "Button1 clicked" << std::endl;
                 it.setZIndex(it.getZIndex() + 1);
@@ -26,10 +26,10 @@ void RowLayoutContent(RowLayout& it) {
     it.addItem(BLOCK(Button1));
     XButton{
         .name = DNAME(Button2),
-        .text = L"Button2",
         .rect = iRect{150,150,100,100},
         .parent = it,
         .content = [](Button& it) {
+            it.text() = L"Button2";
             it.onClicked.connect([&it] {
                 std::cout << "Button2 clicked" << std::endl;
                 it.setZIndex(it.getZIndex() + 1);
@@ -58,7 +58,6 @@ void RootWindow() {
         .content = WindowContent,
     };
 }
-
 
 int main() {
     RootWindow();
