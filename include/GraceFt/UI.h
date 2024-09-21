@@ -1,6 +1,9 @@
 #pragma once
 
 #include <map>
+#include <string_view>
+#include <memory>
+
 #include <GraceFt/Window.h>
 #include <GraceFt/Button.h>
 #include <GraceFt/Label.h>
@@ -12,7 +15,7 @@ namespace GFt {
     /// @brief 定义式UI管理器
     /// @details 管理所有声明式UI块，并提供查找和添加和统一析构的功能
     class DeclarativeUIManager final {
-        std::map<std::string_view, Block*> blocks;
+        std::map<std::string_view, std::unique_ptr<Block>> blocks;
     private:
         DeclarativeUIManager() = default;
         DeclarativeUIManager(const DeclarativeUIManager&) = delete;
@@ -32,12 +35,19 @@ namespace GFt {
         /// @brief 添加UI块
         /// @param name 块名称
         /// @param block 块指针
-        /// @details 块名称不能重复，如果名称已存在，则会抛出异常
+        /// @details 所有通过此方法添加的块都会被包装为std::unique_ptr，并自动管理生命周期
+        ///          因此，不需要再手动delete块
+        /// @throw 块名称不能重复，如果名称已存在，则会抛出异常
         void addBlock(const std::string_view& name, Block* block);
         /// @brief 移除UI块
         /// @param name 块名称
         /// @details 如果名称不存在，则不会有任何操作
         void removeBlock(const std::string_view& name);
+        /// @brief 替换UI块
+        /// @param name 块名称
+        /// @param block 新的块指针
+        /// @details 如果名称不存在，则会自动添加；如果名称已存在，则会自动替换
+        void replaceBlock(const std::string_view& name, Block* block);
         /// @brief 获取UI管理器实例
         /// @return UI管理器实例
         static DeclarativeUIManager& getInstance();

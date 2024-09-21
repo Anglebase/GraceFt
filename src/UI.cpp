@@ -4,17 +4,16 @@
 
 namespace GFt {
     DeclarativeUIManager::~DeclarativeUIManager() {
-        for (auto& [name, pblock] : this->blocks)
-            delete pblock;
+
     }
     Block* DeclarativeUIManager::findBlock(const std::string_view& name) {
         if (blocks.find(name) == blocks.end())
             return nullptr;
-        return blocks.at(name);
+        return blocks.at(name).get();
     }
     std::string_view DeclarativeUIManager::findBlockByName(const Block* block) const {
         for (auto& [name, pblock] : this->blocks)
-            if (pblock == block)
+            if (pblock.get() == block)
                 return name;
         using namespace std::literals;
         return ""sv;
@@ -22,13 +21,15 @@ namespace GFt {
     void DeclarativeUIManager::addBlock(const std::string_view& name, Block* pblock) {
         if (blocks.find(name) != blocks.end())
             throw std::runtime_error("Block with the same name already exists.");
-        blocks[name] = pblock;
+        blocks[name] = std::unique_ptr<Block>(pblock);
     }
     void DeclarativeUIManager::removeBlock(const std::string_view& name) {
         if (blocks.find(name) == blocks.end())
             return;
-        delete blocks.at(name);
         blocks.erase(name);
+    }
+    void DeclarativeUIManager::replaceBlock(const std::string_view& name, Block* block) {
+        blocks[name] = std::unique_ptr<Block>(block);
     }
     DeclarativeUIManager& DeclarativeUIManager::getInstance() {
         static DeclarativeUIManager instance;
