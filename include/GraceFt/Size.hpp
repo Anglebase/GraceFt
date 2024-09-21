@@ -66,7 +66,7 @@ namespace GFt {
         /// @brief 逻辑非运算符重载
         /// @details 若 width 或 height 不全为 0，则返回 false，否则返回 true
         /// @return 逻辑非运算结果
-        constexpr bool operator!() const { return !(*this); }
+        constexpr bool operator!() const { return !static_cast<bool>(*this); }
 
         /// @brief 加法运算符重载
         /// @param other 另一个尺寸对象
