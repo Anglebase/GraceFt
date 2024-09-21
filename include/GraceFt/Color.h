@@ -76,7 +76,7 @@ namespace GFt {
 
     namespace literals {
         /// @brief _rgb 字面量运算符重载
-        /// @details 允许使用类似"0xRRGGBB"的形式创建颜色，例如Color c = "0xFF0000"_rgb;
+        /// @details 允许使用类似"0xRRGGBB"的形式创建颜色，例如Color c = 0xFF0000_rgb;
         /// @param hex 16进制颜色值
         /// @return 颜色对象
         constexpr Color operator""_rgb(unsigned long long int hex) {
@@ -87,7 +87,7 @@ namespace GFt {
             );
         }
         /// @brief _rgba 字面量运算符重载
-        /// @details 允许使用类似"0xRRGGBBAA"的形式创建颜色，例如Color c = "0xFF000000"_rgba;
+        /// @details 允许使用类似"0xRRGGBBAA"的形式创建颜色，例如Color c = 0xFF000000_rgba;
         /// @param hex 16进制颜色值
         /// @return 颜色对象
         constexpr Color operator""_rgba(unsigned long long int hex) {
