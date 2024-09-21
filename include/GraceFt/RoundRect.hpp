@@ -20,7 +20,7 @@ namespace GFt {
         /// @param rad 圆角半径
         constexpr RoundRect(const Rect<T>& rect, T rad)
             : rect_(rect), lt(rad), rt(rad), rb(rad), lb(rad) {
-            rect.normalize();
+            rect_.normalize();
         }
 
         /// @brief 圆角矩形所在矩形

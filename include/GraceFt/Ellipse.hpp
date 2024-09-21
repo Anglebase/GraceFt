@@ -15,7 +15,7 @@ namespace GFt {
     public:
         /// @brief 构造函数
         /// @param rect 椭圆的外接矩形
-        constexpr Ellipse(const Rect<T>& rect) : rect_(rect) { rect.normalize(); }
+        constexpr Ellipse(const Rect<T>& rect) : rect_(rect) { rect_.normalize(); }
         /// @brief 构造函数
         /// @param center 椭圆的中心点
         /// @param rx 椭圆的水平半径
