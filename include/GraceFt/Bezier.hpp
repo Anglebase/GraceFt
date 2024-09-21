@@ -34,6 +34,9 @@ namespace GFt {
         /// @param p  新线的结束点
         /// @param c2 新线结束点的控制点
         void addPoint(const Point<T>& c1, const Point<T>& p, const Point<T>& c2) {
+            if (points.empty()) {
+                points.push_back(p);
+            }
             points.push_back(c1);
             points.push_back(c2);
             points.push_back(p);
@@ -41,6 +44,11 @@ namespace GFt {
         /// @brief 统计点的数量
         /// @return 点的数量
         int count() const { return static_cast<int>(points.size()); }
+        
+        /// @cond IGNORE
+        // 以下为内部函数
+        std::vector<Point<T>>& getPoints() { return points; }
+        /// @endcond
 
         /// @brief 类型转换函数
         /// @tparam U 目标类型
@@ -51,7 +59,7 @@ namespace GFt {
         operator Bezier<U>() const {
             Bezier<U> result;
             for (const auto& p : this->points)
-                result.addPoint(p);
+                result.getPoints().push_back(Point<U>(p.x(), p.y()));
             return result;
         }
     };

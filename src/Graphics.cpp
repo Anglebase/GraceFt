@@ -230,6 +230,9 @@ namespace GFt {
             IMG(target_)
         );
     }
+    void Graphics::drawCircle(const fCircle& circle) {
+        ege_circle(circle.origin().x(), circle.origin().y(), circle.radius(), IMG(target_));
+    }
     void Graphics::drawPie(const fRect& rect, float startAngle, float sweepAngle) {
         ege_pie(
             rect.x(), rect.y(), rect.width(), rect.height(),
@@ -314,6 +317,9 @@ namespace GFt {
             rect.rect().width(), rect.rect().height(),
             IMG(target_)
         );
+    }
+    void Graphics::drawFillCircle(const fCircle& circle) {
+        ege_fillcircle(circle.origin().x(), circle.origin().y(), circle.radius(), IMG(target_));
     }
     /// @details 如果传入的曲线不是闭合的, 则此函数无效果
     void Graphics::drawFillFitCurve(const fFitCurve& curve) {

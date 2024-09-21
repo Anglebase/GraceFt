@@ -56,14 +56,14 @@ namespace GFt {
         /// @return 相同返回true，否则返回false
         constexpr bool operator==(const RoundRect<T>& other) const {
             using namespace _GFt_private_;
-            if constexpr (std::is_floating_point_v<T>) 
+            if constexpr (std::is_floating_point_v<T>)
                 if (_fsafe_equal(lt, other.lt) && _fsafe_equal(rt, other.rt) &&
-                    _fsafe_equal(rb, other.rb) && _fsafe_equal(lb, other.lb)) 
+                    _fsafe_equal(rb, other.rb) && _fsafe_equal(lb, other.lb))
                     return rect_ == other.rect_;
-            else 
-                if (lt == other.lt && rt == other.rt &&
-                    rb == other.rb && lb == other.lb) 
-                    return rect_ == other.rect_;
+                else
+                    if (lt == other.lt && rt == other.rt &&
+                        rb == other.rb && lb == other.lb)
+                        return rect_ == other.rect_;
             return false;
         }
         /// @brief 判断两个圆角矩形是否不同
@@ -86,12 +86,12 @@ namespace GFt {
         /// @return 转换后的圆角矩形
         template<typename U>
             requires std::is_arithmetic_v<U>
-        constexpr operator RoundRect<U> () const {
-            RoundRect<U> result(this->rect_);
-            result.lt = static_cast<U>(this->lt);
-            result.rt = static_cast<U>(this->rt);
-            result.rb = static_cast<U>(this->rb);
-            result.lb = static_cast<U>(this->lb);
+        constexpr operator RoundRect<U>() const {
+            RoundRect<U> result(this->rect_, 0);
+            result.radiusTopLeft() = static_cast<U>(this->lt);
+            result.radiusTopRight() = static_cast<U>(this->rt);
+            result.radiusBottomRight() = static_cast<U>(this->rb);
+            result.radiusBottomLeft() = static_cast<U>(this->lb);
             return result;
         }
     };

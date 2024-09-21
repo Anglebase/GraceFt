@@ -61,8 +61,8 @@ namespace GFt {
         operator FitCurve<U>() const {
             FitCurve<U> result;
             for (const auto& point : this->points)
-                result.addPoint(Point<U>(point.x, point.y));
-            result.closed = this->closed;
+                result.addPoint(Point<U>(point.x(), point.y()));
+            result.setClosed(this->closed);
             return result;
         }
     };

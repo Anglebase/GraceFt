@@ -14,6 +14,7 @@
 #include <GraceFt/Path.h>
 #include <GraceFt/PixelMap.h>
 #include <GraceFt/Color.h>
+#include <GraceFt/Circle.hpp>
 
 namespace GFt {
     /// @defgroup 文本枚举
@@ -119,6 +120,9 @@ namespace GFt {
         /// @brief 绘制椭圆
         /// @param rect 椭圆
         void drawEllipse(const fEllipse& ellipse);
+        /// @brief 绘制圆
+        /// @param circle 圆
+        void drawCircle(const fCircle& circle);
         /// @brief 绘制扇形线框
         /// @param rect 扇形所在椭圆的外接矩形
         /// @param startAngle 起始角度
@@ -154,6 +158,9 @@ namespace GFt {
         /// @brief 填充椭圆
         /// @param rect 椭圆
         void drawFillEllipse(const fEllipse& rect);
+        /// @brief 填充圆
+        /// @param circle 圆
+        void drawFillCircle(const fCircle& circle);
         /// @brief 填充闭合拟合曲线
         /// @param curve 拟合曲线
         void drawFillFitCurve(const fFitCurve& curve);
