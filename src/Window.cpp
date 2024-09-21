@@ -6,6 +6,9 @@
 #define H(hide) (hide? ege::INIT_HIDE : 0)
 
 namespace GFt {
+    Signal<Window*> Window::onWindowCreated;
+    Signal<Window*> Window::onWindowDestroyed;
+
     using namespace ege;
     using namespace literals;
     Window* Window::pInstance_ = nullptr;
