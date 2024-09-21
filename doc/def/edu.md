@@ -223,3 +223,81 @@ int main() {
 1. 确保你的电脑上已经安装 CMake 3.15 或以上版本和至少支持 C++20 的编译器(推荐使用[GCC 14.2](https://github.com/skeeto/w64devkit/releases)或更高版本)
 2. 下载项目模板并解压到你喜欢的目录，使用你习惯的IDE打开项目目录(推荐使用[Visual Studio Code](https://code.visualstudio.com/))
 *3. 通过启用 CMake 构建可以得到一个Hello GraceFt的示例程序*
+
+### 项目目录结构
+```
+.
+│  CMakeLists.txt
+│  main.cpp
+├─GraceFt-vX.Y.Z
+│  ├─GraceFt
+│  └─lib
+├─include
+│   MyWindow.h
+└─src
+    CMakeLists.txt
+    MyWindow.cpp
+```
+其中，`GraceFt-vX.Y.Z` 是 GraceFt 依赖项所在的目录，`include` 目录存放你自己的项目的头文件，`src` 目录存放项目的源文件。`main.cpp` 作为应用程序的入口文件，`CMakeLists.txt` 作为 CMake 构建脚本，`MyWindow.h` 和 `MyWindow.cpp` 作为示例窗口程序的源文件，你可以通过它们测试你的环境配置是否正确，也可以直接删除它们。同时不要忘记在 `CMakeLists.txt` 中移除它们。
+
+### 编写自己的窗口程序
+现在我们以一个简单的窗口程序为例，来展示如何基于 GraceFt 编写一个窗口程序。
+
+**首先，移除示例程序**，同时也不要忘记在 `CMakeLists.txt` 中移除它们。
+
+**然后，创建自己的头文件**，在 `include` 目录下创建一个名为 `MyGraecFt.h` 的头文件，并在其中定义自己的窗口类：
+```cpp
+/* MyGraecFt.h */
+#pragma once
+#include <GraceFt/Block.h>
+
+class MyGraecFt : public Block {
+protected:
+    void onDraw(const GFt::iRect& rect) override;
+public:
+    MyGraecFt(const GFt::iRect& rect, GFt::Block* parent = nullptr, int zIndex = 0);
+    virtual ~MyGraecFt();
+};
+```
+**接下来，创建自己的源文件**，在 `src` 目录下创建一个名为 `MyGraecFt.cpp` 的源文件，并在其中实现自己的窗口类：
+```cpp
+/* MyGraecFt.cpp */
+#include "MyWindow.h"
+
+#include <Graphics.h>
+using namespace GFt;
+using namespace GFt::literals;
+
+void MyGraceFt::onDraw(const GFt::iRect& rect) {
+    Graphics g;
+    BrushSet bs(0x7980f5ef_rgba);
+    TextSet ts(0x0ee_rgba);
+    g.bindBrushSet(&bs);
+    g.bindTextSet(&ts);
+    g.drawFillEllipse(fEllipse{ iRect{iPoint{}, rect.size() } });
+    g.drawText(L"My GraceFt!", iRect{ iPoint{}, rect.size() }, TextAlign::Center | TextAlign::Middle);
+}
+
+MyGraceFt::MyGraceFt(const GFt::iRect& rect, GFt::Block* parent, int zIndex)
+    : Block(rect, parent, zIndex) {}
+
+MyGraceFt::~MyGraceFt() = default;
+```
+**最后，在 `main.cpp` 中编写你的应用程序入口**，并在其中创建你的窗口对象：
+```cpp
+/* main.cpp */
+#include <GraceFt/Application.h>
+#include <Window.h>
+
+#include "MyWindow.h"
+using namespace GFt;
+
+int main() {
+    MyGraceFt root(iRect{ 50,50,800,600 });
+    Window* window = Window::createWindow(&root);
+    Application app(window);
+    window->show();
+    return app.run();
+}
+```
+**编译并运行程序**，你将会看到一个窗口出现在屏幕上，上面显示着 "My GraceFt!" 文本和一个填充的椭圆。
