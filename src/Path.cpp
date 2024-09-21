@@ -51,16 +51,28 @@ namespace GFt {
     int Path::count() const { return ege_path_pointcount(PATH(data_)); }
 
     /// @details 对于输入的矩阵, 会默认其已经过齐次变换
-    fRect Path::getBounds(const fMat2x2& transform) const {
+    fRect Path::getBounds(const fMat3x3& transform) const {
         ege_transform_matrix matrix;
         matrix.m11 = transform[0][0];
-        matrix.m12 = transform[1][0];
-        matrix.m21 = transform[0][1];
+        matrix.m12 = transform[0][1];
+        matrix.m21 = transform[1][0];
         matrix.m22 = transform[1][1];
-        matrix.m31 = transform[0][2];
-        matrix.m32 = transform[1][2];
+        matrix.m31 = transform[2][0];
+        matrix.m32 = transform[2][1];
         ege_rect rect = ege_path_getbounds(PATH(data_), &matrix);
         return fRect(rect.x, rect.y, rect.w, rect.h);
+    }
+    /// @bug 由于EGE的ege_path_transform函数的实现问题, 导致无法正确实现transformBy函数(此函数会引发段错误)
+    /// @warning 此函数会引发段错误
+    void Path::transformBy(const fMat3x3& transform) {
+        ege_transform_matrix matrix;
+        matrix.m11 = transform[0][0];
+        matrix.m12 = transform[0][1];
+        matrix.m21 = transform[1][0];
+        matrix.m22 = transform[1][1];
+        matrix.m31 = transform[2][0];
+        matrix.m32 = transform[2][1];
+        ege_path_transform(PATH(data_), &matrix);
     }
     void Path::addPath(const Path& other, bool connect) {
         ege_path_addpath(PATH(data_), PATH(other.data_), connect);

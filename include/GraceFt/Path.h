@@ -51,7 +51,10 @@ namespace GFt {
         /// @details 所得的外接矩形是经过变换后的路径的最小外接矩形
         /// @param transform 变换矩阵, 默认为单位矩阵
         /// @return 路径的最小外接矩形
-        fRect getBounds(const fMat2x2& transform = fMat2x2::I()) const;
+        fRect getBounds(const fMat3x3& transform = fMat3x3::I()) const;
+        /// @brief 对路径应用变换矩阵
+        /// @param transform 变换矩阵
+        void transformBy(const fMat3x3& transform);
 
         /// @brief 向路径中添加路径
         /// @param other 要添加的路径
