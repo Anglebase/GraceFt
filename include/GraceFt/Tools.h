@@ -4,6 +4,7 @@ namespace GFt {
     /// @defgroup 设备无关单位
     /// @ingroup 工具集
 
+    /// @brief 字面量定义
     namespace literals {
         /// @brief 设备无关的像素单位 (unsigned long long)
         /// @details 它会将该像素大小以96DPI为基准进行逻辑比例映射，用于屏幕适配

@@ -8,6 +8,7 @@
 
 /// @defgroup 部件库
 namespace GFt {
+    /// @brief 定义式UI库
     namespace Widget {
         
         /// @brief 按钮控件
