@@ -243,9 +243,9 @@ int main() {
 ### 编写自己的窗口程序
 现在我们以一个简单的窗口程序为例，来展示如何基于 GraceFt 编写一个窗口程序。
 
-**首先，移除示例程序**，同时也不要忘记在 `CMakeLists.txt` 中移除它们。
+**首先，移除示例程序** ，同时也不要忘记在 `CMakeLists.txt` 中移除它们。
 
-**然后，创建自己的头文件**，在 `include` 目录下创建一个名为 `MyGraecFt.h` 的头文件，并在其中定义自己的窗口类：
+**然后，创建自己的头文件** ，在 `include` 目录下创建一个名为 `MyGraecFt.h` 的头文件，并在其中定义自己的窗口类：
 ```cpp
 /* MyGraecFt.h */
 #pragma once
@@ -259,7 +259,7 @@ public:
     virtual ~MyGraecFt();
 };
 ```
-**接下来，创建自己的源文件**，在 `src` 目录下创建一个名为 `MyGraecFt.cpp` 的源文件，并在其中实现自己的窗口类：
+**接下来，创建自己的源文件** ，在 `src` 目录下创建一个名为 `MyGraecFt.cpp` 的源文件，并在其中实现自己的窗口类：
 ```cpp
 /* MyGraecFt.cpp */
 #include "MyWindow.h"
@@ -283,7 +283,7 @@ MyGraceFt::MyGraceFt(const GFt::iRect& rect, GFt::Block* parent, int zIndex)
 
 MyGraceFt::~MyGraceFt() = default;
 ```
-**最后，在 `main.cpp` 中编写你的应用程序入口**，并在其中创建你的窗口对象：
+**最后，在 `main.cpp` 中编写你的应用程序入口** ，并在其中创建你的窗口对象：
 ```cpp
 /* main.cpp */
 #include <GraceFt/Application.h>
@@ -300,4 +300,4 @@ int main() {
     return app.run();
 }
 ```
-**编译并运行程序**，你将会看到一个窗口出现在屏幕上，上面显示着 "My GraceFt!" 文本和一个填充的椭圆。
+**将上面所添加的文件添加到CmakeLists.txt中，并编译运行程序** ，你将会看到一个窗口出现在屏幕上，上面显示着 "My GraceFt!" 文本和一个填充的椭圆。
