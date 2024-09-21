@@ -59,7 +59,7 @@ namespace GFt {
         parent_ = parent;
         zIndex_ = zIndex;
         if (parent_ != nullptr)
-            parent_->children_.insert(this);
+            parent_->addChild(this);
     }
     Block::~Block() {}
     void Block::addChild(Block* child) {

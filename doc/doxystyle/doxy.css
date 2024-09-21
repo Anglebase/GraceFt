@@ -1470,3 +1470,8 @@ input.search {
  h1 {
 	font-size: 2.6rem;
  }
+
+ div .line {
+	font-family: var(--font);
+	line-height: 1.2rem;
+ }
