@@ -11,5 +11,8 @@ int main() {
     cout << "v1 * v2 = " << a << endl;
     cout << "v1 ^ v2 = " << b << endl;
     cout << "inner product = " << ((v1 | v2) == v1 * v2) << endl;
+
+    fVec3 v3 = makefVec3(1.0f, 1.0f, 1.0f);
+    cout << "rad = " << rotate(makefVec2(10.0f, 10.0f), radians(90.0f)) << endl;
     return 0;
 }

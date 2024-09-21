@@ -1,4 +1,5 @@
 #include <Matrix.hpp>
+#include <LMath.hpp>
 
 using namespace GFt;
 using namespace std;
@@ -8,6 +9,9 @@ int main() {
     constexpr float data2[4][4] = {{1, 2, 1, 4}, {5, 6, 7, 8}, {9, 6, 11, 12}, {13, 4, 5, 16}};
     fMat3x3 m1(data1);
     fMat4x4 m2(data2);
+    fVec4 v1 = makefVec4(1, 2, 3, 4);
+
+    cout << v1 * m2 << endl;
 
     cout << "I:" << fMat4x4::I() << endl;
     cout << "I == I^-1: " << std::boolalpha << (fMat4x4::I() == fMat4x4::I().transpose()) << endl;

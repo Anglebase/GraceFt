@@ -54,3 +54,6 @@ target_link_libraries(test_ColumnLayout ${GFt_LIBRARY_NAME})
 # GridLayout.h TEST
 add_executable(test_GridLayout ${CMAKE_CURRENT_SOURCE_DIR}/GridLayout.cpp)
 target_link_libraries(test_GridLayout ${GFt_LIBRARY_NAME})
+# Path.h TEST
+add_executable(test_Path "${CMAKE_CURRENT_SOURCE_DIR}/Path.cpp")
+target_link_libraries(test_Path ${GFt_LIBRARY_NAME})
