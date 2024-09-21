@@ -59,9 +59,19 @@ namespace GFt {
     /// @param v 向量
     /// @return 归一化后的向量
     /// @ingroup 线性代数工具
-    template<typename T>
-    constexpr Vec4<T> normalize(const Vec4<T>& v) {
-        return v / v[3];
+    template<size N, typename T>
+    constexpr Vec<N, T> normalize(const Vec<N, T>& v) {
+        return v / v[N - 1];
+    }
+    /// @brief 计算向量模长
+    /// @tparam N 维度数
+    /// @tparam T 类型
+    /// @param v 向量
+    /// @return 向量模长
+    /// @ingroup 线性代数工具
+    template<size N, typename T>
+    constexpr T norm(const Vec<N, T>& v) {
+        return sqrt(v * v);
     }
     /// @brief 构造向量
     /// @tparam N 维度数
@@ -149,5 +159,88 @@ namespace GFt {
     template<size M, size N, typename T>
     constexpr T operator|(const Matrix<M, N, T>& m1, const Matrix<M, N, T>& m2) {
         return innerProduct(m1, m2);
+    }
+    /// @brief 创建平移坐标变换矩阵
+    /// @tparam M 维度数
+    /// @tparam T 类型
+    /// @param v 平移向量
+    /// @return 平移变换矩阵
+    /// @ingroup 线性代数工具
+    template<size M, typename T>
+        requires (M == 2) || (M == 3)
+    constexpr Matrix<M + 1, M + 1, T> translate(const Vec<M, T>& v) {
+        Matrix<M + 1, M + 1, T> result = Matrix<M + 1, M + 1, T>::I();
+        for (size_t i = 0; i < M; i++)
+            result[M][i] = v[0][i];
+        return result;
+    }
+    /// @brief 创建缩放坐标变换矩阵
+    /// @tparam M 维度数
+    /// @tparam T 类型
+    /// @param pos 缩放中心，即缩放操作的基准点，缩放前后该点固定不动
+    /// @param s 缩放因子
+    /// @return 缩放变换矩阵
+    /// @ingroup 线性代数工具
+    template<size M, typename T>
+        requires (M == 2) || (M == 3)
+    constexpr Matrix<M + 1, M + 1, T> scale(const Vec<M, T>& pos, const Vec<M, T>& s) {
+        Matrix<M + 1, M + 1, T> result = Matrix<M + 1, M + 1, T>::I();
+        for (size_t i = 0; i < M; i++)
+            result(i, i) = s[0][i];
+        return translate(-pos) * result * translate(pos);
+    }
+    /// @brief 创建二维坐标系下的旋转坐标变换矩阵
+    /// @tparam T 类型
+    /// @param axis 旋转中心，即旋转的基准点，旋转前后该点固定不动
+    /// @param rad 旋转角度(弧度制)
+    /// @return 旋转变换矩阵
+    /// @ingroup 线性代数工具
+    template<typename T>
+    constexpr Matrix<3, 3, T> rotate(const Vec<2, T>& axis, float rad) {
+        Matrix<3, 3, T> result = Matrix<3, 3, T>::I();
+        float c = std::cos(rad);
+        float s = std::sin(rad);
+        Matrix<3, 3, T> rot = Matrix<3, 3, T>::I();
+        rot(0, 0) = c;
+        rot(0, 1) = -s;
+        rot(1, 0) = s;
+        rot(1, 1) = c;
+        return translate(-axis) * rot * translate(axis);
+    }
+    /// @brief 创建三维坐标系下的旋转坐标变换矩阵
+    /// @tparam T 类型
+    /// @param axis 旋转轴
+    /// @param rad 旋转角度(弧度制)
+    /// @return 旋转变换矩阵
+    /// @ingroup 线性代数工具
+    template<typename T>
+    constexpr Matrix<4, 4, T> rotate(const Vec<3, T>& axis, float rad) {
+        Matrix<4, 4, T> result = Matrix<4, 4, T>::I();
+        float c = std::cos(rad);
+        float s = std::sin(rad);
+        Vec<3, T> nor = axis / norm(axis);
+        float k[3][3] =
+        { {          0, -nor[0][2],  nor[0][1] },
+          {  nor[0][2],          0, -nor[0][0] },
+          { -nor[0][1],  nor[0][0],          0 } };
+        Matrix<3, 3, T> I3x3 = Matrix<3, 3, T>::I();
+        Mat3x3 K(k);
+        Matrix<3, 3, T> R = I3x3 + s * K + (1 - c) * (K * K);
+        for (size_t i = 0; i < 3; i++) {
+            for (size_t j = 0; j < 3; j++) {
+                result(i, j) = R(i, j);
+            }
+        }
+        return result;
+    }
+
+    /// @brief 将角度制转为弧度制
+    /// @tparam T 类型
+    /// @param deg 角度制
+    /// @return 弧度制
+    /// @ingroup 线性代数工具
+    template<typename T>
+    constexpr T radians(T deg) {
+        return deg * T(M_PI) / T(180);
     }
 }
