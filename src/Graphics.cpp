@@ -65,6 +65,9 @@ namespace GFt {
         mat.m32 = matrix[2][1];
         ege_set_transform(&mat, IMG(target_));
     }
+    void Graphics::resetTransform() {
+        ege_transform_reset(IMG(target_));
+    }
     PixelMap* Graphics::getTarget() const {
         return targetPixelMap_;
     }

@@ -60,6 +60,8 @@ namespace GFt {
         /// @brief 应用变换矩阵
         /// @param matrix 变换矩阵
         void setTransform(const fMat3x3& matrix);
+        /// @brief 重置变换矩阵
+        void resetTransform();
         /// @brief 获取绘图目标
         /// @return 绘图目标
         PixelMap* getTarget() const;
