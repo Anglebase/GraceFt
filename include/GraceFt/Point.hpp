@@ -6,6 +6,7 @@
 #include <type_traits>
 
 #include <GraceFt/_private.inl>
+#include <GraceFt/Matrix.hpp>
 
 /// @namespace GFt
 /// @brief GraceFt库的命名空间。
@@ -166,6 +167,16 @@ namespace GFt {
             requires std::is_arithmetic_v<U>
         constexpr operator Point<U>() const {
             return Point<U>(static_cast<U>(this->x_), static_cast<U>(this->y_));
+        }
+        /// @brief Vec2<T> 类型转换函数
+        /// @details 用于将 Point<T> 类型转换为 Vec2<T> 类型
+        /// @tparam T 坐标转换的目标类型，要求为算术类型
+        /// @return 转换后的 Vec2 对象
+        constexpr operator Vec2<T>() const {
+            Vec2<T> v;
+            v[0][0] = x_;
+            v[0][1] = y_;
+            return v;
         }
     };
 
