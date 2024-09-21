@@ -1,6 +1,8 @@
 #pragma once
 
 #include <GraceFt/Rect.hpp>
+#include <GraceFt/Point.hpp>
+#include <GraceFt/Line.hpp>
 
 namespace GFt {
 
@@ -41,5 +43,32 @@ namespace GFt {
         requires std::is_arithmetic_v<T>
     bool contains(const Rect<T>& r, const Point<T>& p) {
         return p.x() >= r.x() && p.x() < r.x() + r.width() && p.y() >= r.y() && p.y() < r.y() + r.height();
+    }
+
+    /// @brief 计算点a关于点b的对称点
+    /// @tparam T 点的类型，必须是数字类型
+    /// @param a 点a
+    /// @param b 点b
+    /// @return 点a关于点b的对称点
+    /// @ingroup 几何求解工具
+    template<typename T>
+        requires std::is_arithmetic_v<T>
+    Point<T> centerSymmetric(const Point<T>& a, const Point<T>& b) {
+        return Point<T>(2 * b.x() - a.x(), 2 * b.y() - a.y());
+    }
+    /// @brief 计算直线l关于点p的对称线
+    /// @tparam T 点的类型，必须是数字类型
+    /// @param l 直线
+    /// @param p 点p
+    /// @return 直线l关于点p的对称线
+    /// @ingroup 几何求解工具
+    template<typename T>
+        requires std::is_arithmetic_v<T>
+    Line<T> centerSymmetric(const Line<T>& l, const Point<T>& p) {
+        Point<T> a = l.P1();
+        Point<T> b = l.P2();
+        Point<T> c = centerSymmetric(a, p);
+        Point<T> d = centerSymmetric(b, p);
+        return Line<T>(c, d);
     }
 }
