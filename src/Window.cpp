@@ -36,6 +36,14 @@ namespace GFt {
     }
     void Window::moveTo(const iPoint& pos) { movewindow(pos.x(), pos.y()); }
     void Window::setTitle(const std::wstring& title) { setcaption(title.c_str()); }
+    void Window::setTopMost(bool topMost) {
+        SetWindowPos(getHWnd(), topMost? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+    }
+    void Window::setFrameless(bool frameless) {
+        auto style = GetWindowLong(getHWnd(), GWL_STYLE);
+        frameless? style &= ~WS_CAPTION : style |= WS_CAPTION;
+        SetWindowLong(getHWnd(), GWL_STYLE, style);
+    }
     Window* Window::createWindow(Block* block, bool hide) {
         if (!block) return nullptr;
         auto rect = block->rect();

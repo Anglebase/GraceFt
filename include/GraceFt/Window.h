@@ -37,6 +37,12 @@ namespace GFt {
         /// @brief 设置窗口标题
         /// @param title 新的标题
         void setTitle(const std::wstring& title);
+        /// @brief 设置窗口是否置顶
+        /// @param topMost 是否置顶
+        void setTopMost(bool topMost = true);
+        /// @brief 设置窗口是否无边框
+        /// @param frameless 是否无边框
+        void setFrameless(bool frameless = true);
 
     public:
         /// @brief 创建普通窗口
