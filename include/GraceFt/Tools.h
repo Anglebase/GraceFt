@@ -61,28 +61,28 @@ namespace GFt {
         /// @details 它以窗口的物理像素宽度为 100%(100_vw) 基准进行逻辑比例映射
         /// @param n 百分数宽度
         /// @return 实际宽度大小
-        /// @note 此函数仅在应用程序窗口被创建后有效,否则固定返回零值
+        /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vw(unsigned long long n);
         /// @brief 百分比映射的窗口宽度单位 (long double)
         /// @details 它以窗口的物理像素宽度为 100%(100_vw) 基准进行逻辑比例映射
         /// @param n 百分数宽度
         /// @return 实际宽度大小
-        /// @note 此函数仅在应用程序窗口被创建后有效,否则固定返回零值
+        /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vw(long double n);
         /// @brief 百分比映射的窗口高度单位 (unsigned long long)
         /// @details 它以窗口的物理像素高度为 100%(100_vh) 基准进行逻辑比例映射
         /// @param n 百分数宽度
         /// @return 实际宽度大小
-        /// @note 此函数仅在应用程序窗口被创建后有效,否则固定返回零值
+        /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vh(unsigned long long n);
         /// @brief 百分比映射的窗口高度单位 (long double)
         /// @details 它以窗口的物理像素高度为 100%(100_vh) 基准进行逻辑比例映射
         /// @param n 百分数宽度
         /// @return 实际宽度大小
-        /// @note 此函数仅在应用程序窗口被创建后有效,否则固定返回零值
+        /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vh(long double n);
     }
