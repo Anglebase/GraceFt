@@ -100,7 +100,7 @@ namespace GFt {
         /// @param event 鼠标滚轮事件
         virtual void onMouseWheel(MouseWheelEvent* event) = 0;
     };
-    /// @brief 鼠标和键盘事件监视器接口类
+    /// @brief 鼠标事件监视器接口类
     /// @ingroup 事件监视器
     class MouseEventMonitor :
         public MouseButtonEventMonitor,
