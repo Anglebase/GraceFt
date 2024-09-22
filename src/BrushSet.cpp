@@ -12,10 +12,6 @@ namespace GFt {
             delete BRUSH(brush_)->polygon.points;
             delete BRUSH(brush_)->polygon.colors;
         }
-        if (BRUSH(brush_)->mode == static_cast<int>(BrushStyle::Texture)) {
-            using namespace ege;
-            delimage(static_cast<PIMAGE>(BRUSH(brush_)->texture.data));
-        }
     }
     BrushSet::BrushSet(const Color& color) {
         brush_ = new BrushSetPrivate;
@@ -66,13 +62,7 @@ namespace GFt {
         BRUSH(brush_)->texture.y = rect.y();
         BRUSH(brush_)->texture.w = rect.width();
         BRUSH(brush_)->texture.h = rect.height();
-        using namespace ege;
-        auto img = newimage();
-        resize(img,
-            getwidth(static_cast<PIMAGE>(texture.texture_)),
-            getheight(static_cast<PIMAGE>(texture.texture_)));
-        putimage(img, 0, 0, static_cast<PIMAGE>(texture.texture_));
-        BRUSH(brush_)->texture.data = img;
+        BRUSH(brush_)->texture.data = texture.texture_;
     }
 
     void BrushSet::setLinearGradient(
