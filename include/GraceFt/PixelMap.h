@@ -11,6 +11,7 @@ namespace GFt {
     /// @ingroup 接口类型
     class PixelMap {
         friend class Graphics;
+        friend class Texture;
         void* pixmap_;
     public:
         /// @brief 构造函数
