@@ -11,6 +11,14 @@ namespace GFt {
     /// @ingroup 基础UI封装库
     class Window final : public Block {
         static Window* pInstance_;
+        Block* root_;
+
+        iSize store_;
+        iPoint pos_;
+        bool isMaximized_{ false };
+        bool isMinimized_{ false };
+        bool isTopMost_{ false };
+        bool isFrameless_{ false };
 
     private:
         Window(int width, int height, int flags);
@@ -26,8 +34,8 @@ namespace GFt {
         /// @brief 隐藏窗口
         void hide();
         /// @brief 更改窗口的大小
-        /// @param rect 新的窗口大小
-        void resize(const iSize& rect);
+        /// @param size 新的窗口大小
+        void resize(const iSize& size);
         /// @brief 移动窗口(相对位置)
         /// @param dpos 相对于当前位置的差值
         void move(const iPoint& dpos);
@@ -39,10 +47,21 @@ namespace GFt {
         void setTitle(const std::wstring& title);
         /// @brief 设置窗口是否置顶
         /// @param topMost 是否置顶
+        /// @note 当窗口最大化时, 此函数无效
         void setTopMost(bool topMost = true);
         /// @brief 设置窗口是否无边框
         /// @param frameless 是否无边框
+        /// @note 当窗口最大化时, 此函数无效
         void setFrameless(bool frameless = true);
+        /// @brief 设置窗口透明度
+        /// @param alpha 透明度值(0.0~1.0)
+        void setAlpha(float alpha);
+        /// @brief 窗口最小化
+        void minimize();
+        /// @brief 窗口最大化
+        void maximize();
+        /// @brief 还原最大化的窗口
+        void restore();
 
     public:
         /// @brief 创建普通窗口
@@ -70,5 +89,10 @@ namespace GFt {
     public:
         static Signal<Window*> onWindowCreated;  ///< 窗口创建信号
         static Signal<Window*> onWindowDestroyed;  ///< 窗口销毁信号
+        static Signal<Window*> onWindowResized;  ///< 窗口大小改变信号
+        static Signal<Window*> onWindowMoved;  ///< 窗口位置改变信号
+        static Signal<Window*> onWindowMinimized;  ///< 窗口最小化信号
+        static Signal<Window*> onWindowMaximized;  ///< 窗口最大化信号
+        static Signal<Window*> onWindowRestored;  ///< 窗口还原信号
     };
 }
