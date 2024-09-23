@@ -29,19 +29,19 @@ namespace GFt {
         other.brush_ = nullptr;
     }
     BrushSet& BrushSet::operator=(const BrushSet& other) {
-        if (this != &other) {
-            delete BRUSH(brush_);
-            brush_ = new BrushSetPrivate;
-            *BRUSH(brush_) = *BRUSH(&other);
-        }
+        if (this == &other)
+            return *this;
+        delete BRUSH(brush_);
+        brush_ = new BrushSetPrivate;
+        *BRUSH(brush_) = *BRUSH(&other);
         return *this;
     }
     BrushSet& BrushSet::operator=(BrushSet&& other) {
-        if (this != &other) {
-            delete BRUSH(brush_);
-            brush_ = other.brush_;
-            other.brush_ = nullptr;
-        }
+        if (this == &other)
+            return *this;
+        delete BRUSH(brush_);
+        brush_ = other.brush_;
+        other.brush_ = nullptr;
         return *this;
     }
     BrushSet::~BrushSet() {
@@ -95,7 +95,7 @@ namespace GFt {
         BRUSH(brush_)->radial.ocolor = EGERGBA(
             outerColor.red(), outerColor.green(), outerColor.blue(), outerColor.alpha());
     }
-    
+
     void BrushSet::setPolygonGradient(
         const fPoint& center, const Color& centerColor,
         const std::vector<fPoint>& points, const std::vector<Color>& colors) {

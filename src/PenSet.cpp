@@ -28,19 +28,18 @@ namespace GFt {
         other.pen_ = nullptr;
     }
     PenSet& PenSet::operator=(const PenSet& other) {
-        if (this != &other) {
-            PEN(pen_)->width = PEN(other.pen_)->width;
-            PEN(pen_)->line_type = PEN(other.pen_)->line_type;
-            PEN(pen_)->userdef = PEN(other.pen_)->userdef;
-        }
+        if (this == &other)
+            return *this;
+        PEN(pen_)->width = PEN(other.pen_)->width;
+        PEN(pen_)->line_type = PEN(other.pen_)->line_type;
+        PEN(pen_)->userdef = PEN(other.pen_)->userdef;
         return *this;
     }
     PenSet& PenSet::operator=(PenSet&& other) {
-        if (this != &other) {
+        if (this == &other)
             delete PEN(pen_);
-            pen_ = other.pen_;
-            other.pen_ = nullptr;
-        }
+        pen_ = other.pen_;
+        other.pen_ = nullptr;
         return *this;
     }
     PenSet::~PenSet() {

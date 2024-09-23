@@ -20,12 +20,12 @@ namespace GFt {
         pixmap_ = img;
     }
     PixelMap& PixelMap::operator=(const PixelMap& other) {
-        if (this != &other) {
-            auto img = newimage();
-            resize(img, getwidth(IMG(other.pixmap_)), getheight(IMG(other.pixmap_)));
-            putimage(img, 0, 0, IMG(other.pixmap_));
-            pixmap_ = img;
-        }
+        if (this == &other)
+            return *this;
+        auto img = newimage();
+        resize(img, getwidth(IMG(other.pixmap_)), getheight(IMG(other.pixmap_)));
+        putimage(img, 0, 0, IMG(other.pixmap_));
+        pixmap_ = img;
         return *this;
     }
     PixelMap::PixelMap(PixelMap&& other) {
@@ -33,10 +33,10 @@ namespace GFt {
         other.pixmap_ = nullptr;
     }
     PixelMap& PixelMap::operator=(PixelMap&& other) {
-        if (this != &other) {
-            pixmap_ = other.pixmap_;
-            other.pixmap_ = nullptr;
-        }
+        if (this == &other)
+            return *this;
+        pixmap_ = other.pixmap_;
+        other.pixmap_ = nullptr;
         return *this;
     }
     PixelMap::~PixelMap() {

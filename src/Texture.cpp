@@ -28,13 +28,13 @@ namespace GFt {
         ege_gentexture(true, IMG(texture_));
     }
     Texture& Texture::operator=(const Texture& other) {
-        if (this != &other) {
-            auto img = newimage();
-            resize(img, getwidth(IMG(other.texture_)), getheight(IMG(other.texture_)));
-            putimage(img, 0, 0, IMG(other.texture_));
-            texture_ = img;
-            ege_gentexture(true, IMG(texture_));
-        }
+        if (this == &other)
+            return *this;
+        auto img = newimage();
+        resize(img, getwidth(IMG(other.texture_)), getheight(IMG(other.texture_)));
+        putimage(img, 0, 0, IMG(other.texture_));
+        texture_ = img;
+        ege_gentexture(true, IMG(texture_));
         return *this;
     }
     Texture::Texture(Texture&& other) {
@@ -42,10 +42,10 @@ namespace GFt {
         other.texture_ = nullptr;
     }
     Texture& Texture::operator=(Texture&& other) {
-        if (this != &other) {
-            texture_ = other.texture_;
-            other.texture_ = nullptr;
-        }
+        if (this == &other)
+            return *this;
+        texture_ = other.texture_;
+        other.texture_ = nullptr;
         return *this;
     }
     Texture::~Texture() {

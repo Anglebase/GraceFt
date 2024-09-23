@@ -17,20 +17,20 @@ namespace GFt {
         other.data_ = nullptr;
     }
     Path& Path::operator=(const Path& other) {
-        if (this != &other) {
-            if (data_)
-                ege_path_destroy(PATH(data_));
-            data_ = ege_path_clone(PATH(other.data_));
-        }
+        if (this == &other)
+            return *this;
+        if (data_)
+            ege_path_destroy(PATH(data_));
+        data_ = ege_path_clone(PATH(other.data_));
         return *this;
     }
     Path& Path::operator=(Path&& other) {
-        if (this != &other) {
-            if (data_)
-                ege_path_destroy(PATH(data_));
-            data_ = other.data_;
-            other.data_ = nullptr;
-        }
+        if (this == &other)
+            return *this;
+        if (data_)
+            ege_path_destroy(PATH(data_));
+        data_ = other.data_;
+        other.data_ = nullptr;
         return *this;
     }
     Path::~Path() {

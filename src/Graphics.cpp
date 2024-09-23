@@ -33,12 +33,12 @@ namespace GFt {
         other.targetPixelMap_ = nullptr;
     }
     Graphics& Graphics::operator=(Graphics&& other) {
-        if (this != &other) {
+        if (this == &other)
+            return *this;
             target_ = other.target_;
             targetPixelMap_ = other.targetPixelMap_;
             other.target_ = nullptr;
             other.targetPixelMap_ = nullptr;
-        }
         return *this;
     }
     Graphics::~Graphics() {

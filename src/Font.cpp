@@ -34,21 +34,21 @@ namespace GFt {
         other.font_ = nullptr;
     }
     Font& Font::operator=(const Font& other) {
-        if (this != &other) {
-            delete FONT(font_);
-            auto* font = new LOGFONTW();
-            font_ = static_cast<void*>(font);
-            *FONT(font) = *FONT(other.font_);
-        }
+        if (this == &other)
+            return *this;
+        delete FONT(font_);
+        auto* font = new LOGFONTW();
+        font_ = static_cast<void*>(font);
+        *FONT(font) = *FONT(other.font_);
         return *this;
     }
     /// @note 对象被移动后原对象将失效, 它应该被弃置, 如果通过已被移动的对象访问其成员函数, 将引发空指针解引用(段错误)
     Font& Font::operator=(Font&& other) {
-        if (this != &other) {
-            delete FONT(font_);
-            font_ = other.font_;
-            other.font_ = nullptr;
-        }
+        if (this == &other)
+            return *this;
+        delete FONT(font_);
+        font_ = other.font_;
+        other.font_ = nullptr;
         return *this;
     }
     Font::~Font() {
