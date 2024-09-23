@@ -10,19 +10,21 @@ namespace GFt {
     /// @brief 槽函数ID类型
     template<typename... Args>
     using SlotId = std::size_t;
-    /// @addtogroup 对象通信机制
+    /// @addtogroup 糖衣工具
     /// @ingroup 基础设施库
 
     /// @class Signal
     /// @brief 信号-槽机制支持
     /// @details 支持任意数量的槽函数，支持任意数量的参数，支持任意类型的参数
-    /// @details 此类是线程安全的，且它是 基础设施库 => 对象通信机制 的一部分
+    /// @details 此类是线程安全的，且它是 基础设施库 => 糖衣工具 的一部分
     /// @tparam Args 信号参数类型
-    /// @ingroup 对象通信机制
+    /// @ingroup 糖衣工具
     template<typename... Args>
     class Signal {
         using Slot = std::function<void(Args...)>;
         using Slots = std::unordered_map<SlotId<Args...>, Slot>;
+
+        SlotId<Args...> id_ = 0ull;
 
         Slots slots_;
         std::mutex mutex_;
@@ -41,10 +43,9 @@ namespace GFt {
         /// @note 生成的槽函数ID时只保证唯一性，不保证其连续性
         /// @note 调用槽函数时不保证调用顺序与连接顺序一致
         SlotId<Args...> connect(const Slot& slot) {
-            static SlotId<Args...> id = 0ull;
             std::lock_guard<std::mutex> lock(mutex_);
-            slots_[id] = slot;
-            return id++;
+            slots_[id_] = slot;
+            return id_++;
         }
         /// @brief 将成员函数作为槽函数连接
         /// @tparam Object 成员函数所在类的类型
@@ -85,7 +86,7 @@ namespace GFt {
     };
     /// @addtogroup 基础设施库
     /// @{
-    /// @addtogroup 对象通信机制
+    /// @addtogroup 糖衣工具
     /// @{
         /// @class Signal<void>
         /// @brief Signal 的无参数特化版本
@@ -96,6 +97,8 @@ namespace GFt {
     class Signal<void> {
         using Slot = std::function<void()>;
         using Slots = std::unordered_map<SlotId<void>, Slot>;
+
+        SlotId<void> id_ = 0ull;
 
         Slots slots_;
         std::mutex mutex_;
@@ -110,10 +113,9 @@ namespace GFt {
         /// @param slot 槽函数
         /// @return 槽函数ID
         SlotId<void> connect(const Slot& slot) {
-            static SlotId<void> id = 0ull;
             std::lock_guard<std::mutex> lock(mutex_);
-            slots_[id] = slot;
-            return id++;
+            slots_[id_] = slot;
+            return id_++;
         }
         /// @brief 将成员函数作为槽函数连接
         /// @tparam Object 成员函数所在类的类型
