@@ -47,20 +47,23 @@ namespace GFt {
         void setTitle(const std::wstring& title);
         /// @brief 设置窗口是否置顶
         /// @param topMost 是否置顶
-        /// @note 当窗口最大化时, 此函数无效
+        /// @note 当窗口最大化或处于全屏显示状态时, 此函数无效
         void setTopMost(bool topMost = true);
         /// @brief 设置窗口是否无边框
         /// @param frameless 是否无边框
-        /// @note 当窗口最大化时, 此函数无效
+        /// @note 当窗口最大化或处于全屏显示状态时, 此函数无效
         void setFrameless(bool frameless = true);
         /// @brief 设置窗口透明度
         /// @param alpha 透明度值(0.0~1.0)
         void setAlpha(float alpha);
         /// @brief 窗口最小化
         void minimize();
-        /// @brief 窗口最大化
+        /// @brief 全屏显示窗口
+        void fullscreen();
+        /// @brief 最大化窗口
         void maximize();
-        /// @brief 还原最大化的窗口
+        /// @brief 还原最大化或全屏显示的窗口
+        /// @note 
         void restore();
 
     public:
@@ -94,5 +97,6 @@ namespace GFt {
         static Signal<Window*> onWindowMinimized;  ///< 窗口最小化信号
         static Signal<Window*> onWindowMaximized;  ///< 窗口最大化信号
         static Signal<Window*> onWindowRestored;  ///< 窗口还原信号
+        static Signal<Window*> onWindowFullscreened;  ///< 窗口获得焦点信号
     };
 }

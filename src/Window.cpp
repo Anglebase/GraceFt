@@ -13,6 +13,7 @@ namespace GFt {
     Signal<Window*> Window::onWindowMinimized;
     Signal<Window*> Window::onWindowMaximized;
     Signal<Window*> Window::onWindowRestored;
+    Signal<Window*> Window::onWindowFullscreened;
 
     using namespace ege;
     using namespace literals;
@@ -83,7 +84,7 @@ namespace GFt {
         isMaximized_ = false;
         onWindowMinimized(this);
     }
-    void Window::maximize() {
+    void Window::fullscreen() {
         RECT rect;
         GetWindowRect(getHWnd(), &rect);
         pos_ = iPoint{ rect.left, rect.top };
@@ -93,6 +94,27 @@ namespace GFt {
         this->setTopMost(true);
         this->setFrameless(true);
         isTopMost_ = t, isFrameless_ = f;
+        isMinimized_ = false;
+        isMaximized_ = true;
+        onWindowFullscreened(this);
+    }
+    void Window::maximize() {
+        // 保存当前窗口位置
+        RECT rect;
+        GetWindowRect(getHWnd(), &rect);
+        pos_ = iPoint{ rect.left, rect.top };
+        // 计算最大化窗口大小
+        RECT rectDesktop, rectWindow, rectClient;
+        SystemParametersInfoW(SPI_GETWORKAREA, 0, &rectDesktop, 0);
+        GetWindowRect(getHWnd(), &rectWindow);
+        GetClientRect(getHWnd(), &rectClient);
+        iSize ms;
+        ms.width() = rectDesktop.right - rectDesktop.left;
+        ms.height() = rectDesktop.bottom - rectDesktop.top -
+            ((rectWindow.bottom - rectWindow.top) - (rectClient.bottom - rectClient.top));
+        // 最大化窗口
+        this->resize(ms);
+        this->moveTo(iPoint{ rectDesktop.left, rectDesktop.top });
         isMinimized_ = false;
         isMaximized_ = true;
         onWindowMaximized(this);
