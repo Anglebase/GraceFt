@@ -5,14 +5,14 @@ namespace GFt {
         // 计算所有block的高度占比之和
         float sum = 0.0f;
         for (auto& [block, heightPro] : blockLayout_)
-            sum += heightPro;
+            sum += heightPro > 0.f? heightPro : 0.f;
         // 计算可供分配的高度
         auto availableHeight =
             rect().height() -
             (space_ * (blockLayout_.size() - 1)) -
             (getTopPadding() + getBottomPadding());
         for (auto& [block, heightPro] : blockLayout_)
-            availableHeight -= !heightPro > 0.f ? block->rect().height() : 0.f;
+            availableHeight -= heightPro <= 0.f ? block->rect().height() : 0.f;
         // 计算每个block的高度、高度、y坐标
         for (auto& [block, heightPro] : blockLayout_) {
             if (heightPro > 0.f)

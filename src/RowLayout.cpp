@@ -5,14 +5,14 @@ namespace GFt {
         // 计算所有block的宽度占比之和
         float sum = 0.0f;
         for (auto& [block, widthPro] : blockLayout_)
-            sum += widthPro;
+            sum += widthPro > 0.f ? widthPro : 0.f;
         // 计算可供分配的宽度
         auto availableWidth =
             rect().width() -
             (space_ * (blockLayout_.size() - 1)) -
             (getLeftPadding() + getRightPadding());
         for (auto& [block, widthPro] : blockLayout_)
-            availableWidth -= !widthPro > 0.f ? block->rect().width() : 0.f;
+            availableWidth -= widthPro <= 0.f ? block->rect().width() : 0.f;
         // 计算每个block的宽度、高度、y坐标
         for (auto& [block, widthPro] : blockLayout_) {
             if (widthPro > 0.f)
