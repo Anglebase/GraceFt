@@ -27,7 +27,7 @@ namespace GFt {
 
         /// @brief 添加参与布局的块对象
         /// @param block 块对象
-        /// @param widthProportion 块的宽度占比，默认1.f，如果为 Layout::Fixed 则表示该块宽度为初始化时的固定值
+        /// @param widthProportion 块的宽度占比，默认1.f，如果为 Layout::Fixed (或其它非正数值)则表示该块宽度为初始化时的固定值
         void addItem(Block* block, float widthProportion = 1.f);
         /// @brief 移除参与布局的块对象
         /// @param block 块对象

@@ -11,7 +11,8 @@ namespace GFt {
 
         bool shouleUpdateLayout_{ true };
     public:
-        static inline constexpr float Fixed = 0.f;
+        /// @brief 固定宽度占位值
+        static inline constexpr float Fixed = -1.f;
     public:
         Layout() = default;
         virtual ~Layout() = default;
