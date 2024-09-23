@@ -10,7 +10,8 @@ namespace GFt {
         int bottomPadding_{ 0 };
 
         bool shouleUpdateLayout_{ true };
-
+    public:
+        static inline constexpr float Fixed = 0.f;
     public:
         Layout() = default;
         virtual ~Layout() = default;
