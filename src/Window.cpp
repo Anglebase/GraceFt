@@ -14,6 +14,7 @@ namespace GFt {
     Signal<Window*> Window::onWindowMaximized;
     Signal<Window*> Window::onWindowRestored;
     Signal<Window*> Window::onWindowFullscreened;
+    Signal<Window*> Window::onWindowSizeChanged;
 
     using namespace ege;
     using namespace literals;
@@ -97,6 +98,7 @@ namespace GFt {
         isMinimized_ = false;
         isMaximized_ = true;
         onWindowFullscreened(this);
+        onWindowSizeChanged(this);
     }
     void Window::maximize() {
         // 保存当前窗口位置
@@ -118,6 +120,7 @@ namespace GFt {
         isMinimized_ = false;
         isMaximized_ = true;
         onWindowMaximized(this);
+        onWindowSizeChanged(this);
     }
     void Window::restore() {
         if (!isMinimized_ && !isMaximized_)
@@ -133,6 +136,7 @@ namespace GFt {
         isMinimized_ = false;
         isMaximized_ = false;
         onWindowRestored(this);
+        onWindowSizeChanged(this);
     }
     Window* Window::createWindow(Block* block, bool hide) {
         if (!block) return nullptr;

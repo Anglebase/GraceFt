@@ -97,6 +97,7 @@ namespace GFt {
         static Signal<Window*> onWindowMinimized;  ///< 窗口最小化信号
         static Signal<Window*> onWindowMaximized;  ///< 窗口最大化信号
         static Signal<Window*> onWindowRestored;  ///< 窗口还原信号
-        static Signal<Window*> onWindowFullscreened;  ///< 窗口获得焦点信号
+        static Signal<Window*> onWindowFullscreened;  ///< 窗口全屏信号
+        static Signal<Window*> onWindowSizeChanged;  ///< 窗口大小改变信号
     };
 }
