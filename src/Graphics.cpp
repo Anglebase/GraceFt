@@ -194,6 +194,14 @@ namespace GFt {
                 pBS->texture.w, pBS->texture.h,
                 IMG(target_));
             break;
+        case BrushStyle::PolygonGradient:
+            ege_setpattern_pathgradient(
+                { pBS->polygon.cx, pBS->polygon.cy }, pBS->polygon.ccolor,
+                pBS->polygon.num_points, (ege_point*)pBS->polygon.points,
+                pBS->polygon.num_colors, (color_t*)pBS->polygon.colors,
+                IMG(target_)
+            );
+            break;
         }
     }
     void Graphics::bindTextSet(TextSet* textSet) {
