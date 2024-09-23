@@ -154,8 +154,10 @@ namespace GFt {
         /// @bug 此函数应裁剪到自身的范围
         setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
         // 调用自身的绘制函数
-        if (!this->hide_)
+        if (!this->hide_) {
+            Graphics();
             this->onDraw(iRect{ lefttop, rect().size() });
+        }
         if (!sortChildren_) {
             // 元素重排
             std::multiset<Block*, CompareByZIndex> new_set;

@@ -9,7 +9,8 @@
         this->bindBrushSet(nullptr);\
         this->bindPenSet(nullptr);  \
         this->bindTextSet(nullptr); \
-        this->setBackgroundColor(0xffffff_rgb)
+        this->setBackgroundColor(0xffffff_rgb); \
+        this->setAntiAliasing(false)
 
 namespace GFt {
     using namespace ege;
