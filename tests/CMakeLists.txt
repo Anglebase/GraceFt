@@ -60,3 +60,6 @@ target_link_libraries(test_Path ${GFt_LIBRARY_NAME})
 # Channel.hpp TEST
 add_executable(test_Channel ${CMAKE_CURRENT_SOURCE_DIR}/Channel.cpp)
 target_link_libraries(test_Channel ${GFt_LIBRARY_NAME})
+# MainWindow.h TEST
+add_executable(test_MainWindow ${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp)
+target_link_libraries(test_MainWindow ${GFt_LIBRARY_NAME})

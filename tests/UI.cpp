@@ -52,8 +52,9 @@ void WindowContent(Block& it) {
 }
 
 void RootWindow() {
-    XWindow{
+    XMainWindow{
         .name = "Root",
+        .title = L"Test Window",
         .rect = iRect{50,50,800,600},
         .content = WindowContent,
     };
