@@ -50,8 +50,10 @@ namespace GFt {
             if constexpr (std::numeric_limits<T>::is_integer) {
                 return width_ == other.width_ && height_ == other.height_;
             }
-            using namespace _GFt_private_;
-            return _fsafe_equal(width_, other.width_) && _fsafe_equal(height_, other.height_);
+            else {
+                using namespace _GFt_private_;
+                return _fsafe_equal(width_, other.width_) && _fsafe_equal(height_, other.height_);
+            }
         }
         /// @brief 不等于比较运算符重载
         /// @details 此函数对于浮点数比较是安全的
