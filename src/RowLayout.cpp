@@ -6,10 +6,17 @@ namespace GFt {
         float sum = 0.0f;
         for (auto& [block, widthPro] : blockLayout_)
             sum += widthPro;
+        // 计算可供分配的宽度
+        auto availableWidth =
+            rect().width() -
+            (space_ * (blockLayout_.size() - 1)) -
+            (getLeftPadding() + getRightPadding());
+        for (auto& [block, widthPro] : blockLayout_)
+            availableWidth -= !widthPro > 0.f ? block->rect().width() : 0.f;
         // 计算每个block的宽度、高度、y坐标
         for (auto& [block, widthPro] : blockLayout_) {
-            block->rect().width() = (widthPro / sum) *
-                (rect().width() - (space_ * (blockLayout_.size() - 1)) - (getLeftPadding() + getRightPadding()));
+            if (widthPro > 0.f)
+                block->rect().width() = (widthPro / sum) * availableWidth;
             block->rect().height() = rect().height() - (getTopPadding() + getBottomPadding());
             block->rect().y() = getTopPadding();
         }
