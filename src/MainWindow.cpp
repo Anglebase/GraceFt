@@ -51,6 +51,7 @@ namespace GFt {
                 Point<double>{ r.size().width()* sc, r.size().height() * 0.5 },
                 Point<double>{ r.size().width()* (1 - sc), r.size().height() * 0.5 },
             };
+            g.setAntiAliasing(true);
             g.drawLine(l);
         }
     public:
@@ -117,6 +118,7 @@ namespace GFt {
                     Point<double>{ rc.left() + rc.width() * (1 - sc), rc.top() + rc.height() * sc },
                     Point<double>{ rc.right(), rc.top() + rc.height() * sc },
                 };
+                g.setAntiAliasing(true);
                 g.drawLine(l1);
                 g.drawLine(l2);
                 g.drawLine(l3);
@@ -170,6 +172,7 @@ namespace GFt {
                 fPoint{ rc.left(), rc.bottom() },
                 fPoint{ rc.right(), rc.top() },
             };
+            g.setAntiAliasing(true);
             g.drawLine(l1);
             g.drawLine(l2);
         }
