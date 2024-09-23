@@ -18,6 +18,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/GridLayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Label.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Layout.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp
     "${CMAKE_CURRENT_SOURCE_DIR}/Path.cpp"
     ${CMAKE_CURRENT_SOURCE_DIR}/PenSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/PixelMap.cpp
