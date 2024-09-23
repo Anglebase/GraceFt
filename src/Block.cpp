@@ -9,33 +9,35 @@
 #include <BlockFocus.h>
 #include <Window.h>
 
-#define DEF_MOUSE_HANDEL_FUNC(eventName)                                                              \
-    void Block::handleOn##eventName(eventName##Event* event, const iPoint& lefttop) {                 \
-        if (event->isPropagationStopped())                                                            \
-            return;                                                                                   \
-        auto iter = std::find_if(children_.begin(), children_.end(),                                  \
-            [&](const Block* child) {                                                                 \
-                return contains(iRect{                                                                \
-                    child->absolutePos(), child->rect().size()                                        \
-                    }, event->absolutePosition()); });                                                \
-        do {                                                                                          \
-            if (iter == children_.end()){                                                             \
-                BlockHoverManager::setHoverOn(this);                                                  \
-                break;                                                                                \
-            }                                                                                         \
-            if (!event->isPropagationStopped())                                                       \
-                (*iter)->handleOn##eventName(event, lefttop + this->rect().position());               \
-        } while (false);                                                                              \
-        if (!event->isPropagationStopped())                                                           \
-            this->on##eventName(event);                                                               \
+#define DEF_MOUSE_HANDEL_FUNC(eventName)                                                \
+    void Block::handleOn##eventName(eventName##Event* event, const iPoint& lefttop) {   \
+        if (event->isPropagationStopped())                                              \
+            return;                                                                     \
+        auto iter = std::find_if(children_.begin(), children_.end(),                    \
+            [&](const Block* child) {                                                   \
+                return contains(iRect{                                                  \
+                    child->absolutePos(), child->rect().size()                          \
+                    }, event->absolutePosition()); });                                  \
+        do {                                                                            \
+            if (iter == children_.end()){                                               \
+                BlockHoverManager::setHoverOn(this);                                    \
+                break;                                                                  \
+            }                                                                           \
+            if (!event->isPropagationStopped())                                         \
+                (*iter)->handleOn##eventName(event, lefttop + this->rect().position()); \
+        } while (false);                                                                \
+        if (!event->isPropagationStopped())                                             \
+            if (!this->hide_)                                                           \
+                this->on##eventName(event);                                             \
     }
-#define DEF_KEY_HANDEL_FUNC(eventName)                                                    \
-    void Block::handleOn##eventName(eventName##Event* event) {                            \
-        if (event->isPropagationStopped())                                                \
-            return;                                                                       \
-        this->on##eventName(event);                                                       \
-        if (parent_ != nullptr)                                                           \
-            parent_->handleOn##eventName(event);                                          \
+#define DEF_KEY_HANDEL_FUNC(eventName)                                                  \
+    void Block::handleOn##eventName(eventName##Event* event) {                          \
+        if (event->isPropagationStopped())                                              \
+            return;                                                                     \
+        if (!this->hide_)                                                               \
+            this->on##eventName(event);                                                 \
+        if (parent_ != nullptr)                                                         \
+            parent_->handleOn##eventName(event);                                        \
     }
 
 namespace GFt {
@@ -119,6 +121,16 @@ namespace GFt {
         parent_->children_.insert(this);
         parent_->sortChildren_ = false;
     }
+    void Block::hide() {
+        hide_ = true;
+        for (auto child : children_)
+            child->hide();
+    }
+    void Block::show() {
+        hide_ = false;
+        for (auto child : children_)
+            child->show();
+    }
     int Block::getZIndex() const { return zIndex_; }
     Block* Block::getParent() const { return parent_; }
 
@@ -142,7 +154,8 @@ namespace GFt {
         /// @bug 此函数应裁剪到自身的范围
         setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
         // 调用自身的绘制函数
-        this->onDraw(iRect{ lefttop, rect().size() });
+        if (!this->hide_)
+            this->onDraw(iRect{ lefttop, rect().size() });
         if (!sortChildren_) {
             // 元素重排
             std::multiset<Block*, CompareByZIndex> new_set;

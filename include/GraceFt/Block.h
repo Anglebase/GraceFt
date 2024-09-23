@@ -22,6 +22,7 @@ namespace GFt {
         Block* parent_;
         std::multiset<Block*, CompareByZIndex> children_;
         bool sortChildren_ = true;
+        bool hide_ = false;
 
         friend class Application;
         void handleOnDraw(const iPoint& pos, bool cilpO);
@@ -87,10 +88,14 @@ namespace GFt {
         Block(const iRect& rect, Block* parent = nullptr, int zIndex = 0);
         virtual ~Block();
         /// @brief 添加子对象
+        /// @note 如果子类为Layout的子类，且希望更新布局，则应当调用子类的 addItem() 方法添加子对象，否则将不会引发布局更新
         /// @param child 子对象
+        /// @see RowLayout::addItem() ColumnLayout::addItem() GridLayout::addItem()
         void addChild(Block* child);
         /// @brief 移除子对象
+        /// @note 如果子类为Layout的子类，且希望更新布局，则应当调用子类的 removeItem() 方法移除子对象，否则将不会引发布局更新
         /// @param child 子对象
+        /// @see RowLayout::removeItem() ColumnLayout::removeItem() GridLayout::removeItem()
         void removeChild(Block* child);
         /// @brief 设置层级
         /// @param zIndex 层级
@@ -102,6 +107,13 @@ namespace GFt {
         /// @brief 设置父对象
         /// @param parent 父对象
         void setParent(Block* parent);
+        /// @brief 隐藏块对象
+        /// @details 此操作影响当前对象及其所有子对象，被隐藏的对象将不会被触发任何事件
+        void hide();
+        /// @brief 显示块对象
+        /// @details 此操作影响当前对象及其所有子对象
+        /// @see hide()
+        void show();
 
         /// @brief 获取层级
         /// @return 层级
