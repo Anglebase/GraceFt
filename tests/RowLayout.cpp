@@ -22,7 +22,7 @@ int main() {
     Button btn4{ L"Btn4",iRect{0,0,50,0},&layout };
 
     layout.addItem(&btn1, 1);
-    layout.addItem(&btn2, 2);
+    layout.addItem(&btn2, Layout::Fixed);
     layout.addItem(&btn3, 3);
     layout.addItem(&btn4, 4);
     layout.setSpace(10);
