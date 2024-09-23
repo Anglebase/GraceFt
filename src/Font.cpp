@@ -56,7 +56,7 @@ namespace GFt {
         font_ = nullptr;
     }
     void Font::setSize(long size) { FONT(font_)->lfHeight = size; }
-    long Font::size() const { return FONT(font_)->lfHeight; }
+    long Font::size() const { return -FONT(font_)->lfHeight; }
     void Font::setWeight(FontWeight weight) { FONT(font_)->lfWeight = static_cast<long>(weight); }
     FontWeight Font::weight() const { return static_cast<FontWeight>(FONT(font_)->lfWeight); }
     void Font::setItalic(bool italic) { FONT(font_)->lfItalic = italic; }
