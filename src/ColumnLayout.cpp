@@ -21,13 +21,13 @@ namespace GFt {
             block->rect().x() = getLeftPadding();
         }
         // 计算每个block的x坐标
-        float y = getTopPadding();
-        using Iter = std::map<Block*, float>::reverse_iterator;
-        for (Iter iter = blockLayout_.rbegin(); iter != blockLayout_.rend(); ++iter) {
-            auto& [block, heightPro] = *iter;
-            block->rect().y() = y;
-            y += block->rect().height() + space_;
+        float y = rect().bottom() - getBottomPadding();
+        for (auto& [block, heightPro] : blockLayout_) {
+            block->rect().y() = y - block->rect().height();
+            y -= block->rect().height() + space_;
         }
+        for (auto& [block, heightPro] : blockLayout_)
+            block->rect().y() -= y;
         setShouldUpdateLayout(false);
     }
 

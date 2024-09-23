@@ -11,7 +11,7 @@ namespace GFt {
     class GridLayout : public Layout, public Block {
         int rows_{ 1 }, cols_{ 1 };
         int vspace_{ 0 }, hspace_{ 0 };
-        std::map<Block*, iRect> griditems_;
+        std::unordered_map<Block*, iRect> griditems_;
 
         void updateLayout();
     public:

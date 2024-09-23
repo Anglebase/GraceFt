@@ -9,7 +9,7 @@ namespace GFt {
     /// @ingroup 基础UI封装库
     class ColumnLayout : public Layout, public Block {
         int space_{ 0 };
-        std::map<Block*, float> blockLayout_;
+        std::unordered_map<Block*, float> blockLayout_;
 
         void updateLayout();
 
