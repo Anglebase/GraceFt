@@ -44,5 +44,12 @@ namespace GFt {
             if (content)
                 content(*it);
         }
-    }
+        XMainWindow::~XMainWindow() {
+            GFt::Widget::MainWindow* it = new GFt::Widget::MainWindow(title, rect);
+            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
+            uiManager.addBlock(name, it);
+            if (content)
+                content(*it);
+        }
+}
 }

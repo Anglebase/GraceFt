@@ -10,6 +10,7 @@
 #include <GraceFt/RowLayout.h>
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>
+#include <GraceFt/MainWindow.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
@@ -86,6 +87,19 @@ namespace GFt {
             /// @brief 内容定义
             std::function<void(GFt::Block&)> content;
             ~XWindow();
+        };
+        /// @brief 主窗口声明式UI块
+        /// @details 主窗口声明式UI块用于声明式地创建主窗口，并提供窗口内容的设置
+        struct XMainWindow final {
+            /// @brief 块识别名称
+            const std::string_view name;
+            /// @brief 窗口标题
+            std::wstring title;
+            /// @brief 所在矩形
+            iRect rect;
+            /// @brief 内容定义
+            std::function<void(GFt::Widget::MainWindow&)> content;
+            ~XMainWindow();
         };
         /// @brief 块声明式UI块
         /// @details 块声明式UI块用于声明式地创建块，并提供块内容的设置
