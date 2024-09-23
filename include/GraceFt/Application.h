@@ -13,6 +13,8 @@ namespace GFt {
         static Window* root_;
         static double FPS_;
         static float realFps_;
+
+        static bool shouldClose_;
     private:
         Application(const Application&) = delete;
         Application& operator=(const Application&) = delete;
@@ -36,6 +38,12 @@ namespace GFt {
         /// @details 该函数效果等同于 exec()
         /// @see exec()
         int run(bool cilpO = true);
+        /// @brief 退出程序
+        /// @details 调用此函数会导致程序退出
+        static void shouldClose();
+        /// @brief 退出程序
+        /// @details 该效果等同于 shouldClose()
+        static void exit();
         /// @brief 设置目标帧率
         /// @param fps 目标帧率
         /// @details 若所设定的帧率小于等于0, 则视为无帧率限制

@@ -13,6 +13,7 @@ namespace GFt {
     Window* Application::root_ = nullptr;
     double Application::FPS_ = -1.0;
     float Application::realFps_ = 0.0;
+    bool Application::shouldClose_ = false;
     Application::Application(Window* root) {
         if (Application::root_ || !root)
             return;
@@ -118,7 +119,7 @@ namespace GFt {
     Application::~Application() {}
     int Application::exec(bool cilpO) {
         auto lastTime = chrono::steady_clock::now();
-        for (;is_run(); Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
+        for (;is_run() && !Application::shouldClose_; Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
             handleEvents(Application::root_);
             render(Application::root_, cilpO);
             auto nowTime = chrono::steady_clock::now();
@@ -130,6 +131,8 @@ namespace GFt {
         return 0;
     }
     int Application::run(bool cilpO) { return exec(cilpO); }
+    void Application::shouldClose() { Application::shouldClose_ = true; }
+    void Application::exit() { Application::shouldClose_ = true; }
     void Application::setFps(double fps) { Application::FPS_ = fps; }
     double Application::getFps() { return Application::FPS_; }
     float Application::getRealFps() { return Application::realFps_; }
