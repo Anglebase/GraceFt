@@ -38,6 +38,10 @@ namespace GFt {
         /// @param pos 矩形左上角的坐标
         /// @param size 矩形的大小
         constexpr Rect(const Point<T>& pos, const Size<T>& size) : pos_(pos), size_(size) {}
+        /// @brief 构造函数
+        /// @param size 矩形的大小
+        /// @details 只从矩形的大小构造矩形，矩形左上角的坐标为 (0, 0)
+        constexpr Rect(const Size<T>& size) : pos_(static_cast<T>(0), static_cast<T>(0)), size_(size) {}
         constexpr Rect(const Rect<T>& other) = default;
         constexpr Rect(Rect<T>&& other) = default;
         constexpr Rect<T>& operator=(const Rect<T>& other) = default;
