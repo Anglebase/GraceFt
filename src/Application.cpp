@@ -118,6 +118,8 @@ namespace GFt {
     }
     Application::~Application() {}
     int Application::exec(bool cilpO) {
+        if (ege::getHWnd() == (HWND)0)
+            return 1;
         auto lastTime = chrono::steady_clock::now();
         for (;is_run() && !Application::shouldClose_; Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
             handleEvents(Application::root_);
