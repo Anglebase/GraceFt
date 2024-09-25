@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <vector>
 #include <GraceFt/Layout.h>
 #include <GraceFt/Block.h>
 
@@ -9,7 +9,7 @@ namespace GFt {
     /// @ingroup 基础UI封装库
     class ColumnLayout : public Layout, public Block {
         int space_{ 0 };
-        std::unordered_map<Block*, float> blockLayout_;
+        std::vector<std::pair<Block*, float>> blockLayout_;
 
         void updateLayout();
 

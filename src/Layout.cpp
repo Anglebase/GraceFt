@@ -1,23 +1,34 @@
 #include "Layout.h"
 
+#include <Window.h>
+
 namespace GFt {
+    Layout::Layout() {
+        Window::onWindowSizeChanged.connect([this](Window*){
+            setShouldUpdateLayout();
+        });
+    }
+
     void Layout::setPadding(int padding) {
         leftPadding_ = padding;
         rightPadding_ = padding;
         topPadding_ = padding;
         bottomPadding_ = padding;
+        setShouldUpdateLayout();
     }
     void Layout::setPadding(int leftright, int topbottom) {
         leftPadding_ = leftright;
         rightPadding_ = leftright;
         topPadding_ = topbottom;
         bottomPadding_ = topbottom;
+        setShouldUpdateLayout();
     }
     void Layout::setPadding(int left, int top, int right, int bottom) {
         leftPadding_ = left;
         rightPadding_ = right;
         topPadding_ = top;
         bottomPadding_ = bottom;
+        setShouldUpdateLayout();
     }
     void Layout::setLeftPadding(int left) {
         leftPadding_ = left;

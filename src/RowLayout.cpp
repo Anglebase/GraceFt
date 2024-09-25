@@ -1,5 +1,7 @@
 #include "RowLayout.h"
 
+#include <algorithm>
+
 namespace GFt {
     void RowLayout::updateLayout() {
         // 计算所有block的宽度占比之和
@@ -21,13 +23,11 @@ namespace GFt {
             block->rect().y() = getTopPadding();
         }
         // 计算每个block的x坐标
-        float x = rect().right() - getRightPadding();
+        int x = getLeftPadding();
         for (auto& [block, widthPro] : blockLayout_) {
-            block->rect().x() = x - block->rect().width();
-            x -= block->rect().width() + space_;
+            block->rect().x() = x;
+            x += block->rect().width() + space_;
         }
-        for (auto& [block, widthPro] : blockLayout_)
-            block->rect().x() -= x;
         setShouldUpdateLayout(false);
     }
 
@@ -41,16 +41,23 @@ namespace GFt {
         : Block(rect, parent, zIndex) {}
     RowLayout::~RowLayout() = default;
     void RowLayout::addItem(Block* block, float widthProportion) {
-        blockLayout_[block] = widthProportion;
-        this->addChild(block);
         setShouldUpdateLayout();
+        for (auto& [b, w] : blockLayout_)
+            if (b == block) {
+                w = widthProportion;
+                return;
+            }
+        blockLayout_.push_back({ block, widthProportion });
+        this->addChild(block);
     }
     void RowLayout::removeItem(Block* block) {
-        if (blockLayout_.find(block) == blockLayout_.end())
-            return;
-        blockLayout_.erase(block);
-        this->removeChild(block);
         setShouldUpdateLayout();
+        auto it = std::remove_if(blockLayout_.begin(), blockLayout_.end(),
+            [block](const std::pair<Block*, float>& p) {
+                auto [b, w] = p;
+                return b == block;
+            });
+        this->removeChild(block);
     }
     void RowLayout::setSpace(int space) {
         space_ = space;
