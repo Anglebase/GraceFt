@@ -25,6 +25,9 @@ int main() {
     layout.addItem(&btn2, Layout::Fixed);
     layout.addItem(&btn3, 3);
     layout.addItem(&btn4, 4);
+    layout.addItem(&btn4, 1);
+    layout.addItem(&btn3, 1);
+
     layout.setSpace(10);
     layout.setPadding(5, 20);
 

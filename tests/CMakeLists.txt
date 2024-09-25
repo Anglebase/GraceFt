@@ -63,3 +63,6 @@ target_link_libraries(test_Channel ${GFt_LIBRARY_NAME})
 # MainWindow.h TEST
 add_executable(test_MainWindow ${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp)
 target_link_libraries(test_MainWindow ${GFt_LIBRARY_NAME})
+# Union TEST
+add_executable(test_Union ${CMAKE_CURRENT_SOURCE_DIR}/Union.cpp)
+target_link_libraries(test_Union ${GFt_LIBRARY_NAME})
