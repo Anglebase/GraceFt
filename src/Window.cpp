@@ -131,7 +131,6 @@ namespace GFt {
             isMaximized_ = false;
             this->setTopMost(isTopMost_);
             this->setFrameless(isFrameless_);
-            std::cout << "Restored" << std::boolalpha << isTopMost_ << " " << isFrameless_ << std::endl;
         }
         isMinimized_ = false;
         isMaximized_ = false;
