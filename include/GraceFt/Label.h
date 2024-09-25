@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Block.h>
-#include <Graphics.h>
+#include <GraceFt/Block.h>
+#include <GraceFt/Graphics.h>
 
 namespace GFt {
     namespace Widget {
