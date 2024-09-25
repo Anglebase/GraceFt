@@ -122,5 +122,4 @@ namespace GFt {
     }
 }
 
-#define DNAME(name) (std::move(std::string_view(name)))
 #define BLOCK(name) (GFt::DeclarativeUIManager::getInstance().findBlock(name))
