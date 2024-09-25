@@ -15,7 +15,7 @@
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
             /** @brief 块识别名称 */                                        \
-            const std::string_view name;                                  \
+            const std::string name;                                  \
             /** @brief 所在矩形 */                                         \
             GFt::iRect rect = GFt::iRect();                               \
             /** @brief 父块 */                                             \
@@ -36,7 +36,7 @@ namespace GFt {
     /// @brief 定义式UI管理器
     /// @details 管理所有声明式UI块，并提供查找和添加和统一析构的功能
     class DeclarativeUIManager final {
-        std::unordered_map<std::string_view, std::unique_ptr<Block>> blocks;
+        std::unordered_map<std::string, std::unique_ptr<Block>> blocks;
     private:
         DeclarativeUIManager() = default;
         DeclarativeUIManager(const DeclarativeUIManager&) = delete;
@@ -48,27 +48,27 @@ namespace GFt {
         /// @brief 查找UI块
         /// @param name 块名称
         /// @return 块指针，如果没有找到则返回nullptr
-        Block* findBlock(const std::string_view& name);
+        Block* findBlock(const std::string& name);
         /// @brief 查找UI块名称
         /// @param block 块指针
         /// @return 块名称，如果没有找到则返回空字符串
-        std::string_view findBlockByName(const Block* block) const;
+        std::string findBlockByName(const Block* block) const;
         /// @brief 添加UI块
         /// @param name 块名称
         /// @param block 块指针
         /// @details 所有通过此方法添加的块都会被包装为std::unique_ptr，并自动管理生命周期
         ///          因此，不需要再手动delete块
         /// @throw 块名称不能重复，如果名称已存在，则会抛出异常
-        void addBlock(const std::string_view& name, Block* block);
+        void addBlock(const std::string& name, Block* block);
         /// @brief 移除UI块
         /// @param name 块名称
         /// @details 如果名称不存在，则不会有任何操作
-        void removeBlock(const std::string_view& name);
+        void removeBlock(const std::string& name);
         /// @brief 替换UI块
         /// @param name 块名称
         /// @param block 新的块指针
         /// @details 如果名称不存在，则会自动添加；如果名称已存在，则会自动替换
-        void replaceBlock(const std::string_view& name, Block* block);
+        void replaceBlock(const std::string& name, Block* block);
         /// @brief 获取UI管理器实例
         /// @return UI管理器实例
         static DeclarativeUIManager& getInstance();
@@ -81,7 +81,7 @@ namespace GFt {
         /// @details 窗口声明式UI块用于声明式地创建窗口，并提供窗口内容的设置
         struct XWindow final {
             /// @brief 块识别名称
-            const std::string_view name;
+            const std::string name;
             /// @brief 所在矩形
             iRect rect;
             /// @brief 内容定义
@@ -92,7 +92,7 @@ namespace GFt {
         /// @details 主窗口声明式UI块用于声明式地创建主窗口，并提供窗口内容的设置
         struct XMainWindow final {
             /// @brief 块识别名称
-            const std::string_view name;
+            const std::string name;
             /// @brief 窗口标题
             std::wstring title;
             /// @brief 所在矩形
@@ -122,5 +122,5 @@ namespace GFt {
     }
 }
 
-#define DNAME(name) (std::move(std::string_view(#name)))
-#define BLOCK(name) (GFt::DeclarativeUIManager::getInstance().findBlock(#name))
+#define DNAME(name) (std::move(std::string_view(name)))
+#define BLOCK(name) (GFt::DeclarativeUIManager::getInstance().findBlock(name))
