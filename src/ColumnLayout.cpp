@@ -37,7 +37,11 @@ namespace GFt {
         return Block::onDraw(rect);
     }
     ColumnLayout::ColumnLayout(const iRect& rect, Block* parent, int zIndex)
-        : Block(rect, parent, zIndex) {}
+        : Block(rect, parent, zIndex) {
+        onSizeChanged.connect([this](const iSize& size) {
+            this->setShouldUpdateLayout();
+            });
+    }
     ColumnLayout::~ColumnLayout() = default;
 
     void ColumnLayout::addItem(Block* block, float widthProportion) {

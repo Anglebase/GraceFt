@@ -14,7 +14,7 @@ namespace GFt {
         /// @brief 固定宽度占位值
         static inline constexpr float Fixed = -1.f;
     public:
-        Layout();
+        Layout() = default;
         virtual ~Layout() = default;
 
         /// @brief 设置边距

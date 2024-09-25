@@ -3,12 +3,6 @@
 #include <Window.h>
 
 namespace GFt {
-    Layout::Layout() {
-        Window::onWindowSizeChanged.connect([this](Window*){
-            setShouldUpdateLayout();
-        });
-    }
-
     void Layout::setPadding(int padding) {
         leftPadding_ = padding;
         rightPadding_ = padding;

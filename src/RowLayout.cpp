@@ -38,7 +38,11 @@ namespace GFt {
     }
 
     RowLayout::RowLayout(const iRect& rect, Block* parent, int zIndex)
-        : Block(rect, parent, zIndex) {}
+        : Block(rect, parent, zIndex) {
+        onSizeChanged.connect([this](const iSize& size){
+            this->setShouldUpdateLayout();
+        });
+    }
     RowLayout::~RowLayout() = default;
     void RowLayout::addItem(Block* block, float widthProportion) {
         setShouldUpdateLayout();
