@@ -17,7 +17,7 @@
             /** @brief 块识别名称 */                                        \
             const std::string_view name;                                  \
             /** @brief 所在矩形 */                                         \
-            GFt::iRect rect;                                              \
+            GFt::iRect rect = GFt::iRect();                               \
             /** @brief 父块 */                                             \
             GFt::Block& parent;                                           \
             /** @brief 层级 */                                             \
