@@ -1,5 +1,5 @@
 #include "Window.h"
-
+#include <Application.h>
 #include <Tools.h>
 #include <ege.h>
 
@@ -22,6 +22,10 @@ namespace GFt {
     Window::Window(int width, int height, int flags)
         : Block(iRect(0, 0, width, height)), store_(width, height) {
         initgraph(width, height, flags | INIT_UNICODE | INIT_ANIMATION | INIT_NOFORCEEXIT | INIT_HIDE);
+        if (getHWnd() == (HWND)0) {
+            std::cerr << "Failed to create window." << std::endl;
+            Application::exit();
+        }
         setcaption(L"GraceFt v2.0.0");
         setbkcolor(WHITE);
         setcolor(BLACK);
