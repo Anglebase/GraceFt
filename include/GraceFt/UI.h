@@ -36,7 +36,7 @@ namespace GFt {
     /// @brief 定义式UI管理器
     /// @details 管理所有声明式UI块，并提供查找和添加和统一析构的功能
     class DeclarativeUIManager final {
-        std::map<std::string_view, std::unique_ptr<Block>> blocks;
+        std::unordered_map<std::string_view, std::unique_ptr<Block>> blocks;
     private:
         DeclarativeUIManager() = default;
         DeclarativeUIManager(const DeclarativeUIManager&) = delete;

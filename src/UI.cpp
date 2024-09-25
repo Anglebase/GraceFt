@@ -1,6 +1,6 @@
 #include "UI.h"
 
-#include <map>
+using namespace std::literals;
 
 namespace GFt {
     DeclarativeUIManager::~DeclarativeUIManager() {
@@ -20,7 +20,7 @@ namespace GFt {
     }
     void DeclarativeUIManager::addBlock(const std::string_view& name, Block* pblock) {
         if (blocks.find(name) != blocks.end())
-            throw std::runtime_error("Block with the same name already exists.");
+            throw std::runtime_error("Block with the same name '"s + name.data() + "' already exists."s);
         blocks[name] = std::unique_ptr<Block>(pblock);
     }
     void DeclarativeUIManager::removeBlock(const std::string_view& name) {
