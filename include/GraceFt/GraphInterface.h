@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GraceFt/Rect.hpp>
+#include <GraceFt/Signal.hpp>
 
 namespace GFt {
     /// @defgroup 基础UI封装库
@@ -22,11 +23,18 @@ namespace GFt {
         GraphInterface(iRect rect);
         virtual ~GraphInterface();
 
-        /// @brief 绘制区域
-        /// @return 绘制区域
-        iRect& rect();
-        /// @brief 绘制区域 (const)
-        /// @return 绘制区域 (const)
+        void setX(int x);
+        void setY(int y);
+        void setWidth(int width);
+        void setHeight(int height);
+        void setPosition(const iPoint& pos);
+        void setSize(const iSize& size);
+        void setRect(const iRect& rect);
+
         const iRect& rect() const;
+    public:
+        Signal<const iPoint&> onPositionChanged;
+        Signal<const iSize&> onSizeChanged;
+
     };
 }

@@ -7,10 +7,14 @@ namespace GFt {
         auto unitHeight = (rect().height() - (rows_ - 1.f) * vspace_ -
             (getTopPadding() + getBottomPadding())) / rows_;
         for (auto& [item, rect] : griditems_) {
-            item->rect().x() = rect.x() * unitWidth + hspace_ * (rect.x() - 1) + getLeftPadding();
-            item->rect().y() = rect.y() * unitHeight + vspace_ * (rect.y() - 1) + getTopPadding();
-            item->rect().width() = rect.width() * unitWidth + hspace_ * (rect.width() - 1);
-            item->rect().height() = rect.height() * unitHeight + vspace_ * (rect.height() - 1);
+            // item->rect().x() = rect.x() * unitWidth + hspace_ * (rect.x() - 1) + getLeftPadding();
+            // item->rect().y() = rect.y() * unitHeight + vspace_ * (rect.y() - 1) + getTopPadding();
+            // item->rect().width() = rect.width() * unitWidth + hspace_ * (rect.width() - 1);
+            // item->rect().height() = rect.height() * unitHeight + vspace_ * (rect.height() - 1);
+            item->setX(rect.x() * unitWidth + hspace_ * (rect.x() - 1) + getLeftPadding());
+            item->setY(rect.y() * unitHeight + vspace_ * (rect.y() - 1) + getTopPadding());
+            item->setWidth(rect.width() * unitWidth + hspace_ * (rect.width() - 1));
+            item->setHeight(rect.height() * unitHeight + vspace_ * (rect.height() - 1));
         }
         setShouldUpdateLayout(false);
     }

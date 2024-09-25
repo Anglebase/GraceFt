@@ -23,7 +23,7 @@ int main() {
                     // 基本属性配置
                     it.setTopPadding(2_em);
                     Window::onWindowSizeChanged.connect([&it](Window* w) {
-                        it.rect().size() = iSize{100_vw, 100_vh};
+                        it.setSize(iSize{100_vw, 100_vh});
                     });
                     XLabel {
                         .name = "exprLabel",
@@ -85,7 +85,7 @@ int main() {
                                     it.text() = L"/";
                                 }
                             };
-                            it.addItem(BLOCK(/), iRect{3,3,1,1});
+                            it.addItem(BLOCK(/ ), iRect{3,3,1,1});
                             XButton {
                                 .name = "C",
                                 .parent = it,

@@ -37,9 +37,9 @@ namespace GFt {
     void Window::hide() { hidewindow(); }
     void Window::resize(const iSize& size) {
         resizewindow(size.width(), size.height());
-        this->rect().size() = size;
+        this->setSize(size);
         if (root_)
-            root_->rect().size() = size;
+            root_->setSize(size);
         onWindowResized(this);
     }
     void Window::move(const iPoint& dpos) {
@@ -147,7 +147,7 @@ namespace GFt {
         window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
-        block->rect().position() = iPoint();
+        block->setPosition(iPoint());
         Window::pInstance_ = &window;
         window.root_ = block;
         return Window::pInstance_;
@@ -156,12 +156,12 @@ namespace GFt {
         if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
-        block->rect() = iRect{ 0,0,100_sw,100_sh };
+        block->setRect(iRect(0, 0, 100_sw, 100_sh));
         static Window window(100_sw, 100_sh, H(hide) | INIT_NOBORDER | INIT_TOPMOST);
         window.addChild(block);
         movewindow(0, 0);
         flushwindow();
-        block->rect().position() = iPoint();
+        block->setPosition(iPoint());
         Window::pInstance_ = &window;
         window.root_ = block;
         return Window::pInstance_;
@@ -175,7 +175,7 @@ namespace GFt {
         window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
-        block->rect().position() = iPoint();
+        block->setPosition(iPoint());
         Window::pInstance_ = &window;
         window.root_ = block;
         return Window::pInstance_;
@@ -189,7 +189,7 @@ namespace GFt {
         window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
-        block->rect().position() = iPoint();
+        block->setPosition(iPoint());
         Window::pInstance_ = &window;
         window.root_ = block;
         return Window::pInstance_;
@@ -203,7 +203,7 @@ namespace GFt {
         window.addChild(block);
         movewindow(rect.x(), rect.y());
         flushwindow();
-        block->rect().position() = iPoint();
+        block->setPosition(iPoint());
         Window::pInstance_ = &window;
         window.root_ = block;
         return Window::pInstance_;

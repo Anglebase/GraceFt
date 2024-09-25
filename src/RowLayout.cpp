@@ -18,14 +18,14 @@ namespace GFt {
         // 计算每个block的宽度、高度、y坐标
         for (auto& [block, widthPro] : blockLayout_) {
             if (widthPro > 0.f)
-                block->rect().width() = (widthPro / sum) * availableWidth;
-            block->rect().height() = rect().height() - (getTopPadding() + getBottomPadding());
-            block->rect().y() = getTopPadding();
+                block->setWidth((widthPro / sum) * availableWidth);
+            block->setHeight(rect().height() - (getTopPadding() + getBottomPadding()));
+            block->setY(getTopPadding());
         }
         // 计算每个block的x坐标
         int x = getLeftPadding();
         for (auto& [block, widthPro] : blockLayout_) {
-            block->rect().x() = x;
+            block->setX(x);
             x += block->rect().width() + space_;
         }
         setShouldUpdateLayout(false);

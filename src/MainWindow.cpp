@@ -248,7 +248,7 @@ namespace GFt {
                 this, std::numeric_limits<int>::max() };
             // 当窗口大小改变时，更新布局
             Window::onWindowSizeChanged.connect([layout](Window* w) {
-                layout->rect().size().width() = 100_vw;
+                layout->setWidth(100_vw);
                 layout->setShouldUpdateLayout();
                 });
             // 创建标题栏元素
