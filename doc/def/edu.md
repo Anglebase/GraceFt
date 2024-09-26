@@ -5,7 +5,7 @@ GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https
 
 ## 环境配置
 1. **确保你的电脑上已经安装了至少支持 C++20 的编译器**: GracFt 是基于 C++20 开发的，所以你的编译器必须支持 C++20 才能编译 GraceFt 项目
-2. **确保你的电脑上已经安装了 CMake 3.15 或以上版本**: GraceFt 项目是使用 CMake 构建的，所以你需要确保你的电脑上已经安装了 CMake 3.15 或以上版本
+2. **确保你的电脑上已经安装了 CMake 3.22 或以上版本**: GraceFt 项目是使用 CMake 构建的，所以你需要确保你的电脑上已经安装了 CMake 3.22 或以上版本
 3. **下载项目模板或手动配置项目环境**: 你可以从 [Github](https://github.com/Graceful-Engineering-Team/GraceFt) 下载项目模板，或者手动配置自己习惯的项目环境
 4. **从此刻开始，你就可以开始编写你的 GraceFt 项目了！**
 
@@ -38,10 +38,9 @@ GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https
 class HelloBlock : public GFt::Block
 {
 protected:
-    void onDraw(const GFt::iRect& rect) override {
-        GFt::Graphics g;
-        auto r = GFt::iRect{GFt::iPoint(), rect.size()};
-        g.drawText(L"Hello World!", r, GFt::TextAlign::Center|GFt::TextAlign::Middle);
+    void onDraw(GFt::Graphics& g) override {
+        auto r = GFt::iRect{ rect().size() };
+        g.drawText(L"Hello World!", r, GFt::TextAlign::Center | GFt::TextAlign::Middle);
     }
 public:
     HelloBlock(const iRect& rect, Block* parent = nullptr, int zIndex = 0)
@@ -85,9 +84,8 @@ app.run();
 class HelloBlock : public GFt::Block
 {
 protected:
-    void onDraw(const GFt::iRect& rect) override {
-        GFt::Graphics g;
-        auto r = GFt::iRect{GFt::iPoint(), rect.size()};
+    void onDraw(GFt::Graphics& g) override {
+        auto r = GFt::iRect{GFt::iPoint(), rect().size()};
         g.drawText(L"Hello World!", r, GFt::TextAlign::Center|GFt::TextAlign::Middle);
     }
 public:
@@ -118,9 +116,8 @@ using namespace GFt;
 class HelloBlock : public Block
 {
 protected:
-    void onDraw(const iRect& rect) override {
-        Graphics g;
-        auto r = iRect{iPoint(), rect.size()};
+    void onDraw(Graphics& g) override {
+        auto r = iRect{iPoint(), rect().size()};
         g.drawText(L"Hello World!", r, TextAlign::Center|TextAlign::Middle);
     }
 public:
@@ -156,7 +153,6 @@ int main() {
         .content = [](GFt::Block& block) {
             GFt::UI::XLabel{
                 .name = "HelloLabel",
-                .text = L"Nothing to see here",
                 .rect = GFt::iRect{250,150,140,180},
                 .parent = block,
                 .content = [](GFt::Widget::Label& label) {
@@ -189,7 +185,6 @@ int main() {
         .content = [](Block& block) {
             XLabel{
                 .name = "HelloLabel",
-                .text = L"Nothing to see here",
                 .rect = iRect{250,150,140,180},
                 .parent = block,
                 .content = [](Label& label) {
@@ -220,7 +215,7 @@ int main() {
 为了便于开发者的使用，GraceFt 提供了 GraceFt 项目模板，你可以从[Github](https://github.com/Anglebase/GraceFt/releases)上获取它，下面将介绍如何基于模板项目创建新项目。
 
 ### 准备工作
-1. 确保你的电脑上已经安装 CMake 3.15 或以上版本和至少支持 C++20 的编译器(推荐使用[GCC 14.2](https://github.com/skeeto/w64devkit/releases)或更高版本)
+1. 确保你的电脑上已经安装 CMake 3.22 或以上版本和至少支持 C++20 的编译器(推荐使用[GCC 14.2](https://github.com/skeeto/w64devkit/releases)或更高版本)
 2. 下载项目模板并解压到你喜欢的目录，使用你习惯的IDE打开项目目录(推荐使用[Visual Studio Code](https://code.visualstudio.com/))
 *3. 通过启用 CMake 构建可以得到一个Hello GraceFt的示例程序*
 
@@ -253,7 +248,7 @@ int main() {
 
 class MyGraecFt : public Block {
 protected:
-    void onDraw(const GFt::iRect& rect) override;
+    void onDraw(GFt::Graphics& rect) override;
 public:
     MyGraecFt(const GFt::iRect& rect, GFt::Block* parent = nullptr, int zIndex = 0);
     virtual ~MyGraecFt();
@@ -268,14 +263,13 @@ public:
 using namespace GFt;
 using namespace GFt::literals;
 
-void MyGraceFt::onDraw(const GFt::iRect& rect) {
-    Graphics g;
+void MyGraceFt::onDraw(Graphics& g) {
     BrushSet bs(0x7980f5ef_rgba);
     TextSet ts(0x0ee_rgba);
     g.bindBrushSet(&bs);
     g.bindTextSet(&ts);
-    g.drawFillEllipse(fEllipse{ iRect{iPoint{}, rect.size() } });
-    g.drawText(L"My GraceFt!", iRect{ iPoint{}, rect.size() }, TextAlign::Center | TextAlign::Middle);
+    g.drawFillEllipse(fEllipse{ iRect{ rect().size() } });
+    g.drawText(L"My GraceFt!", iRect{ rect().size() }, TextAlign::Center | TextAlign::Middle);
 }
 
 MyGraceFt::MyGraceFt(const GFt::iRect& rect, GFt::Block* parent, int zIndex)
