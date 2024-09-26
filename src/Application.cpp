@@ -13,6 +13,8 @@ namespace GFt {
     Window* Application::root_ = nullptr;
     double Application::FPS_ = -1.0;
     float Application::realFps_ = 0.0;
+    float Application::renderTime_ = 0.0f;
+    float Application::eventTime_ = 0.0f;
     bool Application::shouldClose_ = false;
     Application::Application(Window* root) {
         if (Application::root_ || !root)
@@ -124,16 +126,19 @@ namespace GFt {
         auto lastTime = chrono::steady_clock::now();
         for (;is_run() && !Application::shouldClose_; Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
             auto t1 = chrono::steady_clock::now();
-            handleEvents(Application::root_);\
-                auto t2 = chrono::steady_clock::now();
+            handleEvents(Application::root_);
+
+            auto t2 = chrono::steady_clock::now();
             render(Application::root_, cilpO);
+
             auto nowTime = chrono::steady_clock::now();
+
             Application::realFps_ =
                 1.0 / chrono::duration_cast<chrono::microseconds>
                 (nowTime - lastTime).count() * 1000000.0;
+            Application::eventTime_ = (t2 - t1).count() * 1e-3f;
+            Application::renderTime_ = (nowTime - t2).count() * 1e-6f;
             lastTime = nowTime;
-            std::cout << "E: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1) <<
-                " R: " << std::chrono::duration_cast<std::chrono::milliseconds>(nowTime - t1) << " FPS: " << Application::realFps_ << std::endl;
         }
         return 0;
     }
@@ -143,4 +148,6 @@ namespace GFt {
     void Application::setFps(double fps) { Application::FPS_ = fps; }
     double Application::getFps() { return Application::FPS_; }
     float Application::getRealFps() { return Application::realFps_; }
+    float Application::getRenderTime() { return Application::renderTime_; }
+    float Application::getEventTime() { return Application::eventTime_; }
 }

@@ -13,6 +13,8 @@ namespace GFt {
         static Window* root_;
         static double FPS_;
         static float realFps_;
+        static float renderTime_;
+        static float eventTime_;
 
         static bool shouldClose_;
     private:
@@ -55,5 +57,11 @@ namespace GFt {
         /// @brief 获取真实帧率
         /// @return 真实帧率
         static float getRealFps();
+        /// @brief 获取渲染帧时长
+        /// @return 渲染帧时长(以毫秒计)
+        static float getRenderTime();
+        /// @brief 获取事件处理帧时长
+        /// @return 事件处理帧时长(以微秒计)
+        static float getEventTime();
     };
 }
