@@ -45,6 +45,8 @@ namespace GFt {
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
         return a->zIndex_ > b->zIndex_;
     }
+    /// @note 由于此函数会在每帧渲染时调用，因而应尽量避免过多的计算、创建和销毁临时对象，以提高效率。
+    /// @note 渲染帧时长(可通过 Application::getRenderTime() 获取)最好控制在16ms以内，否则会引发较为明显的卡顿
     void Block::onDraw(Graphics& g) {}
     void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
