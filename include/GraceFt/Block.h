@@ -114,6 +114,10 @@ namespace GFt {
         /// @details 此操作影响当前对象及其所有子对象
         /// @see hide()
         void show();
+        /// @brief 获取块当前是否被隐藏
+        /// @return 是否被隐藏
+        /// @see hide() show()
+        bool isHide() const;
 
         /// @brief 获取层级
         /// @return 层级
@@ -137,5 +141,6 @@ namespace GFt {
         Signal<Block*> HoverOff;    ///< 当鼠标移开该对象时之上时触发该信号
         Signal<Block*> FocusOn;     ///< 当该对象获得焦点时触发该信号
         Signal<Block*> FocusOff;    ///< 当该对象失去焦点时触发该信号
+        Signal< bool > ViewChanged;      ///< 当该对象显示状态变化时触发该信号
     };
 }

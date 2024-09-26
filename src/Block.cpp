@@ -125,13 +125,18 @@ namespace GFt {
     }
     void Block::hide() {
         hide_ = true;
+        ViewChanged(false);
         for (auto child : children_)
             child->hide();
     }
     void Block::show() {
         hide_ = false;
+        ViewChanged(true);
         for (auto child : children_)
             child->show();
+    }
+    bool Block::isHide() const {
+        return hide_;
     }
     int Block::getZIndex() const { return zIndex_; }
     Block* Block::getParent() const { return parent_; }
