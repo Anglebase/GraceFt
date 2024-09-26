@@ -36,10 +36,10 @@ namespace GFt {
 
     protected:
         /// @brief 此函数用于绘制内容
-        /// @param rect 绘制区域(相对于窗口的绝对坐标)
+        /// @param g 绘图设备对象
         /// @details 此函数会在每一帧绘制时被调用, 用于绘制内容
         /// @note 若启用了裁剪优化，且此对象所在位置不与父对象的区域存在交集, 则此函数不会被调用
-        void onDraw(const iRect& rect) override;
+        void onDraw(Graphics& g) override;
         /// @brief 此函数用于处理鼠标按钮按下事件
         /// @details 此函数存在默认行为：当此对象被点击时捕获焦点
         /// @param event 鼠标按钮按下事件

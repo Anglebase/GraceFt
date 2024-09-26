@@ -11,8 +11,7 @@ class MyWindow : public Block {
     PixelMap pixmap;
     Texture texture;
 protected:
-    void onDraw(const iRect& rect) override {
-        static Graphics g;
+    void onDraw(Graphics& g) override {
         BrushSet bs(0x9f9fefcd_rgba);
         // bs.setTexture(texture, iRect(0, 0, 100, 100));
         // bs.setLinearGradient(iPoint{ 50,50 }, 0xff00_rgb, iPoint{ 150,150 }, 0xff_rgb);

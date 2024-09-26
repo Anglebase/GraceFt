@@ -15,10 +15,10 @@ namespace GFt {
         setShouldUpdateLayout(false);
     }
 
-    void GridLayout::onDraw(const iRect& rect) {
+    void GridLayout::onDraw(Graphics& g) {
         if (shouldUpdateLayout())
             updateLayout();
-        return Block::onDraw(rect);
+        return Block::onDraw(g);
     }
 
     GridLayout::GridLayout(const iRect& rect, Block* parent, int zIndex)
@@ -29,6 +29,8 @@ namespace GFt {
     }
     GridLayout::~GridLayout() = default;
     void GridLayout::addItem(Block* item, const iRect& rect) {
+        if(item == nullptr)
+            return;
         griditems_[item] = rect;
         this->addChild(item);
         setShouldUpdateLayout();

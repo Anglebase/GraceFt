@@ -2,6 +2,7 @@
 
 #include <GraceFt/Rect.hpp>
 #include <GraceFt/Signal.hpp>
+#include <GraceFt/Graphics.h>
 
 namespace GFt {
     /// @defgroup 基础UI封装库
@@ -15,7 +16,7 @@ namespace GFt {
     protected:
         /// @brief 绘制接口
         /// @param rect 绘制区域
-        virtual void onDraw(const iRect& rect) = 0;
+        virtual void onDraw(Graphics& g) = 0;
 
     public:
         /// @brief 构造函数

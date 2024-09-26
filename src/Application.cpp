@@ -25,7 +25,7 @@ namespace GFt {
         flushwindow();
     }
     void Application::handleEvents(Window* window) {
-        constexpr int max_msg_count = 20;
+        constexpr int max_msg_count = 10;
         int count_mousemsg = 0, count_kbmsg = 0, count_textmsg = 0;
         // 鼠标事件
         if (mousemsg()) do {
@@ -117,18 +117,23 @@ namespace GFt {
         } while (kbhit());
     }
     Application::~Application() {}
+    /// @note 若未检测到窗口被成功创建，此函数不会阻塞，将会立即返回错误码 1(通常此函数返回值直接作为程序的退出码)
     int Application::exec(bool cilpO) {
         if (ege::getHWnd() == (HWND)0)
             return 1;
         auto lastTime = chrono::steady_clock::now();
         for (;is_run() && !Application::shouldClose_; Application::FPS_ > 0 ? delay_fps(Application::FPS_) : (void)0) {
-            handleEvents(Application::root_);
+            auto t1 = chrono::steady_clock::now();
+            handleEvents(Application::root_);\
+                auto t2 = chrono::steady_clock::now();
             render(Application::root_, cilpO);
             auto nowTime = chrono::steady_clock::now();
             Application::realFps_ =
                 1.0 / chrono::duration_cast<chrono::microseconds>
                 (nowTime - lastTime).count() * 1000000.0;
             lastTime = nowTime;
+            std::cout << "E: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1) <<
+                " R: " << std::chrono::duration_cast<std::chrono::milliseconds>(nowTime - t1) << " FPS: " << Application::realFps_ << std::endl;
         }
         return 0;
     }

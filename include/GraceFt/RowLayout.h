@@ -15,7 +15,7 @@ namespace GFt {
 
     protected:
         /// @brief 重写onDraw方法，刷新布局
-        void onDraw(const iRect& rect) override;
+        void onDraw(Graphics& g) override;
 
     public:
         /// @brief 构造函数

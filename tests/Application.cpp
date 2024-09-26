@@ -8,10 +8,9 @@ using namespace std;
 
 class MyWindow : public Block {
 protected:
-    void onDraw(const iRect& rect) override {
+    void onDraw(Graphics& g) override {
         using namespace GFt::literals;
-        Block::onDraw(rect);
-        Graphics g;
+        Block::onDraw(g);
         g.setBackgroundColor(0xe9e9e9_rgb);
         g.clear();
         g.drawFillRect(fRect{ 20,20,100,100 });

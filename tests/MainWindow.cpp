@@ -8,7 +8,7 @@ using namespace GFt::Widget;
 
 class MyMainWindow : public MainWindow {
 protected:
-    void onDraw(const iRect& rect) override {
+    void onDraw(Graphics& g) override {
         // Graphics g;
         // g.drawFillCircle(fCircle{ fPoint{ 0.f,0.f}, 50.f });
     }

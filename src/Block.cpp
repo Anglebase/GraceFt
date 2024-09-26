@@ -45,7 +45,7 @@ namespace GFt {
     bool Block::CompareByZIndex::operator()(const Block* a, const Block* b) const {
         return a->zIndex_ > b->zIndex_;
     }
-    void Block::onDraw(const iRect& rect) {}
+    void Block::onDraw(Graphics& g) {}
     void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
         BlockFocusManager::setFocusOn(this);
@@ -150,13 +150,13 @@ namespace GFt {
     }
 
     void Block::handleOnDraw(const iPoint& lefttop, bool cilpO) {
+        static Graphics g;
         // 设置裁剪区域
         /// @bug 此函数应裁剪到自身的范围
         setviewport(lefttop.x(), lefttop.y(), lefttop.x() + rect().width(), lefttop.y() + rect().height(), 0);
         // 调用自身的绘制函数
         if (!this->hide_) {
-            Graphics();
-            this->onDraw(iRect{ lefttop, rect().size() });
+            this->onDraw(g);
         }
         if (!sortChildren_) {
             // 元素重排

@@ -20,7 +20,7 @@ namespace GFt {
             int textAlignment_{ TextAlign::Left | TextAlign::Middle };
 
         protected:
-            void onDraw(const iRect& rect) override;
+            void onDraw(Graphics& g) override;
             void onMouseButtonPress(MouseButtonPressEvent* event) override;
 
         public:

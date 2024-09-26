@@ -35,8 +35,7 @@ namespace GFt {
     // 最小化按钮
     class MiniBtn : public CtrlBtn {
     protected:
-        void onDraw(const iRect& rect) override {
-            static Graphics g;
+        void onDraw(Graphics& g) override {
             static PenSet ps(0_rgb, 2_px);
             static BrushSet bs(0xffffff_rgb);
             BlockHoverManager::getHoverOn() == this
@@ -44,7 +43,7 @@ namespace GFt {
                 : bs.setFillStyle(0xffffff_rgb);
             g.bindBrushSet(&bs);
             g.bindPenSet(&ps);
-            auto r = fRect{ fPoint{}, rect.size() };
+            auto r = fRect{ rect().size() };
             g.drawFillRect(r);
             constexpr auto sc = 1 / (std::numbers::phi * 2);
             fLine l{
@@ -66,8 +65,7 @@ namespace GFt {
     class MaxiBtn : public CtrlBtn {
         bool max_ = false;
     protected:
-        void onDraw(const iRect& rect) override {
-            static Graphics g;
+        void onDraw(Graphics& g) override {
             static PenSet ps(0_rgb, 2_px);
             static BrushSet bs(0xffffff_rgb);
             BlockHoverManager::getHoverOn() == this
@@ -75,7 +73,7 @@ namespace GFt {
                 : bs.setFillStyle(0xffffff_rgb);
             g.bindBrushSet(&bs);
             g.bindPenSet(&ps);
-            auto r = fRect{ fPoint{}, rect.size() };
+            auto r = fRect{ fPoint{}, rect().size() };
             g.drawFillRect(r);
             constexpr auto sc = 1 / (std::numbers::phi * 2);
             fRect rc = r.centerby(Size<double>{ r.size().width()* sc, r.size().height()* sc });
@@ -144,8 +142,7 @@ namespace GFt {
     // 关闭按钮
     class CloseBtn : public CtrlBtn {
     protected:
-        void onDraw(const iRect& rect) override {
-            static Graphics g;
+        void onDraw(Graphics& g) override {
             static PenSet ps(0_rgb, 2_px);
             static BrushSet bs(0xffffff_rgb);
             if (BlockHoverManager::getHoverOn() == this) {
@@ -158,11 +155,11 @@ namespace GFt {
             }
             g.bindBrushSet(&bs);
             g.bindPenSet(&ps);
-            auto r = fRect{ fPoint{}, rect.size() };
+            auto r = fRect{ fPoint{}, rect().size() };
             g.drawFillRect(r);
             constexpr auto sc = 1 / (std::numbers::phi * 2);
             fRect rc = r
-                .centerby(rect.size() - iSize{ 2_px, 2_px })
+                .centerby(rect().size() - iSize{ 2_px, 2_px })
                 .centerby(Size<double>{ r.size().width()* sc, r.size().height()* sc });
             fLine l1{
                 fPoint{ rc.left(), rc.top() },
@@ -191,13 +188,12 @@ namespace GFt {
         iPoint drag_pos_;
         iPoint current_;
     protected:
-        void onDraw(const iRect& rect) override {
-            static Graphics g;
+        void onDraw(Graphics& g) override {
             static TextSet ts(0_rgb, Font{ L"等线", 1.2_em });
             static BrushSet bs(0xffffff_rgb);
             g.bindBrushSet(&bs);
             g.bindTextSet(&ts);
-            auto r = fRect{ fPoint{}, rect.size() };
+            auto r = fRect{ rect().size() };
             g.drawFillRect(r);
             g.drawText(title_, fRect{
                 iPoint{ 5_px, 0_px },
@@ -249,7 +245,9 @@ namespace GFt {
             // 当窗口大小改变时，更新布局
             Window::onWindowSizeChanged.connect([layout](Window* w) {
                 layout->setWidth(100_vw);
-                layout->setShouldUpdateLayout();
+                });
+            Window::onWindowCreated.connect([layout](Window* w) {
+                layout->setWidth(100_vw);
                 });
             // 创建标题栏元素
             TitleLabel* titleLabel = new TitleLabel{ iRect{}, title, layout };

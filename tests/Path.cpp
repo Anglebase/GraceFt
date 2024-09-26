@@ -12,8 +12,7 @@ using namespace GFt::Widget;
 
 class PathTest : public Block {
 protected:
-    void onDraw(const iRect& rect) override {
-        Graphics g;
+    void onDraw(Graphics& g) override {
         // Path path;
         // path.addText(L"传达", iPoint(200, 200), Font(L"微软雅黑", 50));
         // path.transformBy(

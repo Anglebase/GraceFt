@@ -27,7 +27,7 @@ namespace GFt {
             Color disabledColor_{ 0x99, 0x99, 0x99, 0xFF };
 
         protected:
-            void onDraw(const iRect& rect) override;
+            void onDraw(Graphics& g) override;
             void onMouseButtonPress(MouseButtonPressEvent* event) override;
             void onMouseButtonRelease(MouseButtonReleaseEvent* event) override;
 

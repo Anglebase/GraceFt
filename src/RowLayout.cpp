@@ -31,10 +31,10 @@ namespace GFt {
         setShouldUpdateLayout(false);
     }
 
-    void RowLayout::onDraw(const iRect& rect) {
+    void RowLayout::onDraw(Graphics& g) {
         if (shouldUpdateLayout())
             updateLayout();
-        return Block::onDraw(rect);
+        return Block::onDraw(g);
     }
 
     RowLayout::RowLayout(const iRect& rect, Block* parent, int zIndex)

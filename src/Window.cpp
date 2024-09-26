@@ -142,9 +142,9 @@ namespace GFt {
         onWindowSizeChanged(this);
     }
     Window* Window::createWindow(Block* block, bool hide) {
-        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        if (!block) return nullptr;
         auto rect = block->rect();
         static Window window(rect.width(), rect.height(), H(hide));
         window.addChild(block);
@@ -156,9 +156,9 @@ namespace GFt {
         return Window::pInstance_;
     }
     Window* Window::createFullScreenWindow(Block* block, bool hide) {
-        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        if (!block) return nullptr;
         block->setRect(iRect(0, 0, 100_sw, 100_sh));
         static Window window(100_sw, 100_sh, H(hide) | INIT_NOBORDER | INIT_TOPMOST);
         window.addChild(block);
@@ -170,9 +170,9 @@ namespace GFt {
         return Window::pInstance_;
     }
     Window* Window::createTopMostWindow(Block* block, bool hide) {
-        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        if (!block) return nullptr;
         auto rect = block->rect();
         static Window window(rect.width(), rect.height(), H(hide) | INIT_TOPMOST);
         window.addChild(block);
@@ -184,9 +184,9 @@ namespace GFt {
         return Window::pInstance_;
     }
     Window* Window::createNoBorderWindow(Block* block, bool hide) {
-        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        if (!block) return nullptr;
         auto rect = block->rect();
         static Window window(rect.width(), rect.height(), H(hide) | INIT_NOBORDER);
         window.addChild(block);
@@ -198,9 +198,9 @@ namespace GFt {
         return Window::pInstance_;
     }
     Window* Window::createNoBorderTopMostWindow(Block* block, bool hide) {
-        if (!block) return nullptr;
         if (Window::pInstance_)
             return Window::pInstance_;
+        if (!block) return nullptr;
         auto rect = block->rect();
         static Window window(rect.width(), rect.height(), H(hide) | INIT_NOBORDER | INIT_TOPMOST);
         window.addChild(block);

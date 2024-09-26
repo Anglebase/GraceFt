@@ -70,21 +70,36 @@ namespace GFt {
         /// @brief 创建普通窗口
         /// @param rect 窗口大小
         /// @param hide 是否在创建后隐藏窗口
+        /// @note 若传入的block为nullptr，则会立即返回nullptr
+        /// @note 若Window已被创建，则会忽略新传入的block指针，直接返回已创建的block对象
+        /// @note 若窗口未被成功创建，程序将立即退出，并输出创建失败的提示信息
         static Window* createWindow(Block* block, bool hide = false);
         /// @brief 创建全屏窗口
         /// @param hide 是否在创建后隐藏窗口
+        /// @note 若传入的block为nullptr，则会立即返回nullptr
+        /// @note 若Window已被创建，则会忽略新传入的block指针，直接返回已创建的block对象
+        /// @note 若窗口未被成功创建，程序将立即退出，并输出创建失败的提示信息
         static Window* createFullScreenWindow(Block* block, bool hide = false);
         /// @brief 创建置顶窗口
         /// @param rect 窗口大小
         /// @param hide 是否在创建后隐藏窗口
+        /// @note 若传入的block为nullptr，则会立即返回nullptr
+        /// @note 若Window已被创建，则会忽略新传入的block指针，直接返回已创建的block对象
+        /// @note 若窗口未被成功创建，程序将立即退出，并输出创建失败的提示信息
         static Window* createTopMostWindow(Block* block, bool hide = false);
         /// @brief 创建无边框窗口
         /// @param rect 窗口大小
         /// @param hide 是否在创建后隐藏窗口
+        /// @note 若传入的block为nullptr，则会立即返回nullptr
+        /// @note 若Window已被创建，则会忽略新传入的block指针，直接返回已创建的block对象
+        /// @note 若窗口未被成功创建，程序将立即退出，并输出创建失败的提示信息
         static Window* createNoBorderWindow(Block* block, bool hide = false);
         /// @brief 创建无边框置顶窗口
         /// @param rect 窗口大小
         /// @param hide 是否在创建后隐藏窗口
+        /// @note 若传入的block为nullptr，则会立即返回nullptr
+        /// @note 若Window已被创建，则会忽略新传入的block指针，直接返回已创建的block对象
+        /// @note 若窗口未被成功创建，程序将立即退出，并输出创建失败的提示信息
         static Window* createNoBorderTopMostWindow(Block* block, bool hide = false);
         /// @brief 获取已创建的窗口对象实例
         /// @return 已创建的窗口对象指针

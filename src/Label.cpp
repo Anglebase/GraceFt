@@ -3,14 +3,13 @@
 namespace GFt {
     namespace Widget {
         using namespace GFt::literals;
-        void Label::onDraw(const iRect& rect) {
-            Graphics g;
+        void Label::onDraw(Graphics& g) {
             g.bindBrushSet(&brushSet_);
             g.bindTextSet(&textSet_);
             iRect r = iRect{
                 iPoint{leftPadding_, topPadding_},
-                iSize{rect.size().width() - leftPadding_ - rightPadding_,
-                      rect.size().height() - topPadding_ - bottomPadding_} };
+                iSize{rect().size().width() - leftPadding_ - rightPadding_,
+                      rect().size().height() - topPadding_ - bottomPadding_} };
             g.drawFillRect(r);
             g.drawText(text_, r, textAlignment_);
         }

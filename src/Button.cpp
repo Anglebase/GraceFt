@@ -39,16 +39,15 @@ namespace GFt {
         void Button::setEnable(bool disabled) { disabled_ = !disabled; }
         bool Button::isDisabled() const { return disabled_; }
 
-        void Button::onDraw(const iRect& rect) {
-            Graphics g;
+        void Button::onDraw(Graphics& g) {
             if (disabled_) 
                 brushSet_.setFillStyle(disabledColor_);
             g.bindBrushSet(&brushSet_);
             g.bindTextSet(&textSet_);
-            iRect btn = iRect{ iPoint{}, rect.size() };
+            iRect btn = iRect{ iPoint{}, rect().size() };
             g.drawFillRect(btn);
             g.drawText(text_, btn, TextAlign::Center | TextAlign::Middle);
-            return Block::onDraw(rect);
+            return Block::onDraw(g);
         }
         void Button::onMouseButtonPress(MouseButtonPressEvent* event) {
             if (disabled_) return;
