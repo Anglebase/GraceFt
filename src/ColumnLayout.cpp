@@ -7,16 +7,20 @@ namespace GFt {
         // 计算所有block的高度占比之和
         float sum = 0.0f;
         for (auto& [block, heightPro] : blockLayout_)
-            sum += heightPro > 0.f ? heightPro : 0.f;
+            if (!block->isHide())
+                sum += heightPro > 0.f ? heightPro : 0.f;
         // 计算可供分配的高度
         auto availableHeight =
             rect().height() -
             (space_ * (blockLayout_.size() - 1)) -
             (getTopPadding() + getBottomPadding());
         for (auto& [block, heightPro] : blockLayout_)
-            availableHeight -= heightPro <= 0.f ? block->rect().height() : 0.f;
+            if (!block->isHide())
+                availableHeight -= heightPro <= 0.f ? block->rect().height() : 0.f;
         // 计算每个block的高度、高度、x坐标
         for (auto& [block, heightPro] : blockLayout_) {
+            if (block->isHide())
+                continue;
             if (heightPro > 0.f)
                 block->setHeight((heightPro / sum) * availableHeight);
             block->setWidth(rect().width() - (getLeftPadding() + getRightPadding()));
@@ -25,6 +29,8 @@ namespace GFt {
         // 计算每个block的y坐标
         int y = getTopPadding();
         for (auto& [block, heightPro] : blockLayout_) {
+            if (block->isHide())
+                continue;
             block->setY(y);
             y += block->rect().height() + space_;
         }
@@ -52,6 +58,7 @@ namespace GFt {
                 return;
             }
         blockLayout_.push_back({ block, widthProportion });
+        SS[block] = block->ViewChanged.connect([this](bool){ this->setShouldUpdateLayout(); });
         this->addChild(block);
     }
     void ColumnLayout::removeItem(Block* block) {
@@ -61,9 +68,10 @@ namespace GFt {
                 auto [b, h] = item;
                 return b == block;
             });
-        std::vector<std::pair<Block*, float>> newBlockLayout(blockLayout_.begin(), it);
-        blockLayout_.swap(newBlockLayout);
         this->removeChild(block);
+        block->ViewChanged.disconnect(SS[block]);
+        blockLayout_.erase(it, blockLayout_.end());
+        SS.erase(block);
     }
     void ColumnLayout::setSpace(int space) {
         space_ = space;

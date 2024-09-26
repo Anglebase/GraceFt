@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <vector>
 #include <GraceFt/Layout.h>
 #include <GraceFt/Block.h>
@@ -10,6 +11,7 @@ namespace GFt {
     class RowLayout : public Layout, public Block {
         int space_{ 0 };
         std::vector<std::pair<Block*, float>> blockLayout_;
+        std::unordered_map<Block*, std::size_t> SS;
 
         void updateLayout();
 

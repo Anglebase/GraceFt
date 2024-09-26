@@ -10,6 +10,7 @@ namespace GFt {
     class ColumnLayout : public Layout, public Block {
         int space_{ 0 };
         std::vector<std::pair<Block*, float>> blockLayout_;
+        std::unordered_map<Block*, std::size_t> SS;
 
         void updateLayout();
 

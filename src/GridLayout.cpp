@@ -7,6 +7,8 @@ namespace GFt {
         auto unitHeight = (rect().height() - (rows_ - 1.f) * vspace_ -
             (getTopPadding() + getBottomPadding())) / rows_;
         for (auto& [item, rect] : griditems_) {
+            if (item->isHide())
+                continue;
             item->setX(rect.x() * (unitWidth + hspace_) + getLeftPadding());
             item->setY(rect.y() * (unitHeight + vspace_) + getTopPadding());
             item->setWidth(rect.width() * unitWidth + hspace_ * (rect.width() - 1));
@@ -29,7 +31,7 @@ namespace GFt {
     }
     GridLayout::~GridLayout() = default;
     void GridLayout::addItem(Block* item, const iRect& rect) {
-        if(item == nullptr)
+        if (item == nullptr)
             return;
         griditems_[item] = rect;
         this->addChild(item);
