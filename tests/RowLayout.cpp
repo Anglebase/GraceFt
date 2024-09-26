@@ -34,11 +34,11 @@ int main() {
     btn1.onClicked.connect([]() { std::cout << "Btn1 clicked" << std::endl; });
     btn2.onClicked.connect([&]() {
         std::cout << "Btn2 clicked" << std::endl;
-        layout.removeChild(&btn1);
+        btn1.hide();
         });
     btn3.onClicked.connect([&]() {
         std::cout << "Btn3 clicked" << std::endl;
-        layout.addChild(&btn1);
+        btn1.show();
         });
     btn4.onClicked.connect([&]() {
         std::cout << "Btn4 clicked" << std::endl;
