@@ -51,6 +51,8 @@ namespace GFt {
         Graphics& operator=(Graphics&& other);
         ~Graphics();
 
+        /// @brief 重置所有设置
+        void reset();
         /// @brief 设置绘图目标
         /// @param target 绘图目标，如果为nullptr，则绘图目标为屏幕
         void setTarget(PixelMap* target);

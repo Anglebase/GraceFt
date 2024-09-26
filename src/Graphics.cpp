@@ -45,6 +45,9 @@ namespace GFt {
     Graphics::~Graphics() {
         INIT_GRAPH;
     }
+    void Graphics::reset() {
+        INIT_GRAPH;
+    }
     /// @note 若设置目标不为 nullptr, 则应保证后续调用此类的其它成员函数时, 目标对象未被析构
     /// @note 否则会引发段错误(指针越界访问)
     void Graphics::setTarget(PixelMap* target) {
