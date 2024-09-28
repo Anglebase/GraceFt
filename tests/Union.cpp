@@ -7,6 +7,7 @@
 #include <vector>
 #include <variant>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace GFt;
 using namespace GFt::UI;
@@ -85,6 +86,8 @@ std::wstring eval(const std::wstring& expr) {
     std::stack<wchar_t> ops;
     for (auto [s, t] : tokens) {
         if (s == State::Num) {
+            if (std::count_if(t.begin(), t.end(), [](wchar_t c) { return c == L'.'; }) > 1)
+                return L"出错";
             try { values.push(std::stod(t)); }
             catch (...) { return L"出错"; }
         }
