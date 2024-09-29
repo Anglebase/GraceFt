@@ -72,3 +72,9 @@ target_link_libraries(test_Radio ${GFt_LIBRARY_NAME})
 # UIRadio TEST
 add_executable(test_UIRadio ${CMAKE_CURRENT_SOURCE_DIR}/UIRadio.cpp)
 target_link_libraries(test_UIRadio ${GFt_LIBRARY_NAME})
+# Check.h TEST
+add_executable(test_Check ${CMAKE_CURRENT_SOURCE_DIR}/Check.cpp)
+target_link_libraries(test_Check ${GFt_LIBRARY_NAME})
+# UICheck TEST
+add_executable(test_UICheck ${CMAKE_CURRENT_SOURCE_DIR}/UICheck.cpp)
+target_link_libraries(test_UICheck ${GFt_LIBRARY_NAME})
