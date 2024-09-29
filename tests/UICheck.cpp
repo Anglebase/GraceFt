@@ -8,7 +8,7 @@ using namespace GFt::UI;
 int main() {
     XMainWindow{
         .name = "Root",
-        .title = L"UI Radio Test",
+        .title = L"UI Check Test",
         .rect = iRect{100, 100, 800, 600},
         .content = [](MainWindow& it) {
             XColumnLayout{
