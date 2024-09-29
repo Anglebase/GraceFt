@@ -11,7 +11,7 @@
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>
 #include <GraceFt/MainWindow.h>
-#include <GraceFt/Radio.h>
+#include <GraceFt/RadioBox.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
