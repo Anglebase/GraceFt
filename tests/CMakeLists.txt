@@ -66,3 +66,9 @@ target_link_libraries(test_MainWindow ${GFt_LIBRARY_NAME})
 # Union TEST
 add_executable(test_Union ${CMAKE_CURRENT_SOURCE_DIR}/Union.cpp)
 target_link_libraries(test_Union ${GFt_LIBRARY_NAME})
+# Radio.h TEST
+add_executable(test_Radio ${CMAKE_CURRENT_SOURCE_DIR}/Radio.cpp)
+target_link_libraries(test_Radio ${GFt_LIBRARY_NAME})
+# UIRadio TEST
+add_executable(test_UIRadio ${CMAKE_CURRENT_SOURCE_DIR}/UIRadio.cpp)
+target_link_libraries(test_UIRadio ${GFt_LIBRARY_NAME})
