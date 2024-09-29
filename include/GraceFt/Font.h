@@ -47,7 +47,7 @@ namespace GFt {
         /// @brief 构造函数
         /// @param fontFamily 字体名称
         /// @param size 字体大小，默认16
-        Font(const std::wstring& fontFamily, long size = literals::operator""_em(1ull));
+        Font(const std::wstring& fontFamily, long size = literals::em(1));
         /// @brief 复制构造
         Font(const Font& other);
         /// @brief 移动构造

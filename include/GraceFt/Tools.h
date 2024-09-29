@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 namespace GFt {
     /// @defgroup 设备无关单位
     /// @ingroup 工具集
@@ -32,6 +34,27 @@ namespace GFt {
         /// @return 实际字号大小
         /// @ingroup 设备无关单位
         int operator""_em(long double n);
+
+        /// @brief 设备无关的非字面量定义
+        /// @see GFt::literals::_px
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int px(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_px(static_cast<long double>(n));
+            else
+                return operator""_px(static_cast<unsigned long long>(n));
+        }
+        /// @brief 设备无关的非字面量定义
+        /// @see GFt::literals::_em
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int em(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_em(static_cast<long double>(n));
+            else
+                return operator""_em(static_cast<unsigned long long>(n));
+        }
 
         /// @brief 百分比映射的屏幕宽度单位 (unsigned long long)
         /// @details 它以屏幕的物理像素宽度为 100%(100_sw) 基准进行逻辑比例映射
