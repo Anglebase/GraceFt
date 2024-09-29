@@ -17,7 +17,7 @@ namespace GFt {
     /// @class Signal
     /// @brief 信号-槽机制支持
     /// @details 支持任意数量的槽函数，支持任意数量的参数，支持任意类型的参数
-    /// @details 此类是线程安全的，且它是 基础设施库 => 糖衣工具 的一部分
+    /// @details 此类是线程安全的，这意味着你可以在另一线程执行槽函数时添加或移除槽函数，但不保证槽函数运行的线程安全性
     /// @tparam Args 信号参数类型
     /// @ingroup 糖衣工具
     template<typename... Args>
@@ -49,7 +49,9 @@ namespace GFt {
             return id_++;
         }
         /// @brief 将成员函数作为槽函数连接
-        /// @tparam Object 成员函数所在类的类型
+        /// @tparam Derived 对象类类型
+        /// @tparam Base 成员函数所在类类型
+        /// @note 要求 Derived 必须是 Base 的派生类(子类)或 Base 本身
         /// @param object 成员函数所在类的实例
         /// @param method 成员函数指针
         /// @return 槽函数ID
@@ -122,7 +124,9 @@ namespace GFt {
             return id_++;
         }
         /// @brief 将成员函数作为槽函数连接
-        /// @tparam Object 成员函数所在类的类型
+        /// @tparam Derived 对象类类型
+        /// @tparam Base 成员函数所在类类型
+        /// @note 要求 Derived 必须是 Base 的派生类(子类)或 Base 本身
         /// @param object 成员函数所在类的实例
         /// @param method 成员函数指针
         /// @return 槽函数ID

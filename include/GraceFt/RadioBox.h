@@ -6,6 +6,7 @@ namespace GFt {
     class RadioManager;
     namespace Widget {
         /// @brief 单选框
+        /// @ingroup 部件库
         class RadioBox : public Block {
             GFt::RadioManager& manager_;
             std::wstring text_;
@@ -36,20 +37,34 @@ namespace GFt {
             /// @return 选中状态
             bool isChecked() const;
 
+            /// @brief 样式信息函数
             std::wstring& text();
+            /// @brief 样式信息函数
             Font& hoverFont();
+            /// @brief 样式信息函数
             Font& normalFont();
+            /// @brief 样式信息函数
             Font& selectedFont();
+            /// @brief 样式信息函数
             BrushSet& hoverBrush();
+            /// @brief 样式信息函数
             BrushSet& normalBrush();
+            /// @brief 样式信息函数
             BrushSet& selectedBrush();
 
+            /// @brief 样式信息函数
             const std::wstring& text() const;
+            /// @brief 样式信息函数
             const Font& hoverFont() const;
+            /// @brief 样式信息函数
             const Font& normalFont() const;
+            /// @brief 样式信息函数
             const Font& selectedFont() const;
+            /// @brief 样式信息函数
             const BrushSet& hoverBrush() const;
+            /// @brief 样式信息函数
             const BrushSet& normalBrush() const;
+            /// @brief 样式信息函数
             const BrushSet& selectedBrush() const;
 
         public:
@@ -59,6 +74,7 @@ namespace GFt {
         };
     }
     /// @brief 单选框管理器
+    /// @ingroup 部件库
     class RadioManager {
         Widget::RadioBox* radiobox_;
     public:

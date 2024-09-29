@@ -8,7 +8,7 @@ namespace GFt {
     /// @brief 通道模板类
     /// @tparam T 通道中元素的类型
     /// @ingroup 糖衣工具
-    /// @note 此类是线程安全的，可用于多线程环境下的数据交换
+    /// @note 此类是线程安全的，可用于多线程环境下线程间的数据交换
     template<typename T>
     class Channel {
         std::queue<T> queue_;
