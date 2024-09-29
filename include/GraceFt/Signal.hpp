@@ -3,6 +3,7 @@
 #include <functional>
 #include <unordered_map>
 #include <mutex>
+#include <concepts>
 
 namespace GFt {
     /// @typedef SlotId
@@ -52,9 +53,12 @@ namespace GFt {
         /// @param object 成员函数所在类的实例
         /// @param method 成员函数指针
         /// @return 槽函数ID
-        template<typename Object>
-        SlotId<Args...> connect(Object* object, void (Object::* method)(Args...)) {
-            return connect([object, method](Args... args) { (object->*method)(std::forward<Args>(args)...); });
+        template<typename Derived, typename Base>
+            requires std::derived_from<Derived, Base>
+        SlotId<Args...> connect(Derived* object, void (Base::* method)(Args...)) {
+            return connect([object, method](Args... args) {
+                (dynamic_cast<Base*>(object)->*method)(std::forward<Args>(args)...);
+            });
         }
         /// @brief 断开槽函数
         /// @param id 槽函数ID
@@ -122,9 +126,12 @@ namespace GFt {
         /// @param object 成员函数所在类的实例
         /// @param method 成员函数指针
         /// @return 槽函数ID
-        template<typename Object>
-        SlotId<void> connect(Object* object, void (Object::* method)()) {
-            return connect([object, method]() { (object->*method)(); });
+        template<typename Derived, typename Base>
+            requires std::derived_from<Derived, Base>
+        SlotId<void> connect(Derived* object, void (Base::* method)()) {
+            return connect([object, method]() {
+                (dynamic_cast<Base*>(object)->*method)();
+            });
         }
         /// @brief 断开槽函数
         /// @param id 槽函数ID
