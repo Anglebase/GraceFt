@@ -51,5 +51,12 @@ namespace GFt {
             if (content)
                 content(*it);
         }
-}
+        XRadioBox::~XRadioBox() {
+            GFt::Widget::RadioBox* it = new GFt::Widget::RadioBox(radioManager, rect, &parent, zIndex);
+            auto& uiManager = GFt::DeclarativeUIManager::getInstance();
+            uiManager.addBlock(name, it);
+            if (content)
+                content(*it);
+        }
+    }
 }

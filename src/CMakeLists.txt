@@ -22,6 +22,7 @@ set(GFt_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/Path.cpp"
     ${CMAKE_CURRENT_SOURCE_DIR}/PenSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/PixelMap.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Radio.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/RowLayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/TextSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Texture.cpp

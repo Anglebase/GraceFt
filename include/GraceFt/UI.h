@@ -11,6 +11,7 @@
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>
 #include <GraceFt/MainWindow.h>
+#include <GraceFt/Radio.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
@@ -100,6 +101,23 @@ namespace GFt {
             /// @brief 内容定义
             std::function<void(GFt::Widget::MainWindow&)> content;
             ~XMainWindow();
+        };
+        /// @brief 单选框声明式UI块
+        /// @details 单选框声明式UI块用于声明式地创建单选框，并提供单选框内容的设置
+        struct XRadioBox final {
+            /// @brief 块识别名称
+            const std::string name;
+            /// @brief 关联的单选框管理器
+            GFt::RadioManager& radioManager;
+            /// @brief 所在矩形
+            iRect rect = iRect();
+            /// @brief 父块
+            GFt::Block& parent;
+            /// @brief Z轴层级
+            int zIndex = 0;
+            /// @brief 内容定义
+            std::function<void(GFt::Widget::RadioBox&)> content;
+            ~XRadioBox();
         };
         /// @brief 块声明式UI块
         /// @details 块声明式UI块用于声明式地创建块，并提供块内容的设置
