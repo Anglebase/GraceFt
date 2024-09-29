@@ -12,6 +12,7 @@
 #include <GraceFt/GridLayout.h>
 #include <GraceFt/MainWindow.h>
 #include <GraceFt/RadioBox.h>
+#include <GraceFt/CheckBox.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
@@ -137,6 +138,9 @@ namespace GFt {
         /// @brief 网格布局声明式UI块
         /// @details 网格布局声明式UI块用于声明式地创建网格布局，并提供布局内容的设置
         DEF_DECLUI(GFt, GridLayout);
+        /// @brief 复选框声明式UI块
+        /// @details 复选框声明式UI块用于声明式地创建复选框，并提供复选框内容的设置
+        DEF_DECLUI(GFt::Widget, CheckBox);
     }
 }
 

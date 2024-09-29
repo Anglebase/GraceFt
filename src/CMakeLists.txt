@@ -9,6 +9,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockFocus.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/BrushSet.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Button.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CheckBox.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Color.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ColumnLayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Event.cpp
