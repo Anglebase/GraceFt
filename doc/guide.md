@@ -7,7 +7,7 @@
   - 反馈问题：如果你在使用过程中遇到问题，你可以在 [Github Issues](https://github.com/Anglebase/GraceFt/issues) 中反馈。
 
 ## 问题或建议的格式说明
-**对于在 Github Issues 中提出的问题或建议，应以`[Bug]`(问题)或`[Feature]`(建议)作为开头，并简略描述问题或建议。**
+**对于在 Github Issues 中提出的问题或建议，应以`[Bug]`(问题)或`[Idea]`(建议)作为开头，并简略描述问题或建议。**
 
 ## 代码贡献指南
 - 请在提交代码之前，先 fork 项目到自己的仓库。
