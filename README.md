@@ -75,7 +75,7 @@ int main() {
 
 ## 许可证
 
-GraceFt 遵循 [GPL-3.0 许可证](https://www.gnu.org/licenses/gpl-3.0.html)。有关详细信息，请查看 `LICENSE` 文件。
+GraceFt 遵循 [MIT 许可证](https://opensource.org/licenses/MIT)。有关详细信息，请查看 [`LICENSE`](./LICENSE) 文件。
 
 ## 开发者
  - [Anglebase](https://github.com/Anglebase)
