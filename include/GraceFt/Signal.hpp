@@ -84,8 +84,8 @@ namespace GFt {
         }
         /// @brief 发送信号
         /// @param args 信号参数
-        /// @details 效果同 emit(Args&&... args)
-        /// @see emit(Args&&... args)
+        /// @details 效果同 emit()
+        /// @see emit()
         void operator()(Args... args) {
             emit(std::forward<Args>(args)...);
         }
