@@ -8,8 +8,6 @@ using namespace GFt::literals;
 using namespace GFt;
 
 class MyWindow : public Block {
-    PixelMap pixmap;
-    Texture texture;
 protected:
     void onDraw(Graphics& g) override {
         BrushSet bs(0x9f9fefcd_rgba);
@@ -33,8 +31,7 @@ protected:
     }
 public:
     MyWindow(const iRect& rect, Block* parent = nullptr, int zIndex = 0)
-        : Block(rect, parent, zIndex), texture(LR"(C:\Users\Lenovo\Project\OpenGL\wall.jpg)") {
-        pixmap = PixelMap::loadFromFile(LR"(C:\Users\Lenovo\Project\OpenGL\wall.jpg)");
+        : Block(rect, parent, zIndex) {
     }
 };
 
