@@ -16,17 +16,21 @@ namespace GFt {
     float Application::renderTime_ = 0.0f;
     float Application::eventTime_ = 0.0f;
     bool Application::shouldClose_ = false;
+    Signal<void> Application::onRenderCall;
+    Signal<void> Application::onEventCall;
     Application::Application(Window* root) {
         if (Application::root_ || !root)
             return;
         Application::root_ = root;
     }
     void Application::render(Window* window, bool clipO) {
+        Application::onRenderCall();
         cleardevice();
         window->handleOnDraw(iPoint{}, clipO);
         flushwindow();
     }
     void Application::handleEvents(Window* window) {
+        Application::onEventCall();
         constexpr int max_msg_count = 10;
         int count_mousemsg = 0, count_kbmsg = 0, count_textmsg = 0;
         // 鼠标事件

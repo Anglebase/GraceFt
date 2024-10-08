@@ -63,5 +63,8 @@ namespace GFt {
         /// @brief 获取事件处理帧时长
         /// @return 事件处理帧时长(以微秒计)
         static float getEventTime();
+
+        static Signal<void> onRenderCall;
+        static Signal<void> onEventCall;
     };
 }
