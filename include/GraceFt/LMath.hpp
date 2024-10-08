@@ -240,7 +240,7 @@ namespace GFt {
     /// @return 弧度制
     /// @ingroup 线性代数工具
     template<typename T>
-    constexpr T radians(T deg) {
-        return deg * T(M_PI) / T(180);
+    constexpr double radians(T deg) {
+        return deg * (M_PI / 180);
     }
 }
