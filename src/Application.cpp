@@ -154,7 +154,5 @@ namespace GFt {
     float Application::getRealFps() { return Application::realFps_; }
     float Application::getRenderTime() { return Application::renderTime_; }
     float Application::getEventTime() { return Application::eventTime_; }
-    bool Application::showCursor(bool show) {
-        return ege::showmouse(show);
-    }
+    bool Application::showCursor(bool show) { return ege::showmouse(show); }
 }
