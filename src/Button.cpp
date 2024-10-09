@@ -11,10 +11,16 @@ namespace GFt {
             onStatusChanged.connect([this](bool isPressed) {
                 isPressed ? this->onClicked() : this->onReleased();
                 });
-            HoverOn.connect([this](Block*){ this->brushSet_.setFillStyle(this->hoverColor_); });
-            HoverOff.connect([this](Block*){ this->brushSet_.setFillStyle(this->backgroundColor_); });
+            HoverOn.connect([this](Block*) {
+                if (this->isDisabled()) return;
+                this->brushSet_.setFillStyle(this->hoverColor_);
+                });
+            HoverOff.connect([this](Block*) {
+                if (this->isDisabled()) return;
+                this->brushSet_.setFillStyle(this->backgroundColor_);
+                });
         }
-        Button::Button(const iRect& rect, Block* parent, int zIndex) 
+        Button::Button(const iRect& rect, Block* parent, int zIndex)
             : Button(L"", rect, parent, zIndex) {}
         Button::~Button() {}
 
@@ -36,12 +42,20 @@ namespace GFt {
         const BrushSet& Button::brushSet() const { return brushSet_; }
         const TextSet& Button::textSet() const { return textSet_; }
 
-        void Button::setEnable(bool disabled) { disabled_ = !disabled; }
+        void Button::setEnable(bool disabled) {
+            disabled_ = !disabled;
+            if (disabled_) {
+                this->brushSet_.setFillStyle(disabledColor_);
+                this->textSet_.setColor(0x707070_rgb);
+            }
+            else {
+                this->brushSet_.setFillStyle(backgroundColor_);
+                this->textSet_.setColor(textColor_);
+            }
+        }
         bool Button::isDisabled() const { return disabled_; }
 
         void Button::onDraw(Graphics& g) {
-            if (disabled_) 
-                brushSet_.setFillStyle(disabledColor_);
             g.bindBrushSet(&brushSet_);
             g.bindTextSet(&textSet_);
             iRect btn = iRect{ iPoint{}, rect().size() };

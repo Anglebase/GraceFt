@@ -24,7 +24,7 @@ namespace GFt {
             Color backgroundColor_{ 0xE5, 0xE5, 0xE5, 0xFF };
             Color hoverColor_{ 0xC6, 0xC6, 0xC6, 0xFF };
             Color pressedColor_{ 0xB7, 0xB7, 0xB7, 0xFF };
-            Color disabledColor_{ 0x99, 0x99, 0x99, 0xFF };
+            Color disabledColor_{ 0xCF, 0xCF, 0xCF, 0xFF };
 
         protected:
             void onDraw(Graphics& g) override;
