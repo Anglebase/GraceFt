@@ -4,6 +4,7 @@
 #include <functional>
 #include <list>
 #include <cmath>
+#include <mutex>
 #include <GraceFt/Signal.hpp>
 
 namespace GFt {
@@ -20,9 +21,9 @@ namespace GFt {
     /// @brief 动画状态类型
     /// @ingroup 动画支持库
     enum class AnimationStateType {
-        Stop,
-        Play,
-        Pause
+        Stop,   ///< 停止状态
+        Play,   ///< 播放状态
+        Pause   ///< 暂停状态
     };
 
     class AnimationAbstract;
@@ -139,9 +140,11 @@ namespace GFt {
             AnimationAbstract(TimePoint(), params.duration, params.trans_func) {}
     };
     /// @brief 动画管理器
+    /// @details 此类是线程安全的
     /// @ingroup 动画支持库
     class AnimationManager {
         std::list<AnimationAbstract*> animations_;
+        std::mutex mutex_;
 
         AnimationManager() = default;
         AnimationManager(const AnimationManager&) = delete;

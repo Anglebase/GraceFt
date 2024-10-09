@@ -61,10 +61,12 @@ namespace GFt {
     AnimationPause::AnimationPause(AnimationAbstract* owner) : AnimationState(owner) {}
     void AnimationPause::update(const TimePoint& now) { owner_->start_time_ = now - owner_->finished_; }
     void AnimationManager::registerAnimation(AnimationAbstract* animation) {
+        std::lock_guard<std::mutex> lock(mutex_);
         if (std::find(animations_.begin(), animations_.end(), animation) == animations_.end())
             animations_.push_back(animation);
     }
     void AnimationManager::unregisterAnimation(AnimationAbstract* animation) {
+        std::lock_guard<std::mutex> lock(mutex_);
         using Iter = std::list<AnimationAbstract*>::iterator;
         Iter it = std::remove_if(animations_.begin(), animations_.end(),
             [animation](AnimationAbstract* a) { return a == animation; });
