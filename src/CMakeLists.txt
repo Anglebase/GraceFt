@@ -4,6 +4,7 @@ include_directories(${GFt_INCLUDE_DIRS})
 include_directories(${EGE_INCLUDE_DIRS})
 
 set(GFt_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Animation.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Application.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Block.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/BlockFocus.cpp
