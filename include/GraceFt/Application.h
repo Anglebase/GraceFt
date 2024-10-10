@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GraceFt/Window.h>
+#include <filesystem>
 
 namespace GFt {
     /// @class Application
@@ -67,6 +68,13 @@ namespace GFt {
         /// @param show 是否可见
         /// @return 之前鼠标是否可见
         static bool showCursor(bool show);
+        /// @brief 获取鼠标相对于屏幕的绝对位置
+        /// @return 鼠标位置
+        static iPoint getAbsoluteMousePosition();
+        /// @brief 获取应用程序的可执行文件所在的路径
+        /// @details 此函数是惰性求值函数
+        /// @return 可执行文件所在的路径，若失败则返回空路径
+        static std::filesystem::path localPath(); 
 
         static Signal<void> onRenderCall;
         static Signal<void> onEventCall;

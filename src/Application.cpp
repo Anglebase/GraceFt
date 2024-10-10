@@ -155,4 +155,18 @@ namespace GFt {
     float Application::getRenderTime() { return Application::renderTime_; }
     float Application::getEventTime() { return Application::eventTime_; }
     bool Application::showCursor(bool show) { return ege::showmouse(show); }
+    iPoint Application::getAbsoluteMousePosition() {
+        POINT pos;
+        GetCursorPos(&pos);
+        return iPoint(pos.x, pos.y);
+    }
+    std::filesystem::path Application::localPath() {
+        static std::filesystem::path localPath;
+        if (!localPath.empty())
+            return localPath;
+        wchar_t path[MAX_PATH];
+        if (GetModuleFileName(NULL, path, MAX_PATH))
+            localPath = std::filesystem::path(path).parent_path();
+        return localPath;
+    }
 }
