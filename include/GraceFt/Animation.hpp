@@ -5,6 +5,7 @@
 #include <list>
 #include <cmath>
 #include <mutex>
+#include <variant>
 #include <GraceFt/Signal.hpp>
 
 namespace GFt {
@@ -17,6 +18,10 @@ namespace GFt {
     concept Animatable = requires(Type v) { { v + (v - v) * 1.f } -> std::convertible_to<Type>; };
     template<typename Type>
     using Setter = std::function<void(const Type&)>;
+    template<typename Type>
+    using Getter = std::function<Type()>;
+    template<typename Type>
+    using Initial = std::variant<Type, Getter<Type>>;
 
     /// @brief 动画状态类型
     /// @ingroup 动画支持库
@@ -54,6 +59,7 @@ namespace GFt {
         AnimationState* state_ = nullptr;
 
     protected:
+        virtual void hadSetPlay() = 0;
         virtual void playingUpdate(const TimePoint& now) = 0;
 
     public:
@@ -73,9 +79,23 @@ namespace GFt {
         bool isPaused() const;
         /// @brief 判断动画是否处于停止状态
         bool isStopped() const;
+        /// @brief 设置动画过渡变换函数
+        /// @param trans_func 过渡变换函数
+        void setTransFunc(const TransFunc& trans_func);
+        /// @brief 设置动画持续时间
+        /// @param ms 持续时间（毫秒）
+        void setDuration(float ms);
+        /// @brief 获取动画的过渡变换函数
+        /// @return 动画的过渡变换函数
+        const TransFunc& getTransFunc() const;
+        /// @brief 获取动画的持续时间
+        /// @return 动画的持续时间（毫秒）
+        float getDuration() const;
 
-        Signal<AnimationStateType, AnimationStateType> onStateChanged;  ///< 动画状态改变信号
-        Signal<void> onFinished;  ///< 动画进度改变信号
+        using AType = AnimationStateType;
+        Signal<AType, AType> onStateChanged;    ///< 动画状态改变信号
+        Signal<void> onFinished;                ///< 动画进度改变信号
+        Signal<void> onUpdated;                 ///< 动画值更新信号
     };
     /// @brief 停止状态
     /// @ingroup 动画支持库
@@ -104,7 +124,7 @@ namespace GFt {
         requires Animatable<Type>
     struct AnimationParams {
         const Setter<Type>& setter;     ///< 动画值的 setter 方法
-        const Type& initial;            ///< 动画初始值
+        const Initial<Type>& initial;   ///< 动画初始值，可以是值或 getter 方法，若为 getter 方法则在动画开始时调用并作为初始值
         const Type& target;             ///< 动画目标值
         const float& duration;          ///< 动画持续时间（毫秒）
         TransFunc trans_func;           ///< 动画过渡函数
@@ -118,8 +138,13 @@ namespace GFt {
         Type start_value_;
         Type end_value_;
 
+        Getter<Type> getter_;
         Setter<Type> setter_;
     protected:
+        void hadSetPlay() override {
+            if (getter_)
+                start_value_ = getter_();
+        }
         void playingUpdate(const TimePoint& now) override {
             using namespace std::chrono;
             finished_ = duration_cast<milliseconds>(now - start_time_);
@@ -128,16 +153,32 @@ namespace GFt {
             if (progress > 1.f) {
                 setStop();
                 onFinished();
+                start_time_ = now;
                 return;
             }
             setter_(start_value_ + (end_value_ - start_value_) * trans_func_(progress));
+            onUpdated();
         }
     public:
         /// @brief 构造函数
         /// @param params 动画参数结构体
         Animation(const AnimationParams<Type>& params)
-            : setter_(params.setter), start_value_(params.initial), end_value_(params.target),
-            AnimationAbstract(TimePoint(), params.duration, params.trans_func) {}
+            : setter_(params.setter), end_value_(params.target),
+            AnimationAbstract(TimePoint(), params.duration, params.trans_func) {
+            setInitial(params.initial);
+        }
+        /// @brief 设置动画初始化值
+        /// @param initial 动画初始值，可以是值或 getter 方法
+        /// @details 若为 getter 方法则在动画开始时调用并作为初始值
+        ///          若为值则直接作为初始值
+        void setInitial(const Initial<Type>& initial) {
+            auto ptr = std::get_if<Type>(&initial);
+            ptr ? start_value_ = *ptr, getter_ = Getter<Type>()
+                : getter_ = std::get<Getter<Type>>(initial);
+        }
+        /// @brief 设置动画目标值
+        /// @param target 动画目标值
+        void setTarget(const Type& target) { end_value_ = target; }
     };
     /// @brief 动画管理器
     /// @details 此类是线程安全的
@@ -171,20 +212,50 @@ namespace GFt {
     /// @note 自定义过渡函数要求：
     /// - 函数类型为 `float(float)`
     /// - 需要保证函数的定义域包含 [0, 1] 区间
+    /// - 函数应当经过点 (0, 0) 和 点(1, 1)
     /// @ingroup 动画支持库
     namespace TransFuncs {
         /// @brief 线性过渡函数(默认函数)
         /// @image html "transfunc/linear.png" "linear 过渡变换曲线"
         inline float linear(float x) { return x; }
-        /// @image html "transfunc/exp2.png" "exp2 过渡变换曲线"
-        inline float exp2(float x) { return ::std::pow(x, 2.f); }
-        /// @image html "transfunc/exp3.png" "exp3 过渡变换曲线"
-        inline float exp3(float x) { return ::std::pow(x, 3.f); }
-        /// @image html "transfunc/exp4.png" "exp4 过渡变换曲线"
-        inline float exp4(float x) { return ::std::pow(x, 4.f); }
+        /// @brief 幂函数生成器
+        inline auto power(float power) {
+            return [power](float x)->float {
+                return ::std::pow(x, power);
+                };
+        }
         /// @image html "transfunc/bezier.png" "bezier 过渡变换曲线"
         inline float bezier(float x) { return 3.f * x * x - 2.f * x * x * x; }
         /// @image html "transfunc/easeIn.png" "easeIn 过渡变换曲线"
         inline float easeIn(float x) { return 1.f - ::std::pow(1.f - x, 2.f); }
+        inline float slowInOut(float x) {
+            return x <= 0.5f
+                // (1-sqrt(1-4x^2))/2
+                ? (1 - ::std::sqrt(1 - 4 * x * x)) / 2
+                // (1+sqrt(1-4(x-1)^2))/2
+                : (1 + ::std::sqrt(1 - 4 * (x - 1) * (x - 1))) / 2;
+        }
+        inline float fastInOut(float x) {
+            return x <= 0.5f
+                // sqrt(x-x^2)
+                ? ::std::sqrt(x - x * x)
+                // 1-sqrt(x-x^2)
+                : 1 - ::std::sqrt(x - x * x);
+        }
+        inline float smoothSlowInOut(float x) { return x - ::std::sin(x * ::std::numbers::pi); }
+        /// @brief 过阻尼衰减函数生成器
+        /// @param damping 等效阻尼因数，值越大越快地达到目标值
+        /// @return 过阻尼衰减函数
+        inline auto overDamped(float damping) {
+            return [damping](float x)-> float {
+                return (1.f - ::std::exp(-damping * x * x)) * (1 / (1 - ::std::exp(-damping)));
+                };
+        }
+        /// @brief 欠阻尼衰减函数生成器
+        /// @param damping 等效阻尼因数，值越大超调震荡频率越高
+        /// @return 欠阻尼衰减函数
+        inline auto underDamped(float damping) {
+            return [damping](float x)-> float { return 1.f - (1.f - x) * ::std::cos(x * damping); };
+        }
     }
 }

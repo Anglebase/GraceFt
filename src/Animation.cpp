@@ -35,6 +35,7 @@ namespace GFt {
             onStateChanged(AnimationStateType::Stop, AnimationStateType::Play);
         delete state_;
         state_ = new AnimationPlay(this);
+        hadSetPlay();
     }
     /// @details 不允许从停止状态直接切换到暂停状态，必须先切换到播放状态再切换到暂停状态
     ///          若处于停止状态或暂停状态，则此函数无效
@@ -54,6 +55,10 @@ namespace GFt {
     bool AnimationAbstract::isStopped() const {
         return dynamic_cast<AnimationStop*>(state_) != nullptr;
     }
+    void AnimationAbstract::setTransFunc(const TransFunc& trans_func) { trans_func_ = trans_func; }
+    void AnimationAbstract::setDuration(float ms) { duration_ms_ = ms; }
+    const TransFunc& AnimationAbstract::getTransFunc() const { return trans_func_; }
+    float AnimationAbstract::getDuration() const { return duration_ms_; }
     AnimationStop::AnimationStop(AnimationAbstract* owner) : AnimationState(owner) {}
     void AnimationStop::update(const TimePoint& now) { owner_->start_time_ = now; }
     AnimationPlay::AnimationPlay(AnimationAbstract* owner) : AnimationState(owner) {}
