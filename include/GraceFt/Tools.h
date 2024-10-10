@@ -4,6 +4,7 @@
 
 namespace GFt {
     /// @defgroup 设备无关单位
+    /// @details 此部分函数在头文件 Tools.h 中定义
     /// @ingroup 工具集
 
     /// @brief 字面量定义

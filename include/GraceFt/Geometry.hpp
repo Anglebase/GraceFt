@@ -10,6 +10,7 @@ namespace GFt {
     /// @defgroup 工具集
 
     /// @defgroup 几何求解工具
+    /// @details 此部分函数在头文件 Geometry.hpp 中定义
     /// @ingroup 工具集
 
     /// @brief 计算两个矩形的交集

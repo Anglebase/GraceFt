@@ -12,7 +12,7 @@ namespace GFt {
     template<typename... Args>
     using SlotId = std::size_t;
     /// @addtogroup 糖衣工具
-    /// @ingroup 基础设施库
+    /// @ingroup 工具集
 
     /// @class Signal
     /// @brief 信号-槽机制支持

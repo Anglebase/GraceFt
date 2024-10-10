@@ -4,7 +4,8 @@
 
 namespace GFt {
     /// @defgroup 线性代数工具
-    /// @ingroup 基础设施库
+    /// @details 此部分函数在头文件 LMath.hpp 中定义
+    /// @ingroup 工具集
 
     /// @brief 计算向量点乘
     /// @tparam N 维度数
