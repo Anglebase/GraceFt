@@ -3,6 +3,7 @@
 #include <BlockFocus.h>
 #include <Button.h>
 #include <Geometry.hpp>
+#include <Plan.h>
 
 using namespace GFt;
 using namespace GFt::Widget;
@@ -45,8 +46,6 @@ public:
             auto absPos = Application::getAbsoluteMousePosition();
             if (contains({ this->absolutePos(), this->rect().size() }, absPos))
                 BlockHoverManager::setHoverOn(this);
-            else
-                BlockHoverManager::setHoverOn(this->getParent());
             this->mousePos_ = absPos - this->absolutePos();
             });
     }
@@ -57,6 +56,10 @@ public:
 };
 
 int main() {
+    Window::onWindowCreated.connect([](Window* w) {
+        Application::onEventCall.connect(&Application::updateBlockHoverState);
+        });
+
     Block root{ iRect{100,100,800,600} };
 
     View view{ iRect{100,100,100,100}, &root };
@@ -77,6 +80,7 @@ int main() {
     Button button4{ iRect{100,430,100,50}, &root };
     button4.text() = L"输出FPS";
     button4.onClicked.connect([] {
+        PlanEvent::getInstance().addPlanEvent([] {std::cout << "PlanEvent Callback Function triggered" << std::endl;});
         std::cout << "FPS: " << Application::getRealFps() << std::endl;
         std::cout << "Event: " << Application::getEventTime() << "us" << std::endl;
         std::cout << "Render: " << Application::getRenderTime() << "ms" << std::endl;
