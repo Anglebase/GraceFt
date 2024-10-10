@@ -31,6 +31,20 @@ namespace GFt {
         Application(Window* root);
         ~Application();
 
+        /// @brief 更新鼠标悬浮状态
+        /// @details 此函数用于通知应用更新 BlockHoverManager
+        /// @note 该函数默认只会在捕获到鼠标事件时才会被调用，如果 Block 对象树含有具有位置动画的对象,
+        ///       则需要在每一帧调用此函数来更新 BlockHoverManager 的状态以确保
+        ///       BlockHoverManager 状态的正确性，通常直接将其连接到 onEventCall 信号以实现自动更新
+        /// @code
+        /// // 将 updateBlockHoverState 函数连接到 onEventCall 信号
+        /// // 在 main 函数的开头添加以下代码即可
+        /// Window::onWindowCreated.connect([](Window* w) {
+        ///     Application::onEventCall.connect(&Application::updateBlockHoverState);
+        ///     });
+        /// @endcode
+        static void updateBlockHoverState();
+
         /// @brief 运行程序
         /// @param cilpO 是否启用绘图裁剪优化
         /// @return 程序退出状态
@@ -74,9 +88,9 @@ namespace GFt {
         /// @brief 获取应用程序的可执行文件所在的路径
         /// @details 此函数是惰性求值函数
         /// @return 可执行文件所在的路径，若失败则返回空路径
-        static std::filesystem::path localPath(); 
+        static std::filesystem::path localPath();
 
-        static Signal<void> onRenderCall;
-        static Signal<void> onEventCall;
+        static Signal<void> onRenderCall;   ///< 每一帧渲染(之前)时触发此信号
+        static Signal<void> onEventCall;    ///< 每一帧事件处理(之前)时触发此信号
     };
 }

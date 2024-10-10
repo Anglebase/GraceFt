@@ -5,6 +5,7 @@
 #include <ege.h>
 #include <chrono>
 
+#include <Geometry.hpp>
 #include <BlockFocus.h>
 
 namespace GFt {
@@ -123,6 +124,25 @@ namespace GFt {
         } while (kbhit());
     }
     Application::~Application() {}
+    void Application::updateBlockHoverState() {
+        Block* curr = Application::root_;
+        while (true) {
+            if (curr->children_.empty()) {
+                BlockHoverManager::setHoverOn(curr);
+                break;
+            }
+            using Iter = std::multiset<Block*, GFt::Block::CompareByZIndex>::iterator;
+            Iter iter = std::find_if(curr->children_.begin(), curr->children_.end(),
+                [](const Block* block) {
+                    return contains({ block->absolutePos(), block->rect().size() }, getAbsoluteMousePosition());
+                });
+            if (iter == curr->children_.end()) {
+                BlockHoverManager::setHoverOn(curr);
+                break;
+            }
+            curr = *iter;
+        }
+    }
     /// @note 若未检测到窗口被成功创建，此函数不会阻塞，将会立即返回错误码 1(通常此函数返回值直接作为程序的退出码)
     int Application::exec(bool cilpO) {
         if (ege::getHWnd() == (HWND)0)
