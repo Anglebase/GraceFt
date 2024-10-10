@@ -51,7 +51,8 @@ namespace GFt {
     void Block::onMouseButtonPress(MouseButtonPressEvent* event) {
         // 默认行为: 受到点击捕获焦点
         BlockFocusManager::setFocusOn(this);
-        event->stopPropagation();
+        if (event)
+            event->stopPropagation();
     }
     void Block::onMouseButtonRelease(MouseButtonReleaseEvent* event) {}
     void Block::onMouseMove(MouseMoveEvent* event) {}
