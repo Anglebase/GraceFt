@@ -8,6 +8,7 @@
 #include <Window.h>
 #include <Application.h>
 #include <RowLayout.h>
+#include <System.h>
 
 namespace GFt {
     /// @cond IGNORE
@@ -184,9 +185,22 @@ namespace GFt {
     // 标题栏标签
     class TitleLabel : public Block {
         std::wstring title_;
-        bool drag_ = false;
         iPoint drag_pos_;
         iPoint current_;
+        size_t ssid;
+
+        void updateWindowPos() {
+            if (Sys::getAsyncKeyState(Key::LeftMouse) & 0x8000) {
+                Window::window()->moveTo(
+                    current_ + (Sys::getCursorPosition() - drag_pos_)
+                );
+            }
+            else {
+                current_ = iPoint{};
+                drag_pos_ = iPoint{};
+                Application::onEventCall.disconnect(ssid);
+            }
+        }
     protected:
         void onDraw(Graphics& g) override {
             static TextSet ts(0_rgb, Font{ L"等线", 1.2_em });
@@ -203,28 +217,14 @@ namespace GFt {
         void onMouseButtonPress(MouseButtonPressEvent* event) override {
             if (event->button() != MouseButton::Left)
                 return;
-            drag_pos_ = event->absolutePosition();
-            current_ = event->absolutePosition() - event->position();
-            drag_ = true;
-        }
-        void onMouseButtonRelease(MouseButtonReleaseEvent* event) override {
-            if (event->button() != MouseButton::Left)
-                return;
-            drag_pos_ = iPoint{};
-            current_ = iPoint{};
-            drag_ = false;
-        }
-        void onMouseMove(MouseMoveEvent* event) override {
-            if (!drag_)
-                return;
-            Window::window()->moveTo(
-                current_ + (event->absolutePosition() - drag_pos_)
-            );
+            drag_pos_ = Sys::getCursorPosition();
+            current_ = Sys::getCursorPosition() - event->position();
+            ssid = Application::onEventCall.connect(this, &TitleLabel::updateWindowPos);
         }
     public:
         TitleLabel(const iRect& rect, const std::wstring& title, Block* parent)
             : Block(rect, parent), title_(title) {}
-        
+
         void setTitle(const std::wstring& title) {
             title_ = title;
         }
