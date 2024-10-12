@@ -964,7 +964,7 @@ namespace GFt {
 }
 
 /*
-此文件以 MIT 许可证发布
+(仅)此文件以 MIT 许可证发布
 
 MIT License
 
