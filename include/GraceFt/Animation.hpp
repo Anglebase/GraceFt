@@ -14,6 +14,8 @@ namespace GFt {
 
     using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;
     using TransFunc = std::function<float(float)>;
+    /// @brief 此概念约束类型 Type 必须支持线性插值运算，即对于 Type 类型的值 a 和 b，
+    ///        其表达式 a + (b - a) * t (t 为浮点数) 必须是合法的
     template<typename Type>
     concept Animatable = requires(Type v) { { v + (v - v) * 1.f } -> std::convertible_to<Type>; };
     template<typename Type>

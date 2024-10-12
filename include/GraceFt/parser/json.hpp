@@ -15,6 +15,41 @@
 #include <ostream>
 
 namespace GFt {
+    /// @brief JSON 序列化和反序列化支持
+    /// @details 这个命名空间包含所有用于 JSON 序列化/反序列化的类和函数
+    /// @code 使用示例
+    /// #include <iostream>
+    /// #include <sstream>
+    /// #include <string>
+    /// #include <GraceFt/parser/json.hpp>
+    ///
+    /// using namespace GFt;
+    /// using namespace std;
+    ///
+    /// int main() {
+    ///     string json_str = R"({"name": "Grace", "age": 25, "city": "Beijing", "hobbies": ["reading", "swimming"]})";
+    ///     istringstream iss(json_str); // 输入流，可以是任意流对象，如 ifstream、stringstream 等
+    ///
+    ///     json::Value<char> data;
+    ///     iss >> data;
+    ///
+    ///     // 格式化输出
+    ///     cout << data << endl;
+    ///     cout << "----------------------------" << endl;
+    ///     // 压缩输出
+    ///     json::print(data, cout, -1);
+    ///     cout << endl;
+    ///     // 访问属性
+    ///     cout << data["name"].toString() << endl;
+    ///     cout << data["age"].toInt() << endl;
+    ///     // 如果属性类型不匹配，则会抛出异常
+    ///     // cout << data["age"].toString() << endl; // throws exception: std::bad_cast
+    ///     // 访问数组元素
+    ///     cout << data["hobbies"][0].toString() << endl;
+    ///
+    ///     return 0;
+    /// }
+    /// @endcode
     namespace json {
         template<typename CharT>
         using StdString = std::basic_string<CharT>;
@@ -38,14 +73,15 @@ namespace GFt {
         template<typename CharT>
         class Null;
         enum class Type {
-            Null,
-            Boolean,
-            Number,
-            String,
-            Array,
-            Object,
-            Invalid
+            Null,       ///< 空
+            Boolean,    ///< 布尔值
+            Number,     ///< 数字
+            String,     ///< 字符串
+            Array,      ///< 数组
+            Object,     ///< 对象
+            Invalid     ///< 无效类型
         };
+        /// @brief 此概念约束类型 V 必须是非空有效的 JSON 值类型
         template<typename V, typename CharT>
         concept Child = std::derived_from<std::remove_cvref_t<V>, Value<CharT>>
             && !std::same_as<std::remove_cvref_t<V>, Value<CharT>>;
@@ -81,10 +117,16 @@ namespace GFt {
         public:
             Value() = default;
             virtual ~Value() { delete ref; }
+            /// @brief 从类型 V 的值构造 JSON 值
+            /// @tparam V 类型 V 的值必须是非空有效的 JSON 值类型，可有cv限定
+            /// @param other 类型 V 的值
             template<typename V>
                 requires Child<V, CharT>
             Value(V other) { ref = new std::remove_cvref_t<V>(other); }
 
+            /// @brief 将 V 类型的 JSON 值赋给此对象
+            /// @tparam V 类型 V 的值必须是非空有效的 JSON 值类型，可有cv限定
+            /// @param other 类型 V 的值
             template<typename V>
                 requires Child<V, CharT>
             Value& operator=(V other) {
@@ -100,6 +142,9 @@ namespace GFt {
             Value& operator=(long long num) { return operator=(Number<CharT>(num)); }
             Value& operator=(double num) { return operator=(Number<CharT>(num)); }
             Value& operator=(bool b) { return operator=(Boolean<CharT>(b)); }
+            /// @brief 判断当前对象是否是类型 T 的 JSON 值
+            /// @tparam T 类型 T 的值必须是非空有效的 JSON 值所属的类模板
+            /// @return 当前对象是否是类型 T 的 JSON 值
             template<template<typename> typename T>
                 requires Child<T<CharT>, CharT>
             bool is() const {
@@ -107,7 +152,10 @@ namespace GFt {
                     ? dynamic_cast<const volatile T<CharT>*>(ref)
                     : dynamic_cast<const volatile T<CharT>*>(this);
             }
-
+            /// @brief 使得当前对象作为 T 类型的 JSON 值使用
+            /// @tparam T 类型 T 的值必须是非空有效的 JSON 值所属的类模板
+            /// @return 当前对象作为 T 类型的 JSON 值的引用
+            /// @throws std::bad_cast 如果当前对象不是类型 T 的 JSON 值则会抛出此异常
             template<template<typename> typename T>
                 requires Child<T<CharT>, CharT>
             T<CharT>& as() {
@@ -115,7 +163,7 @@ namespace GFt {
                     ? dynamic_cast<T<CharT>&>(*ref)
                     : dynamic_cast<T<CharT>&>(*this);
             }
-
+            /// @brief 此函数是 as() 函数的 const 版本
             template<template<typename> typename T>
                 requires Child<T<CharT>, CharT>
             const T<CharT>& as() const {
@@ -123,8 +171,7 @@ namespace GFt {
                     ? dynamic_cast<const T<CharT>&>(*ref)
                     : dynamic_cast<const T<CharT>&>(*this);
             }
-            /// @brief 获取枚举形式的 JSON 数据类型
-            /// @param value JSON 数据
+            /// @brief 获取枚举形式的当前对像 JSON 值所属数据类型
             /// @return 枚举形式的 JSON 数据类型
             Type type() const {
                 if (this->template is<Null>())
@@ -142,13 +189,42 @@ namespace GFt {
                 else
                     return Type::Invalid;
             }
-
+            /// @brief 转换当前对象到整型
+            /// @return 当前对象转换后的整型值
+            /// @throws std::bad_cast 如果当前对象不是 Number 类型则会抛出此异常
             long long toInt() const { return as<Number>().toInt(); }
+            /// @brief 转换当前对象到浮点型
+            /// @return 当前对象转换后的浮点型值
+            /// @throws std::bad_cast 如果当前对象不是 Number 类型则会抛出此异常
             double toFloat() const { return as<Number>().toFloat(); }
+            /// @brief 转换当前对象到布尔型
+            /// @return 当前对象转换后的布尔型值
+            /// @throws std::bad_cast 如果当前对象不是 Boolean 类型则会抛出此异常
             bool toBool() const { return as<Boolean>().toBool(); }
+            /// @brief 转换当前对象到字符串
+            /// @return 当前对象转换后的字符串值
+            /// @throws std::bad_cast 如果当前对象不是 String 类型则会抛出此异常
             const StdString<CharT>& toString() const { return as<String>().toString(); }
-        };
 
+            /// @brief 键下标访问
+            /// @param key 要访问的属性或数组下标
+            /// @return 对应属性或数组下标的值
+            /// @throws std::bad_cast 如果当前对象不是 Object 类型则会抛出此异常
+            Value& operator[](const StdString<CharT>& key) { return as<Object>()[key]; }
+            /// @brief 键下标访问的 const 版本
+            const Value& operator[](const StdString<CharT>& key) const { return as<Object>()[key]; }
+            /// @brief 索引下标访问
+            /// @param index 要访问的数组下标
+            /// @return 对应数组下标的值
+            /// @throws std::bad_cast 如果当前对象不是 Array 类型则会抛出此异常
+            Value& operator[](size_t index) { return as<Array>()[index]; }
+            /// @brief 索引下标访问的 const 版本
+            const Value& operator[](size_t index) const { return as<Array>()[index]; }
+        };
+        /// @brief Value 类型赋值函数
+        /// @param value 被赋值的 JSON 值
+        /// @param other 要赋值的 JSON 值
+        /// @return 等同于 value 的引用
         template<typename CharT>
         Value<CharT>& assign(Value<CharT>& value, const Value<CharT>& other) {
             if (other.template is<Null>())
@@ -167,7 +243,7 @@ namespace GFt {
                 throw std::bad_cast();
             return value;
         }
-
+        /// @brief JSON 值类型 Object
         template<typename CharT>
         class Object : public Value<CharT> {
             std::unordered_map<StdString<CharT>, Value<CharT>*> members;
@@ -339,7 +415,7 @@ namespace GFt {
             const Value<CharT>& at(const StdString<CharT>& key) const { *members.at(key); }
             size_t size() const { return members.size(); }
         };
-
+        /// @brief JSON 值类型 Array
         template<typename CharT>
         class Array : public Value<CharT> {
             std::vector<Value<CharT>*> values;
@@ -458,7 +534,7 @@ namespace GFt {
             const Value<CharT>& at(size_t index) const { return *values.at(index); }
             size_t size() const { return values.size(); }
         };
-
+        /// @brief JSON 值类型 String
         template<typename CharT>
         class String : public Value<CharT> {
             StdString<CharT> value;
@@ -484,7 +560,7 @@ namespace GFt {
             bool operator==(const String<CharT>& other) const { return value == other.value; }
             bool operator!=(const String<CharT>& other) const { return value != other.value; }
         };
-
+        /// @brief JSON 值类型 Number
         template<typename CharT>
         class Number : public Value<CharT> {
             double value{ 0 };
@@ -511,7 +587,7 @@ namespace GFt {
             bool operator>(const Number<CharT>& other) const { return value > other.value; }
             bool operator>=(const Number<CharT>& other) const { return value >= other.value; }
         };
-
+        /// @brief JSON 值类型 Boolean
         template<typename CharT>
         class Boolean : public Value<CharT> {
             bool value{ false };
@@ -532,6 +608,7 @@ namespace GFt {
             bool operator==(const Boolean<CharT>& other) const { return value == other.value; }
             bool operator!=(const Boolean<CharT>& other) const { return value != other.value; }
         };
+        /// @brief JSON 值类型 Null
         template<typename CharT>
         class Null : public Value<CharT> {
         public:
@@ -631,7 +708,7 @@ namespace GFt {
         /// @brief 序列化 JSON 数据到流
         /// @param value JSON 数据
         /// @param ostream 输出流
-        /// @param tabsize 缩进空格数，若为负数则输出压缩后的 JSON 格式
+        /// @param tabsize 缩进空格数，若为负数则输出压缩后(无多余空白符)的 JSON 格式
         /// @throws std::bad_cast 输出检查类型识别失败时抛出此异常，通常是由于传入的 Value 不含有任何有效数据导致的
         ///                       例如直接从 Value<T> 构造且未经任何修改的的无效对象
         template<typename CharT>
@@ -660,6 +737,7 @@ namespace GFt {
             }
         }
 
+        /// @brief JSON 解析异常类
         class JsonParseError : public std::runtime_error {
         public:
             JsonParseError(const std::string& message) : std::runtime_error(message) {}
@@ -955,6 +1033,7 @@ namespace GFt {
         /// @brief 序列化 JSON 数据到流
         /// @param value JSON 数据
         /// @param ostream 输出流
+        /// @throw std::bad_cast 输出检查类型识别失败时抛出此异常，通常是由于传入的 Value 不含有任何有效数据导致的
         template<typename CharT>
         StdoStream<CharT>& operator<<(StdoStream<CharT>& ostream, const Value<CharT>& value) {
             print(value, ostream);
