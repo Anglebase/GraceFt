@@ -84,6 +84,7 @@ namespace GFt {
         static bool showCursor(bool show);
         /// @brief 获取鼠标相对于屏幕的绝对位置
         /// @return 鼠标位置
+        /// @see Sys::getCursorPosition()
         static iPoint getAbsoluteMousePosition();
         /// @brief 获取应用程序的可执行文件所在的路径
         /// @details 此函数是惰性求值函数
