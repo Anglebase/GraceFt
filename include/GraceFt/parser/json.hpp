@@ -87,9 +87,15 @@ namespace GFt {
             Invalid     ///< 无效类型
         };
         /// @brief 此概念约束类型 V 必须是非空有效的 JSON 值类型
+        /// @details 即 V 必须是 Null, Boolean, Number, String, Array, Object 之一
         template<typename V, typename CharT>
-        concept Child = std::derived_from<std::remove_cvref_t<V>, Value<CharT>>
-            && !std::same_as<std::remove_cvref_t<V>, Value<CharT>>;
+        concept Child =
+            std::same_as<std::remove_cvref_t<V>, Null<CharT>> ||
+            std::same_as<std::remove_cvref_t<V>, Boolean<CharT>> ||
+            std::same_as<std::remove_cvref_t<V>, Number<CharT>> ||
+            std::same_as<std::remove_cvref_t<V>, String<CharT>> ||
+            std::same_as<std::remove_cvref_t<V>, Array<CharT>> ||
+            std::same_as<std::remove_cvref_t<V>, Object<CharT>>;
 
         /// @brief JSON 值类型
         /// @tparam CharT 字符类型，通常为 char 或 wchar_t，它可以通过 json::parse() 函数由流对象决定

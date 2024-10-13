@@ -14,10 +14,13 @@ namespace GFt {
 
     using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;
     using TransFunc = std::function<float(float)>;
-    /// @brief 此概念约束类型 Type 必须支持线性插值运算，即对于 Type 类型的值 a 和 b，
-    ///        其表达式 a + (b - a) * t (t 为浮点数) 必须是合法的
+
+    /// @brief 此概念约束类型 Type 必须支持线性插值运算
+    /// @details 即对于 Type 类型的值 a 和 b，其表达式 a + (b - a) * t (t 为浮点数) 必须是合法的，
+    ///          且返回值类型必须可以隐式转换为 Type 类型
     template<typename Type>
     concept Animatable = requires(Type v) { { v + (v - v) * 1.f } -> std::convertible_to<Type>; };
+    
     template<typename Type>
     using Setter = std::function<void(const Type&)>;
     template<typename Type>
@@ -34,6 +37,7 @@ namespace GFt {
     };
 
     class AnimationAbstract;
+
     /// @brief 动画状态基类
     /// @ingroup 动画支持库
     class AnimationState {
@@ -44,6 +48,7 @@ namespace GFt {
         AnimationState(AnimationAbstract* owner);
         virtual void update(const TimePoint& now) = 0;
     };
+
     /// @brief 动画抽象基类
     /// @ingroup 动画支持库
     class AnimationAbstract {
@@ -99,6 +104,7 @@ namespace GFt {
         Signal<void> onFinished;                ///< 动画进度改变信号
         Signal<void> onUpdated;                 ///< 动画值更新信号
     };
+
     /// @brief 停止状态
     /// @ingroup 动画支持库
     class AnimationStop : public AnimationState {
@@ -106,6 +112,7 @@ namespace GFt {
         AnimationStop(AnimationAbstract* owner);
         void update(const TimePoint& now) override;
     };
+
     /// @brief 播放状态
     /// @ingroup 动画支持库
     class AnimationPlay : public AnimationState {
@@ -113,6 +120,7 @@ namespace GFt {
         AnimationPlay(AnimationAbstract* owner);
         void update(const TimePoint& now) override;
     };
+
     /// @brief 暂停状态
     /// @ingroup 动画支持库
     class AnimationPause : public AnimationState {
@@ -120,6 +128,7 @@ namespace GFt {
         AnimationPause(AnimationAbstract* owner);
         void update(const TimePoint& now) override;
     };
+
     /// @brief 动画参数结构体
     /// @ingroup 动画支持库
     template<typename Type>
@@ -131,6 +140,7 @@ namespace GFt {
         const float& duration;          ///< 动画持续时间（毫秒）
         TransFunc trans_func;           ///< 动画过渡函数
     };
+
     /// @brief 动画模板类
     /// @tparam Type 动画值类型
     /// @ingroup 动画支持库
