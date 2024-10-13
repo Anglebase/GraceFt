@@ -54,7 +54,6 @@ namespace GFt {
         }
         /// @brief 类型转换函数
         /// @tparam U 目标类型
-        /// @param curve 拟合曲线
         /// @return 拟合曲线
         template<typename U>
             requires std::is_arithmetic_v<U>

@@ -52,7 +52,6 @@ namespace GFt {
 
         /// @brief 类型转换函数
         /// @tparam U 目标类型
-        /// @param b 要转换的贝塞尔曲线
         /// @return 转换后的贝塞尔曲线
         template<typename U>
             requires std::is_arithmetic_v<U>

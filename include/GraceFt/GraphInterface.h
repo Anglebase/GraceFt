@@ -15,7 +15,7 @@ namespace GFt {
         iRect rect_;
     protected:
         /// @brief 绘制接口
-        /// @param rect 绘制区域
+        /// @param g 绘图对象
         virtual void onDraw(Graphics& g) = 0;
 
     public:

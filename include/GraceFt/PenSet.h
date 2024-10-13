@@ -54,6 +54,7 @@ namespace GFt {
         void* pen_;
     public:
         /// @brief 构造函数
+        /// @param color 画笔颜色
         /// @param width 画笔宽度，默认为1
         PenSet(const Color& color, int width = 1);
         /// @brief 复制构造

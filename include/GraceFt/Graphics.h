@@ -122,7 +122,7 @@ namespace GFt {
         /// @param sweepAngle 扫过角度
         void drawArc(const fRect& rect, float startAngle, float sweepAngle);
         /// @brief 绘制椭圆
-        /// @param rect 椭圆
+        /// @param ellipse 椭圆
         void drawEllipse(const fEllipse& ellipse);
         /// @brief 绘制圆
         /// @param circle 圆
@@ -143,6 +143,7 @@ namespace GFt {
         void drawFitCurve(const fFitCurve& curve);
         /// @brief 绘制路径
         /// @param path 路径
+        /// @param pos 路径起点坐标
         void drawPath(const Path& path, const fPoint& pos = fPoint());
 
         /// @brief 填充矩形
@@ -198,7 +199,7 @@ namespace GFt {
         /// @brief 在指定位置绘制文本
         /// @param text 要绘制的文本
         /// @param pos 要绘制的位置
-        /// @param font 指定的字体集合
+        /// @param fonts 指定的回滚字体集合
         /// @param show 是否显示文本, 若为false则只计算文本的宽度
         /// @return 实际绘制出的字符的像素宽度
         /// @note 若未指定字体集合则使用环境当前绑定的字体

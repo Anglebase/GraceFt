@@ -43,7 +43,7 @@ namespace GFt {
         int operator""_em(long double n);
 
         /// @brief 设备无关的非字面量定义
-        /// @see GFt::literals::_px
+        /// @ingroup 设备无关单位
         template<typename T>
             requires std::is_arithmetic_v<T>
         int px(T n) {
@@ -53,7 +53,7 @@ namespace GFt {
                 return operator""_px(static_cast<unsigned long long>(n));
         }
         /// @brief 设备无关的非字面量定义
-        /// @see GFt::literals::_em
+        /// @ingroup 设备无关单位
         template<typename T>
             requires std::is_arithmetic_v<T>
         int em(T n) {
@@ -93,6 +93,28 @@ namespace GFt {
         /// @return 实际宽度大小
         /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
+
+        /// @brief 设备无关的非字面量定义
+        /// @ingroup 设备无关单位
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int sw(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_sw(static_cast<long double>(n));
+            else
+                return operator""_sw(static_cast<unsigned long long>(n));
+        }
+        /// @brief 设备无关的非字面量定义
+        /// @ingroup 设备无关单位
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int sh(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_sh(static_cast<long double>(n));
+            else
+                return operator""_sh(static_cast<unsigned long long>(n));
+        }
+
         int operator""_vw(unsigned long long n);
         /// @brief 百分比映射的窗口宽度单位 (long double)
         /// @details 它以窗口的物理像素宽度为 100%(100_vw) 基准进行逻辑比例映射
@@ -115,6 +137,27 @@ namespace GFt {
         /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vh(long double n);
+
+        /// @brief 设备无关的非字面量定义
+        /// @ingroup 设备无关单位
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int vw(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_vw(static_cast<long double>(n));
+            else
+                return operator""_vw(static_cast<unsigned long long>(n));
+        }
+        /// @brief 设备无关的非字面量定义
+        /// @ingroup 设备无关单位
+        template<typename T>
+            requires std::is_arithmetic_v<T>
+        int vh(T n) {
+            if constexpr (std::is_floating_point_v<T>)
+                return operator""_vh(static_cast<long double>(n));
+            else
+                return operator""_vh(static_cast<unsigned long long>(n));
+        }
     }
     template<typename T>
     using StdString = std::basic_string<T>;

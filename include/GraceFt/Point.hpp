@@ -150,8 +150,7 @@ namespace GFt {
         constexpr auto norm() const { return std::sqrt(x_ * x_ + y_ * y_); }
         /// @brief 计算相角(弧度制)
         /// @details 这相当于复数 z=x+iy 的辐角主值 arg(z) (弧度制)
-        /// @param p 另一个点对象
-        /// @return 两个点的相角(弧度制)
+        /// @return 点的相角(弧度制)
         constexpr auto angle() const { return std::atan2(y_, x_); }
 
         /// @brief 计算点之间的距离
@@ -163,7 +162,6 @@ namespace GFt {
         /// @brief Point<U> 类型转换函数
         /// @details 用于将 Point<T> 类型转换为 Point<U> 类型
         /// @tparam U 坐标转换的目标类型，要求为算术类型
-        /// @param p 原始点对象
         /// @return 转换后的点对象
         template<typename U>
             requires std::is_arithmetic_v<U>

@@ -726,6 +726,7 @@ namespace GFt {
         /// @param value JSON 数据
         /// @param ostream 输出流
         /// @param tabsize 缩进空格数，若为负数则输出压缩后(无多余空白符)的 JSON 格式
+        /// @param indent 初始缩进层级
         /// @throws std::bad_cast 输出检查类型识别失败时抛出此异常，通常是由于传入的 Value 不含有任何有效数据导致的
         ///                       例如直接从 Value<T> 构造且未经任何修改的的无效对象
         template<typename CharT>

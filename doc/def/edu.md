@@ -1,7 +1,7 @@
 # GraceFt 教程
 
 ## 基本介绍
-GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https://club.xege.org/) 的图形应用程序框架，GracFt 基于[MIT](https://opensource.org/licenses/MIT)开源协议开源。GraceFt 的一大特色是它完全基于原生的C++实现了声明式的界面编程模型，使得界面开发更加简单、直观。目前，GraecFt 的所有内容全部位于命名空间 GFt 下, GFt 中分为3个主要模块: GFt::UI 、 GFt::Widget 和 GFt 根命名空间。GFt 的根命名空间提供了一系列基础设施, GFt::Widget 提供了一些常用部件, GFt::UI 提供了声明式的界面编程模型的实现支持；其次 GFt 中还有 GFt::literals 命名空间提供了一些方便的字面量定义。
+GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https://club.xege.org/) 的图形应用程序框架，GracFt 基于[MIT](https://opensource.org/licenses/MIT)开源协议开源。GraceFt 的一大特色是它完全基于原生的C++实现了声明式的界面编程模型，使得界面开发更加简单、直观。GraecFt 的主要内容全部位于命名空间 GFt 下, GFt 中分为3个主要模块: GFt::UI 、 GFt::Widget 和 GFt 根命名空间。GFt 的根命名空间提供了一系列基础设施, GFt::Widget 提供了一些常用部件, GFt::UI 提供了声明式的界面编程模型的实现支持；其次 GFt 中还有 GFt::literals 命名空间提供了一些方便的字面量定义。
 
 ## 环境配置
 1. **确保你的电脑上已经安装了至少支持 C++20 的编译器**: GracFt 是基于 C++20 开发的，所以你的编译器必须支持 C++20 才能编译 GraceFt 项目
@@ -47,10 +47,6 @@ public:
         : Block(rect, parent, zIndex) {}
 };
 ```
-为了能够使用 `GFt::Graphics` 类绘制文本，你需要包含 `GraceFt/Graphics.h` 头文件。
-```cpp
-#include <GraceFt/Graphics.h>
-```
 新的 `HelloBlock` 类继承自 `GFt::Block` 类，并重写了 `onDraw` 方法，在这个方法中，我们使用 `GFt::Graphics` 类在指定的矩形区域内居中的位置绘制了一个文本 "Hello World!"。接下来演示该如何使用这个类来构建图形用户界面。
 
 **最后，实现main函数，并启用 GraceFt 应用程序的事件循环：**
@@ -79,7 +75,6 @@ app.run();
 #include <GraceFt/Application.h>
 #include <GraceFt/Window.h>
 #include <GraceFt/Block.h>
-#include <GraceFt/Graphics.h>
 
 class HelloBlock : public GFt::Block
 {
@@ -109,7 +104,6 @@ int main()
 #include <GraceFt/Application.h>
 #include <GraceFt/Window.h>
 #include <GraceFt/Block.h>
-#include <GraceFt/Graphics.h>
 
 using namespace GFt;
 
@@ -162,7 +156,7 @@ int main() {
         }
     };
 
-    GFt::Window* window = GFt::Window::createWindow(BLOCK(Root));
+    GFt::Window* window = GFt::Window::createWindow(BLOCK("Root"));
     window->show();
     GFt::Application app{ window };
     return app.run();
@@ -194,7 +188,7 @@ int main() {
         }
     };
 
-    Window* window = Window::createWindow(BLOCK(Root));
+    Window* window = Window::createWindow(BLOCK("Root"));
     window->show();
     Application app{ window };
     return app.run();
@@ -259,7 +253,6 @@ public:
 /* MyGraecFt.cpp */
 #include "MyWindow.h"
 
-#include <Graphics.h>
 using namespace GFt;
 using namespace GFt::literals;
 

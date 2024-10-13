@@ -83,7 +83,7 @@ namespace GFt {
             return res;
         }
         /// @brief 逻辑非运算符重载
-        /// @details 相当于 !static_cast<bool>(*this)
+        /// @details 相当于 !static_cast\<bool\>(*this)
         /// @return 逻辑非运算结果
         constexpr bool operator!() const { return !static_cast<bool>(*this); }
 
@@ -303,7 +303,6 @@ namespace GFt {
         /// @brief 矩阵类型转换函数
         /// @details 矩阵类型转换函数，将矩阵的元素类型转换为 U 类型
         /// @tparam U 目标类型
-        /// @param mat 矩阵对象
         /// @return 转换后的矩阵对象
         template<typename U>
             requires std::is_arithmetic_v<U>

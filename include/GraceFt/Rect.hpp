@@ -156,7 +156,6 @@ namespace GFt {
 
         /// @brief 矩形类型转换函数
         /// @tparam U 目标类型
-        /// @param rect 原始矩形对象
         /// @return 转换后的矩形对象
         template<typename U>
             requires std::is_arithmetic_v<U>

@@ -20,7 +20,7 @@ namespace GFt {
     ///          且返回值类型必须可以隐式转换为 Type 类型
     template<typename Type>
     concept Animatable = requires(Type v) { { v + (v - v) * 1.f } -> std::convertible_to<Type>; };
-    
+
     template<typename Type>
     using Setter = std::function<void(const Type&)>;
     template<typename Type>

@@ -106,7 +106,6 @@ namespace GFt {
         }
         /// @brief 转换到另一类型
         /// @tparam U 目标类型
-        /// @param circle 圆
         /// @return 转换后的圆
         template<typename U>
             requires std::is_arithmetic_v<U>

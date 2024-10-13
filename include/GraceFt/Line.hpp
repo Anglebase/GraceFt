@@ -111,7 +111,6 @@ namespace GFt {
         }
         /// @brief 类型转换函数模板
         /// @tparam U 目标类型
-        /// @param line 要转换的直线对象
         /// @return 转换后的直线对象
         template<typename U>
         constexpr operator Line<U>() const {

@@ -65,7 +65,6 @@ namespace GFt {
         }
         /// @brief 类型转换函数
         /// @tparam U 目标类型
-        /// @param elliptic 椭圆
         /// @return 目标类型椭圆
         template<typename U>
             requires std::is_arithmetic_v<U>
