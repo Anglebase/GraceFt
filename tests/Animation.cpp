@@ -68,7 +68,7 @@ int main() {
     button.text() = L"开始播放";
     button.onClicked.connect([&] {
         view.anim.setPlay();
-        PlanEvent::getInstance().addPlanEvent(1000,
+        PlanEvent::add(1000,
             [] { std::cout << "PlanEvent Callback Function triggered" << std::endl; }
         );
         });
@@ -85,7 +85,6 @@ int main() {
     Button button4{ iRect{100,430,100,50}, &root };
     button4.text() = L"输出FPS";
     button4.onClicked.connect([] {
-        PlanEvent::getInstance().addPlanEvent([] {std::cout << "PlanEvent Callback Function triggered" << std::endl;});
         std::cout << "FPS: " << Application::getRealFps() << std::endl;
         std::cout << "Event: " << Application::getEventTime() << "us" << std::endl;
         std::cout << "Render: " << Application::getRenderTime() << "ms" << std::endl;
