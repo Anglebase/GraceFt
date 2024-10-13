@@ -9,17 +9,19 @@ namespace GFt {
     /// @details 系统调用接口相关的函数，它们几乎等同于 Windows API 中的函数原型，但对部分函数添加了 C++ 风格封装
     /// @ingroup API接口库
     namespace Sys {
-        /// @brief 获取键盘按键状态(基于消息队列读取)
+        /// @brief 获取键盘按键状态(基于窗口消息队列读取)
         /// @param key 要获取的按键
         /// @return 按键状态
         ///         - 若高序位`(x & 0x8000)` 为 1，则表示按键当前处于按下状态；
         ///         - 若低序位`(x & 0x0001)` 为 1，则表示该按键在上次调用此函数后至少被按下了一次
+        /// @see Sys::getAsyncKeyState()
         unsigned short getKeyState(Key key);
-        /// @brief 获取键盘按键状态(直接读取物理设备)
+        /// @brief 获取键盘按键状态(直接读取物理设备状态)
         /// @param key 要获取的按键
         /// @return 按键状态
         ///         - 若高序位`(x & 0x8000)` 为 1，则表示按键当前处于按下状态；
         ///         - 若低序位`(x & 0x0001)` 为 1，则表示该按键在上次调用此函数后至少被按下了一次
+        /// @see Sys::getKeyState()
         unsigned short getAsyncKeyState(Key key);
         /// @brief 获取鼠标的绝对位置
         /// @return 鼠标位置的坐标

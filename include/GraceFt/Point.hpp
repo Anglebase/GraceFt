@@ -9,7 +9,7 @@
 #include <GraceFt/Matrix.hpp>
 
 /// @namespace GFt
-/// @brief GraceFt库的命名空间。
+/// @brief GraceFt库的命名空间
 namespace GFt {
     /// @class Point
     /// @brief 泛型点类

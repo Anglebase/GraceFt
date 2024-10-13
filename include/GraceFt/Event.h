@@ -204,8 +204,12 @@ namespace GFt {
         /// @return 鼠标位置
         const iPoint& position() const;
         /// @brief 获取鼠标在屏幕上的绝对位置
-        /// @details 鼠标位置以屏幕坐标为坐标系，窗口左上角为坐标原点
+        /// @details 鼠标位置以屏幕坐标为坐标系，屏幕左上角为坐标原点
         /// @return 鼠标在屏幕上的绝对位置
+        /// @note 如果你不希望依赖事件函数获取鼠标的位置，应当使用
+        ///       `Application::getAbsoluteMousePosition()`函数或
+        ///       `Sys::getCursorPosition()`函数获取鼠标的绝对位置，
+        ///       它们会获取鼠标此刻在屏幕上的坐标，即使它不在窗口内
         const iPoint& absolutePosition() const;
     };
     /// @brief 键盘事件基类
@@ -222,6 +226,10 @@ namespace GFt {
         /// @endcond
         /// @brief 获取键盘按键
         /// @return 键盘按键
+        /// @see Key
+        /// @note 如果你不希望依赖事件函数获取键盘按键的状态，应当使用
+        ///       `Sys::getKeyState()` 或 `Sys::getAsyncKeyState()`
+        ///       函数获取键盘按键当前的状态
         Key key() const;
     };
     /// @brief 文本输入事件

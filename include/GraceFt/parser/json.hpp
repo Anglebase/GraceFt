@@ -15,6 +15,9 @@
 #include <ostream>
 
 namespace GFt {
+    /// @defgroup 序列化与反序列化支持
+    /// @ingroup 工具集
+
     /// @brief JSON 序列化和反序列化支持
     /// @details 这个命名空间包含所有用于 JSON 序列化/反序列化的类和函数
     /// @code 使用示例
@@ -50,6 +53,7 @@ namespace GFt {
     ///     return 0;
     /// }
     /// @endcode
+    /// @ingroup 序列化与反序列化支持
     namespace json {
         template<typename CharT>
         using StdString = std::basic_string<CharT>;
@@ -624,18 +628,22 @@ namespace GFt {
             bool operator!() const { return true; }
         };
 
+        /// @see print()
         template<typename CharT>
         void print(const Null<CharT>&, StdoStream<CharT>& ostream, int, int) {
             ostream << "null";
         }
+        /// @see print()
         template<typename CharT>
         void print(const Boolean<CharT>& value, StdoStream<CharT>& ostream, int, int) {
             ostream << (value.toBool() ? "true" : "false");
         }
+        /// @see print()
         template<typename CharT>
         void print(const Number<CharT>& value, StdoStream<CharT>& ostream, int, int) {
             ostream << value.toFloat();
         }
+        /// @see print()
         template<typename CharT>
         void print(const String<CharT>& value, StdoStream<CharT>& ostream, int, int) {
             ostream << '"';
@@ -664,6 +672,7 @@ namespace GFt {
             }
             ostream << '"';
         }
+        /// @see print()
         template<typename CharT>
         void print(const Array<CharT>& value, StdoStream<CharT>& ostream, int tabsize = 4, int indent = 0) {
             ostream << "[" << (tabsize >= 0 ? "\n" : "");
@@ -683,6 +692,7 @@ namespace GFt {
             }
             ostream << "]";
         }
+        /// @see print()
         template<typename CharT>
         void print(const Object<CharT>& value, StdoStream<CharT>& ostream, int tabsize = 4, int indent = 0) {
             ostream << "{" << (tabsize >= 0 ? "\n" : "");
@@ -742,7 +752,7 @@ namespace GFt {
         public:
             JsonParseError(const std::string& message) : std::runtime_error(message) {}
         };
-
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(Null<CharT>& value, StdiStream<CharT>& istream) {
             using namespace std::string_literals;
@@ -762,6 +772,7 @@ namespace GFt {
                 throw JsonParseError("Invalid null value");
             return value;
         }
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(Boolean<CharT>& value, StdiStream<CharT>& istream) {
             using namespace std::string_literals;
@@ -801,6 +812,7 @@ namespace GFt {
             }
             throw JsonParseError("Invalid boolean value");
         }
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(Number<CharT>& value, StdiStream<CharT>& istream) {
             using namespace std::string_literals;
@@ -818,6 +830,7 @@ namespace GFt {
             catch (const std::exception& e) { throw JsonParseError("Invalid number value"); }
             return value;
         }
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(String<CharT>& value, StdiStream<CharT>& istream) {
             using namespace std::string_literals;
@@ -855,6 +868,7 @@ namespace GFt {
             value = std::move(sub);
             return value;
         }
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(Value<CharT>&, StdiStream<CharT>&);
         template<typename CharT>
@@ -908,6 +922,7 @@ namespace GFt {
             istream.get();
             return value;
         }
+        /// @see parse()
         template<typename CharT>
         Value<CharT>& parse(Object<CharT>& value, StdiStream<CharT>& istream) {
             using namespace std::string_literals;
