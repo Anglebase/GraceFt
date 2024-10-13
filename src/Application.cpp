@@ -174,6 +174,7 @@ namespace GFt {
     float Application::getRealFps() { return Application::realFps_; }
     float Application::getRenderTime() { return Application::renderTime_; }
     float Application::getEventTime() { return Application::eventTime_; }
+    Block* Application::getRoot() { return Application::root_; }
     bool Application::showCursor(bool show) { return ege::showmouse(show); }
     iPoint Application::getAbsoluteMousePosition() {
         POINT pos;

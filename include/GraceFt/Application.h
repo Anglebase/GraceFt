@@ -78,6 +78,9 @@ namespace GFt {
         /// @brief 获取事件处理帧时长
         /// @return 事件处理帧时长(以微秒计)
         static float getEventTime();
+        /// @brief 获取根窗口节点
+        /// @return 根窗口节点
+        static Block* getRoot();
         /// @brief 设置鼠标是否可见
         /// @param show 是否可见
         /// @return 之前鼠标是否可见
