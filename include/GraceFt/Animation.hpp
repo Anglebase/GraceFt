@@ -218,37 +218,27 @@ namespace GFt {
     /// @ingroup 动画支持库
     namespace TransFuncs {
         /// @brief 线性过渡函数(默认函数)
-        /// @image html "transfunc/linear.png" "linear 过渡变换曲线"
-        inline float linear(float x) { return x; }
+        constexpr float linear(float x) { return x; }
         /// @brief 幂函数生成器
-        inline auto power(float power) {
-            return [power](float x)->float {
-                return ::std::pow(x, power);
+        /// @param power 幂指数
+        /// @return 幂函数
+        constexpr auto power(float power) {
+            return [power](float k)->float {
+                return ::std::pow(k, power);
                 };
         }
-        /// @image html "transfunc/bezier.png" "bezier 过渡变换曲线"
-        inline float bezier(float x) { return 3.f * x * x - 2.f * x * x * x; }
-        /// @image html "transfunc/easeIn.png" "easeIn 过渡变换曲线"
-        inline float easeIn(float x) { return 1.f - ::std::pow(1.f - x, 2.f); }
-        inline float slowInOut(float x) {
-            return x <= 0.5f
-                // (1-sqrt(1-4x^2))/2
-                ? (1 - ::std::sqrt(1 - 4 * x * x)) / 2
-                // (1+sqrt(1-4(x-1)^2))/2
-                : (1 + ::std::sqrt(1 - 4 * (x - 1) * (x - 1))) / 2;
+        /// @brief 贝塞尔过渡
+        constexpr float bezier(float x) { return 3.f * x * x - 2.f * x * x * x; }
+        /// @brief 柔性过渡
+        constexpr float smoothInOut(float x) {
+            constexpr auto tao = 2 * ::std::numbers::pi;
+            auto y = x * tao;
+            return (y - ::std::sin(y)) / tao;
         }
-        inline float fastInOut(float x) {
-            return x <= 0.5f
-                // sqrt(x-x^2)
-                ? ::std::sqrt(x - x * x)
-                // 1-sqrt(x-x^2)
-                : 1 - ::std::sqrt(x - x * x);
-        }
-        inline float smoothSlowInOut(float x) { return x - ::std::sin(x * ::std::numbers::pi); }
         /// @brief 过阻尼衰减函数生成器
-        /// @param damping 等效阻尼因数，值越大越快地达到目标值
+        /// @param damping 等效阻尼因数，值越大越快地达到目标值，此值不能为零
         /// @return 过阻尼衰减函数
-        inline auto overDamped(float damping) {
+        constexpr auto overDamped(float damping) {
             return [damping](float x)-> float {
                 return (1.f - ::std::exp(-damping * x * x)) * (1 / (1 - ::std::exp(-damping)));
                 };
@@ -256,7 +246,7 @@ namespace GFt {
         /// @brief 欠阻尼衰减函数生成器
         /// @param damping 等效阻尼因数，值越大超调震荡频率越高
         /// @return 欠阻尼衰减函数
-        inline auto underDamped(float damping) {
+        constexpr auto underDamped(float damping) {
             return [damping](float x)-> float { return 1.f - (1.f - x) * ::std::cos(x * damping); };
         }
     }
