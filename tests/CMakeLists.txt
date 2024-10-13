@@ -81,3 +81,6 @@ target_link_libraries(test_UICheck ${GFt_LIBRARY_NAME})
 # Animation.hpp TEST
 add_executable(test_Animation ${CMAKE_CURRENT_SOURCE_DIR}/Animation.cpp)
 target_link_libraries(test_Animation ${GFt_LIBRARY_NAME})
+# json.hpp TEST
+add_executable(test_json ${CMAKE_CURRENT_SOURCE_DIR}/json.cpp)
+target_link_libraries(test_json ${GFt_LIBRARY_NAME})
