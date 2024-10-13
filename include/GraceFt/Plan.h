@@ -25,28 +25,13 @@ namespace GFt {
         /// @brief 添加计划事件
         /// @param planEvent 计划事件函数
         void addPlanEvent(const PlanFunc& planEvent);
-        /// @brief 添加计划事件
-        /// @tparam F 计划事件函数类型
-        /// @tparam Args 计划事件函数参数类型
-        /// @param f 计划事件函数
-        /// @param args 计划事件函数参数
-
-        // template<typename F, typename... Args>
-        // void addPlanEvent(F f, Args... args) {
-        //     addPlanEvent([f, args...]() { f(args...); });
-        // }
 
         /// @brief 添加计划事件
-        /// @tparam Object 计划事件函数所属对象类型
-        /// @tparam Func 计划事件函数类型
-        /// @tparam Args 计划事件函数参数类型
-        /// @param object 计划事件函数所属对象
-        /// @param func 计划事件函数
-        /// @param args 计划事件函数参数
-        template<typename Object, typename Func, typename... Args>
-        void addPlanEvent(Object* object, Func func, Args... args) {
-            addPlanEvent([object, func, args...]() { (object->*func)(args...); });
-        }
+        /// @param after 计划事件延迟执行时间（单位：毫秒）
+        /// @param planEvent 计划事件函数
+        /// @details 计划事件会在至少 after 毫秒后执行
+        void addPlanEvent(float after, const PlanFunc& planEvent);
+
         /// @brief 获取计划事件管理器实例
         /// @return 计划事件管理器实例
         static PlanEvent& getInstance();
