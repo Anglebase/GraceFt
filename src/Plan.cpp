@@ -10,20 +10,28 @@ namespace GFt {
             planEvent();
     }
 
-    void PlanEvent::addPlanEvent(const PlanFunc& planEvent) {
+    void PlanEvent::add(const PlanFunc& planEvent) {
+        getInstance().addPlanEvent_(planEvent);
+    }
+
+    void PlanEvent::addPlanEvent_(const PlanFunc& planEvent) {
         planEvents_.push_back(planEvent);
     }
 
-    void PlanEvent::addPlanEvent(float after_ms, const PlanFunc& planEvent) {
+    void PlanEvent::addPlanEvent_(float after_ms, const PlanFunc& planEvent) {
         auto delay = std::chrono::milliseconds(static_cast<int>(after_ms));
         auto target = std::chrono::steady_clock::now() + delay;
         std::function<void()>* func = new std::function<void()>();
         *func = [=, this] {
             std::chrono::steady_clock::now() >= target
                 ? planEvent(), delete func
-                : addPlanEvent(*func);
+                : add(*func);
             };
-        addPlanEvent(*func);
+        add(*func);
+    }
+
+    void PlanEvent::add(float after, const PlanFunc& planEvent) {
+        getInstance().addPlanEvent_(after, planEvent);
     }
 
     PlanEvent& PlanEvent::getInstance() {
