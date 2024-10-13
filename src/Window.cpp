@@ -73,12 +73,19 @@ namespace GFt {
     }
     void Window::setAlpha(float alpha) {
         auto style = ::GetWindowLong(getHWnd(), GWL_EXSTYLE);
-        if (alpha >= 1.0f)
-            style &= ~WS_EX_LAYERED;
-        else
-            style |= WS_EX_LAYERED;
+        if (alpha >= 1.0f) alpha = 1.0f;
+        if (alpha <= 0.0f) alpha = 0.0f;
+        style |= WS_EX_LAYERED;
         ::SetWindowLong(getHWnd(), GWL_EXSTYLE, style);
         ::SetLayeredWindowAttributes(getHWnd(), 0, alpha * 255, LWA_ALPHA);
+    }
+    void Window::setAlpha(const std::optional<Color>& color) {
+        auto style = ::GetWindowLong(getHWnd(), GWL_EXSTYLE);
+        color ? style |= WS_EX_LAYERED : style &= ~WS_EX_LAYERED;
+        ::SetWindowLong(getHWnd(), GWL_EXSTYLE, style);
+        if (!color) return;
+        ::SetLayeredWindowAttributes(getHWnd(),
+            RGB(color->red(), color->green(), color->blue()), 0, LWA_COLORKEY);
     }
     void Window::minimize() {
         RECT rect;

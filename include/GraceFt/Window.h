@@ -2,6 +2,7 @@
 
 #include <GraceFt/Block.h>
 #include <GraceFt/Signal.hpp>
+#include <optional>
 
 namespace GFt {
     /// @class Window
@@ -56,6 +57,9 @@ namespace GFt {
         /// @brief 设置窗口透明度
         /// @param alpha 透明度值(0.0~1.0)
         void setAlpha(float alpha);
+        /// @brief 设置绘制指定颜色时绘制为透明
+        /// @param color 要设置的颜色，若为空则表示清除透明设置
+        void setAlpha(const std::optional<Color>& color = std::nullopt);
         /// @brief 窗口最小化
         void minimize();
         /// @brief 全屏显示窗口
