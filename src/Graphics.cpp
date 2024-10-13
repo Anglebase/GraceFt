@@ -59,6 +59,15 @@ namespace GFt {
         ege_enable_aa(enable, IMG(target_));
     }
     /// @details 对于传入的矩阵, 默认其已经过齐次变换, 即矩阵的最后一列为 (0, 0, 1)
+    /// @code
+    /// // 例如：将当前坐标系绕点 (100, 100) 逆时针旋转 45 度
+    /// // 然后将变换后的坐标原点平移至 (100, 100)
+    /// // 最后再以变换后的 (200, 200) 为中心进行缩放到原先的 2 倍
+    /// g.setTransform(
+    ///     rotate(makeVec2(100, 100), radians(45)) *
+    ///     translate(makeVec2(100, 100)) *
+    ///     scale(makeVec2(200, 200), makeVec2(2, 2));
+    /// @endcode
     void Graphics::setTransform(const fMat3x3& matrix) {
         ege_transform_matrix mat;
         mat.m11 = matrix[0][0];
