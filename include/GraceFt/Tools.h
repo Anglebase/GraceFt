@@ -1,9 +1,15 @@
 #pragma once
 
 #include <type_traits>
+#include <vector>
+#include <string>
 
 namespace GFt {
     /// @defgroup 设备无关单位
+    /// @details 此部分函数在头文件 Tools.h 中定义
+    /// @ingroup 工具集
+
+    /// @defgroup 字符串操作函数
     /// @details 此部分函数在头文件 Tools.h 中定义
     /// @ingroup 工具集
 
@@ -109,5 +115,98 @@ namespace GFt {
         /// @note 此函数仅在应用程序窗口被创建后有效(即构造出 GFt::Window 对象后),否则固定返回零值
         /// @ingroup 设备无关单位
         int operator""_vh(long double n);
+    }
+    template<typename T>
+    using StdString = std::basic_string<T>;
+    /// @brief 字符串分割函数
+    /// @details 该函数将一个字符串按照一个分隔符分割为多个子字符串
+    ///          如果分隔符为空，则不会执行任何分割操作
+    /// @param str 要分割的字符串
+    /// @param delimiter 分隔符
+    /// @return 子字符串的集合
+    /// @code 示例
+    /// std::string str = "hello,world";
+    /// std::vector<std::string> substrings = GFt::split(str, ",");
+    /// // substrings = {"hello", "world"}
+    /// @endcode
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    std::vector<StdString<CharT>> split(const StdString<CharT>& str, const StdString<CharT>& delimiter) {
+        if (delimiter.empty()) {
+            return { str };
+        }
+        std::vector<StdString<CharT>> result;
+        size_t pos = 0;
+        while (true) {
+            size_t found = str.find(delimiter, pos);
+            if (found == StdString<CharT>::npos) {
+                result.push_back(str.substr(pos));
+                break;
+            }
+            result.push_back(str.substr(pos, found - pos));
+            pos = found + delimiter.size();
+        }
+        return result;
+    }
+    /// @brief 这是一个重载
+    /// @see split()
+    /// @ingroup 字符串操作函数
+    template<typename CharT, size_t N>
+    std::vector<StdString<CharT>> split(const StdString<CharT>& str, const CharT (&delimiter)[N]) {
+        return split(str, StdString<CharT>(delimiter));
+    }
+    /// @brief 这是一个重载
+    /// @see split()
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    std::vector<StdString<CharT>> split(const StdString<CharT>& str, CharT delimiter) {
+        return split(str, StdString<CharT>(1, delimiter));
+    }
+    /// @brief 这是一个重载
+    /// @see split()
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    std::vector<StdString<CharT>> split(const StdString<CharT>& str, CharT* delimiter) {
+        return split(str, StdString<CharT>(delimiter));
+    }
+    /// @brief 字符串拼接函数
+    /// @details 该函数将一个字符串集合按照一个分隔符拼接为一个字符串
+    /// @param strs 要拼接的字符串集合
+    /// @param delimiter 分隔符
+    /// @return 拼接后的字符串
+    /// @code 示例
+    /// std::vector<std::string> strs = {"hello", "world"};
+    /// std::string result = GFt::join(strs, ",");
+    /// // result = "hello,world"
+    /// @endcode
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    StdString<CharT> join(const std::vector<StdString<CharT>>& strs, const StdString<CharT>& delimiter) {
+        StdString<CharT> result;
+        for (const auto& str : strs) {
+            result += str + delimiter;
+        }
+        return result.substr(0, result.size() - delimiter.size());
+    }
+    /// @brief 这是一个重载
+    /// @see join()
+    /// @ingroup 字符串操作函数
+    template<typename CharT, size_t N>
+    StdString<CharT> join(const std::vector<StdString<CharT>>& strs, const CharT (&delimiter)[N]) {
+        return join(strs, StdString<CharT>(delimiter));
+    }
+    /// @brief 这是一个重载
+    /// @see join()
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    StdString<CharT> join(const std::vector<StdString<CharT>>& strs, CharT delimiter) {
+        return join(strs, StdString<CharT>(1, delimiter));
+    }
+    /// @brief 这是一个重载
+    /// @see join()
+    /// @ingroup 字符串操作函数
+    template<typename CharT>
+    StdString<CharT> join(const std::vector<StdString<CharT>>& strs, CharT* delimiter) {
+        return join(strs, StdString<CharT>(delimiter));
     }
 }
