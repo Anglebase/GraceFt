@@ -47,6 +47,12 @@ namespace GFt {
             ::SetClipboardData(CF_UNICODETEXT, hGlobalMemory);
             ::CloseClipboard();
         }
+        std::optional<std::string> getEnv(const std::string& name) {
+            char* value = getenv(name.c_str());
+            if (value == nullptr)
+                return std::nullopt;
+            return std::string(value);
+        }
     }
 }
 

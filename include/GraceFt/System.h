@@ -2,6 +2,7 @@
 
 #include <GraceFt/Event.h>
 #include <GraceFt/Point.hpp>
+#include <optional>
 
 namespace GFt {
     /// @brief 系统调用接口函数
@@ -33,5 +34,9 @@ namespace GFt {
         /// @brief 向剪贴板设置文本
         /// @param text 要设置的剪贴板文本
         void setCilpBoardText(std::wstring text);
+        /// @brief 获取环境变量的值
+        /// @param name 环境变量名
+        /// @return 环境变量的值，若环境变量不存在，则返回空值
+        std::optional<std::string> getEnv(const std::string& name);
     }
 }
