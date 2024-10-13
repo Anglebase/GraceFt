@@ -11,6 +11,11 @@ namespace GFt {
             g.bindBrushSet(&bkbs);
             g.drawFillRect(r);
             static TextSet ts(0_rgb);
+            ts.font() = selectedfont_;
+            ts.font().setWeight(FontWeight::Bold);
+            g.bindTextSet(&ts);
+            auto w = g.textWidth(text_);
+            auto h = g.textHeight(text_);
             if (BlockHoverManager::getHoverOn() == this) {
                 g.bindBrushSet(&hoverbs_);
                 ts.font() = hoverfont_;
@@ -29,8 +34,6 @@ namespace GFt {
                 ts.font() = normalfont_;
                 g.bindTextSet(&ts);
             }
-            auto w = g.textWidth(text_);
-            auto h = g.textHeight(text_);
             iRect tr = r.centerby(iSize{ w + h, h });
             auto ellp = iEllipse{ iRect{tr.position(), iSize{ h, h }} };
             g.drawEllipse(ellp);
