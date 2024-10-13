@@ -19,6 +19,7 @@ namespace GFt {
             /// @brief 设置标题
             /// @param title 标题
             void setTitle(const std::wstring& title);
+            bool isMaximized() const;
         };
     }
 }

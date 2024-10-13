@@ -139,6 +139,9 @@ namespace GFt {
                 }
                 });
         }
+        bool isMaximized() const {
+            return max_;
+        }
     };
     // 关闭按钮
     class CloseBtn : public CtrlBtn {
@@ -217,6 +220,10 @@ namespace GFt {
         void onMouseButtonPress(MouseButtonPressEvent* event) override {
             if (event->button() != MouseButton::Left)
                 return;
+            auto parent = dynamic_cast<Widget::MainWindow*>
+                (this->getParent()->getParent());
+            if (parent && parent->isMaximized())
+                return;
             drag_pos_ = Sys::getCursorPosition();
             current_ = Sys::getCursorPosition() - event->position();
             ssid = Application::onEventCall.connect(this, &TitleLabel::updateWindowPos);
@@ -275,6 +282,9 @@ namespace GFt {
         }
         void MainWindow::setTitle(const std::wstring& title) {
             ((TitleLabel*)label_)->setTitle(title);
+        }
+        bool MainWindow::isMaximized() const {
+            return ((MaxiBtn*)maxbtn_)->isMaximized();
         }
     }
 }
