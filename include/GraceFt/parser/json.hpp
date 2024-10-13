@@ -2,7 +2,7 @@
  * @file json.hpp
  * @author Anglebase[@github]
  * @brief 一个用于 JSON 序列化/反序列化的仅头文件库 (C++20)
- *        这个库支持反序列化带有注释和尾随逗号的 JSON 格式，但将在序列化时忽略它们
+ *        这个库支持反序列化带有注释和尾随逗号的 JSON 格式，但并不会存储它们
  */
 #pragma once
 
@@ -19,7 +19,8 @@ namespace GFt {
     /// @ingroup 工具集
 
     /// @brief JSON 序列化和反序列化支持
-    /// @details 这个命名空间包含所有用于 JSON 序列化/反序列化的类和函数
+    /// @details 这个命名空间包含所有用于 JSON 序列化/反序列化的类和函数，
+    ///          此 JSON 库支持反序列化带有注释和尾随逗号的 JSON 格式，但并不会存储它们
     /// @code 使用示例
     /// #include <iostream>
     /// #include <sstream>
