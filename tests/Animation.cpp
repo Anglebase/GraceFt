@@ -36,8 +36,8 @@ public:
                 .setter = std::bind(&Block::setX, this, std::placeholders::_1),
                 .initial = rect.x(),
                 .target = 500,
-                .duration = 5000,
-                .trans_func = TransFuncs::overDamped(4.f),
+                .duration = 1000,
+                .trans_func = TransFuncs::smoothInOut,
             }
         } {
         AnimationManager::getInstance().registerAnimation(&this->anim);
@@ -66,7 +66,12 @@ int main() {
 
     Button button{ iRect{100,250,100,50}, &root };
     button.text() = L"开始播放";
-    button.onClicked.connect(&view.anim, &AnimationAbstract::setPlay);
+    button.onClicked.connect([&] {
+        view.anim.setPlay();
+        PlanEvent::getInstance().addPlanEvent(1000,
+            [] { std::cout << "PlanEvent Callback Function triggered" << std::endl; }
+        );
+        });
 
     Button button2{ iRect{100,310,100,50}, &root };
     button2.text() = L"暂停播放";
