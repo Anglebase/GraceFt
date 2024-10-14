@@ -22,6 +22,7 @@ namespace GFt {
 
         std::size_t addPlanEvent_(float after, const PlanFunc& planEvent);
         std::size_t addPlanEvent_(const PlanFunc& planEvent);
+        std::size_t addPlanEvent_(const std::function<bool()>& condition, const PlanFunc& planEvent);
         std::size_t reAddPlanEvent_(std::size_t id, const PlanFunc& planEvent);
         void removePlanEvent_(std::size_t id);
         static PlanEvent& getInstance();
@@ -38,6 +39,12 @@ namespace GFt {
         /// @param planEvent 计划事件函数
         /// @details 计划事件会在至少 after 毫秒后执行
         static std::size_t add(float after, const PlanFunc& planEvent);
+
+        /// @brief 添加计划事件
+        /// @param condition 计划事件条件函数
+        /// @param planEvent 计划事件函数
+        /// @details 计划事件会在 condition 函数返回 true 时执行
+        static std::size_t add(const std::function<bool()>& condition, const PlanFunc& planEvent);
 
         /// @brief 移除计划事件
         /// @param id 计划事件ID

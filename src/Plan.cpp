@@ -20,6 +20,18 @@ namespace GFt {
         return nextId_++;
     }
 
+    std::size_t PlanEvent::addPlanEvent_(const std::function<bool()>& condition, const PlanFunc& planEvent) {
+        auto id = addPlanEvent_(planEvent);
+        remove(id);
+        std::function<void()>* func = new std::function<void()>();
+        *func = [=, this] {
+            condition()
+                ? planEvent(), delete func
+                : (void)getInstance().reAddPlanEvent_(id, *func);
+            };
+        return id;
+    }
+
     std::size_t PlanEvent::reAddPlanEvent_(std::size_t id, const PlanFunc& planEvent) {
         planEvents_[id] = planEvent;
         return id;
@@ -45,6 +57,10 @@ namespace GFt {
 
     std::size_t PlanEvent::add(float after, const PlanFunc& planEvent) {
         return getInstance().addPlanEvent_(after, planEvent);
+    }
+
+    std::size_t PlanEvent::add(const std::function<bool()>& condition, const PlanFunc& planEvent) {
+        return getInstance().addPlanEvent_(condition, planEvent);
     }
 
     void PlanEvent::remove(std::size_t id) {
