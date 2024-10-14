@@ -2,36 +2,53 @@
 #include <Application.h>
 
 namespace GFt {
+    std::size_t PlanEvent::nextId_ = 0;
     void PlanEvent::executePlanEvents() {
-        std::list<PlanFunc> calls;
+        std::unordered_map<std::size_t, PlanFunc> calls;
         calls.swap(planEvents_);
         planEvents_.clear();
-        for (auto& planEvent : calls)
+        for (auto& [_, planEvent] : calls)
             planEvent();
     }
 
-    void PlanEvent::add(const PlanFunc& planEvent) {
-        getInstance().addPlanEvent_(planEvent);
+    std::size_t PlanEvent::add(const PlanFunc& planEvent) {
+        return getInstance().addPlanEvent_(planEvent);
     }
 
-    void PlanEvent::addPlanEvent_(const PlanFunc& planEvent) {
-        planEvents_.push_back(planEvent);
+    std::size_t PlanEvent::addPlanEvent_(const PlanFunc& planEvent) {
+        planEvents_[nextId_] = planEvent;
+        return nextId_++;
     }
 
-    void PlanEvent::addPlanEvent_(float after_ms, const PlanFunc& planEvent) {
+    std::size_t PlanEvent::reAddPlanEvent_(std::size_t id, const PlanFunc& planEvent) {
+        planEvents_[id] = planEvent;
+        return id;
+    }
+
+    void PlanEvent::removePlanEvent_(std::size_t id) {
+        planEvents_.erase(id);
+    }
+
+    std::size_t PlanEvent::addPlanEvent_(float after_ms, const PlanFunc& planEvent) {
         auto delay = std::chrono::milliseconds(static_cast<int>(after_ms));
         auto target = std::chrono::steady_clock::now() + delay;
+        std::size_t id = addPlanEvent_(planEvent);
+        remove(id);
         std::function<void()>* func = new std::function<void()>();
         *func = [=, this] {
             std::chrono::steady_clock::now() >= target
                 ? planEvent(), delete func
-                : add(*func);
+                : (void)getInstance().reAddPlanEvent_(id, *func);
             };
-        add(*func);
+        return getInstance().reAddPlanEvent_(id, *func);
     }
 
-    void PlanEvent::add(float after, const PlanFunc& planEvent) {
-        getInstance().addPlanEvent_(after, planEvent);
+    std::size_t PlanEvent::add(float after, const PlanFunc& planEvent) {
+        return getInstance().addPlanEvent_(after, planEvent);
+    }
+
+    void PlanEvent::remove(std::size_t id) {
+        getInstance().removePlanEvent_(id);
     }
 
     PlanEvent& PlanEvent::getInstance() {

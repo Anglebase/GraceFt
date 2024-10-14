@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <unordered_map>
 #include <functional>
 #include <concepts>
 
@@ -11,7 +11,8 @@ namespace GFt {
     ///          信号被触发时调用，且每个计划刻事件只会被调用一次
     class PlanEvent {
         using PlanFunc = std::function<void()>;
-        std::list<PlanFunc> planEvents_;
+        static std::size_t nextId_;
+        std::unordered_map<std::size_t, PlanFunc> planEvents_;
 
         PlanEvent() = default;
         PlanEvent(const PlanEvent&) = delete;
@@ -19,8 +20,10 @@ namespace GFt {
         PlanEvent& operator=(const PlanEvent&) = delete;
         PlanEvent& operator=(PlanEvent&&) = delete;
 
-        void addPlanEvent_(float after, const PlanFunc& planEvent);
-        void addPlanEvent_(const PlanFunc& planEvent);
+        std::size_t addPlanEvent_(float after, const PlanFunc& planEvent);
+        std::size_t addPlanEvent_(const PlanFunc& planEvent);
+        std::size_t reAddPlanEvent_(std::size_t id, const PlanFunc& planEvent);
+        void removePlanEvent_(std::size_t id);
         static PlanEvent& getInstance();
     private:
         void executePlanEvents();
@@ -28,12 +31,16 @@ namespace GFt {
     public:
         /// @brief 添加计划事件
         /// @param planEvent 计划事件函数
-        static void add(const PlanFunc& planEvent);
+        static std::size_t add(const PlanFunc& planEvent);
 
         /// @brief 添加计划事件
         /// @param after 计划事件延迟执行时间（单位：毫秒）
         /// @param planEvent 计划事件函数
         /// @details 计划事件会在至少 after 毫秒后执行
-        static void add(float after, const PlanFunc& planEvent);
+        static std::size_t add(float after, const PlanFunc& planEvent);
+
+        /// @brief 移除计划事件
+        /// @param id 计划事件ID
+        static void remove(std::size_t id);
     };
 }
