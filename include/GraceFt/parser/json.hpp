@@ -1,7 +1,9 @@
 /**
  * @file json.hpp
  * @author Anglebase[@github]
- * @brief 一个用于 JSON 序列化/反序列化的仅头文件库 (C++17)
+ * @note  (仅)此文件以 MIT 许可证独立于此项目发布
+ *        (Only) This file is published independently of this project under the MIT license.
+ * @brief 这是一个用于 JSON 序列化/反序列化的仅头文件库 (C++17)
  *        这个库支持反序列化带有注释和尾随逗号的 JSON 格式，但并不会存储它们
  *        由于此库不依赖多态技术实现，使得它具有十分良好的性能
  */
@@ -19,13 +21,13 @@ namespace GFt {
     /// @details 这个命名空间包含了 JSON 相关的类型和函数
     namespace json {
         enum class Type {
-            Null,
-            Boolean,
-            Number,
-            String,
-            Array,
-            Object,
-            Invalid
+            Null,       ///< 空值
+            Boolean,    ///< 布尔值
+            Number,     ///< 数字
+            String,     ///< 字符串
+            Array,      ///< 数组
+            Object,     ///< 对象
+            Invalid     ///< 无效值
         };
         template<typename CharT>
         class Value;
@@ -71,6 +73,7 @@ namespace GFt {
             }
         };
 
+        /// @brief JSON 值对象
         template<typename CharT>
         class Value {
             static inline const CharT null_[]{ 'n', 'u', 'l', 'l', 0 };
