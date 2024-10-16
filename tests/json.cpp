@@ -14,10 +14,10 @@ int main() {
     iss >> data;
 
     // 格式化输出
-    cout << data << endl;
+    cout << json::Format(4) << data << endl;
     cout << "----------------------------" << endl;
     // 压缩输出
-    json::print(data, cout, -1);
+    cout << json::Format(-1) << endl;
     cout << endl;
     // 访问属性
     cout << data["name"].toString() << endl;
