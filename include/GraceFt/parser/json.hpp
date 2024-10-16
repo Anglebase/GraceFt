@@ -5,7 +5,7 @@
  *        (Only) This file is published independently of this project under the MIT license.
  * @brief 这是一个用于 JSON 序列化/反序列化的仅头文件库 (C++17)
  *        这个库支持反序列化带有注释和尾随逗号的 JSON 格式，但并不会存储它们
- *        由于此库不依赖多态技术实现，使得它具有十分良好的性能
+ *        由于此库不依赖多态技术实现，使得它具有十分良好的性能，并且可以与 C++ 无缝集成
  */
 #pragma once
 
@@ -361,7 +361,7 @@ namespace GFt {
 }
 
 /*
-(仅)此文件以 MIT 许可证发布
+(仅)此文件以 MIT 许可证独立于此项目发布
 
 MIT License
 
