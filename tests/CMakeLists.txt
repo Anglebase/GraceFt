@@ -84,3 +84,6 @@ target_link_libraries(test_Animation ${GFt_LIBRARY_NAME})
 # json.hpp TEST
 add_executable(test_json ${CMAKE_CURRENT_SOURCE_DIR}/json.cpp)
 target_link_libraries(test_json ${GFt_LIBRARY_NAME})
+# Slider.h TEST
+add_executable(test_Slider ${CMAKE_CURRENT_SOURCE_DIR}/Slider.cpp)
+target_link_libraries(test_Slider ${GFt_LIBRARY_NAME})
