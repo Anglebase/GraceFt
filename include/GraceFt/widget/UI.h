@@ -6,7 +6,7 @@
 
 #include <GraceFt/Window.h>
 #include <GraceFt/widget/Button.h>
-#include <GraceFt/Label.h>
+#include <GraceFt/widget/Label.h>
 #include <GraceFt/RowLayout.h>
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>

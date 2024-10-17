@@ -1,4 +1,4 @@
-#include "Label.h"
+#include "widget/Label.h"
 
 namespace GFt {
     namespace Widget {
