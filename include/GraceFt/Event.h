@@ -139,8 +139,8 @@ namespace GFt {
         RightShift = 0xa1,   ///< 右 Shift 键
         LeftControl = 0xa2,  ///< 左 Control 键
         RightControl = 0xa3, ///< 右 Control 键
-        LeftMenu = 0xa4,     ///< 左 Menu 键
-        RightMenu = 0xa5,    ///< 右 Menu 键
+        LeftMenu = 0xa4,     ///< 左 Alt 键
+        RightMenu = 0xa5,    ///< 右 Alt 键
 
         Semicolon = 0xba,    ///< ;: 键
         Plus = 0xbb,         ///< =+ 键
