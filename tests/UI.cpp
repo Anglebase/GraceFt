@@ -49,6 +49,26 @@ void WindowContent(Block& it) {
         .parent = it,
         .content = RowLayoutContent,
     };
+    XHSlider{
+        .name = "Slider1",
+        .rect = iRect{50,200,200,50},
+        .parent = it,
+        .content = [](HSlider& it) {
+            it.onValueChanged.connect([](float value) {
+                std::cout << "Slider1 value changed: " << value << std::endl;
+            });
+        }
+    };
+    XVSlider{
+        .name = "Slider2",
+        .rect = iRect{50,250,50,200},
+        .parent = it,
+        .content = [](VSlider& it) {
+            it.onValueChanged.connect([](float value) {
+                std::cout << "Slider2 value changed: " << value << std::endl;
+            });
+        }
+    };
 }
 
 void RootWindow() {
