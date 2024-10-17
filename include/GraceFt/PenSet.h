@@ -10,6 +10,8 @@ namespace GFt {
     /// @ingroup  API接口库
 
     /// @defgroup 画笔样式枚举
+    /// @brief 线帽和接点样式如图
+    /// @image html penstyle.png "线帽和接点样式"
     /// @ingroup 枚举
 
     /// @brief 画线样式
@@ -23,8 +25,6 @@ namespace GFt {
         Null            ///< 不可见
     };
     /// @brief 线帽样式
-    /// @brief 线帽和接点样式如图
-    /// @image html penstyle.png "线帽和接点样式"
     /// @ingroup 画笔样式枚举
     enum class CapStyle {
         Flat,           ///< 平头
