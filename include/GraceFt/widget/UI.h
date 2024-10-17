@@ -13,6 +13,7 @@
 #include <GraceFt/widget/MainWindow.h>
 #include <GraceFt/widget/RadioBox.h>
 #include <GraceFt/widget/CheckBox.h>
+#include <GraceFt/widget/Slider.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \
@@ -141,6 +142,12 @@ namespace GFt {
         /// @brief 复选框声明式UI块
         /// @details 复选框声明式UI块用于声明式地创建复选框，并提供复选框内容的设置
         DEF_DECLUI(GFt::Widget, CheckBox);
+        /// @brief 水平滑动条声明式UI块
+        /// @details 水平滑动条声明式UI块用于声明式地创建水平滑动条，并提供滑动条内容的设置
+        DEF_DECLUI(GFt::Widget, HSlider);
+        /// @brief 垂直滑动条声明式UI块
+        /// @details 垂直滑动条声明式UI块用于声明式地创建垂直滑动条，并提供滑动条内容的设置
+        DEF_DECLUI(GFt::Widget, VSlider);
     }
 }
 
