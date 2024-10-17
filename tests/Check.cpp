@@ -1,8 +1,8 @@
 #include <Application.h>
-#include <CheckBox.h>
+#include <widget/CheckBox.h>
 #include <Block.h>
 #include <Window.h>
-#include <MainWindow.h>
+#include <widget/MainWindow.h>
 
 using namespace GFt;
 using namespace GFt::Widget;

@@ -1,7 +1,7 @@
 #include <GridLayout.h>
 #include <Application.h>
 #include <Window.h>
-#include <Button.h>
+#include <widget/Button.h>
 
 using namespace GFt;
 using namespace GFt::literals;

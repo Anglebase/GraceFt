@@ -4,7 +4,7 @@
 #include <Block.h>
 #include <Graphics.h>
 #include <LMath.hpp>
-#include <Button.h>
+#include <widget/Button.h>
 #include <Geometry.hpp>
 
 using namespace GFt;

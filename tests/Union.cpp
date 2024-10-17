@@ -1,6 +1,6 @@
 #include <GraceFt/Application.h>
 #include <GraceFt/Window.h>
-#include <GraceFt/UI.h>
+#include <GraceFt/widget/UI.h>
 
 #include <sstream>
 #include <stack>

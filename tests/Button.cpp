@@ -1,5 +1,5 @@
 #include <Application.h>
-#include <Button.h>
+#include <widget/Button.h>
 #include <Window.h>
 
 using namespace GFt;

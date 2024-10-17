@@ -1,5 +1,5 @@
 #include <Application.h>
-#include <MainWindow.h>
+#include <widget/MainWindow.h>
 #include <Window.h>
 #include <Graphics.h>
 

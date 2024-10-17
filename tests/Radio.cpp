@@ -1,8 +1,8 @@
 #include <Application.h>
-#include <RadioBox.h>
+#include <widget/RadioBox.h>
 #include <Block.h>
 #include <Window.h>
-#include <MainWindow.h>
+#include <widget/MainWindow.h>
 
 using namespace GFt;
 using namespace GFt::Widget;

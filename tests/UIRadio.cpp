@@ -1,4 +1,4 @@
-#include <GraceFt/UI.h>
+#include <GraceFt/widget/UI.h>
 #include <GraceFt/Application.h>
 
 using namespace GFt;

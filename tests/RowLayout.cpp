@@ -1,7 +1,7 @@
 #include <RowLayout.h>
 #include <Application.h>
 #include <Window.h>
-#include <Button.h>
+#include <widget/Button.h>
 #include <thread>
 
 using namespace GFt;

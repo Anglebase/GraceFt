@@ -5,14 +5,14 @@
 #include <memory>
 
 #include <GraceFt/Window.h>
-#include <GraceFt/Button.h>
+#include <GraceFt/widget/Button.h>
 #include <GraceFt/Label.h>
 #include <GraceFt/RowLayout.h>
 #include <GraceFt/ColumnLayout.h>
 #include <GraceFt/GridLayout.h>
-#include <GraceFt/MainWindow.h>
-#include <GraceFt/RadioBox.h>
-#include <GraceFt/CheckBox.h>
+#include <GraceFt/widget/MainWindow.h>
+#include <GraceFt/widget/RadioBox.h>
+#include <GraceFt/widget/CheckBox.h>
 
 #define DEF_DECLUI(ns, classname)                                         \
         struct X##classname final {                                       \

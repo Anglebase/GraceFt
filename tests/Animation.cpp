@@ -1,7 +1,7 @@
 #include <Application.h>
 #include <Animation.hpp>
 #include <BlockFocus.h>
-#include <Button.h>
+#include <widget/Button.h>
 #include <Geometry.hpp>
 #include <Plan.h>
 

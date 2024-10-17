@@ -1,8 +1,8 @@
-#include "MainWindow.h"
+#include "widget/MainWindow.h"
 
 #include <numbers>
 
-#include <Button.h>
+#include <widget/Button.h>
 #include <Graphics.h>
 #include <BlockFocus.h>
 #include <Window.h>

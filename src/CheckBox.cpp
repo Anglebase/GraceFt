@@ -1,4 +1,4 @@
-#include "CheckBox.h"
+#include "widget/CheckBox.h"
 
 #include <BlockFocus.h>
 
