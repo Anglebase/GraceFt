@@ -4,6 +4,7 @@
 
 namespace GFt {
     /// @defgroup 事件系统
+    /// @brief 这里提供事件处理的基础支持内容
     /// @ingroup API接口库
 
     /// @defgroup 事件监视器

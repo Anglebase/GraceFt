@@ -29,7 +29,7 @@ namespace GFt {
                 ? planEvent(), delete func
                 : (void)getInstance().reAddPlanEvent_(id, *func);
             };
-        return id;
+        return getInstance().reAddPlanEvent_(id, *func);
     }
 
     std::size_t PlanEvent::reAddPlanEvent_(std::size_t id, const PlanFunc& planEvent) {

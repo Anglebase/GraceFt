@@ -9,6 +9,7 @@
 
 namespace GFt {
     /// @defgroup 画刷样式枚举
+    /// @brief 这里包含了所有支持的画刷样式枚举值
     /// @ingroup 枚举
 
     /// @brief 填充样式

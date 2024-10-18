@@ -9,8 +9,10 @@
 
 namespace GFt {
     /// @defgroup 基础设施库
+    /// @brief UI 相关的基础设施库
     
     /// @defgroup 图形数据类型
+    /// @brief 这里提供了一系列几何对象的封装
     /// @ingroup 基础设施库
 
     /// @class Rect

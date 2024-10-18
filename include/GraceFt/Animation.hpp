@@ -10,6 +10,7 @@
 
 namespace GFt {
     /// @defgroup 动画支持库
+    /// @brief 这里提供对于动画效果的支持
     /// @ingroup 基础设施库
 
     using TimePoint = std::chrono::time_point<std::chrono::steady_clock>;

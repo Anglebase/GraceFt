@@ -18,6 +18,7 @@
 
 namespace GFt {
     /// @defgroup 文本枚举
+    /// @brief 这里列出了文本对齐方式的枚举值
     /// @ingroup 枚举
 
     /// @brief 文本对齐方式

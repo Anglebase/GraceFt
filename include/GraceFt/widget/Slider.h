@@ -5,6 +5,7 @@
 namespace GFt {
     namespace Widget {
         /// @brief 水平滑动条
+        /// @ingroup 部件库
         class HSlider : public Block {
             float value_{ 0 };
             float minValue_{ 0 };
@@ -70,6 +71,7 @@ namespace GFt {
         };
 
         /// @brief 垂直滑动条
+        /// @ingroup 部件库
         class VSlider : public Block {
             float value_{ 0 };
             float minValue_{ 0 };

@@ -10,7 +10,8 @@ namespace GFt {
     /// @ingroup  API接口库
 
     /// @defgroup 画笔样式枚举
-    /// @brief 线帽和接点样式如图
+    /// @brief 这里包含了所有支持的画笔样式枚举值
+    /// @details 线帽和接点样式如图
     /// @image html penstyle.png "线帽和接点样式"
     /// @ingroup 枚举
 
@@ -43,6 +44,7 @@ namespace GFt {
     /// @ingroup  API接口库
 
     /// @defgroup 接口类型
+    /// @brief 这里包含了与底层交互的封装
     /// @ingroup 图形系统
 
     /// @class PenSet

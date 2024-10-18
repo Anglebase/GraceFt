@@ -30,19 +30,19 @@ namespace GFt {
         void executePlanEvents();
 
     public:
-        /// @brief 添加计划事件
+        /// @brief 添加立即执行计划事件
         /// @param planEvent 计划事件函数
         /// @return 计划事件ID
         static std::size_t add(const PlanFunc& planEvent);
 
-        /// @brief 添加计划事件
+        /// @brief 添加延时执行计划事件
         /// @param after 计划事件延迟执行时间（单位：毫秒）
         /// @param planEvent 计划事件函数
         /// @details 计划事件会在至少 after 毫秒后执行
         /// @return 计划事件ID
         static std::size_t add(float after, const PlanFunc& planEvent);
 
-        /// @brief 添加计划事件
+        /// @brief 添加条件执行计划事件
         /// @param condition 计划事件条件函数
         /// @param planEvent 计划事件函数
         /// @details 计划事件会在 condition 函数返回 true 时执行

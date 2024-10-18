@@ -6,6 +6,7 @@
 
 namespace GFt {
     /// @defgroup 基础UI封装库
+    /// @brief 这里包含了基础的UI支持封装的类
 
     /// @class GraphInterface
     /// @brief 图形绘制接口

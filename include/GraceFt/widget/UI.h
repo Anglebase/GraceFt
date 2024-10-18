@@ -36,7 +36,7 @@
             }                                                             \
         }
 namespace GFt {
-    /// @brief 定义式UI管理器
+    /// @brief 声明式UI管理器
     /// @details 管理所有声明式UI块，并提供查找和添加和统一析构的功能
     class DeclarativeUIManager final {
         std::unordered_map<std::string, std::unique_ptr<Block>> blocks;
@@ -163,8 +163,12 @@ namespace GFt {
     /// @endcode
     namespace UI {
 
+        /// @defgroup 声明式UI
+        /// @brief 声明式UI库
+
         /// @brief 窗口声明式UI块
         /// @details 窗口声明式UI块用于声明式地创建窗口，并提供窗口内容的设置
+        /// @ingroup 声明式UI
         struct XWindow final {
             /// @brief 块识别名称
             const std::string name;
@@ -176,6 +180,7 @@ namespace GFt {
         };
         /// @brief 主窗口声明式UI块
         /// @details 主窗口声明式UI块用于声明式地创建主窗口，并提供窗口内容的设置
+        /// @ingroup 声明式UI
         struct XMainWindow final {
             /// @brief 块识别名称
             const std::string name;
@@ -189,6 +194,7 @@ namespace GFt {
         };
         /// @brief 单选框声明式UI块
         /// @details 单选框声明式UI块用于声明式地创建单选框，并提供单选框内容的设置
+        /// @ingroup 声明式UI
         struct XRadioBox final {
             /// @brief 块识别名称
             const std::string name;
@@ -206,32 +212,43 @@ namespace GFt {
         };
         /// @brief 块声明式UI块
         /// @details 块声明式UI块用于声明式地创建块，并提供块内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt, Block);
         /// @brief 按钮声明式UI块
         /// @details 按钮声明式UI块用于声明式地创建按钮，并提供按钮内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt::Widget, Button);
         /// @brief 标签声明式UI块
         /// @details 标签声明式UI块用于声明式地创建标签，并提供标签内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt::Widget, Label);
         /// @brief 行布局声明式UI块
         /// @details 行布局声明式UI块用于声明式地创建行布局，并提供布局内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt, RowLayout);
         /// @brief 列布局声明式UI块
         /// @details 列布局声明式UI块用于声明式地创建列布局，并提供布局内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt, ColumnLayout);
         /// @brief 网格布局声明式UI块
         /// @details 网格布局声明式UI块用于声明式地创建网格布局，并提供布局内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt, GridLayout);
         /// @brief 复选框声明式UI块
         /// @details 复选框声明式UI块用于声明式地创建复选框，并提供复选框内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt::Widget, CheckBox);
         /// @brief 水平滑动条声明式UI块
         /// @details 水平滑动条声明式UI块用于声明式地创建水平滑动条，并提供滑动条内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt::Widget, HSlider);
         /// @brief 垂直滑动条声明式UI块
         /// @details 垂直滑动条声明式UI块用于声明式地创建垂直滑动条，并提供滑动条内容的设置
+        /// @ingroup 声明式UI
         DEF_DECLUI(GFt::Widget, VSlider);
     }
 }
-
+/// @brief 声明式UI块便利宏
+/// @details 用于方便地获取声明式UI块的指针
+/// @ingroup 声明式UI
 #define BLOCK(name) (GFt::DeclarativeUIManager::getInstance().findBlock(name))

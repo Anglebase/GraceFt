@@ -20,6 +20,7 @@ namespace GFt {
     /// @defgroup 基础设施库
 
     /// @addtogroup 复合数据类型
+    /// @brief 这里提供了UI中常用的复杂数据类型
     /// @ingroup 基础设施库
 
     /// @class Matrix

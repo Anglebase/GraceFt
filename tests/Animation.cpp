@@ -4,6 +4,10 @@
 #include <widget/Button.h>
 #include <Geometry.hpp>
 #include <Plan.h>
+#include <parser/json.hpp>
+#include <fstream>
+#include <chrono>
+#include <future>
 
 using namespace GFt;
 using namespace GFt::Widget;
@@ -41,7 +45,7 @@ public:
             }
         } {
         AnimationManager::getInstance().registerAnimation(&this->anim);
-        // anim.onFinished.connect(&anim, &AnimationAbstract::setPlay);
+        anim.onFinished.connect(&anim, &AnimationAbstract::setPlay);
         anim.onUpdated.connect([this] {
             auto absPos = Application::getAbsoluteMousePosition();
             if (contains({ this->absolutePosition(), this->rect().size() }, absPos))
@@ -54,6 +58,16 @@ public:
     }
     Animation<int> anim;
 };
+
+std::chrono::microseconds duration;
+void Async() {
+    std::fstream file(R"(C:\Users\Lenovo\Project\C\b.json)");
+    json::Value<char> root;
+    auto start = std::chrono::high_resolution_clock::now();
+    file >> root;
+    auto end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+}
 
 int main() {
     Window::onWindowCreated.connect([](Window* w) {
@@ -88,6 +102,24 @@ int main() {
         std::cout << "FPS: " << Application::getRealFps() << std::endl;
         std::cout << "Event: " << Application::getEventTime() << "us" << std::endl;
         std::cout << "Render: " << Application::getRenderTime() << "ms" << std::endl;
+        });
+
+    std::future<void> f;
+    Button button5{ iRect{100,490,100,50}, &root };
+    button5.text() = L"执行操作";
+    button5.onClicked.connect([&] {
+        std::cout << "Async operation started" << std::endl;
+        f = std::async(std::launch::async, Async);
+        PlanEvent::add([&]()->bool {
+            std::cout << "PlanEvent Callback Function triggered" << std::endl;
+            if (f.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
+                return true;
+            return false;
+            },
+            [&] {
+                std::cout << "Async operation finished" << std::endl;
+                std::cout << "Duration: " << duration.count() << "us" << std::endl;
+            });
         });
 
     view.anim.onStateChanged.connect([&](AnimationStateType before, AnimationStateType after) {

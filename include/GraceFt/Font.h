@@ -7,6 +7,7 @@
 
 namespace GFt {
     /// @defgroup 字体枚举
+    /// @brief 这里列出了字体粗细相关的枚举值
     /// @ingroup 枚举
 
     /// @enum FontWeight
@@ -31,9 +32,11 @@ namespace GFt {
     };
 
     /// @defgroup 图形系统
+    /// @brief 这里提供图形处理相关功能
     /// @ingroup API接口库
 
     /// @defgroup 基础类型
+    /// @brief 这里包含了图形相关的基础类型定义
     /// @ingroup 图形系统
 
     /// @class Font

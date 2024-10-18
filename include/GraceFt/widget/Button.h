@@ -7,6 +7,7 @@
 #include <GraceFt/TextSet.h>
 
 /// @defgroup 部件库
+/// @brief 定义式UI库
 namespace GFt {
     /// @brief 定义式UI库
     namespace Widget {

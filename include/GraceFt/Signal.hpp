@@ -12,6 +12,7 @@ namespace GFt {
     template<typename... Args>
     using SlotId = std::size_t;
     /// @addtogroup 糖衣工具
+    /// @brief 这里包含了一些可以巧用的工具类
     /// @ingroup 工具集
 
     /// @class Signal
@@ -90,14 +91,12 @@ namespace GFt {
             emit(std::forward<Args>(args)...);
         }
     };
-    /// @addtogroup 基础设施库
-    /// @{
+
     /// @addtogroup 糖衣工具
     /// @{
         /// @class Signal<void>
         /// @brief Signal 的无参数特化版本
         /// @see Signal
-    /// @}
     /// @}
     template<>
     class Signal<void> {

@@ -4,6 +4,7 @@
 
 namespace GFt {
     /// @defgroup 枚举
+    /// @brief 这里列举出了一些常用的枚举类型
     /// @ingroup API接口库
 
     /// @defgroup 按键枚举

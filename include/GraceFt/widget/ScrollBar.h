@@ -5,6 +5,7 @@
 namespace GFt {
     namespace Widget {
         /// @brief 垂直滚动条
+        /// @ingroup 部件库
         class VScrollBar : public Block {
             float currentPos_;
             float completeSize_;
@@ -72,6 +73,7 @@ namespace GFt {
         };
 
         /// @brief 水平滚动条
+        /// @ingroup 部件库
         class HScrollBar : public Block {
             float currentPos_;
             float completeSize_;
