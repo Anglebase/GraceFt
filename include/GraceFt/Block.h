@@ -135,7 +135,7 @@ namespace GFt {
         iPoint relativePosFrom(Block* block) const;
         /// @brief 计算相对于屏幕的绝对坐标
         /// @return 绝对坐标
-        iPoint absolutePos() const;
+        iPoint absolutePosition() const;
     public:
         Signal<Block*> HoverOn;     ///< 当鼠标悬停该对象时之上时触发该信号
         Signal<Block*> HoverOff;    ///< 当鼠标移开该对象时之上时触发该信号

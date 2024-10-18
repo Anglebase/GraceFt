@@ -16,7 +16,7 @@
         auto iter = std::find_if(children_.begin(), children_.end(),                    \
             [&](const Block* child) {                                                   \
                 return contains(iRect{                                                  \
-                    child->absolutePos(), child->rect().size()                          \
+                    child->absolutePosition(), child->rect().size()                          \
                     }, event->absolutePosition()); });                                  \
         do {                                                                            \
             if (iter == children_.end()){                                               \
@@ -143,10 +143,10 @@ namespace GFt {
     Block* Block::getParent() const { return parent_; }
 
     iPoint Block::relativePosFrom(Block* block) const {
-        return this->absolutePos() - block->absolutePos();
+        return this->absolutePosition() - block->absolutePosition();
     }
 
-    iPoint Block::absolutePos() const {
+    iPoint Block::absolutePosition() const {
         if (parent_ == nullptr) {
             RECT crect;
             GetClientRect(getHWnd(), &crect);
@@ -154,7 +154,7 @@ namespace GFt {
             ClientToScreen(getHWnd(), &p);
             return iPoint{ p.x, p.y };
         }
-        return rect().position() + parent_->absolutePos();
+        return rect().position() + parent_->absolutePosition();
     }
 
     void Block::handleOnDraw(const iPoint& lefttop, bool cilpO) {

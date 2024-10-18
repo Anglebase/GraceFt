@@ -27,7 +27,7 @@ protected:
         }
     }
     void onMouseMove(MouseMoveEvent* e) override {
-        mousePos_ = e->absolutePosition() - this->absolutePos();
+        mousePos_ = e->absolutePosition() - this->absolutePosition();
     }
 public:
     View(const iRect& rect, Block* parent = nullptr, int zIndex = 0)
@@ -44,9 +44,9 @@ public:
         // anim.onFinished.connect(&anim, &AnimationAbstract::setPlay);
         anim.onUpdated.connect([this] {
             auto absPos = Application::getAbsoluteMousePosition();
-            if (contains({ this->absolutePos(), this->rect().size() }, absPos))
+            if (contains({ this->absolutePosition(), this->rect().size() }, absPos))
                 BlockHoverManager::setHoverOn(this);
-            this->mousePos_ = absPos - this->absolutePos();
+            this->mousePos_ = absPos - this->absolutePosition();
             });
     }
     ~View() {

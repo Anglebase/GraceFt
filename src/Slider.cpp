@@ -38,10 +38,10 @@ namespace GFt {
         void HSlider::onMouseButtonPress(MouseButtonPressEvent* e) {
             if (e->button() != MouseButton::Left)
                 return Block::onMouseButtonPress(e);
-            auto rel = e->absolutePosition() - this->absolutePos();
+            auto rel = e->absolutePosition() - this->absolutePosition();
             if ((rel - handlePos_).norm() <= handleRadius_) {
                 ssid = Application::onEventCall.connect([&] {
-                    auto rel = Application::getAbsoluteMousePosition() - this->absolutePos();
+                    auto rel = Application::getAbsoluteMousePosition() - this->absolutePosition();
                     auto it = iRect{ rect().size() };
                     auto ypos = it.center().y();
                     auto xais = handleThickness_ / 2;
@@ -138,10 +138,10 @@ namespace GFt {
         void VSlider::onMouseButtonPress(MouseButtonPressEvent* e) {
             if (e->button() != MouseButton::Left)
                 return Block::onMouseButtonPress(e);
-            auto rel = e->absolutePosition() - this->absolutePos();
+            auto rel = e->absolutePosition() - this->absolutePosition();
             if ((rel - handlePos_).norm() <= handleRadius_) {
                 ssid = Application::onEventCall.connect([&] {
-                    auto rel = Application::getAbsoluteMousePosition() - this->absolutePos();
+                    auto rel = Application::getAbsoluteMousePosition() - this->absolutePosition();
                     auto it = iRect{ rect().size() };
                     auto xpos = it.center().x();
                     auto yais = handleThickness_ / 2;

@@ -134,7 +134,7 @@ namespace GFt {
             using Iter = std::multiset<Block*, GFt::Block::CompareByZIndex>::iterator;
             Iter iter = std::find_if(curr->children_.begin(), curr->children_.end(),
                 [](const Block* block) {
-                    return contains({ block->absolutePos(), block->rect().size() }, getAbsoluteMousePosition());
+                    return contains({ block->absolutePosition(), block->rect().size() }, getAbsoluteMousePosition());
                 });
             if (iter == curr->children_.end()) {
                 BlockHoverManager::setHoverOn(curr);
