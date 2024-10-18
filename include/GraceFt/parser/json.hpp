@@ -86,6 +86,27 @@ namespace GFt {
             Type type_;
             using Variant = std::variant<bool, double, StdString<CharT>, Array<CharT>, Object<CharT>>;
             Variant value_;
+            void removeRedundantComma(StdIStream<CharT>& is) const {
+                do {
+                    is >> std::ws;
+                    if (is.peek() == '/') {
+                        is.get();
+                        if (is.peek() == '/') {
+                            is.ignore(std::string().max_size(), '\n');
+                        }
+                        else if (is.peek() == '*') {
+                            is.get();
+                            while (is.peek() == '/')
+                                is.get();
+                            while (is.peek() != '/')
+                                is.ignore(std::string().max_size(), '*');
+                        }
+                    }
+                    else {
+                        break;
+                    }
+                } while (true);
+            }
         public:
             Value() : type_(Type::Invalid) {}
             Value(bool b) : type_(Type::Boolean), value_(b) {}
@@ -207,25 +228,7 @@ namespace GFt {
             ///          它会忽略冗余的空白符、注释和尾随逗号
             /// @note 若在读取时遇到错误，会设置流状态为 failbit
             friend StdIStream<CharT>& operator>>(StdIStream<CharT>& is, Value<CharT>& v) {
-                do {
-                    is >> std::ws;
-                    if (is.peek() == '/') {
-                        is.get();
-                        if (is.peek() == '/') {
-                            is.ignore(std::string().max_size(), '\n');
-                        }
-                        else if (is.peek() == '*') {
-                            is.get();
-                            while (is.peek() == '/')
-                                is.get();
-                            while (is.peek() != '/')
-                                is.ignore(std::string().max_size(), '*');
-                        }
-                    }
-                    else {
-                        break;
-                    }
-                } while (true);
+                v.removeRedundantComma(is);
                 char c = is.peek();
                 switch (c) {
                 case 'n':
@@ -295,11 +298,11 @@ namespace GFt {
                     v = Array<CharT>();
                     is.get();
                     while (is.peek() != ']') {
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                         Value value;
                         is >> value;
                         v.asArray().push_back(std::move(value));
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                         if (is.peek() == ']') {
                             break;
                         }
@@ -308,7 +311,7 @@ namespace GFt {
                             return is;
                         }
                         is.get();
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                     }
                     if (is.get() != ']') {
                         is.setstate(std::ios_base::failbit);
@@ -320,14 +323,14 @@ namespace GFt {
                     v = Object<CharT>();
                     is.get();
                     while (is.peek() != '}') {
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                         Value key;
                         is >> key;
                         if (key.type() != Type::String) {
                             is.setstate(std::ios_base::failbit);
                             return is;
                         }
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                         if (is.get() != ':') {
                             is.setstate(std::ios_base::failbit);
                             return is;
@@ -335,7 +338,7 @@ namespace GFt {
                         Value value;
                         is >> value;
                         v[key.toString()] = std::move(value);
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                         if (is.peek() == '}') {
                             break;
                         }
@@ -344,7 +347,7 @@ namespace GFt {
                             return is;
                         }
                         is.get();
-                        is >> std::ws;
+                        v.removeRedundantComma(is);
                     }
                     if (is.get() != '}') {
                         is.setstate(std::ios_base::failbit);
