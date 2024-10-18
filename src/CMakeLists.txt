@@ -27,6 +27,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Plan.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/RadioBox.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/RowLayout.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ScrollBar.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Slider.cpp
     "${CMAKE_CURRENT_SOURCE_DIR}/System.cpp"
     ${CMAKE_CURRENT_SOURCE_DIR}/TextSet.cpp
