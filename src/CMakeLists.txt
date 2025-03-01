@@ -35,6 +35,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Tools.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/UI.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Net.cpp
 )
 
 set(LIBRARY_OUTPUT_PATH ${GFt_LIBRARY_DIRS})              # 设置库输出目录
@@ -44,4 +45,4 @@ endforeach(_src ${GFt_SOURCES})
 
 add_library(${GFt_LIBRARY_NAME} STATIC ${GFt_SOURCES})
 target_link_directories(${GFt_LIBRARY_NAME} PUBLIC ${EGE_LIBRARY_DIRS})
-target_link_libraries(${GFt_LIBRARY_NAME} ${EGE_LIBRARIES})
+target_link_libraries(${GFt_LIBRARY_NAME} ${EGE_LIBRARIES};ws2_32)

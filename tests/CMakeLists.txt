@@ -93,3 +93,13 @@ target_link_libraries(test_UI_view ${GFt_LIBRARY_NAME})
 # ScrollBar.h TEST
 add_executable(test_ScrollBar ${CMAKE_CURRENT_SOURCE_DIR}/ScrollBar.cpp)
 target_link_libraries(test_ScrollBar ${GFt_LIBRARY_NAME})
+# TCP Net TEST
+add_executable(test_TCP_SNet ${CMAKE_CURRENT_SOURCE_DIR}/net/tcp/server.cpp)
+target_link_libraries(test_TCP_SNet ${GFt_LIBRARY_NAME})
+add_executable(test_TCP_CNet ${CMAKE_CURRENT_SOURCE_DIR}/net/tcp/client.cpp)
+target_link_libraries(test_TCP_CNet ${GFt_LIBRARY_NAME})
+# UDP Net TEST
+add_executable(test_UDP_SNet ${CMAKE_CURRENT_SOURCE_DIR}/net/udp/server.cpp)
+target_link_libraries(test_UDP_SNet ${GFt_LIBRARY_NAME})
+add_executable(test_UDP_CNet ${CMAKE_CURRENT_SOURCE_DIR}/net/udp/client.cpp)
+target_link_libraries(test_UDP_CNet ${GFt_LIBRARY_NAME})
