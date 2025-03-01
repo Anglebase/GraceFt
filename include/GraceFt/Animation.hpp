@@ -3,7 +3,6 @@
 #include <chrono>
 #include <functional>
 #include <list>
-#include <cmath>
 #include <mutex>
 #include <variant>
 #include <GraceFt/Signal.hpp>
@@ -241,8 +240,8 @@ namespace GFt {
         /// @brief 贝塞尔过渡
         constexpr float bezier(float x) { return 3.f * x * x - 2.f * x * x * x; }
         /// @brief 柔性过渡
-        constexpr float smoothInOut(float x) {
-            constexpr auto tao = 2 * ::std::numbers::pi;
+        inline float smoothInOut(float x) {
+            auto tao = 2 * 3.14159265358979323846;
             auto y = x * tao;
             return (y - ::std::sin(y)) / tao;
         }

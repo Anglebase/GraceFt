@@ -157,8 +157,9 @@ namespace GFt {
         if (fonts.empty())
             return ege::textheight(text.c_str(), IMG(target_));
         int ret = 0;
+        using namespace std;
         for (auto& c : text)
-            ret = std::max(ret, textHeight(c, fonts));
+            ret = max(ret, textHeight(c, fonts));
         return ret;
     }
 
@@ -398,7 +399,7 @@ namespace GFt {
             return textwidth(text.c_str(), IMG(target_));
         }
         // 否则, 尝试使用指定的字体
-        std::size_t count[text.length()]{ 0 };
+        std::size_t* count = new size_t[text.length()]{ 0 };
         int width = 0;
         LOGFONTW fs, fset;
         // 保存当前字体环境
@@ -406,7 +407,7 @@ namespace GFt {
         getfont(&fset, IMG(target_));
         // 查找字体的支持情况
         for (std::size_t i = 0; i < fonts.size(); ++i) {
-            WORD indices[text.length()]{ 0 };
+            WORD* indices = new WORD[text.length()]{ 0 };
             wcscpy_s(fset.lfFaceName, LF_FACESIZE, fonts[i].c_str());
             setfont(&fset, IMG(target_));
             GetGlyphIndicesW(
@@ -415,6 +416,7 @@ namespace GFt {
             for (std::size_t j = 0; j < text.length(); ++j)
                 if (indices[j] != 0xFFFF && count[j] == 0)
                     count[j] = i + 1;
+            delete[] indices;
         }
         // 输出文字
         for (std::size_t i = 0; i < text.length(); ++i) {
@@ -429,6 +431,7 @@ namespace GFt {
         }
         // 还原字体环境
         setfont(&fs, IMG(target_));
+        delete[] count;
         return width;
     }
     /// @details 若传入了无效的 flags, 则此函数将会忽略它们, 并使用默认的对齐方式(左上对齐)

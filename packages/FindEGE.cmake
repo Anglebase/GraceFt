@@ -55,8 +55,6 @@ if (MSVC)
     else ()
         message(FATAL_ERROR "你的 MSVC 版本太老了, 请使用 vs2015 或更新版本的 MSVC 编译器. 与时俱进吧, 不要一直使用十年前的编译器.")
     endif ()
-
-    target_compile_options(ege-common INTERFACE /source-charset:utf-8 /MP ${CPP_COMPILE_OPTIONS} /D_USE_MATH_DEFINES /D__STDC_LIMIT_MACROS "$<$<CONFIG:DEBUG>:/DDEBUG>" "$<$<CONFIG:RELEASE>:/DNDEBUG>" "$<$<CONFIG:RELWITHDEBINFO>:/DNDEBUG>" "$<$<CONFIG:MINSIZEREL>:/DNDEBUG>" "$<IF:$<CONFIG:Debug>,/MDd,/MD>")
 endif ()
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
@@ -65,9 +63,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     else ()
         set(osLibDir "mingw-w64-debian")
     endif ()
-    # target_compile_options(ege-common INTERFACE -D_FORTIFY_SOURCE=0)
-    # target_link_options(ege-common INTERFACE -mwindows -static -static-libgcc -static-libstdc++)
-    # target_link_libraries(ege-common INTERFACE graphics gdiplus gdi32 imm32 msimg32 ole32 oleaut32 winmm uuid)
 endif ()
 
 if (DEFINED osLibDir)

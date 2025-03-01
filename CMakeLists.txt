@@ -2,6 +2,15 @@ cmake_minimum_required(VERSION 3.22)
 
 project(GraceFt)
 
+if(MSVC)
+    add_compile_options(
+        /source-charset:utf-8
+        /D_USE_MATH_DEFINES
+        
+        /D__STDC_LIMIT_MACROS
+        /MP
+    )
+endif()
 add_definitions(-DUNICODE -D_UNICODE)
 
 # if(NOT ${CMAKE_BUILD_TYPE})

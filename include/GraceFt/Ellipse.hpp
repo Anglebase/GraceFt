@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 #include <GraceFt/Rect.hpp>
 
 namespace GFt {
@@ -53,7 +54,7 @@ namespace GFt {
         constexpr T ry() const { return rect_.height() / 2; }
         /// @brief 椭圆的面积
         /// @return 椭圆的面积
-        constexpr auto area() const { return std::numbers::pi * (rect_.width() / 2) * (rect_.height() / 2); }
+        constexpr auto area() const { return M_PI * (rect_.width() / 2) * (rect_.height() / 2); }
 
         /// @brief 流操作运算符
         /// @param os 输出流

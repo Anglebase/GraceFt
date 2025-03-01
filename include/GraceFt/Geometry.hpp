@@ -23,15 +23,16 @@ namespace GFt {
     template<typename T>
         requires std::is_arithmetic_v<T>
     Rect<T> operator&(const Rect<T>& r1, const Rect<T>& r2) {
+        using namespace std;
         Rect<T> ret;
-        ret.width() = std::min(r1.x() + r1.width(), r2.x() + r2.width()) - ret.x();
+        ret.width() = min(r1.x() + r1.width(), r2.x() + r2.width()) - ret.x();
         if (ret.width() <= 0)
             return Rect<T>();
-        ret.height() = std::min(r1.y() + r1.height(), r2.y() + r2.height()) - ret.y();
+        ret.height() = min(r1.y() + r1.height(), r2.y() + r2.height()) - ret.y();
         if (ret.height() <= 0)
             return Rect<T>();
-        ret.x() = std::max(r1.x(), r2.x());
-        ret.y() = std::max(r1.y(), r2.y());
+        ret.x() = max(r1.x(), r2.x());
+        ret.y() = max(r1.y(), r2.y());
         return ret;
     }
     /// @brief 判断点是否在矩形内(包含边界)

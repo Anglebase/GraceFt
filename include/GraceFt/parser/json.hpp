@@ -71,6 +71,14 @@ namespace GFt {
                     return os;
                     };
             }
+
+            static inline bool isFormat() {
+                return format_json_;
+            }
+
+            static inline int tabSize() {
+                return tabsize_;
+            }
         };
 
         /// @brief JSON 值对象
@@ -184,39 +192,39 @@ namespace GFt {
                 case Type::String: os << '"' << v.asString() << '"'; break;
                 case Type::Array:
                 {
-                    os << '[' << (Format::format_json_ ? StdString<CharT>(1, '\n') : StdString<CharT>());
+                    os << '[' << (Format::isFormat() ? StdString<CharT>(1, '\n') : StdString<CharT>());
                     Value<CharT>::indent_++;
                     for (std::size_t i = 0; i < v.asArray().size(); ++i)
-                        os << (Format::format_json_
-                            ? StdString<CharT>(Format::tabsize_ * Value<CharT>::indent_, ' ')
+                        os << (Format::isFormat()
+                            ? StdString<CharT>(Format::tabSize() * Value<CharT>::indent_, ' ')
                             : StdString<CharT>())
                         << v[i] << (i == v.asArray().size() - 1 ? StdString<CharT>() : StdString<CharT>(1, ','))
-                        << (Format::format_json_ ? StdString<CharT>(1, '\n') : StdString<CharT>());
+                        << (Format::isFormat() ? StdString<CharT>(1, '\n') : StdString<CharT>());
                     Value<CharT>::indent_--;
-                    os << (Format::format_json_
-                        ? StdString<CharT>(Format::tabsize_ * Value<CharT>::indent_, ' ')
+                    os << (Format::isFormat()
+                        ? StdString<CharT>(Format::tabSize() * Value<CharT>::indent_, ' ')
                         : StdString<CharT>()) << ']';
                 } break;
                 case Type::Object:
                 {
-                    os << '{' << (Format::format_json_ ? StdString<CharT>(1, '\n') : StdString<CharT>());
+                    os << '{' << (Format::isFormat() ? StdString<CharT>(1, '\n') : StdString<CharT>());
                     Value<CharT>::indent_++;
                     std::size_t i = 0;
                     for (const auto& [key, value] : v.asObject()) {
-                        os << (Format::format_json_
-                            ? StdString<CharT>(Format::tabsize_ * Value<CharT>::indent_, ' ')
+                        os << (Format::isFormat()
+                            ? StdString<CharT>(Format::tabSize() * Value<CharT>::indent_, ' ')
                             : StdString<CharT>())
-                            << '"' << key << '"' << ':' << (Format::format_json_
+                            << '"' << key << '"' << ':' << (Format::isFormat()
                                 ? StdString<CharT>(1, ' ')
                                 : StdString<CharT>())
                             << value << (i == v.asObject().size() - 1
                                 ? StdString<CharT>() : StdString<CharT>(1, ','))
-                            << (Format::format_json_ ? StdString<CharT>(1, '\n') : StdString<CharT>());
+                            << (Format::isFormat() ? StdString<CharT>(1, '\n') : StdString<CharT>());
                         ++i;
                     }
                     Value<CharT>::indent_--;
-                    os << (Format::format_json_
-                        ? StdString<CharT>(Format::tabsize_ * Value<CharT>::indent_, ' ')
+                    os << (Format::isFormat()
+                        ? StdString<CharT>(Format::tabSize() * Value<CharT>::indent_, ' ')
                         : StdString<CharT>()) << '}';
                 } break;
                 case Type::Invalid: os << invaild_; break;
