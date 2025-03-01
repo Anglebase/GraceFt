@@ -3,6 +3,7 @@
 #include <chrono>
 #include <functional>
 #include <list>
+#include <cmath>
 #include <mutex>
 #include <variant>
 #include <GraceFt/Signal.hpp>
