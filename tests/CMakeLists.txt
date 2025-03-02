@@ -103,3 +103,6 @@ add_executable(test_UDP_SNet ${CMAKE_CURRENT_SOURCE_DIR}/net/udp/server.cpp)
 target_link_libraries(test_UDP_SNet ${GFt_LIBRARY_NAME})
 add_executable(test_UDP_CNet ${CMAKE_CURRENT_SOURCE_DIR}/net/udp/client.cpp)
 target_link_libraries(test_UDP_CNet ${GFt_LIBRARY_NAME})
+# InputBox.h TEST
+add_executable(test_InputBox ${CMAKE_CURRENT_SOURCE_DIR}/InputBox.cpp)
+target_link_libraries(test_InputBox ${GFt_LIBRARY_NAME})

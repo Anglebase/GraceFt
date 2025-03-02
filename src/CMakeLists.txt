@@ -36,6 +36,7 @@ set(GFt_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/UI.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Net.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/InputBox.cpp
 )
 
 set(LIBRARY_OUTPUT_PATH ${GFt_LIBRARY_DIRS})              # 设置库输出目录
