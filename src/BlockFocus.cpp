@@ -1,5 +1,5 @@
-#include "BlockFocus.h"
-#include <Block.h>
+#include "GraceFt/BlockFocus.h"
+#include <GraceFt/Block.h>
 namespace GFt {
     Block* BlockFocusManager::focuson_ = nullptr;
     Block* BlockHoverManager::hoveron_ = nullptr;

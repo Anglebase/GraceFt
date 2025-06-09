@@ -3,7 +3,7 @@
 #include <iostream>
 #include <type_traits>
 #include <cmath>
-#include <GraceFt/_private.inl>
+#include <_private.inl>
 
 #include <GraceFt/Point.hpp>
 

@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <numbers>
 
-#include <GraceFt/_private.inl>
+#include <_private.inl>
 #include <GraceFt/Point.hpp>
 
 namespace GFt {

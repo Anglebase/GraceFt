@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <cmath>
 
-#include <GraceFt/_private.inl>
+#include <_private.inl>
 
 namespace GFt {
     /// @class Size

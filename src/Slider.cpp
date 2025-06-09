@@ -1,6 +1,6 @@
-#include "widget/Slider.h"
-#include <Application.h>
-#include <System.h>
+#include "GraceFt/widget/Slider.h"
+#include <GraceFt/Application.h>
+#include <GraceFt/System.h>
 
 namespace GFt {
     namespace Widget {

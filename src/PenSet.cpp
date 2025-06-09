@@ -1,4 +1,4 @@
-#include "PenSet.h"
+#include "GraceFt/PenSet.h"
 
 #include <ege.h>
 #include <_private.inl>

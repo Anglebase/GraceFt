@@ -1,14 +1,14 @@
-#include "widget/MainWindow.h"
+#include "GraceFt/widget/MainWindow.h"
 
 #include <numbers>
 
-#include <widget/Button.h>
-#include <Graphics.h>
-#include <BlockFocus.h>
-#include <Window.h>
-#include <Application.h>
-#include <RowLayout.h>
-#include <System.h>
+#include <GraceFt/widget/Button.h>
+#include <GraceFt/Graphics.h>
+#include <GraceFt/BlockFocus.h>
+#include <GraceFt/Window.h>
+#include <GraceFt/Application.h>
+#include <GraceFt/RowLayout.h>
+#include <GraceFt/System.h>
 
 namespace GFt {
     /// @cond IGNORE

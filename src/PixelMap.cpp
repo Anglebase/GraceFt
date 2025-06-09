@@ -1,4 +1,4 @@
-#include "PixelMap.h"
+#include "GraceFt/PixelMap.h"
 
 #include <ege.h>
 #include <exception>

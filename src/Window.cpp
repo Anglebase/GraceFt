@@ -1,6 +1,6 @@
-#include "Window.h"
-#include <Application.h>
-#include <Tools.h>
+#include "GraceFt/Window.h"
+#include <GraceFt/Application.h>
+#include <GraceFt/Tools.h>
 #include <ege.h>
 
 #define H(hide) (hide? ege::INIT_HIDE : 0)

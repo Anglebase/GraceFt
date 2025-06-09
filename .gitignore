@@ -1,4 +1,6 @@
-build/*
-.vscode/*
-docs/*
-lib/*
+/build
+/.vscode
+/docs
+/lib
+/.idea
+/target

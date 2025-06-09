@@ -1,3 +1,0 @@
-https://sourceforge.net/projects/redpanda-cpp/
-
-version: RedPanda.C++.3.1.win64.MinGW64_11.4

@@ -47,6 +47,7 @@ namespace GFt {
 
     public:
         AnimationState(AnimationAbstract* owner);
+        virtual ~AnimationState() = default;
         virtual void update(const TimePoint& now) = 0;
     };
 

@@ -1,4 +1,4 @@
-#include "BrushSet.h"
+#include "GraceFt/BrushSet.h"
 
 #include <_private.inl>
 #include <ege.h>

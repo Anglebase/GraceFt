@@ -1,7 +1,7 @@
-#include "widget/ScrollBar.h"
-#include <Geometry.hpp>
-#include <Application.h>
-#include <System.h>
+#include "GraceFt/widget/ScrollBar.h"
+#include <GraceFt/Geometry.hpp>
+#include <GraceFt/Application.h>
+#include <GraceFt/System.h>
 
 namespace GFt {
     namespace Widget {

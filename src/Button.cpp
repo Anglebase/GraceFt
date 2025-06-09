@@ -1,6 +1,6 @@
-#include "widget/Button.h"
+#include "GraceFt/widget/Button.h"
 
-#include <Graphics.h>
+#include <GraceFt/Graphics.h>
 
 namespace GFt {
     namespace Widget {

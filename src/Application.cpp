@@ -1,12 +1,12 @@
-#include "Application.h"
+#include "GraceFt/Application.h"
 
 #include <thread>
 #include <mutex>
 #include <ege.h>
 #include <chrono>
 
-#include <Geometry.hpp>
-#include <BlockFocus.h>
+#include <GraceFt/Geometry.hpp>
+#include <GraceFt/BlockFocus.h>
 
 namespace GFt {
     using namespace ege;

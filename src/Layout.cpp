@@ -1,6 +1,6 @@
-#include "Layout.h"
+#include "GraceFt/Layout.h"
 
-#include <Window.h>
+#include <GraceFt/Window.h>
 
 namespace GFt {
     void Layout::setPadding(int padding) {

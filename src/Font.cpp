@@ -1,4 +1,4 @@
-#include "Font.h"
+#include "GraceFt/Font.h"
 
 #include <ege.h>
 

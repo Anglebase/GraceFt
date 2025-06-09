@@ -1,4 +1,4 @@
-#include "GridLayout.h"
+#include "GraceFt/GridLayout.h"
 
 namespace GFt {
     void GridLayout::updateLayout() {

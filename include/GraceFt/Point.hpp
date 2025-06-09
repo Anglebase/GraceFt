@@ -5,7 +5,7 @@
 #include <cmath>
 #include <type_traits>
 
-#include <GraceFt/_private.inl>
+#include <_private.inl>
 #include <GraceFt/Matrix.hpp>
 
 /// @namespace GFt

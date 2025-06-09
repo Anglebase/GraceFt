@@ -1,4 +1,4 @@
-#include "TextSet.h"
+#include "GraceFt/TextSet.h"
 
 #include <ege.h>
 

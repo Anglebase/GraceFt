@@ -1,4 +1,4 @@
-#include "Event.h"
+#include "GraceFt/Event.h"
 
 #include <ege.h>
 namespace GFt {

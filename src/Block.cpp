@@ -1,13 +1,13 @@
-#include "Block.h"
+#include "GraceFt/Block.h"
 
 #include <algorithm>
 #include <ege.h>
 #include <dwmapi.h>
-#include <Geometry.hpp>
+#include <GraceFt/Geometry.hpp>
 
-#include <Graphics.h>
-#include <BlockFocus.h>
-#include <Window.h>
+#include <GraceFt/Graphics.h>
+#include <GraceFt/BlockFocus.h>
+#include <GraceFt/Window.h>
 
 #define DEF_MOUSE_HANDEL_FUNC(eventName)                                                \
     void Block::handleOn##eventName(eventName##Event* event, const iPoint& lefttop) {   \

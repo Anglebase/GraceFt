@@ -1,5 +1,5 @@
-#include"widget/InputBox.h"
-#include"BlockFocus.h"
+#include"GraceFt/widget/InputBox.h"
+#include"GraceFt/BlockFocus.h"
 
 namespace GFt {
     namespace Widget {

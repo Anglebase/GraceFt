@@ -1,4 +1,4 @@
-#include "Color.h"
+#include "GraceFt/Color.h"
 #include <ege.h>
 
 namespace GFt {

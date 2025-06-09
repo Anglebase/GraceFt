@@ -32,7 +32,7 @@ SOFTWARE.
  */
 
 
-#include "net/Net.h"
+#include "GraceFt/net/Net.h"
 #include <cstring>
 #include <WinSock2.h>
 #include <iostream>

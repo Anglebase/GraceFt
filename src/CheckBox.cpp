@@ -1,6 +1,6 @@
-#include "widget/CheckBox.h"
+#include "GraceFt/widget/CheckBox.h"
 
-#include <BlockFocus.h>
+#include <GraceFt/BlockFocus.h>
 
 namespace GFt {
     namespace Widget {

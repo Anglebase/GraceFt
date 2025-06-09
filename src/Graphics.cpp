@@ -1,4 +1,4 @@
-#include "Graphics.h"
+#include "GraceFt/Graphics.h"
 #include <_private.inl>
 #include <ege.h>
 

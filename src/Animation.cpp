@@ -1,5 +1,5 @@
-#include "Animation.hpp"
-#include <Application.h>
+#include "GraceFt/Animation.hpp"
+#include <GraceFt/Application.h>
 
 namespace GFt {
     AnimationState::AnimationState(AnimationAbstract* owner) : owner_(owner) {}

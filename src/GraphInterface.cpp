@@ -1,4 +1,4 @@
-#include "GraphInterface.h"
+#include "GraceFt/GraphInterface.h"
 
 namespace GFt {
     GraphInterface::GraphInterface(iRect rect) :rect_(rect) {}

@@ -1,6 +1,6 @@
-#include "widget/RadioBox.h"
+#include "GraceFt/widget/RadioBox.h"
 
-#include <BlockFocus.h>
+#include <GraceFt/BlockFocus.h>
 
 namespace GFt {
     namespace Widget {
