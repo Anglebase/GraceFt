@@ -1,6 +1,7 @@
 #include <GraceFt/Channel.hpp>
 #include <thread>
 #include <iostream>
+#include <chrono>
 
 using namespace GFt;
 using namespace std::chrono_literals;
