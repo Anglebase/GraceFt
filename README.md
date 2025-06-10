@@ -13,26 +13,41 @@ GraceFt 是一款基于开源图形引擎 EGE (Easy Graphics Engine) 的 C++ 图
 
 ## GraceFt 配置
 
-请按照以下步骤安装 GraceFt：
+GraceFt 使用了 Cup 作为项目管理，因此建议安装 Cup 作为项目管理/包管理器
 
-1. 克隆 GraceFt 的代码库：
-   ```
-   git clone https://github.com/Anglebase/GraceFt.git
-   ```
-2. 进入项目目录：
-   ```
-   cd GraceFt
-   ```
-3. 编译 GraceFt：
-   ```
-   cmake -B build -S .
-   cmake --build build --config Release
-   ```
-4. 在生成出的 lib 文件夹下就可以找到编译出的静态库文件
-5. 将include/GraceFt目录下的所有头文件引入到你的项目中，便可以开发你的应用程序了
-6. 在编译时链接 GraceFt 静态库文件，并添加其它必要的链接库(如相应的 EGE 库)
+### 1. 创建项目
+```bash
+cup new myapp && cd myapp
+```
 
-**GraceFt 需要至少 C++20 编译器支持**
+### 2. 创建包文件夹
+```bash
+mkdir packages && cd packages
+```
+
+### 3. 克隆指定的 GraceFt 发行版
+```bash
+git clone https://github.com/Anglebase/GraceFt.git --branch <Tag> --depth 1
+```
+例如克隆发行版 `v3.0.0`
+```bash
+git clone https://github.com/Anglebase/GraceFt.git --branch v3.0.0 --depth 1
+```
+只克隆指定的发行版可以避免引入庞大的项目历史存档，这有利于节约磁盘空间
+
+### 4. 引入 GraceFt 项目到你的项目中
+在`myapp`项目根目录下的`cup.toml`文件中添加以下内容：
+```toml
+[dependencies]
+GraceFt = { path = "./packages/GraceFt" }
+```
+
+### 5. 编译项目
+编写完成代码后，只需在你的项目根目录运行
+```bash
+cup build
+```
+即可构建项目
 
 ## 快速入门
 
