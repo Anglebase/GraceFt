@@ -3,20 +3,13 @@ version = "3.0.0"
 
 [build]
 stdcxx = 20
-include = ["./packages/include"]
 target = "static"
 define = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
 generator = "MinGW Makefiles"
 jobs = 0
 
+[dependencies]
+EGE = { git = "@Anglebase/EGE", version = "0.1.0" }
+
 [link]
-graphics = "./packages/lib/"
-gdiplus = ""
-uuid = ""
-msimg32 = ""
-gdi32 = ""
-imm32 = ""
-ole32 = ""
-oleaut32 = ""
-winmm = ""
-ws2_32 = ""
+libs = ["ws2_32"]

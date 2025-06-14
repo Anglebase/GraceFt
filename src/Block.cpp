@@ -1,7 +1,7 @@
 #include "GraceFt/Block.h"
 
 #include <algorithm>
-#include <ege.h>
+#include <ege/ege.h>
 #include <dwmapi.h>
 #include <GraceFt/Geometry.hpp>
 

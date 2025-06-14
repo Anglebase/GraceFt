@@ -1,7 +1,7 @@
 #include "GraceFt/BrushSet.h"
 
 #include <_private.inl>
-#include <ege.h>
+#include <ege/ege.h>
 
 #define BRUSH(x) (static_cast<BrushSetPrivate*>(brush_))
 

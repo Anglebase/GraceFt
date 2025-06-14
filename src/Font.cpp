@@ -1,6 +1,6 @@
 #include "GraceFt/Font.h"
 
-#include <ege.h>
+#include <ege/ege.h>
 
 #define FONT(x) (static_cast<LOGFONTW*>(x))
 

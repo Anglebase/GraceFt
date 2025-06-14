@@ -1,6 +1,6 @@
 #include "GraceFt/Event.h"
 
-#include <ege.h>
+#include <ege/ege.h>
 namespace GFt {
     bool Event::isPropagationStopped() const { return stopPropagation_; }
     void Event::stopPropagation() { stopPropagation_ = true; }
