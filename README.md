@@ -20,29 +20,14 @@ GraceFt 使用了 Cup 作为项目管理，因此建议安装 Cup 作为项目�
 cup new myapp && cd myapp
 ```
 
-### 2. 创建包文件夹
-```bash
-mkdir packages && cd packages
-```
-
-### 3. 克隆指定的 GraceFt 发行版
-```bash
-git clone https://github.com/Anglebase/GraceFt.git --branch <Tag> --depth 1
-```
-例如克隆发行版 `v3.0.0`
-```bash
-git clone https://github.com/Anglebase/GraceFt.git --branch v3.0.0 --depth 1
-```
-只克隆指定的发行版可以避免引入庞大的项目历史存档，这有利于节约磁盘空间
-
-### 4. 引入 GraceFt 项目到你的项目中
+### 2. 引入 GraceFt 项目到你的项目中
 在`myapp`项目根目录下的`cup.toml`文件中添加以下内容：
 ```toml
 [dependencies]
-GraceFt = { path = "./packages/GraceFt" }
+GraceFt = { url = "@Anglebase/GraceFt" }
 ```
 
-### 5. 编译项目
+### 3. 编译项目
 编写完成代码后，只需在你的项目根目录运行
 ```bash
 cup build

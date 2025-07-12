@@ -1,8 +1,3 @@
-# 示例
-
-## 计算器
-这里是一个基于声明式界面编程模型编写的一个计算器的示例
-```cpp
 #include <GraceFt/Application.h>
 #include <GraceFt/Window.h>
 #include <GraceFt/widget/UI.h>
@@ -455,4 +450,3 @@ int main() {
     window->show();
     return app.run();
 }
-```

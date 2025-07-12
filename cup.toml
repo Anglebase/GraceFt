@@ -1,15 +1,18 @@
+[project]
 name = "GraceFt"
 version = "3.0.1"
+type = "static"
 
 [build]
 stdcxx = 20
 target = "static"
-define = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
+defines = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
 generator = "MinGW Makefiles"
 jobs = 0
+link_libs = ["ws2_32"]
+
+[build.export]
+compile_commands = ".vscode"
 
 [dependencies]
-EGE = { git = "@Anglebase/EGE", version = "0.1.0" }
-
-[link]
-libs = ["ws2_32"]
+EGE = { url = "@Anglebase/EGE", version = "1.0.0" }
