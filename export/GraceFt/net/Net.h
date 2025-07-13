@@ -33,6 +33,8 @@ SOFTWARE.
 
  */
 
+#ifdef GFT_NET
+
 #include<string>
 #include<tuple>
 
@@ -323,3 +325,5 @@ public:
      */
     int sendto(const Data& data, std::tuple<std::string, int> addr);
 };
+
+#endif

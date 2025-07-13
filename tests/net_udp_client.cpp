@@ -1,3 +1,5 @@
+#ifdef GFT_NET
+
 #include"GraceFt/net/Net.h"
 
 int main() {
@@ -12,3 +14,14 @@ int main() {
     n = data.read<int>(0);
     printf("%d\n", n);
 }
+
+#else
+
+#include <iostream>
+int main()
+{
+    std::cout << "Feature 'net' not enabled." << std::endl;
+    return 0;
+}
+
+#endif

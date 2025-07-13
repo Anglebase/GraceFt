@@ -31,6 +31,7 @@ SOFTWARE.
 
  */
 
+#ifdef GFT_NET
 
 #include "GraceFt/net/Net.h"
 #include <cstring>
@@ -617,3 +618,5 @@ Client<TCP>& operator>>(Client<TCP>& client, long double& num) {
     data.read(0, sizeof(long double), (byte*)&num);
     return client;
 }
+
+#endif

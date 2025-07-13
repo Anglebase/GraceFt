@@ -1,3 +1,5 @@
+#ifdef GFT_NET
+
 #include"GraceFt/net/Net.h"
 
 int main() {
@@ -14,3 +16,14 @@ int main() {
         server.sendto(data, addr);
     }
 }
+
+#else
+
+#include <iostream>
+int main()
+{
+    std::cout << "Feature 'net' not enabled." << std::endl;
+    return 0;
+}
+
+#endif

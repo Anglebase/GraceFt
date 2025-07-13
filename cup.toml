@@ -9,10 +9,14 @@ target = "static"
 defines = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
 generator = "MinGW Makefiles"
 jobs = 0
-link_libs = ["ws2_32"]
+# features = ["net"]
 
 [build.export]
 compile_commands = ".vscode"
 
 [dependencies]
 EGE = { url = "@Anglebase/EGE", version = "1.0.0" }
+
+[feature."net"]
+defines = ["GFT_NET"]
+link_libs = ["ws2_32"]
