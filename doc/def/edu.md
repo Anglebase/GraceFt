@@ -5,8 +5,7 @@ GraceFt 是一款基于 C++ 开源图形引擎 [EGE(Easy Graphics Engine)](https
 
 ## 环境配置
 1. **确保你的电脑上已经安装了至少支持 C++20 的编译器**: GracFt 是基于 C++20 开发的，所以你的编译器必须支持 C++20 才能编译 GraceFt 项目
-2. **确保你的电脑上已经安装了 CMake 3.22 或以上版本**: GraceFt 项目是使用 CMake 构建的，所以你需要确保你的电脑上已经安装了 CMake 3.22 或以上版本
-3. **下载项目模板或手动配置项目环境**: 你可以从 [Github](https://github.com/Graceful-Engineering-Team/GraceFt) 下载项目模板，或者手动配置自己习惯的项目环境
+2. **确保你的电脑上已经安装了 Cup 2.0 或以上版本**: GraceFt 项目需要使用 Cup 进行构建，所以你需要确保你的电脑上已经安装了 Cup 2.0 或以上版本
 4. **从此刻开始，你就可以开始编写你的 GraceFt 项目了！**
 
 ## Hello World
@@ -202,89 +201,4 @@ int main() {
 在 GraceFt 中，所有的 UI 元素都被组织成一个树状结构，称为对象树，这类似于 HTML 文档的 DOM 树。对象树的每个元素都是 `GFt::Block` 类的子类构建的，它是所有 UI 元素的基类，它提供了一些基本的属性和行为，例如位置、尺寸、父节点、子节点、Z轴顺序等。在声明式的界面编程模型中，可以通过比定义式的界面编程模型更加简单直观的方式去构建对象树。
 
 ### 事件循环
-事件循环是所有图形应用程序的核心，它负责监听窗口的各种事件，并把这些事件分发给相应的元素进行处理。在 GraceFt 中，事件循环的这些行为是由 `GFt::Application` 类来管理的。为了优化事件循环的性能，GraceFt 摒弃了整树遍历的方式，而是采用了事件分发的方式，这使得事件处理更加高效。对于窗口来说，事件分为三大类，分别为绘制事件、鼠标事件和键盘事件。如果在事件循环中启用了裁剪优化，那么 GraceFt 将不会绘制与父节点区域没有交际的子节点，这可以提高绘制效率，但如果你不希望它们不被绘制可以通过 `GFt::Application::exec()` 的参数关闭裁剪优化，它默认是开启的。对于鼠标事件来说，GraceFt 的事件循环将依据当前的鼠标位置来确定哪个元素应该响应鼠标事件，并将事件传递给相应的元素(参见 `GFt::Block::onMouseButtonPress()` 方法的文档)。对于键盘事件来说，GraceFt 的事件循环将依据当前的键盘焦点来确定哪个元素应该响应键盘事件，并将事件传递给相应的元素(参见 `GFt::Block::onKeyPress()` 方法的文档)。
-
-## 基于模板项目创建新项目
-
-为了便于开发者的使用，GraceFt 提供了 GraceFt 项目模板，你可以从[Github](https://github.com/Anglebase/GraceFt/releases)上获取它，下面将介绍如何基于模板项目创建新项目。
-
-### 准备工作
-1. 确保你的电脑上已经安装 CMake 3.22 或以上版本和至少支持 C++20 的编译器(推荐使用[GCC 14.2](https://github.com/skeeto/w64devkit/releases)或更高版本)
-2. 下载项目模板并解压到你喜欢的目录，使用你习惯的IDE打开项目目录(推荐使用[Visual Studio Code](https://code.visualstudio.com/))
-*3. 通过启用 CMake 构建可以得到一个Hello GraceFt的示例程序*
-
-### 项目目录结构
-```
-.
-│  CMakeLists.txt
-│  main.cpp
-├─GraceFt-vX.Y.Z
-│  ├─GraceFt
-│  └─lib
-├─include
-│   MyWindow.h
-└─src
-    CMakeLists.txt
-    MyWindow.cpp
-```
-其中，`GraceFt-vX.Y.Z` 是 GraceFt 依赖项所在的目录，`include` 目录存放你自己的项目的头文件，`src` 目录存放项目的源文件。`main.cpp` 作为应用程序的入口文件，`CMakeLists.txt` 作为 CMake 构建脚本，`MyWindow.h` 和 `MyWindow.cpp` 作为示例窗口程序的源文件，你可以通过它们测试你的环境配置是否正确，也可以直接删除它们。同时不要忘记在 `CMakeLists.txt` 中移除它们。
-
-### 编写自己的窗口程序
-现在我们以一个简单的窗口程序为例，来展示如何基于 GraceFt 编写一个窗口程序。
-
-**首先，移除示例程序** ，同时也不要忘记在 `CMakeLists.txt` 中移除它们。
-
-**然后，创建自己的头文件** ，在 `include` 目录下创建一个名为 `MyGraecFt.h` 的头文件，并在其中定义自己的窗口类：
-```cpp
-/* MyGraecFt.h */
-#pragma once
-#include <GraceFt/Block.h>
-
-class MyGraecFt : public Block {
-protected:
-    void onDraw(GFt::Graphics& rect) override;
-public:
-    MyGraecFt(const GFt::iRect& rect, GFt::Block* parent = nullptr, int zIndex = 0);
-    virtual ~MyGraecFt();
-};
-```
-**接下来，创建自己的源文件** ，在 `src` 目录下创建一个名为 `MyGraecFt.cpp` 的源文件，并在其中实现自己的窗口类：
-```cpp
-/* MyGraecFt.cpp */
-#include "MyWindow.h"
-
-using namespace GFt;
-using namespace GFt::literals;
-
-void MyGraceFt::onDraw(Graphics& g) {
-    BrushSet bs(0x7980f5ef_rgba);
-    TextSet ts(0x0ee_rgba);
-    g.bindBrushSet(&bs);
-    g.bindTextSet(&ts);
-    g.drawFillEllipse(fEllipse{ iRect{ rect().size() } });
-    g.drawText(L"My GraceFt!", iRect{ rect().size() }, TextAlign::Center | TextAlign::Middle);
-}
-
-MyGraceFt::MyGraceFt(const GFt::iRect& rect, GFt::Block* parent, int zIndex)
-    : Block(rect, parent, zIndex) {}
-
-MyGraceFt::~MyGraceFt() = default;
-```
-**最后，在 `main.cpp` 中编写你的应用程序入口** ，并在其中创建你的窗口对象：
-```cpp
-/* main.cpp */
-#include <GraceFt/Application.h>
-#include <Window.h>
-
-#include "MyWindow.h"
-using namespace GFt;
-
-int main() {
-    MyGraceFt root(iRect{ 50,50,800,600 });
-    Window* window = Window::createWindow(&root);
-    Application app(window);
-    window->show();
-    return app.run();
-}
-```
-**将上面所添加的文件添加到CmakeLists.txt中，并编译运行程序** ，你将会看到一个窗口出现在屏幕上，上面显示着 "My GraceFt!" 文本和一个填充的椭圆。
+事件循环是所有图形应用程序的核心，它负责监听窗口的各种事件，并把这些事件分发给相应的元素进行处理。在 GraceFt 中，事件循环的这些行为是由 `GFt::Application` 类来管理的。为了优化事件循环的性能，GraceFt 摒弃了整树遍历的方式，而是采用了事件分发的方式，这使得事件处理更加高效。对于窗口来说，事件分为三大类，分别为绘制事件、鼠标事件和键盘事件。如果在事件循环中启用了裁剪优化，那么 GraceFt 将不会绘制与父节点区域没有交集的子节点，这可以提高绘制效率，但如果你不希望它们不被绘制可以通过 `GFt::Application::exec()` 的参数关闭裁剪优化，它默认是开启的。对于鼠标事件来说，GraceFt 的事件循环将依据当前的鼠标位置来确定哪个元素应该响应鼠标事件，并将事件传递给相应的元素(参见 `GFt::Block::onMouseButtonPress()` 方法的文档)。对于键盘事件来说，GraceFt 的事件循环将依据当前的键盘焦点来确定哪个元素应该响应键盘事件，并将事件传递给相应的元素(参见 `GFt::Block::onKeyPress()` 方法的文档)。
