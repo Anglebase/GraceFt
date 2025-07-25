@@ -5,7 +5,6 @@ type = "static"
 
 [build]
 stdcxx = 20
-target = "static"
 defines = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
 generator = "MinGW Makefiles"
 jobs = 0
