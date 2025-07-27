@@ -1,6 +1,6 @@
 #include "GraceFt/Tools.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 
 static inline auto _ = SetProcessDPIAware();
 

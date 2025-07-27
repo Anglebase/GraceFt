@@ -1,6 +1,6 @@
 #include "GraceFt/Texture.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 
 #define IMG(x) (static_cast<ege::PIMAGE>(x))
 

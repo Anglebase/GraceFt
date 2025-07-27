@@ -1,6 +1,6 @@
 #include "GraceFt/Graphics.h"
 #include <_private.inl>
-#include <ege/ege.h>
+#include <ege.h>
 
 #define FONT(x) (static_cast<LOGFONTW*>(x))
 #define IMG(x) (static_cast<PIMAGE>(x))

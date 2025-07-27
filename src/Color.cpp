@@ -1,5 +1,5 @@
 #include "GraceFt/Color.h"
-#include <ege/ege.h>
+#include <ege.h>
 
 namespace GFt {
     std::tuple<float, float, float> Color::toHSL() const {

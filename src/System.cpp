@@ -1,5 +1,5 @@
 #include "GraceFt/System.h"
-#include <ege/ege.h>
+#include <ege.h>
 #include <windows.h>
 
 namespace GFt {

@@ -1,6 +1,6 @@
 #include "GraceFt/PixelMap.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 #include <exception>
 
 #define IMG(x) (static_cast<PIMAGE>(x))

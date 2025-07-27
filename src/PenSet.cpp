@@ -1,6 +1,6 @@
 #include "GraceFt/PenSet.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 #include <_private.inl>
 
 #define PEN(x) (static_cast<_GFt_private_::PenSetPrivate*>(x))

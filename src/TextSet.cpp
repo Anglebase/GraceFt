@@ -1,6 +1,6 @@
 #include "GraceFt/TextSet.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 
 namespace GFt {
     using namespace ege;

@@ -6,7 +6,7 @@ type = "static"
 [build]
 stdcxx = 20
 defines = ["M_PI=3.1415926535", "UNICODE", "_UNICODE"]
-generator = "MinGW Makefiles"
+generator = "Ninja"
 jobs = 0
 # features = ["net"]
 
@@ -14,7 +14,7 @@ jobs = 0
 compile_commands = ".vscode"
 
 [dependencies]
-EGE = { url = "@Anglebase/EGE", version = "1.0.0" }
+xege = { url = "@Anglebase/xege", version = "0.1.0" }
 
 [feature."net"]
 defines = ["GFT_NET"]

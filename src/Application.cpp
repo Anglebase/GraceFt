@@ -2,7 +2,7 @@
 
 #include <thread>
 #include <mutex>
-#include <ege/ege.h>
+#include <ege.h>
 #include <chrono>
 
 #include <GraceFt/Geometry.hpp>

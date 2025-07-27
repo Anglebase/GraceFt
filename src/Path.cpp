@@ -1,6 +1,6 @@
 #include "GraceFt/Path.h"
 
-#include <ege/ege.h>
+#include <ege.h>
 
 #define PATH(x) (static_cast<ege::ege_path*>(x))
 
